@@ -4,6 +4,9 @@ import img2 from './assets/2.png';
 import img3 from './assets/3.png';
 import img4 from './assets/4.png';
 import img5 from './assets/5.png';
+import img6 from './assets/6.png';
+import img7 from './assets/7.png';
+import img8 from './assets/8.png';
 
 export interface ConceptCarData {
   id: string;
@@ -643,78 +646,78 @@ export const CONCEPT_CARS: ConceptCarData[] = [
       weight: '1 280 kg'
     },
     poster: {
-      image: CONCEPT_2_VISUALS.poster,
+      image: img8 || '/8.png',
       title: {
-        fr: 'VORTEX STRATOS — La Puissance Dictée par la Physique',
-        en: 'VORTEX STRATOS — Raw Power Dictated by Physics'
+        fr: 'VORTEX STRATOS — Affiche & Manifeste Aérodynamique',
+        en: 'VORTEX STRATOS — Aerodynamic Poster Manifesto'
       },
       description: {
-        fr: 'VORTEX STRATOS pousse la philosophie du minimalisme fonctionnel à son paroxysme. Dépourvu de tout artifice ornemental, le véhicule est une machine à fendre l\'air générant plus de 1 100 kg d\'appui vertical à haute vitesse grâce à son fond plat à effet Venturi intégral et ses volets aérocinétiques adaptatifs. Sa structure monocoque en composite T1000 optimise la rigidité en torsion tout en allégeant la masse totale.',
-        en: 'VORTEX STRATOS pushes functional minimalism to its radical apex. Stripped of all ornamental excess, the vehicle is a precision air-splitting prototype generating over 1,100 kg of downforce at track speed through its full-length Venturi ground effect floor and kinetic winglets. Its T1000 carbon monocoque maximizes torsional stiffness while achieving extraordinary weight reduction.'
+        fr: 'Exploration d\'une hypercar électrique haute performance. Dictée par les contraintes aérodynamiques et l\'effet de sol, la carrosserie sculpte l\'écoulement des flux d\'air pour maximiser l\'appui et la stabilité à très haute vitesse, tout en conservant une silhouette fluide et radicale sans artifice ornemental.',
+        en: 'Radical study of a high-performance electric hypercar. Shaped purely by aerodynamics and ground effect, the bodywork channels airflow to maximize downforce and high-speed stability while retaining an uninterrupted, fluid silhouette stripped of ornamental clutter.'
       }
     },
     sketch: {
-      image: CONCEPT_2_VISUALS.sketch,
+      image: img6 || '/6.png',
       title: {
-        fr: 'Esquisses de Style & Géométrie Cinétique',
-        en: 'Kinetic Styling Sketches & Volumetric Ideation'
+        fr: 'Esquisses de Style & Recherche Volumique',
+        en: 'Styling Sketches & Volumetric Ideation'
       },
       caption: {
-        fr: 'Planche de recherche volumique, calcul des vortex d\'admission et silhouette agressive',
-        en: 'Volumetric research board, intake vortex calculations and kinetic stance'
+        fr: 'Planche de recherche de proportions et dynamique des flux',
+        en: 'Proportion study and airflow dynamics'
       },
       text: {
-        fr: 'L\'exploration graphique de VORTEX a débuté par l\'étude des avions de chasse supersoniques et des requins pélagiques. Les coups de crayon traduisent la tension musculaire d\'un prédateur prêt à bondir : arêtes tranchantes, épaules larges et verrière en goutte d\'eau monobloc. Les croquis permettent d\'ajuster au millimètre près l\'orientation des prises d\'air naca et la trajectoire des vortex arrières.',
-        en: 'The graphic exploration for VORTEX began by studying supersonic fighter aircraft and pelagic apex predators. The pencil lines capture kinetic muscular tension: razor-sharp body creases, wide rear shoulders, and a seamless single-piece canopy. Hand sketches allowed millimetric tuning of NACA ducts and trailing-edge vortex shedding.'
+        fr: 'Les esquisses manuelles traduisent la tension musculaire du véhicule et la fluidité des surfaces. Cette recherche graphique d\'idéation permet d\'ajuster les proportions du cockpit, les arêtes tranchantes et l\'implantation des canaux de décharge aérodynamique avant la modélisation 3D.',
+        en: 'Manual sketches capture the muscular tension and seamless surface transitions. This ideation phase fine-tunes cockpit proportions, sharp character lines, and aerodynamic exhaust channels before 3D sculpting.'
       },
       bullets: {
         fr: [
-          'Silhouette ultra-basse inspirée de l\'aérodynamique aérospatiale',
-          'Conduits NACA intégrés directement dans l\'enveloppe structurelle',
-          'Aileron arrière bi-plan adaptatif commandé par télémétrie'
+          'Silhouette ultra-basse orientée vers l\'efficacité aéro',
+          'Intégration fluide des conduits d\'air dans la carrosserie',
+          'Posture agressive et proportions dynamiques'
         ],
         en: [
-          'Ultra-low stance inspired by aerospace high-speed aerodynamics',
-          'NACA ducts integrated directly into the structural carbon skin',
-          'Adaptive dual-element rear wing governed by dynamic telemetry'
+          'Ultra-low stance optimized for aerodynamic efficiency',
+          'Seamless air duct integration within the sculpted body',
+          'Aggressive stance and dynamic proportion ratios'
         ]
       }
     },
     photos: [
       {
         id: 'c2-p1',
-        image: CONCEPT_2_VISUALS.photo1,
+        image: img7 || '/7.png',
         title: {
-          fr: 'Vue Trois-Quarts Avant & Signature Laser',
-          en: 'Front Three-Quarter Stance & Laser Blades'
+          fr: 'VORTEX STRATOS — Visuel 01',
+          en: 'VORTEX STRATOS — Visual 01'
         },
         caption: {
-          fr: 'Regard acéré à matrice OLED, lame de spoiler en carbone forgé et calandre à volets actifs.',
-          en: 'OLED matrix headlight signature, forged carbon front splitter, and active intake louvers.'
+          fr: '',
+          en: ''
         }
       },
       {
         id: 'c2-p2',
         image: CONCEPT_2_VISUALS.photo2,
         title: {
-          fr: 'Diffuseur Venturi & Signature Lumineuse Arrière',
-          en: 'Venturi Diffuser & Full-Width Horizon Lightbar'
+          fr: 'VORTEX STRATOS — Visuel 02',
+          en: 'VORTEX STRATOS — Visual 02'
         },
         caption: {
-          fr: 'Signature lumineuse arrière continue en bandeau OLED rouge et tunnels de décharge aérodynamique.',
-          en: 'Continuous horizon OLED rear lightbar and full venturi ground-effect diffuser tunnels.'
+          fr: '',
+          en: ''
         }
       },
       {
         id: 'c2-p3',
         image: CONCEPT_2_VISUALS.photo3,
         title: {
-          fr: 'Poste de Conduite & Cockpit Monocoque',
-          en: 'Driver Monocoque Cockpit & Steer-by-Wire'
+          fr: 'VORTEX STRATOS — Visuel 03',
+          en: 'VORTEX STRATOS — Visual 03'
         },
         caption: {
-          fr: 'Volant ergonomique Yoke steer-by-wire et affichage tête haute à réalité augmentée.',
-          en: 'Steer-by-wire ergonomic yoke steering and augmented reality heads-up telemetry display.'
+          fr: '',
+          en: ''
         }
       }
     ]
