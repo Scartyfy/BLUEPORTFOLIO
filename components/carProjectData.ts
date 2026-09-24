@@ -1,12 +1,12 @@
 import { Language } from '../types';
-import img1 from './assets/1.png';
-import img2 from './assets/2.png';
-import img3 from './assets/3.png';
-import img4 from './assets/4.png';
-import img5 from './assets/5.png';
-import img6 from './assets/6.png';
-import img7 from './assets/7.png';
-import img8 from './assets/8.png';
+import img1 from './assets/1.webp';
+import img2 from './assets/2.webp';
+import img3 from './assets/3.webp';
+import img4 from './assets/4.webp';
+import img5 from './assets/5.webp';
+import img6 from './assets/6.webp';
+import img7 from './assets/7.webp';
+import img8 from './assets/8.webp';
 
 export interface ConceptCarData {
   id: string;
@@ -544,7 +544,7 @@ export const CONCEPT_CARS: ConceptCarData[] = [
       weight: '1 420 kg'
     },
     poster: {
-      image: img1 || '/1.png',
+      image: img1 || '/1.webp',
       title: {
         fr: 'LOBSTER CAR — Affiche & Manifeste de Style',
         en: 'LOBSTER CAR — Poster & Style Manifesto'
@@ -555,7 +555,7 @@ export const CONCEPT_CARS: ConceptCarData[] = [
       }
     },
     sketch: {
-      image: img4 || '/4.png',
+      image: img4 || '/4.webp',
       title: {
         fr: 'Recherche & Croquis Préparatoires',
         en: 'Styling Sketches & Formal Research'
@@ -584,7 +584,7 @@ export const CONCEPT_CARS: ConceptCarData[] = [
     photos: [
       {
         id: 'c1-p1',
-        image: img2 || '/2.png',
+        image: img2 || '/2.webp',
         title: {
           fr: 'LOBSTER CAR — Visuel 01',
           en: 'LOBSTER CAR — Visual 01'
@@ -596,7 +596,7 @@ export const CONCEPT_CARS: ConceptCarData[] = [
       },
       {
         id: 'c1-p2',
-        image: img3 || '/3.png',
+        image: img3 || '/3.webp',
         title: {
           fr: 'LOBSTER CAR — Visuel 02',
           en: 'LOBSTER CAR — Visual 02'
@@ -608,7 +608,7 @@ export const CONCEPT_CARS: ConceptCarData[] = [
       },
       {
         id: 'c1-p3',
-        image: img5 || '/5.png',
+        image: img5 || '/5.webp',
         title: {
           fr: 'LOBSTER CAR — Visuel 03',
           en: 'LOBSTER CAR — Visual 03'
@@ -646,7 +646,7 @@ export const CONCEPT_CARS: ConceptCarData[] = [
       weight: '1 280 kg'
     },
     poster: {
-      image: img8 || '/8.png',
+      image: img8 || '/8.webp',
       title: {
         fr: 'VORTEX STRATOS — Affiche & Manifeste Aérodynamique',
         en: 'VORTEX STRATOS — Aerodynamic Poster Manifesto'
@@ -657,7 +657,7 @@ export const CONCEPT_CARS: ConceptCarData[] = [
       }
     },
     sketch: {
-      image: img6 || '/6.png',
+      image: img6 || '/6.webp',
       title: {
         fr: 'Esquisses de Style & Recherche Volumique',
         en: 'Styling Sketches & Volumetric Ideation'
@@ -686,7 +686,7 @@ export const CONCEPT_CARS: ConceptCarData[] = [
     photos: [
       {
         id: 'c2-p1',
-        image: img7 || '/7.png',
+        image: img7 || '/7.webp',
         title: {
           fr: 'VORTEX STRATOS — Visuel 01',
           en: 'VORTEX STRATOS — Visual 01'

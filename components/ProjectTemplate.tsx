@@ -25,7 +25,7 @@ const MarqueeText = ({ children, direction = 1 }: { children: React.ReactNode, d
   </div>
 );
 
-const SkillRow = ({ label, text, index, details, image, images, quotes, theme = "dark" }: {label: string, text: string, index: number, details?: string, image?: string, images?: {src: string | string[], label: string}[], quotes?: {text: string, author: string}[], theme?: "light" | "dark"}) => {
+const SkillRow = ({ label, text, index, details, image, images, quotes, theme = "dark" }: {label: string, text: string, index: number, details?: string, image?: string, images?: {src: string | string[], label: string}[], quotes?: {text: string, author: string}[], theme?: "light" | "dark", key?: React.Key}) => {
   return (
     <motion.div 
       initial={{ opacity: 0, y: 30 }}
@@ -138,7 +138,7 @@ const SkillRow = ({ label, text, index, details, image, images, quotes, theme = 
   );
 };
 
-const RevealTitle = ({ children }: { children: string }) => {
+const RevealTitle = ({ children }: { children: string; key?: React.Key }) => {
   return (
     <div className="overflow-hidden inline-block pr-2 pb-4 -mb-4">
       <motion.div

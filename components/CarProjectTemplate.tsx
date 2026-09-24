@@ -16,7 +16,7 @@ interface CarProjectTemplateProps {
   onClose?: () => void;
 }
 
-const RevealTitle = ({ children }: { children: string }) => {
+const RevealTitle = ({ children }: { children: string; key?: React.Key }) => {
   return (
     <div className="overflow-hidden inline-block pr-2 pb-4 -mb-4">
       <motion.div
@@ -310,10 +310,10 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
                   duration: 1.4,
                   ease: [0.76, 0, 0.24, 1],
                 }}
-                src="./top_header.png"
+                src="./top_header.webp"
                 onError={(e) => {
                   // Fallback to car 1 poster if top_header fails
-                  (e.target as HTMLImageElement).src = './1.png';
+                  (e.target as HTMLImageElement).src = './1.webp';
                 }}
                 alt="Automotive Design"
                 className="absolute inset-0 w-full h-[120%] -top-[10%] object-cover contrast-[1.1] saturate-50 origin-center"

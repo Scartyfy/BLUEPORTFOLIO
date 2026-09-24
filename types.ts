@@ -12,11 +12,6 @@ export interface Project {
   pdfUrl?: string;
 }
 
-export interface CardReading {
-  cardName: string;
-  reading: string;
-}
-
 export enum ViewState {
   INTRO = 'INTRO',         // Initial state, scrolling spreads deck
   REVEALING = 'REVEALING', // Card clicked, centering and flipping

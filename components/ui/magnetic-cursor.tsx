@@ -1,7 +1,27 @@
 import React, { useRef, useEffect, FC, ReactNode, useState } from "react";
 import gsap from "gsap";
-import { vec2 } from "vecteur";
-type Vec2 = ReturnType<typeof vec2>;
+class Vec2 {
+  constructor(public x = 0, public y = 0) {}
+  lerp(target: Vec2, alpha: number) {
+    this.x += (target.x - this.x) * alpha;
+    this.y += (target.y - this.y) * alpha;
+    return this;
+  }
+  clone() {
+    return new Vec2(this.x, this.y);
+  }
+  sub(v: Vec2) {
+    this.x -= v.x;
+    this.y -= v.y;
+    return this;
+  }
+  copy(v: Vec2) {
+    this.x = v.x;
+    this.y = v.y;
+    return this;
+  }
+}
+const vec2 = (x = 0, y = 0) => new Vec2(x, y);
 
 interface MagneticCursorProps {
   children: ReactNode;

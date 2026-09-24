@@ -19,6 +19,29 @@ export default defineConfig(({ mode }) => {
         alias: {
           '@': path.resolve(__dirname, '.'),
         }
+      },
+      build: {
+        target: 'esnext',
+        cssCodeSplit: true,
+        rollupOptions: {
+          output: {
+            manualChunks(id) {
+              if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
+                return 'vendor-react';
+              }
+              if (id.includes('node_modules/motion')) {
+                return 'vendor-motion';
+              }
+              if (id.includes('node_modules/gsap')) {
+                return 'vendor-gsap';
+              }
+              if (id.includes('node_modules/lucide-react')) {
+                return 'vendor-icons';
+              }
+            }
+          }
+        },
+        chunkSizeWarningLimit: 600
       }
     };
 });

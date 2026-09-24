@@ -1,10 +1,10 @@
 
 import { Project } from './types';
-import img1 from './components/assets/1.png';
-import img2 from './components/assets/2.png';
-import img3 from './components/assets/3.png';
-import img4 from './components/assets/4.png';
-import img5 from './components/assets/5.png';
+import img1 from './components/assets/1.webp';
+import img2 from './components/assets/2.webp';
+import img3 from './components/assets/3.webp';
+import img4 from './components/assets/4.webp';
+import img5 from './components/assets/5.webp';
 
 export const PROJECTS: Project[] = [
   {
@@ -37,8 +37,8 @@ export const PROJECTS: Project[] = [
       fr: 'Étude stylistique et formelle du concept car Lobster Car. Morphologie sculptée, pureté aérodynamique et proportions radicales. Affiche de style, esquisses d\'idéation et visuels photographiques.',
       en: 'Stylistic and formal study of the Lobster Car concept. Sculpted morphology, aerodynamic purity, and radical proportions. Styling poster, ideation sketches, and photographic visuals.'
     },
-    image: img1 || '/1.png',
-    gallery: [img1 || '/1.png', img4 || '/4.png', img2 || '/2.png', img3 || '/3.png', img5 || '/5.png']
+    image: img1 || '/1.webp',
+    gallery: [img1 || '/1.webp', img4 || '/4.webp', img2 || '/2.webp', img3 || '/3.webp', img5 || '/5.webp']
   },
   {
     id: 'p4',
