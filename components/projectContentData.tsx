@@ -349,7 +349,7 @@ export const getProjectData = (id: string, lang: Language) => {
         col3Text: lang === 'fr' ? "Crénage (Kerning), Ajustements Optiques" : "Kerning, Optical Adjustments"
       },
       images: {
-        heroBg: `${import.meta.env.BASE_URL}typo/slide_01.jpg`,
+        heroBg: `${import.meta.env.BASE_URL}typo/slide_12.jpg`,
       },
       slides: [
         `${import.meta.env.BASE_URL}typo/slide_01.jpg`,

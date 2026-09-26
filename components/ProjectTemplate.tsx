@@ -329,9 +329,11 @@ export const ProjectTemplate: React.FC<{
                 duration: 1.4,
                 ease: [0.76, 0, 0.24, 1],
               }}
-              className="w-full aspect-[4/3] md:aspect-[21/9] relative z-20 overflow-hidden shadow-2xl"
+              className={`w-full ${projectId === 'p6' ? 'aspect-[16/9] rounded-xl sm:rounded-2xl' : 'aspect-[4/3] md:aspect-[21/9]'} relative z-20 overflow-hidden shadow-2xl`}
             >
-              <div className="absolute inset-0 bg-[#002FA7]/10 z-10 pointer-events-none mix-blend-multiply" />
+              {projectId !== 'p6' && (
+                <div className="absolute inset-0 bg-[#002FA7]/10 z-10 pointer-events-none mix-blend-multiply" />
+              )}
               <motion.img
                 initial={{ scale: 1.15 }}
                 animate={{ scale: 1 }}
@@ -343,7 +345,7 @@ export const ProjectTemplate: React.FC<{
                 }}
                 src={data.images.heroBg}
                 alt={data.title}
-                className="absolute inset-0 w-full h-[120%] -top-[10%] object-cover contrast-[1.1] saturate-50 origin-center"
+                className={`absolute inset-0 w-full ${projectId === 'p6' ? 'h-full object-contain sm:object-cover' : 'h-[120%] -top-[10%] object-cover contrast-[1.1] saturate-50'} origin-center`}
               />
             </motion.div>
           </div>
