@@ -44,6 +44,32 @@ export const ProjectList: React.FC<ProjectListProps> = ({
 
   const modalScrollRef = useRef<HTMLDivElement>(null);
 
+  const handleDownloadCV = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const fileUrl = `${import.meta.env.BASE_URL}cv.pdf`;
+    try {
+      const response = await fetch(fileUrl);
+      if (!response.ok) throw new Error("Network error");
+      const blob = await response.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = "CV_Arthur_Chauvin.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setTimeout(() => window.URL.revokeObjectURL(blobUrl), 1000);
+    } catch {
+      const link = document.createElement("a");
+      link.href = fileUrl;
+      link.download = "CV_Arthur_Chauvin.pdf";
+      link.target = "_blank";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+
   const t = {
     fr: {
       bio: "Ingénieur informatique et designer global. J'aborde chaque problème complexe avec une double grille de lecture : l'exploration empathique pour identifier le vrai besoin, et la méthode de l'ingénieur pour structurer la meilleure solution. Ma valeur ajoutée réside dans cette synergie : concevoir avec la vision du designer et bâtir avec la précision de l'ingénieur.",
@@ -561,12 +587,13 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                   <span className="text-[9px] uppercase font-bold tracking-[0.2em] text-white/50">LinkedIn</span>
                 </a>
                 <a
-                  href="/cv.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex flex-col gap-2 items-center text-center"
+                  href={`${import.meta.env.BASE_URL}cv.pdf`}
+                  download="CV_Arthur_Chauvin.pdf"
+                  onClick={handleDownloadCV}
+                  className="group flex flex-col gap-2 items-center text-center cursor-pointer"
                   data-magnetic
                   data-magnetic-no-pull
+                  title="Télécharger mon CV (PDF)"
                 >
                   <div className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white transition-all shadow-xl">
                     <svg className="w-5 h-5 text-white/60 group-hover:text-[#002FA7]" fill="currentColor" viewBox="0 0 24 24">
