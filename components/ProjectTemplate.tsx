@@ -509,6 +509,31 @@ export const ProjectTemplate: React.FC<{
         </section>
       )}
 
+      {/* Slides Gallery (Full Width Vertical Scroll) */}
+      {data.slides && data.slides.length > 0 && (
+        <section className="relative w-full py-12 md:py-24 px-3 sm:px-6 md:px-12 lg:px-20 bg-[#F5F5F3] text-[#002FA7]">
+          <div className="max-w-[1700px] mx-auto flex flex-col gap-6 sm:gap-10 md:gap-14 items-center">
+            {data.slides.map((slideUrl: string, idx: number) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "100px" }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                className="w-full relative rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl bg-white border border-[#002FA7]/10"
+              >
+                <img
+                  src={slideUrl}
+                  alt={`Slide ${idx + 1}`}
+                  loading={idx < 2 ? "eager" : "lazy"}
+                  className="w-full h-auto object-contain block select-none"
+                />
+              </motion.div>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Process Steps */}
       {data.steps && data.steps.length > 0 && (
         <VerticalProcess steps={data.steps} title={data.processTitle} />

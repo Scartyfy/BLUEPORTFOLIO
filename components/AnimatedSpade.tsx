@@ -13,8 +13,7 @@ export function AnimatedSpade({ isWrongCard }: { isWrongCard: boolean }) {
             z: 0,
             rotateZ: 0,
             rotateY: 0,
-            color: "#ef4444",
-            filter: "drop-shadow(0px 0px 0px rgba(0,0,0,0))"
+            color: "#ef4444"
           },
           spade: {
             scale: [1, 1.8, 1.8, 1], // Advance, Hold/Turn, Retreat
@@ -22,12 +21,6 @@ export function AnimatedSpade({ isWrongCard }: { isWrongCard: boolean }) {
             rotateZ: [0, 0, -180, -180], // Flip upside down
             rotateY: [0, 0, 180, 180], // Half 3D Spin without U-turn
             color: ["#ef4444", "#ef4444", "#002FA7", "#002FA7"],
-            filter: [
-              "drop-shadow(0px 0px 0px rgba(0,0,0,0))", 
-              "drop-shadow(0px 20px 30px rgba(0,0,0,0.3))", 
-              "drop-shadow(0px 20px 30px rgba(0,0,0,0.3))",
-              "drop-shadow(0px 0px 0px rgba(0,0,0,0))"
-            ],
             transition: { 
               duration: 2.2, 
               times: [0, 0.35, 0.7, 1], // Smooth pacing

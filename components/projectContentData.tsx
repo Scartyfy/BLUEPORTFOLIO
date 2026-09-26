@@ -332,49 +332,41 @@ export const getProjectData = (id: string, lang: Language) => {
       }
     },
     'p6': {
-      subtitle: "L'Artisan du Détail",
-      title: "Création Typographique",
-      headerDesc: "La Rigueur Visuelle",
-      contextTitle: "La Problématique & Le Défi",
-      contextText: "La typographie est l'architecture invisible de tout bon design. Pour affiner mon œil et ma précision, je me suis lancé le défi de concevoir une police de caractère originale de A à Z.",
-      techTitle: "Technologies & Compétences",
+      subtitle: lang === 'fr' ? "L'Artisan du Détail" : "Crafting the Details",
+      title: lang === 'fr' ? "Création Typographique" : "Typographic Design",
+      headerDesc: lang === 'fr' ? "La Rigueur Visuelle" : "Visual Rigor",
+      contextTitle: lang === 'fr' ? "Le Contexte & Le Défi" : "Context & Challenge",
+      contextText: lang === 'fr'
+        ? "La typographie est l'architecture invisible de tout bon design. Pour affiner mon œil et ma précision, je me suis lancé le défi de concevoir une police de caractère originale de A à Z."
+        : "Typography is the invisible architecture of great design. To hone my eye and precision, I challenged myself to design an original typeface from scratch.",
+      techTitle: lang === 'fr' ? "Compétences & Outils" : "Skills & Tools",
       skills: {
-        col1Label: "Outils",
+        col1Label: lang === 'fr' ? "Outils" : "Tools",
         col1Text: "Illustrator, FontForge, Glyphs",
         col2Label: "Design",
-        col2Text: "Dessin vectoriel, Typographie, Géométrie",
-        col3Label: "Technique",
-        col3Text: "Crénage (Kerning), Ajustements Optiques"
+        col2Text: lang === 'fr' ? "Dessin vectoriel, Typographie, Géométrie" : "Vector drawing, Typography, Geometry",
+        col3Label: lang === 'fr' ? "Technique" : "Technical",
+        col3Text: lang === 'fr' ? "Crénage (Kerning), Ajustements Optiques" : "Kerning, Optical Adjustments"
       },
-      processTitle: "Mon Processus & Mes Actions",
-      steps: [
-        {
-          title: "Concept de base",
-          desc: "Définition de l'ADN de la police (empattements, graisses, style) par des croquis à la main.",
-          icon: <PenTool className="w-6 h-6 text-[#002FA7]" />,
-          image: "/IMAGE/typo/IMG_1434 2.jpg"
-        },
-        {
-          title: "Vectorisation",
-          desc: "Tracé géométrique minutieux de chaque lettre, chiffre et glyphe pour assurer une harmonie visuelle.",
-          icon: <Type className="w-6 h-6 text-[#002FA7]" />,
-          image: "/IMAGE/typo/IMG_1447 2.jpg"
-        },
-        {
-          title: "Ajustements optiques",
-          desc: "Réglage des espaces entre les lettres (crénage/approche) pour garantir une lisibilité parfaite.",
-          icon: <Ruler className="w-6 h-6 text-[#002FA7]" />,
-          image: "/IMAGE/typo/IMG_1870.jpg"
-        }
-      ],
-      resultTitle: "Le Résultat & L'Apprentissage",
-      resultText: "La création d'une fonte est un exercice d'une exigence extrême. Cette expérience a radicalement amélioré ma sensibilité aux proportions et aux alignements dans tous mes autres projets d'ingénierie et de design.",
       images: {
-        heroBg: "https://drive.google.com/thumbnail?id=18wDDKBDGx9-iNKOM-WwpVAspPNVjrmfP&sz=w2000",
-        context: "/IMAGE/typo/IMG_1888.jpg",
-        resultBg: "/IMAGE/typo/IMG_1890.jpg"
+        heroBg: `${import.meta.env.BASE_URL}typo/slide_01.jpg`,
       },
-      pdfUrl: "https://drive.google.com/file/d/1oD9b05hL91gJgi0PasOhIs1tbRs_LZjK/preview"
+      slides: [
+        `${import.meta.env.BASE_URL}typo/slide_01.jpg`,
+        `${import.meta.env.BASE_URL}typo/slide_02.jpg`,
+        `${import.meta.env.BASE_URL}typo/slide_03.jpg`,
+        `${import.meta.env.BASE_URL}typo/slide_04.jpg`,
+        `${import.meta.env.BASE_URL}typo/slide_05.jpg`,
+        `${import.meta.env.BASE_URL}typo/slide_06.jpg`,
+        `${import.meta.env.BASE_URL}typo/slide_07.jpg`,
+        `${import.meta.env.BASE_URL}typo/slide_08.jpg`,
+        `${import.meta.env.BASE_URL}typo/slide_09.jpg`,
+        `${import.meta.env.BASE_URL}typo/slide_10.jpg`,
+        `${import.meta.env.BASE_URL}typo/slide_11.jpg`,
+        `${import.meta.env.BASE_URL}typo/slide_12.jpg`,
+        `${import.meta.env.BASE_URL}typo/slide_13.jpg`,
+        `${import.meta.env.BASE_URL}typo/slide_14.jpg`,
+      ]
     }
   };
   

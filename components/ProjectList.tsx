@@ -195,12 +195,12 @@ export const ProjectList: React.FC<ProjectListProps> = ({
             scrambleTitleRef.current?.start();
             setTimeout(() => {
               scrambleRef.current?.start();
-            }, 600);
-          }, 800);
+            }, 180);
+          }, 60);
           observer.disconnect();
         }
       },
-      { threshold: 0.5 },
+      { threshold: 0.08, rootMargin: "120px 0px" },
     );
     if (creatorRef.current) observer.observe(creatorRef.current);
     return () => observer.disconnect();
@@ -487,7 +487,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                 className="w-full md:w-2/3 flex flex-col justify-center text-left"
               >
                 <h2
-                  className={`font-display text-4xl md:text-5xl font-bold text-[#002FA7] mb-8 tracking-wide transition-all duration-1000 delay-500 ${creatorVisible ? "opacity-100 blur-0" : "opacity-0 blur-md"}`}
+                  className={`font-display text-4xl md:text-5xl font-bold text-[#002FA7] mb-8 tracking-wide transition-all duration-700 delay-100 ${creatorVisible ? "opacity-100 blur-0" : "opacity-0 blur-md"}`}
                 >
                   <ScrambleIn
                     ref={scrambleTitleRef}
@@ -498,7 +498,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                   />
                 </h2>
                 <p
-                  className={`font-display text-lg md:text-xl text-[#002FA7]/80 leading-relaxed font-light transition-all duration-1000 delay-700 ${creatorVisible ? "opacity-100 blur-0 translate-y-0" : "opacity-0 blur-lg translate-y-4"}`}
+                  className={`font-display text-lg md:text-xl text-[#002FA7]/80 leading-relaxed font-light transition-all duration-700 delay-200 ${creatorVisible ? "opacity-100 blur-0 translate-y-0" : "opacity-0 blur-lg translate-y-4"}`}
                 >
                   <ScrambleIn
                     ref={scrambleRef}
@@ -622,8 +622,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
           {/* RIGHT SIDE: The Card */}
           <div className="w-full md:w-1/2 flex justify-center items-center">
             <div className={`perspective-1000 w-64 h-[360px] md:w-80 md:h-[450px] lg:w-[400px] lg:h-[560px] flex-shrink-0 relative z-20 transition-all duration-1000 transform-style-3d ${perceptionShift ? "animate-perception scale-105" : ""}`}>
-              <div className="absolute inset-0 backface-hidden rounded-3xl overflow-hidden flex flex-col justify-between p-6 md:p-8 border-2 border-white/30 bg-white shadow-2xl transition-colors duration-1000">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.05),transparent_80%)]" />
+              <div className="absolute inset-0 backface-hidden rounded-3xl overflow-hidden flex flex-col justify-between p-6 md:p-8 border border-white/20 bg-white transition-colors duration-1000">
                 
                 <div className={`flex flex-col items-center self-start relative w-8 h-16 md:w-10 md:h-20 z-10 transition-all duration-700 ${isMagicAnimating ? "blur-md opacity-20 bg-white" : "blur-0 opacity-100"}`}>
                   {/* Hearts (Wrong Card) */}

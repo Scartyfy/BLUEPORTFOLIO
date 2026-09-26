@@ -188,20 +188,19 @@ export const Deck: React.FC<DeckProps> = ({ scrollProgress, viewState, onCardSel
                     <div className="absolute inset-0 backface-hidden rounded-2xl overflow-hidden flex flex-col justify-between p-4 border border-white/30 bg-white transition-colors duration-1000"
                     style={{ transform: 'rotateY(180deg)' }}
                     >
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.05),transparent_80%)]" />
                         <div className="flex flex-col items-center self-start z-10">
                              <div className="relative">
-                                <span className="font-display font-bold text-2xl leading-none transition-colors duration-1000 text-[#002FA7] drop-shadow-[0_0_8px_rgba(0,0,0,0.2)]">A</span>
+                                <span className="font-display font-bold text-2xl leading-none transition-colors duration-1000 text-[#002FA7]">A</span>
                              </div>
                              <div className="relative mt-1">
-                                <span className="text-[18px] transition-colors duration-1000 text-[#002FA7] drop-shadow-[0_0_8px_rgba(0,0,0,0.2)]">♠</span>
+                                <span className="text-[18px] transition-colors duration-1000 text-[#002FA7]">♠</span>
                              </div>
                         </div>
 
                         {/* Central Spade - Flat Look */}
                         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
                             <div className={`relative transition-all duration-1000 ${viewState !== ViewState.INTRO ? 'scale-100' : 'scale-75'}`}>
-                                <span className="text-6xl transition-all duration-1000 text-[#002FA7] drop-shadow-[0_0_20px_rgba(0,0,0,0.3)]">
+                                <span className="text-6xl transition-all duration-1000 text-[#002FA7]">
                                     ♠
                                 </span>
                             </div>
@@ -209,10 +208,10 @@ export const Deck: React.FC<DeckProps> = ({ scrollProgress, viewState, onCardSel
 
                         <div className="flex flex-col items-center self-end transform rotate-180 z-10">
                              <div className="relative">
-                                <span className="font-display font-bold text-2xl leading-none transition-colors duration-1000 text-[#002FA7] drop-shadow-[0_0_8px_rgba(0,0,0,0.2)]">A</span>
+                                <span className="font-display font-bold text-2xl leading-none transition-colors duration-1000 text-[#002FA7]">A</span>
                              </div>
                              <div className="relative mt-1">
-                                <span className="text-[18px] transition-colors duration-1000 text-[#002FA7] drop-shadow-[0_0_8px_rgba(0,0,0,0.2)]">♠</span>
+                                <span className="text-[18px] transition-colors duration-1000 text-[#002FA7]">♠</span>
                              </div>
                         </div>
                     </div>
