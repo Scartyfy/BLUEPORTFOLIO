@@ -542,8 +542,8 @@ export const CONCEPT_CARS: ConceptCarData[] = [
         en: 'LOBSTER CAR — Poster & Style Manifesto'
       },
       description: {
-        fr: 'Étude stylistique et formelle du concept Lobster Car. Une morphologie sculptée axée sur la tension des volumes, la pureté des lignes aérodynamiques et l\'équilibre des masses pour repousser les limites de la silhouette automobile.',
-        en: 'Stylistic and formal study of the Lobster Car concept. A sculpted morphology focused on volumetric tension, purity of aerodynamic lines, and mass balance to push the boundaries of automotive silhouettes.'
+        fr: "L'idée m'est venue lors d'un repas de famille lorsque ma mère dégustait une langouste. Quand j'ai vu la forme, j'ai voulu l'appliquer sur une voiture pour voir ce que ça pouvait rendre. Ensuite, pour mieux visualiser, je les ai mis dans un contexte réaliste pour pouvoir se projeter sur ce que ça pourrait rendre dans la vraie vie.",
+        en: "The idea came to me during a family dinner while my mother was enjoying a lobster. When I noticed its silhouette and shapes, I wanted to apply them to a car to see how it would look. Then, to visualize it better, I placed them into a realistic context so one could picture how it would look in real life."
       }
     },
     sketch: {
@@ -684,8 +684,8 @@ export const CONCEPT_CARS: ConceptCarData[] = [
           en: 'PORSCHE 754 — Spa-Francorchamps · Dynamic & Aerial Views'
         },
         caption: {
-          fr: 'Circuit de Spa-Francorchamps · 07:00 AM. Essais matinaux sur piste humide. Vue trois-quarts avant sur les vibreurs et vue zénithale soulignant la cambrure des voies et la fluidité de la cabine.',
-          en: 'Spa-Francorchamps Circuit · 07:00 AM. Early morning trials on damp tarmac. Three-quarters front angle hugging the kerbs and bird\'s-eye aerial view emphasizing track width and cockpit flow.'
+          fr: '',
+          en: ''
         }
       },
       {
@@ -696,8 +696,8 @@ export const CONCEPT_CARS: ConceptCarData[] = [
           en: 'PORSCHE 754 — Spa-Francorchamps · Raidillon Ascent & Ground Stance'
         },
         caption: {
-          fr: 'Circuit de Spa-Francorchamps · 07:00 AM. Ascension du Raidillon dans la brume ardennaise. Vue arrière mettant en valeur le bandeau OLED continu et le diffuseur, complétée par une contre-plongée au ras du vibreur.',
-          en: 'Spa-Francorchamps Circuit · 07:00 AM. Climbing Raidillon into the Ardennes mist. Rear perspective highlighting continuous horizontal OLED blade and diffuser, paired with low-angle stance flush with the curb.'
+          fr: '',
+          en: ''
         }
       }
     ]

@@ -384,11 +384,6 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
                           loading="eager"
                         />
                       </div>
-                      {car.photos[0]?.caption && car.photos[0]?.caption[lang] && (
-                        <p className="mt-3 text-sm font-light text-[#002FA7]/80 leading-relaxed">
-                          {car.photos[0]?.caption[lang]}
-                        </p>
-                      )}
                     </div>
 
                     {/* Image 3 : Raidillon & Perspective Sol */}
@@ -404,11 +399,6 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
                           loading="eager"
                         />
                       </div>
-                      {car.photos[1]?.caption && car.photos[1]?.caption[lang] && (
-                        <p className="mt-3 text-sm font-light text-[#002FA7]/80 leading-relaxed">
-                          {car.photos[1]?.caption[lang]}
-                        </p>
-                      )}
                     </div>
 
                   </div>
