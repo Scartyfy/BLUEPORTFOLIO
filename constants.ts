@@ -16,7 +16,7 @@ export const PROJECTS: Project[] = [
   {
     id: 'p2',
     title: { fr: 'Projet SNCF', en: 'SNCF Project' },
-    category: { fr: 'Design de service', en: 'Service design' },
+    category: { fr: 'Partenaire', en: 'Partner' },
     description: { 
       fr: 'Travailler avec un acteur majeur comme la SNCF exigeait une approche à la fois techniquement irréprochable et parfaitement adaptée aux besoins des utilisateurs finaux. Sur ce projet, j\'ai agi comme le trait d\'union entre l\'ingénierie pure et le design global. Mon bagage technique m\'a permis de comprendre et d\'intégrer les contraintes systémiques, tandis que ma vision de designer a garanti une solution finale ergonomique, fluide et orientée vers l\'humain.',
       en: 'Working with a major player like SNCF required an approach that was both technically impeccable and perfectly adapted to the needs of end users. On this project, I acted as the link between pure engineering and global design. My technical background allowed me to understand and integrate systemic constraints, while my designer vision guaranteed a final ergonomic, fluid, and human-oriented solution.'
@@ -26,8 +26,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'p3',
-    title: { fr: 'CONCEPT CARS — Design Automobile', en: 'CONCEPT CARS — Automotive Design' },
-    category: { fr: 'Design Automobile & Modélisation', en: 'Automotive Design & 3D Modeling' },
+    title: { fr: 'Concept-car', en: 'Concept Car' },
+    category: { fr: 'Design automobile', en: 'Automotive Design' },
     description: {
       fr: 'Exploration stylistique, morphologique et recherche aérodynamique. Présentation de deux concept cars d\'exception : Lobster Car et Porsche 754 Concept. Des esquisses manuelles d\'idéation jusqu\'aux visuels photographiques et planches de style.',
       en: 'Stylistic and morphological exploration with aerodynamic sculpting. Presentation of two concept cars: Lobster Car and Porsche 754 Concept. Spanning from hand sketches and ideation boards to photographic track visuals.'

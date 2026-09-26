@@ -149,9 +149,9 @@ export const getProjectData = (id: string, lang: Language) => {
       }
     },
     'p3': {
-      subtitle: "Design Automobile & Mobilité",
-      title: "Deux Concept Cars — Lobster Car",
-      headerDesc: "Design Automobile & Aérodynamique",
+      subtitle: lang === 'fr' ? "Design automobile" : "Automotive Design",
+      title: "Concept-car",
+      headerDesc: lang === 'fr' ? "Design Automobile & Aérodynamique" : "Automotive Design & Aerodynamics",
       contextTitle: "Le Défi & La Vision",
       contextText: "Conception de concept cars explorant la convergence entre efficience aérodynamique, morphologie sculptée et ergonomie de l'habitacle. En tant qu'ingénieur-designer, l'enjeu était de créer une présence visuelle forte dictée par l'équilibre des volumes et la pureté des lignes.",
       concept: {
