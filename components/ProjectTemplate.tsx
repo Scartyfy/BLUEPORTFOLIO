@@ -240,26 +240,28 @@ export const ProjectTemplate: React.FC<{
             </div>
 
             <div className="md:col-span-4 mt-8 md:mt-0">
-              <h3 className="text-3xl md:text-4xl lg:text-5xl leading-[1.1] font-medium tracking-tight">
-                {data.headerDesc
-                  .split(" & ")
-                  .map((line: string, i: number, arr: any[]) => (
-                    <div key={i} className="overflow-hidden pb-1 -mb-1">
-                      <motion.div
-                        initial={{ y: "110%", clipPath: "inset(0 0 100% 0)" }}
-                        animate={{ y: 0, clipPath: "inset(0 0 0% 0)" }}
-                        transition={{
-                          delay: 0.1 * i + 0.5,
-                          duration: 1.2,
-                          ease: [0.76, 0, 0.24, 1],
-                        }}
-                      >
-                        {line}
-                        {i < arr.length - 1 && <>&nbsp;&amp;</>}
-                      </motion.div>
-                    </div>
-                  ))}
-              </h3>
+              {data.headerDesc && (
+                <h3 className="text-3xl md:text-4xl lg:text-5xl leading-[1.1] font-medium tracking-tight">
+                  {data.headerDesc
+                    .split(" & ")
+                    .map((line: string, i: number, arr: any[]) => (
+                      <div key={i} className="overflow-hidden pb-1 -mb-1">
+                        <motion.div
+                          initial={{ y: "110%", clipPath: "inset(0 0 100% 0)" }}
+                          animate={{ y: 0, clipPath: "inset(0 0 0% 0)" }}
+                          transition={{
+                            delay: 0.1 * i + 0.5,
+                            duration: 1.2,
+                            ease: [0.76, 0, 0.24, 1],
+                          }}
+                        >
+                          {line}
+                          {i < arr.length - 1 && <>&nbsp;&amp;</>}
+                        </motion.div>
+                      </div>
+                    ))}
+                </h3>
+              )}
             </div>
 
             <div className="md:col-span-5 flex justify-start md:justify-end mt-4 md:mt-0">
@@ -291,15 +293,17 @@ export const ProjectTemplate: React.FC<{
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mt-16 md:mt-0 items-stretch flex-grow z-10 relative">
           {/* Left Metadata Column */}
           <div className="md:col-span-3 flex flex-col justify-start pt-4 md:pt-8 pb-0 md:pb-4 gap-8 md:gap-16 text-[#002FA7]">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5 }}
-            >
-              <p className="text-base md:text-lg pr-4 md:pr-8 leading-relaxed font-bold whitespace-pre-wrap">
-                {data.subtitle}
-              </p>
-            </motion.div>
+            {data.subtitle && (
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5 }}
+              >
+                <p className="text-base md:text-lg pr-4 md:pr-8 leading-relaxed font-bold whitespace-pre-wrap">
+                  {data.subtitle}
+                </p>
+              </motion.div>
+            )}
 
             <motion.div
               initial={{ opacity: 0, x: -20 }}

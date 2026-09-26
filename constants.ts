@@ -49,7 +49,7 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'p6',
-    title: { fr: 'Design Typographique', en: 'Typographic Design' },
+    title: { fr: 'Création de Typo', en: 'Type Design' },
     category: { fr: 'Typographie', en: 'Typography' },
     description: {
       fr: 'La typographie est l\'intersection parfaite entre la rigueur mathématique et l\'expression artistique. La création de cette police de caractère originale témoigne de mon souci du détail et de ma patience. Chaque courbe, chaque espacement et chaque proportion ont été pensés pour créer un équilibre visuel cohérent. C\'est un exercice de précision extrême qui nourrit quotidiennement ma pratique du design d\'interface.',

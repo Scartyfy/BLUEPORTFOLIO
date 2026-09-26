@@ -332,9 +332,9 @@ export const getProjectData = (id: string, lang: Language) => {
       }
     },
     'p6': {
-      subtitle: lang === 'fr' ? "L'Artisan du Détail" : "Crafting the Details",
-      title: lang === 'fr' ? "Création Typographique" : "Typographic Design",
-      headerDesc: lang === 'fr' ? "La Rigueur Visuelle" : "Visual Rigor",
+      subtitle: "",
+      title: lang === 'fr' ? "Création de Typo" : "Type Design",
+      headerDesc: "",
       contextTitle: lang === 'fr' ? "Le Contexte & Le Défi" : "Context & Challenge",
       contextText: lang === 'fr'
         ? "La typographie est l'architecture invisible de tout bon design. Pour affiner mon œil et ma précision, je me suis lancé le défi de concevoir une police de caractère originale de A à Z."
@@ -342,7 +342,7 @@ export const getProjectData = (id: string, lang: Language) => {
       techTitle: lang === 'fr' ? "Compétences & Outils" : "Skills & Tools",
       skills: {
         col1Label: lang === 'fr' ? "Outils" : "Tools",
-        col1Text: "Illustrator, FontForge, Glyphs",
+        col1Text: "Illustrator, Glyphs",
         col2Label: "Design",
         col2Text: lang === 'fr' ? "Dessin vectoriel, Typographie, Géométrie" : "Vector drawing, Typography, Geometry",
         col3Label: lang === 'fr' ? "Technique" : "Technical",
