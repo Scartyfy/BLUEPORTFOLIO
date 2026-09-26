@@ -1,10 +1,5 @@
 
 import { Project } from './types';
-import img1 from './components/assets/1.webp';
-import img2 from './components/assets/2.webp';
-import img3 from './components/assets/3.webp';
-import img4 from './components/assets/4.webp';
-import img5 from './components/assets/5.webp';
 
 export const PROJECTS: Project[] = [
   {
@@ -31,14 +26,14 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'p3',
-    title: { fr: 'LOBSTER CAR — Concept Car', en: 'LOBSTER CAR — Concept Car' },
+    title: { fr: 'CONCEPT CARS — Design Automobile', en: 'CONCEPT CARS — Automotive Design' },
     category: { fr: 'Design Automobile & Modélisation', en: 'Automotive Design & 3D Modeling' },
     description: {
-      fr: 'Étude stylistique et formelle du concept car Lobster Car. Morphologie sculptée, pureté aérodynamique et proportions radicales. Affiche de style, esquisses d\'idéation et visuels photographiques.',
-      en: 'Stylistic and formal study of the Lobster Car concept. Sculpted morphology, aerodynamic purity, and radical proportions. Styling poster, ideation sketches, and photographic visuals.'
+      fr: 'Exploration stylistique, morphologique et recherche aérodynamique. Présentation de deux concept cars d\'exception : Lobster Car et Porsche 754 Concept. Des esquisses manuelles d\'idéation jusqu\'aux visuels photographiques et planches de style.',
+      en: 'Stylistic and morphological exploration with aerodynamic sculpting. Presentation of two concept cars: Lobster Car and Porsche 754 Concept. Spanning from hand sketches and ideation boards to photographic track visuals.'
     },
-    image: img1 || '/1.webp',
-    gallery: [img1 || '/1.webp', img4 || '/4.webp', img2 || '/2.webp', img3 || '/3.webp', img5 || '/5.webp']
+    image: '/car1.jpg',
+    gallery: ['/car1.jpg', '/car4.jpg', '/car2.jpg', '/car3.jpg', '/car5.jpg', '/1.jpg', '/4.jpg', '/2.jpg', '/3.jpg']
   },
   {
     id: 'p4',

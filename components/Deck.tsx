@@ -12,6 +12,15 @@ export const Deck: React.FC<DeckProps> = ({ scrollProgress, viewState, onCardSel
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [isZooming, setIsZooming] = useState(false);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     if (viewState === ViewState.REVEALING) {
@@ -51,24 +60,25 @@ export const Deck: React.FC<DeckProps> = ({ scrollProgress, viewState, onCardSel
         <div className="absolute right-[10%] bottom-0 w-[40vw] h-[60vh] border-r-[0.5px] border-t-[0.5px] border-white/20 rounded-tl-[200px] transform rotate-[-10deg] blur-sm"></div>
       </div>
 
-      <div className="relative w-64 h-[360px]">
+      <div className="relative w-48 h-[270px] sm:w-56 sm:h-[315px] md:w-64 md:h-[360px]">
         {cards.map((_, index) => {
-          // Elegant Gallery Spread - Flat horizontal line
+          // Responsive Spread - Fan layout on mobile, wide horizontal line on desktop
           const offsetBase = (index - centerIndex);
           
-          const spreadX = offsetBase * 280 * spread; // Wide horizontal spacing
-          const spreadY = 0; 
+          const spreadSpacing = isMobile ? 48 : 280;
+          const spreadX = offsetBase * spreadSpacing * spread;
+          const spreadY = isMobile ? Math.abs(offsetBase) * 8 * spread : 0; 
           const spreadZ = 0; 
           const spreadRotateY = 0; 
           const spreadRotateX = 0; 
-          const spreadRotateZ = 0; 
+          const spreadRotateZ = isMobile ? offsetBase * 6 * spread : 0; 
 
           const isHovered = activeIndex === index;
           
-          // Hover effect: Card comes forward, straightens, and scales up
-          const hoverY = (isInteractive && isHovered) ? -50 : 0; 
-          const hoverZ = (isInteractive && isHovered) ? 120 : 0; 
-          const hoverScale = (isInteractive && isHovered) ? 1.1 : 1;
+          // Hover/active effect: Card comes forward, straightens, and scales up
+          const hoverY = (isInteractive && isHovered) ? (isMobile ? -25 : -50) : 0; 
+          const hoverZ = (isInteractive && isHovered) ? (isMobile ? 80 : 120) : 0; 
+          const hoverScale = (isInteractive && isHovered) ? (isMobile ? 1.06 : 1.1) : 1;
 
           let x = spreadX;
           let y = spreadY + hoverY;
@@ -89,7 +99,7 @@ export const Deck: React.FC<DeckProps> = ({ scrollProgress, viewState, onCardSel
                 y = viewState === ViewState.PROJECTS ? -1200 : 0; // Slide further up
                 z = 100;
                 rotateY = isFlipped ? 180 : 0; 
-                s = 1.25; 
+                s = isMobile ? 1.15 : 1.25; 
                 r = 0;
                 rx = 0;
                 ry = 0;

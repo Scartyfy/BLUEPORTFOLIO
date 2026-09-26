@@ -64,8 +64,8 @@ export const PhotoshopTransition: React.FC<PhotoshopTransitionProps> = ({ text, 
       >
         <div className="relative flex flex-col items-center justify-center gap-4">
           {words.map((word, i) => (
-            <div key={i} className="overflow-hidden py-2 w-full flex justify-center">
-              <span className="block font-display font-black text-6xl md:text-8xl lg:text-9xl tracking-tighter leading-none text-white">
+            <div key={i} className="overflow-hidden py-1 sm:py-2 w-full flex justify-center px-4">
+              <span className="block font-display font-black text-4xl sm:text-6xl md:text-8xl lg:text-9xl tracking-tighter leading-none text-white text-center">
                 {word}
               </span>
             </div>

@@ -1,12 +1,4 @@
 import { Language } from '../types';
-import img1 from './assets/1.webp';
-import img2 from './assets/2.webp';
-import img3 from './assets/3.webp';
-import img4 from './assets/4.webp';
-import img5 from './assets/5.webp';
-import img6 from './assets/6.webp';
-import img7 from './assets/7.webp';
-import img8 from './assets/8.webp';
 
 export interface ConceptCarData {
   id: string;
@@ -544,7 +536,7 @@ export const CONCEPT_CARS: ConceptCarData[] = [
       weight: '1 420 kg'
     },
     poster: {
-      image: img1 || '/1.webp',
+      image: '/car1.jpg',
       title: {
         fr: 'LOBSTER CAR — Affiche & Manifeste de Style',
         en: 'LOBSTER CAR — Poster & Style Manifesto'
@@ -555,7 +547,7 @@ export const CONCEPT_CARS: ConceptCarData[] = [
       }
     },
     sketch: {
-      image: img4 || '/4.webp',
+      image: '/car4.jpg',
       title: {
         fr: 'Recherche & Croquis Préparatoires',
         en: 'Styling Sketches & Formal Research'
@@ -584,7 +576,7 @@ export const CONCEPT_CARS: ConceptCarData[] = [
     photos: [
       {
         id: 'c1-p1',
-        image: img2 || '/2.webp',
+        image: '/car2.jpg',
         title: {
           fr: 'LOBSTER CAR — Visuel 01',
           en: 'LOBSTER CAR — Visual 01'
@@ -596,7 +588,7 @@ export const CONCEPT_CARS: ConceptCarData[] = [
       },
       {
         id: 'c1-p2',
-        image: img3 || '/3.webp',
+        image: '/car3.jpg',
         title: {
           fr: 'LOBSTER CAR — Visuel 02',
           en: 'LOBSTER CAR — Visual 02'
@@ -608,7 +600,7 @@ export const CONCEPT_CARS: ConceptCarData[] = [
       },
       {
         id: 'c1-p3',
-        image: img5 || '/5.webp',
+        image: '/car5.jpg',
         title: {
           fr: 'LOBSTER CAR — Visuel 03',
           en: 'LOBSTER CAR — Visual 03'
@@ -623,101 +615,89 @@ export const CONCEPT_CARS: ConceptCarData[] = [
   {
     id: 'concept-2',
     code: '02',
-    name: 'VORTEX — STRATOS RADICAL',
+    name: 'PORSCHE — 754 CONCEPT',
     tagline: {
-      fr: 'Hypercar Monocoque & Aérodynamique Active Extrême',
-      en: 'Radical Monocoque Hypercar & Kinetic Aerodynamics'
+      fr: 'Hommage Sculpté & Silhouette Aérodynamique Radicale',
+      en: 'Sculpted Homage & Radical Aerodynamic Silhouette'
     },
     category: {
-      fr: 'Prototype Circuit & Haute Performance',
-      en: 'Track Prototype & Ultra High Performance'
+      fr: 'Design Automobile & Prototype Circuit',
+      en: 'Automotive Design & Track Prototype'
     },
     year: '2026',
     specs: {
-      cx: '0.18 Cx',
+      cx: '0.21 Cx (Active Aero)',
       powertrain: {
-        fr: 'Quad-Motor Vectoriel 900V · 1 100 ch',
-        en: 'Quad-Motor Torque-Vectoring 900V · 1,100 hp'
+        fr: 'Hybride Circuit Haute Performance · 1 050 ch',
+        en: 'High-Performance Track Hybrid · 1,050 hp'
       },
       chassis: {
-        fr: 'Carbone T1000 & Titane Imprimé 3D',
-        en: 'T1000 Carbon Fiber & 3D Printed Titanium'
+        fr: 'Monocoque Carbone T1000 & Éléments Titane 3D',
+        en: 'T1000 Carbon Monocoque & 3D Printed Titanium'
       },
-      weight: '1 280 kg'
+      weight: '1 340 kg'
     },
     poster: {
-      image: img8 || '/8.webp',
+      image: '/1.jpg',
       title: {
-        fr: 'VORTEX STRATOS — Affiche & Manifeste Aérodynamique',
-        en: 'VORTEX STRATOS — Aerodynamic Poster Manifesto'
+        fr: 'PORSCHE 754 CONCEPT — Planche Stylistique & Manifeste',
+        en: 'PORSCHE 754 CONCEPT — Styling Board & Manifesto'
       },
       description: {
-        fr: 'Exploration d\'une hypercar électrique haute performance. Dictée par les contraintes aérodynamiques et l\'effet de sol, la carrosserie sculpte l\'écoulement des flux d\'air pour maximiser l\'appui et la stabilité à très haute vitesse, tout en conservant une silhouette fluide et radicale sans artifice ornemental.',
-        en: 'Radical study of a high-performance electric hypercar. Shaped purely by aerodynamics and ground effect, the bodywork channels airflow to maximize downforce and high-speed stability while retaining an uninterrupted, fluid silhouette stripped of ornamental clutter.'
+        fr: 'Pour ce concept, je voulais concevoir la Porsche de mes rêves : je me suis inspiré de la GT4 RS que j\'ai combinée avec la GT3 RS, en retravaillant et redessinant plusieurs lignes clés. C\'est pour cela qu\'elle possède une identité visuelle immédiatement reconnaissable comme une Porsche authentique. J\'ai réuni les éléments que j\'affectionne le plus sur chacune d\'elles pour aboutir à une silhouette singulière, propre à moi.',
+        en: 'For this concept, I wanted to create the Porsche of my dreams: drawing inspiration from the GT4 RS and blending it with the GT3 RS, while reshaping key character lines. This gives it an unmistakably authentic Porsche aesthetic, combining my favorite design cues from each into a singular, highly personal sports car.'
       }
     },
     sketch: {
-      image: img6 || '/6.webp',
+      image: '/1.jpg',
       title: {
-        fr: 'Esquisses de Style & Recherche Volumique',
-        en: 'Styling Sketches & Volumetric Ideation'
+        fr: 'Étude Formelle & Recherche Aérodynamique',
+        en: 'Styling Ideation & Aerodynamic Architecture'
       },
       caption: {
-        fr: 'Planche de recherche de proportions et dynamique des flux',
-        en: 'Proportion study and airflow dynamics'
+        fr: 'Planche d\'esquisses, profil, blason Porsche et modélisation frontale / arrière',
+        en: 'Proportion sketches, side profile, Porsche crest graphite study, and front/rear volumes'
       },
       text: {
-        fr: 'Les esquisses manuelles traduisent la tension musculaire du véhicule et la fluidité des surfaces. Cette recherche graphique d\'idéation permet d\'ajuster les proportions du cockpit, les arêtes tranchantes et l\'implantation des canaux de décharge aérodynamique avant la modélisation 3D.',
-        en: 'Manual sketches capture the muscular tension and seamless surface transitions. This ideation phase fine-tunes cockpit proportions, sharp character lines, and aerodynamic exhaust channels before 3D sculpting.'
+        fr: 'L\'exploration stylistique confronte le profil iconique de la lignée historique aux exigences modernes d\'appui au sol : aileron suspendu, diffuseur massif en carbone, écopes latérales et signature lumineuse affûtée à 4 points.',
+        en: 'The styling study bridges iconic historical lineage with contemporary aerodynamic downforce demands: suspended rear wing, massive carbon diffuser, sculpted lateral air scoops, and sharp 4-point LED signature.'
       },
       bullets: {
         fr: [
-          'Silhouette ultra-basse orientée vers l\'efficacité aéro',
-          'Intégration fluide des conduits d\'air dans la carrosserie',
-          'Posture agressive et proportions dynamiques'
+          'Silhouette ultra-fuselée et pureté des lignes de carre',
+          'Équilibre entre hommage formel et appui aérodynamique de pointe',
+          'Étude manuelle du blason et intégration des conduits d\'air venturi'
         ],
         en: [
-          'Ultra-low stance optimized for aerodynamic efficiency',
-          'Seamless air duct integration within the sculpted body',
-          'Aggressive stance and dynamic proportion ratios'
+          'Ultra-low silhouette with pure shoulder character lines',
+          'Balance between historical homage and extreme aerodynamic downforce',
+          'Hand-drawn crest study and venturi underbody duct integration'
         ]
       }
     },
     photos: [
       {
         id: 'c2-p1',
-        image: img7 || '/7.webp',
+        image: '/2.jpg',
         title: {
-          fr: 'VORTEX STRATOS — Visuel 01',
-          en: 'VORTEX STRATOS — Visual 01'
+          fr: 'PORSCHE 754 — Spa-Francorchamps · Vues Dynamique & Aérienne',
+          en: 'PORSCHE 754 — Spa-Francorchamps · Dynamic & Aerial Views'
         },
         caption: {
-          fr: '',
-          en: ''
+          fr: 'Circuit de Spa-Francorchamps · 07:00 AM. Essais matinaux sur piste humide. Vue trois-quarts avant sur les vibreurs et vue zénithale soulignant la cambrure des voies et la fluidité de la cabine.',
+          en: 'Spa-Francorchamps Circuit · 07:00 AM. Early morning trials on damp tarmac. Three-quarters front angle hugging the kerbs and bird\'s-eye aerial view emphasizing track width and cockpit flow.'
         }
       },
       {
         id: 'c2-p2',
-        image: CONCEPT_2_VISUALS.photo2,
+        image: '/3.jpg',
         title: {
-          fr: 'VORTEX STRATOS — Visuel 02',
-          en: 'VORTEX STRATOS — Visual 02'
+          fr: 'PORSCHE 754 — Spa-Francorchamps · Raidillon & Perspective Sol',
+          en: 'PORSCHE 754 — Spa-Francorchamps · Raidillon Ascent & Ground Stance'
         },
         caption: {
-          fr: '',
-          en: ''
-        }
-      },
-      {
-        id: 'c2-p3',
-        image: CONCEPT_2_VISUALS.photo3,
-        title: {
-          fr: 'VORTEX STRATOS — Visuel 03',
-          en: 'VORTEX STRATOS — Visual 03'
-        },
-        caption: {
-          fr: '',
-          en: ''
+          fr: 'Circuit de Spa-Francorchamps · 07:00 AM. Ascension du Raidillon dans la brume ardennaise. Vue arrière mettant en valeur le bandeau OLED continu et le diffuseur, complétée par une contre-plongée au ras du vibreur.',
+          en: 'Spa-Francorchamps Circuit · 07:00 AM. Climbing Raidillon into the Ardennes mist. Rear perspective highlighting continuous horizontal OLED blade and diffuser, paired with low-angle stance flush with the curb.'
         }
       }
     ]

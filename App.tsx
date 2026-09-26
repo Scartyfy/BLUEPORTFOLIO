@@ -212,33 +212,22 @@ export const App: React.FC = () => {
         </div>
       </div>
 
-      {/* QUICK ACCESS BUTTONS */}
-      <div className="fixed bottom-4 right-4 z-[9999] flex flex-wrap items-center gap-2">
-        <button
-          onClick={() => {
-            const lobsterCar = PROJECTS.find(p => p.id === 'p3') || PROJECTS[2];
-            setSelectedProjectForModal(lobsterCar);
-            setViewState(ViewState.PROJECTS);
-            setShowProjects(true);
-            document.body.style.overflow = '';
-          }}
-          className="bg-[#002FA7] text-white px-4 py-2.5 rounded-full font-mono font-bold text-xs shadow-2xl hover:bg-[#00227a] hover:scale-105 active:scale-95 transition-all flex items-center gap-2 border border-white/30 backdrop-blur-md"
-        >
-          <span>🏎️</span>
-          <span>VOIR LOBSTER CAR</span>
-        </button>
-        <button
-          onClick={() => {
-            setSelectedProjectForModal(null);
-            setViewState(ViewState.PROJECTS);
-            setShowProjects(true);
-            document.body.style.overflow = '';
-          }}
-          className="bg-black/90 text-white px-3.5 py-2.5 rounded-full font-mono font-bold text-xs shadow-xl hover:bg-black hover:scale-105 active:scale-95 transition-all border border-white/20 backdrop-blur-md"
-        >
-          {lang === 'fr' ? 'TOUS LES PROJETS' : 'ALL PROJECTS'}
-        </button>
-      </div>
+      {/* QUICK ACCESS BUTTONS - Only shown in intro and not during project modal */}
+      {!isProjectOpen && viewState !== ViewState.PROJECTS && (
+        <div className="fixed bottom-4 right-4 z-[9999] flex flex-wrap items-center gap-2">
+          <button
+            onClick={() => {
+              setSelectedProjectForModal(null);
+              setViewState(ViewState.PROJECTS);
+              setShowProjects(true);
+              document.body.style.overflow = '';
+            }}
+            className="bg-black/90 text-white px-3.5 py-2.5 rounded-full font-mono font-bold text-xs shadow-xl hover:bg-black hover:scale-105 active:scale-95 transition-all border border-white/20 backdrop-blur-md"
+          >
+            {lang === 'fr' ? 'TOUS LES PROJETS' : 'ALL PROJECTS'}
+          </button>
+        </div>
+      )}
 
       {/* LANGUAGE TOGGLE - HIDDEN WHEN PROJECT IS OPEN */}
       {!isProjectOpen && (
@@ -291,7 +280,7 @@ export const App: React.FC = () => {
 
       {/* Main Container */}
       <div className="w-full flex flex-col items-center">
-        <div className="fixed inset-0 flex items-center px-8 md:px-16 pointer-events-none z-50"
+        <div className="fixed inset-0 flex items-center px-6 sm:px-8 md:px-16 pointer-events-none z-50"
             style={{ 
               opacity: viewState !== ViewState.INTRO || introStep === 'PICK_CARD' ? 0 : 1, 
               transition: 'all 0.5s linear' 
@@ -302,8 +291,8 @@ export const App: React.FC = () => {
                     texts={[nav.introTop, nav.introBottom]}
                     morphTime={0.75}
                     cooldownTime={1.25}
-                    className="h-[100px] md:h-[160px] w-[300px] md:w-[600px] flex items-center justify-start"
-                    textClassName="font-display font-bold tracking-tighter text-5xl md:text-7xl lg:text-8xl text-left left-0 text-white"
+                    className="h-[80px] sm:h-[110px] md:h-[160px] w-full max-w-[280px] sm:max-w-[420px] md:max-w-[600px] flex items-center justify-start"
+                    textClassName="font-display font-bold tracking-tighter text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-left left-0 text-white"
                   />
                 </div>
             </div>
@@ -312,7 +301,7 @@ export const App: React.FC = () => {
         
         {/* Welcome Button */}
         <div className={`fixed inset-0 flex items-center justify-center z-[60] pointer-events-none transition-all duration-1000 ease-in-out ${viewState === ViewState.INTRO && introStep === 'WELCOME' ? 'opacity-100' : 'opacity-0'}`}>
-            <div className={`relative flex flex-col md:flex-row items-center justify-center mt-96 md:mt-0 ${viewState === ViewState.INTRO && introStep === 'WELCOME' ? 'pointer-events-auto' : 'pointer-events-none'}`}>
+            <div className={`relative flex flex-col md:flex-row items-center justify-center mt-44 sm:mt-56 md:mt-0 ${viewState === ViewState.INTRO && introStep === 'WELCOME' ? 'pointer-events-auto' : 'pointer-events-none'}`}>
                 <MotionButton
                     label="Portfolio"
                     onClick={() => {
@@ -330,9 +319,9 @@ export const App: React.FC = () => {
             </div>
         </div>
 
-        {/* Massive Vitruvian Man (Homme de Vitruve) stuck to the right edge and sliced in half */}
+        {/* Vitruvian Man (Homme de Vitruve) - Hidden on extra-small mobile to prevent horizontal blowout */}
         <div 
-          className={`fixed right-0 w-[32.7vw] sm:w-[26vw] md:w-[24.5vw] lg:w-[26vw] xl:w-[26vw] h-screen overflow-hidden flex items-center justify-start z-[55] pointer-events-none transition-all duration-[1500ms] cubic-bezier(0.16, 1, 0.3, 1) ${
+          className={`fixed right-0 hidden sm:flex w-[26vw] md:w-[24.5vw] lg:w-[26vw] xl:w-[26vw] h-screen overflow-hidden items-center justify-start z-[55] pointer-events-none transition-all duration-[1500ms] cubic-bezier(0.16, 1, 0.3, 1) ${
             viewState === ViewState.INTRO && introStep === 'WELCOME' 
               ? 'opacity-100 translate-x-0' 
               : 'opacity-0 translate-x-[15vw] pointer-events-none'
@@ -369,7 +358,7 @@ export const App: React.FC = () => {
               <motion.div 
                 key="experience"
                 exit={{ opacity: 0, filter: 'blur(10px)', scale: 1.05, transition: { duration: 0.8, ease: "easeOut" } }}
-                className="text-[#002FA7] font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-center px-6 flex flex-col gap-2 md:gap-4 absolute"
+                className="text-[#002FA7] font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-center px-4 sm:px-6 flex flex-col gap-2 md:gap-4 absolute"
               >
                 <div className="flex flex-wrap justify-center gap-x-2 md:gap-x-3">
                   {nav.experiencePart1.split(' ').map((word, wordIndex, words) => {
@@ -419,7 +408,7 @@ export const App: React.FC = () => {
               <motion.div 
                 key="pick"
                 exit={{ opacity: 0, filter: 'blur(10px)', scale: 1.05, transition: { duration: 0.8, ease: "easeOut" } }}
-                className="text-[#002FA7] font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-center px-6 flex flex-col gap-2 md:gap-4 absolute bottom-24 md:bottom-32"
+                className="text-[#002FA7] font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-center px-4 sm:px-6 flex flex-col gap-2 md:gap-4 absolute bottom-12 sm:bottom-20 md:bottom-32"
               >
                 <div className="flex flex-wrap justify-center gap-x-2 md:gap-x-3">
                   {nav.pick.split(' ').map((word, wordIndex, words) => {

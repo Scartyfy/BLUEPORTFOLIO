@@ -3,7 +3,6 @@ import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
 import { Project, Language } from "../types";
 import { ProjectTemplate } from "./ProjectTemplate";
 import { SkillWheel } from "./SkillWheel";
-import { ShapeBlur } from "./ShapeBlur";
 import { AnimatedSpade } from "./AnimatedSpade";
 
 import { ArrowDown, ArrowUpRight } from "lucide-react";
@@ -250,6 +249,14 @@ export const ProjectList: React.FC<ProjectListProps> = ({
     });
   };
 
+  const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Parallax for About section
@@ -260,7 +267,6 @@ export const ProjectList: React.FC<ProjectListProps> = ({
 
   const aboutTextY = useTransform(aboutScrollY, [0, 1], [80, -80]);
   const aboutImageY = useTransform(aboutScrollY, [0, 1], [-40, 40]);
-  const aboutShapeBlurY = useTransform(aboutScrollY, [0, 1], [-120, 120]);
 
   // Gallery Section
   return (
@@ -292,11 +298,11 @@ export const ProjectList: React.FC<ProjectListProps> = ({
             id="work"
             className="w-full max-w-7xl mx-auto px-6 pt-12 pb-32 relative z-10"
           >
-            {/* Animated Project Lamelles */}
-            <div className="w-full min-h-[600px] flex items-center justify-center relative mt-4 md:mt-12 pointer-events-none">
-              {/* Custom Follow Cursor */}
+            {/* Animated Project Lamelles & Mobile Cards */}
+            <div className="w-full min-h-[400px] md:min-h-[600px] flex items-center justify-center relative mt-4 md:mt-12">
+              {/* Custom Follow Cursor - Desktop Only */}
               <motion.div
-                className="fixed top-0 left-0 z-[10000] pointer-events-none flex items-center justify-center bg-white rounded-full mix-blend-normal"
+                className="hidden md:flex fixed top-0 left-0 z-[10000] pointer-events-none items-center justify-center bg-white rounded-full mix-blend-normal"
                 animate={{
                   x: mousePos.x - 50,
                   y: mousePos.y - 50,
@@ -318,9 +324,47 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                 />
               </motion.div>
 
-              {/* Lamelles Accordion */}
+              {/* Mobile Project Cards List (Touch-friendly, fully readable) */}
+              <div className="md:hidden w-full flex flex-col gap-4 py-2 pointer-events-auto">
+                {projects.slice(0, 6).map((project, index) => (
+                  <motion.div
+                    key={`mobile-${project.id}`}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: isReady ? 1 : 0, y: isReady ? 0 : 30 }}
+                    transition={{ duration: 0.6, delay: 0.08 * index }}
+                    onClick={() => setSelectedProject(project)}
+                    className="relative w-full h-[220px] rounded-2xl overflow-hidden shadow-2xl active:scale-[0.98] transition-transform cursor-pointer border border-white/15"
+                  >
+                    <img
+                      src={project.image || project.gallery?.[0]}
+                      referrerPolicy="no-referrer"
+                      alt={project.title[lang]}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20" />
+                    <div className="absolute inset-0 p-5 flex flex-col justify-between z-10">
+                      <div className="flex justify-between items-center">
+                        <span className="font-mono text-[10px] uppercase tracking-[0.2em] bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-white border border-white/10">
+                          {project.category[lang]}
+                        </span>
+                        <div className="w-8 h-8 rounded-full bg-white text-[#002FA7] flex items-center justify-center shadow-lg">
+                          <ArrowUpRight size={18} strokeWidth={2.5} />
+                        </div>
+                      </div>
+                      <div>
+                        <span className="font-mono text-[10px] text-white/60 mb-1 block">0{index + 1}</span>
+                        <h3 className="font-display font-medium text-2xl text-white tracking-tight leading-snug">
+                          {project.title[lang]}
+                        </h3>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Desktop Lamelles Accordion */}
               <div
-                className="w-full h-[70vh] md:h-[500px] flex flex-col md:flex-row gap-2 md:gap-4 relative z-20 overflow-hidden md:overflow-visible min-h-[400px] md:min-h-[500px] pb-4 px-4 md:px-0 justify-center pointer-events-auto"
+                className="hidden md:flex w-full h-[500px] flex-row gap-4 relative z-20 overflow-visible min-h-[500px] pb-4 px-0 justify-center pointer-events-auto"
                 style={{
                   scrollbarWidth: "none",
                   msOverflowStyle: "none",
@@ -413,7 +457,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
           <div className="max-w-7xl mx-auto px-6 pt-32 pb-16">
             <div className="flex flex-col md:flex-row items-center gap-12 md:gap-24">
               <motion.div
-                style={{ y: aboutTextY }}
+                style={{ y: isMobile ? 0 : aboutTextY }}
                 className="w-full md:w-2/3 flex flex-col justify-center text-left"
               >
                 <h2
@@ -440,35 +484,16 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                 </p>
               </motion.div>
               <motion.div
-                style={{ y: aboutImageY }}
+                style={{ y: isMobile ? 0 : aboutImageY }}
                 className="w-full max-w-[280px] md:w-1/4 relative select-none group/photo"
               >
-                {/* ShapeBlur Effect around the photo - Adjusted for light background */}
-                <motion.div
-                  className="absolute -inset-24 md:-inset-32 z-0 opacity-20 pointer-events-none transition-opacity duration-1000"
-                  style={{
-                    y: aboutShapeBlurY,
-                    opacity: creatorVisible ? 0.4 : 0,
-                  }}
-                >
-                  <ShapeBlur
-                    variation={0}
-                    pixelRatioProp={window.devicePixelRatio || 1}
-                    shapeSize={1.4}
-                    roundness={0.5}
-                    borderSize={0.04}
-                    circleSize={0.25}
-                    circleEdge={0.8}
-                  />
-                </motion.div>
-                <div className="aspect-[3/4] w-full relative overflow-hidden z-10">
+                <div className="aspect-[3/4] w-full relative overflow-hidden z-10 border border-black/5">
                   <img
                     src="https://drive.google.com/thumbnail?id=1khLVzezL-HSyTZeDtHg45qTqPdV5Ro73&sz=w1000"
                     referrerPolicy="no-referrer"
                     alt="Arthur Chauvin"
                     className="w-full h-full object-cover filter grayscale contrast-125"
                   />
-                  <div className="absolute inset-0 border border-[#002FA7]/5 z-20"></div>
                 </div>
               </motion.div>
             </div>
@@ -538,6 +563,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                 <a
                   href="/cv.pdf"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="group flex flex-col gap-2 items-center text-center"
                   data-magnetic
                   data-magnetic-no-pull

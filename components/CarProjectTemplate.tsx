@@ -7,8 +7,8 @@ import {
   AnimatePresence,
 } from 'motion/react';
 import { Language } from '../types';
-import { Maximize2, X, ChevronLeft, ChevronRight, ArrowLeft } from 'lucide-react';
-import { CONCEPT_CARS, ConceptCarData } from './carProjectData';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { CONCEPT_CARS } from './carProjectData';
 
 interface CarProjectTemplateProps {
   lang: Language;
@@ -38,10 +38,7 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
   onClose,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [activeCarId, setActiveCarId] = useState<string>('concept-1');
-  const [showAll, setShowAll] = useState<boolean>(true);
-  const [lightbox, setLightbox] = useState<{ src: string; title: string } | null>(null);
-  const [lightboxList, setLightboxList] = useState<{ src: string; title: string }[]>([]);
+  const [lightbox, setLightbox] = useState<{ src: string; title: string; concept: string } | null>(null);
   const [lightboxIdx, setLightboxIdx] = useState<number>(0);
 
   const { scrollYProgress } = useScroll({
@@ -59,6 +56,18 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
   const heroImageScale = useTransform(smoothProgress, [0, 0.2], [1, 1.08]);
   const heroTextY = useTransform(smoothProgress, [0, 0.2], ["0%", "40%"]);
 
+  // All images flattened sequentially across both concepts (without /4.jpg)
+  const allImagesList = [
+    { src: '/car1.jpg', title: 'LOBSTER CAR — Affiche & Manifeste de Style', concept: 'Lobster Car' },
+    { src: '/car2.jpg', title: 'LOBSTER CAR — Rendu Dynamique & Aérodynamique', concept: 'Lobster Car' },
+    { src: '/car4.jpg', title: 'LOBSTER CAR — Recherche & Croquis Préparatoires', concept: 'Lobster Car' },
+    { src: '/car3.jpg', title: 'LOBSTER CAR — Poste de Pilotage & Ergonomie', concept: 'Lobster Car' },
+    { src: '/car5.jpg', title: 'LOBSTER CAR — Vue Arrière & Signature Lumineuse', concept: 'Lobster Car' },
+    { src: '/1.jpg', title: 'PORSCHE 754 — Planche Stylistique & Manifeste', concept: 'Porsche 754 Concept' },
+    { src: '/2.jpg', title: 'PORSCHE 754 — Spa-Francorchamps · Vues Dynamique & Aérienne', concept: 'Porsche 754 Concept' },
+    { src: '/3.jpg', title: 'PORSCHE 754 — Spa-Francorchamps · Raidillon & Perspective Sol', concept: 'Porsche 754 Concept' },
+  ];
+
   // Keyboard navigation for lightbox
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -66,71 +75,63 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
       if (e.key === 'Escape') {
         setLightbox(null);
       } else if (e.key === 'ArrowRight') {
-        if (lightboxList.length > 0) {
-          const next = (lightboxIdx + 1) % lightboxList.length;
+        if (allImagesList.length > 0) {
+          const next = (lightboxIdx + 1) % allImagesList.length;
           setLightboxIdx(next);
-          setLightbox(lightboxList[next]);
+          setLightbox(allImagesList[next]);
         }
       } else if (e.key === 'ArrowLeft') {
-        if (lightboxList.length > 0) {
-          const prev = (lightboxIdx - 1 + lightboxList.length) % lightboxList.length;
+        if (allImagesList.length > 0) {
+          const prev = (lightboxIdx - 1 + allImagesList.length) % allImagesList.length;
           setLightboxIdx(prev);
-          setLightbox(lightboxList[prev]);
+          setLightbox(allImagesList[prev]);
         }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [lightbox, lightboxIdx, lightboxList]);
+  }, [lightbox, lightboxIdx, allImagesList]);
 
-  const openLightbox = (car: ConceptCarData, currentSrc: string) => {
-    const items = [
-      { src: car.poster.image, title: car.poster.title[lang] },
-      { src: car.sketch.image, title: car.sketch.title[lang] },
-      ...car.photos.map(p => ({ src: p.image, title: car.name }))
-    ];
-    setLightboxList(items);
-    const found = items.findIndex(i => i.src === currentSrc);
+  const openLightbox = (currentSrc: string) => {
+    const found = allImagesList.findIndex((i) => i.src === currentSrc);
     const idx = found >= 0 ? found : 0;
     setLightboxIdx(idx);
-    setLightbox(items[idx]);
+    setLightbox(allImagesList[idx]);
   };
-
-  const displayedCars = showAll 
-    ? CONCEPT_CARS 
-    : CONCEPT_CARS.filter(c => c.id === activeCarId);
 
   const t = {
     fr: {
       projectBadge: "P/03 — Project",
       headerDesc: "Design Automobile & Concept Cars",
       title: "Concept Cars",
-      subtitle: "Exploration stylistique, morphologique et recherche aérodynamique.",
+      subtitle: "",
       contextLabel: "Contexte",
-      contextText: "Conception de deux concept cars indépendants : Lobster Car et Vortex Stratos. Une démarche épurée allant des premières esquisses manuelles de proportions jusqu'aux affiches et visuels photographiques finaux.",
-      allConcepts: "Tous les concepts",
-      posterTag: "Affiche & Manifeste de Style",
-      sketchTag: "Recherche de Style & Esquisses",
+      contextText: "J'ai toujours aimé l'automobile et tout particulièrement l'esthétique automobile. Je me suis donc essayé à concevoir deux concept cars qui reflètent ma sensibilité pour les lignes pures, l'aérodynamique et le design de caractère.",
+      posterTag: "Affiche & Manifeste",
+      sketchTag: "Recherche & Croquis Préparatoires",
       photosTag: "Visuels Photographiques",
-      clickZoom: "Agrandir",
-      back: "Retour",
-      backToPortfolio: "Retour au portfolio"
+      backToPortfolio: "Retour au portfolio",
+      trackSessionsTag: "Essais Circuit · Validation Aérodynamique",
+      trackLocationTag: "Circuit de Spa-Francorchamps · 07:00 AM",
+      quotesHeading: "Intentions de Style",
+      featuresHeading: "Architecture & Éléments Clés"
     },
     en: {
       projectBadge: "P/03 — Project",
       headerDesc: "Automotive Design & Concept Cars",
       title: "Concept Cars",
-      subtitle: "Stylistic, morphological exploration and aerodynamic sculpting.",
+      subtitle: "",
       contextLabel: "Context",
-      contextText: "Design of two independent concept cars: Lobster Car and Vortex Stratos. A refined workflow spanning from initial proportion sketches to high-definition posters and photographic renders.",
-      allConcepts: "All concepts",
+      contextText: "I have always loved cars and specifically automotive aesthetics. I set out to design two concept cars reflecting my passion for pure lines, aerodynamics, and distinctive styling.",
       posterTag: "Styling Poster & Manifesto",
       sketchTag: "Styling Sketches & Ideation",
       photosTag: "Photographic Visuals",
-      clickZoom: "Zoom",
-      back: "Back",
-      backToPortfolio: "Back to portfolio"
-    }
+      backToPortfolio: "Back to portfolio",
+      trackSessionsTag: "Track Sessions · Aerodynamic Validation",
+      trackLocationTag: "Spa-Francorchamps Circuit · 07:00 AM",
+      quotesHeading: "Styling Intentions",
+      featuresHeading: "Architecture & Key Features"
+    },
   }[lang];
 
   return (
@@ -144,19 +145,8 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
         style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}
       />
 
-      {/* Floating Back button */}
-      {onClose && (
-        <button
-          onClick={onClose}
-          className="fixed top-6 right-6 md:top-8 md:right-8 z-50 flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/90 hover:bg-white text-[#002FA7] border border-[#002FA7]/20 shadow-lg backdrop-blur-md text-xs font-mono tracking-widest uppercase transition-all hover:scale-105 active:scale-95"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>{t.back}</span>
-        </button>
-      )}
-
       {/* ========================================================================= */}
-      {/* 1. BRUTALIST HERO SECTION (IDENTIQUE AUX AUTRES PROJETS DU PORTFOLIO)    */}
+      {/* 1. BRUTALIST HERO SECTION (STRUCTURE IDENTIQUE AUX AUTRES PROJETS)        */}
       {/* ========================================================================= */}
       <section className="relative w-full min-h-screen pt-2 md:pt-4 pb-12 px-4 md:px-8 flex flex-col justify-between overflow-hidden">
         <div className="w-full relative z-10">
@@ -208,7 +198,7 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
             </div>
 
             {/* Header Category Description */}
-            <div className="md:col-span-5 mt-8 md:mt-0">
+            <div className="md:col-span-4 mt-8 md:mt-0">
               <h3 className="text-3xl md:text-4xl lg:text-5xl leading-[1.1] font-medium tracking-tight font-display">
                 {t.headerDesc
                   .split(" & ")
@@ -231,16 +221,16 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
               </h3>
             </div>
 
-            <div className="md:col-span-4 flex justify-start md:justify-end mt-4 md:mt-0" />
+            <div className="md:col-span-5 flex justify-start md:justify-end mt-4 md:mt-0" />
           </div>
         </div>
 
         {/* Massive Title */}
         <motion.div
           style={{ y: heroTextY }}
-          className="w-full text-right mt-16 md:-mt-12 md:mb-4 relative z-20 mix-blend-difference text-white pointer-events-none"
+          className="w-full text-right mt-8 sm:mt-12 md:-mt-12 md:mb-4 relative z-20 mix-blend-difference text-white pointer-events-none"
         >
-          <h1 className="text-[15vw] md:text-[13vw] font-display font-medium tracking-tighter leading-[0.8] uppercase whitespace-nowrap">
+          <h1 className="text-4xl sm:text-6xl md:text-[12vw] lg:text-[13vw] font-display font-medium tracking-tighter leading-[0.85] md:leading-[0.8] uppercase break-normal md:whitespace-nowrap">
             {t.title.split(" ").map((word: string, i: number) => (
               <RevealTitle key={i}>{word}</RevealTitle>
             ))}
@@ -248,28 +238,18 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 1, duration: 0.5 }}
-              className="text-[4vw] align-top ml-2 inline-block text-white mix-blend-normal"
+              className="text-2xl sm:text-3xl md:text-[4vw] align-top ml-2 inline-block text-white mix-blend-normal"
             >
               ©
             </motion.span>
           </h1>
         </motion.div>
 
-        {/* Bottom Content & Main Banner */}
+        {/* Bottom Content & Main Banner (BORDS DROITS, SANS ARRONDI) */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mt-16 md:mt-0 items-stretch flex-grow z-10 relative">
           
           {/* Left Metadata Column */}
-          <div className="md:col-span-3 flex flex-col justify-start pt-4 md:pt-8 pb-0 md:pb-4 gap-8 md:gap-16 text-[#002FA7]">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5 }}
-            >
-              <p className="text-base md:text-lg pr-4 md:pr-8 leading-relaxed font-bold">
-                {t.subtitle}
-              </p>
-            </motion.div>
-
+          <div className="md:col-span-3 flex flex-col justify-start pt-4 md:pt-8 pb-0 md:pb-4 text-[#002FA7]">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -278,13 +258,13 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
               <h4 className="font-sans text-xs md:text-sm font-bold uppercase tracking-widest mb-2 md:mb-4">
                 {t.contextLabel}
               </h4>
-              <p className="text-base md:text-lg pr-4 md:pr-8 leading-relaxed max-w-sm font-bold">
+              <p className="text-base md:text-lg pr-4 md:pr-8 leading-relaxed max-w-sm font-light">
                 {t.contextText}
               </p>
             </motion.div>
           </div>
 
-          {/* Large Hero Banner */}
+          {/* Large Hero Banner : cadrée sur le bas de l'image (voiture sur l'axe des abscisses) */}
           <div className="md:col-span-9 relative w-full h-full flex items-end">
             <motion.div
               initial={{
@@ -298,25 +278,23 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
                 duration: 1.4,
                 ease: [0.76, 0, 0.24, 1],
               }}
-              className="w-full aspect-[4/3] md:aspect-[21/9] relative z-20 overflow-hidden shadow-2xl rounded-2xl md:rounded-3xl"
+              className="w-full aspect-[16/10] md:aspect-[21/9] relative z-20 overflow-hidden rounded-none border border-[#002FA7]/15 bg-[#121622] shadow-sm"
             >
-              <div className="absolute inset-0 bg-[#002FA7]/10 z-10 pointer-events-none mix-blend-multiply" />
               <motion.img
-                initial={{ scale: 1.15 }}
+                initial={{ scale: 1.05 }}
                 animate={{ scale: 1 }}
-                style={{ y: heroImageY, scale: heroImageScale }}
+                style={{ scale: heroImageScale }}
                 transition={{
                   delay: 0.2,
                   duration: 1.4,
                   ease: [0.76, 0, 0.24, 1],
                 }}
-                src="./top_header.webp"
+                src="/car1.jpg"
                 onError={(e) => {
-                  // Fallback to car 1 poster if top_header fails
-                  (e.target as HTMLImageElement).src = './1.webp';
+                  (e.target as HTMLImageElement).src = '/1.jpg';
                 }}
                 alt="Automotive Design"
-                className="absolute inset-0 w-full h-[120%] -top-[10%] object-cover contrast-[1.1] saturate-50 origin-center"
+                className="w-full h-full object-cover object-bottom origin-bottom contrast-[1.05] rounded-none select-none"
               />
             </motion.div>
           </div>
@@ -324,187 +302,227 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
       </section>
 
       {/* ========================================================================= */}
-      {/* SÉLECTEUR ÉPURÉ DES 2 CONCEPT CARS (STICKY)                               */}
+      {/* 2. CORPS DU PROJET : LES 2 CONCEPTS RÉUNIS TOUT À LA SUITE                */}
+      {/*    AUCUN CROPPAGE : TOUTES LES IMAGES SONT AFFICHÉES EN FORMAT INTÉGRAL  */}
       {/* ========================================================================= */}
-      <section className="sticky top-0 z-40 w-full bg-[#F5F5F3]/90 backdrop-blur-md border-y border-[#002FA7]/10 py-4 px-4 md:px-8">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#002FA7]/60">
-              CONCEPTS //
-            </span>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-2">
-            {CONCEPT_CARS.map((car, idx) => {
-              const isActive = !showAll && activeCarId === car.id;
-              return (
-                <button
-                  key={car.id}
-                  onClick={() => {
-                    setShowAll(false);
-                    setActiveCarId(car.id);
-                  }}
-                  className={`px-4 md:px-6 py-2 rounded-full text-xs font-mono uppercase tracking-wider font-semibold transition-all ${
-                    isActive
-                      ? 'bg-[#002FA7] text-white shadow-md'
-                      : 'bg-white text-[#002FA7] border border-[#002FA7]/20 hover:bg-[#002FA7]/5'
-                  }`}
-                >
-                  0{idx + 1} — {car.name.split('—')[0].trim()}
-                </button>
-              );
-            })}
-
-            <button
-              onClick={() => setShowAll(true)}
-              className={`px-4 md:px-6 py-2 rounded-full text-xs font-mono uppercase tracking-wider font-semibold transition-all ${
-                showAll
-                  ? 'bg-[#002FA7] text-white shadow-md'
-                  : 'bg-white text-[#002FA7] border border-[#002FA7]/20 hover:bg-[#002FA7]/5'
-              }`}
-            >
-              {t.allConcepts}
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* CONTENU PRINCIPAL : ÉPURÉ POUR CHACUN DES 2 CONCEPTS                      */}
-      {/* ========================================================================= */}
-      <main className="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-24 space-y-36 md:space-y-48">
-        {displayedCars.map((car, cIdx) => (
+      <main className="max-w-7xl mx-auto px-4 md:px-8 py-16 md:py-24 space-y-32 md:space-y-44">
+        {CONCEPT_CARS.map((car, cIdx) => (
           <article key={car.id} className="relative">
             
-            {/* Header épuré du Concept Car */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-6 mb-12 md:mb-16 border-b border-[#002FA7]/20">
-              <div>
-                <span className="font-mono text-xs md:text-sm font-bold tracking-widest text-[#002FA7]/50 uppercase block mb-1">
-                  CONCEPT 0{cIdx + 1}
+            {/* Titre minimaliste du Concept */}
+            <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-3 pb-6 mb-12 md:mb-16 border-b border-[#002FA7]/15">
+              <div className="flex items-baseline gap-4 md:gap-6">
+                <span className="font-mono text-sm md:text-base font-bold text-[#002FA7]/50">
+                  0{cIdx + 1}
                 </span>
-                <h2 className="text-4xl md:text-6xl lg:text-7xl font-display font-medium uppercase tracking-tight text-[#002FA7]">
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-medium uppercase tracking-tight text-[#002FA7]">
                   {car.name}
                 </h2>
               </div>
-              <span className="font-mono text-xs md:text-sm text-[#002FA7]/70 uppercase tracking-widest font-semibold">
+              <span className="font-mono text-xs md:text-sm text-[#002FA7]/70 uppercase tracking-wider font-medium">
                 {car.tagline[lang]}
               </span>
             </div>
 
-            {/* --------------------------------------------------------------------- */}
-            {/* 1. GROSSE AFFICHE AVEC TEXTE DESCRIPTIF                               */}
-            {/* --------------------------------------------------------------------- */}
-            <section className="mb-24 md:mb-32">
-              <div 
-                onClick={() => openLightbox(car, car.poster.image)}
-                className="w-full relative group cursor-zoom-in rounded-2xl md:rounded-3xl overflow-hidden bg-white shadow-[0_25px_60px_rgba(0,47,167,0.12)] border border-[#002FA7]/15 p-2 sm:p-4 md:p-6 transition-all duration-500 hover:border-[#002FA7]/40"
-              >
-                <div className="relative w-full rounded-xl md:rounded-2xl overflow-hidden bg-black/5 flex items-center justify-center min-h-[280px] sm:min-h-[460px] md:min-h-[580px]">
-                  <img
-                    src={car.poster.image}
-                    alt={car.name}
-                    className="w-full h-auto max-h-[82vh] object-contain rounded-xl transition-transform duration-700 ease-[0.16,1,0.3,1] group-hover:scale-[1.01]"
-                    loading="eager"
-                  />
-                  
-                  {/* Badge Zoom épuré */}
-                  <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 px-4 py-2 rounded-full bg-white/95 text-[#002FA7] text-xs font-mono uppercase tracking-wider shadow-lg backdrop-blur-md opacity-90 group-hover:opacity-100 transition-all flex items-center gap-2">
-                    <Maximize2 className="w-3.5 h-3.5" />
-                    <span>{t.clickZoom}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Texte descriptif sous l'affiche */}
-              <div className="max-w-4xl mt-8 md:mt-10">
-                <p className="text-xl md:text-2xl font-light text-[#002FA7]/90 leading-relaxed">
-                  {car.poster.description[lang]}
-                </p>
-              </div>
-            </section>
-
-            {/* --------------------------------------------------------------------- */}
-            {/* 2. PHOTO AVEC DES SKETCH ET UN TEXTE A COTE                           */}
-            {/* --------------------------------------------------------------------- */}
-            <section className="mb-24 md:mb-32 pt-12 border-t border-[#002FA7]/15">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+            {/* TRAITEMENT SPÉCIFIQUE CONCEPT 02 : PORSCHE 754 CONCEPT */}
+            {car.id === 'concept-2' ? (
+              <div className="space-y-16 md:space-y-24">
                 
-                {/* Photo avec des sketch */}
-                <div className="lg:col-span-7">
-                  <div
-                    onClick={() => openLightbox(car, car.sketch.image)}
-                    className="w-full relative group cursor-zoom-in rounded-2xl md:rounded-3xl overflow-hidden bg-white shadow-[0_20px_50px_rgba(0,47,167,0.08)] border border-[#002FA7]/15 p-2 sm:p-4 transition-all duration-500 hover:border-[#002FA7]/40"
-                  >
-                    <div className="relative w-full aspect-[16/10] overflow-hidden flex items-center justify-center bg-black/5 rounded-xl md:rounded-2xl">
-                      <img
-                        src={car.sketch.image}
-                        alt="Styling Sketches"
-                        className="w-full h-full object-cover transition-transform duration-700 ease-[0.16,1,0.3,1] group-hover:scale-105"
-                        loading="eager"
-                      />
-                      
-                      {/* Zoom Indicator */}
-                      <div className="absolute bottom-4 right-4 px-4 py-2 rounded-full bg-white/95 text-[#002FA7] text-xs font-mono uppercase tracking-wider shadow-lg backdrop-blur-md opacity-90 group-hover:opacity-100 transition-all flex items-center gap-2">
-                        <Maximize2 className="w-3.5 h-3.5" />
-                        <span>{t.clickZoom}</span>
+                {/* Image 1 : Planche Stylistique & Explication */}
+                <section>
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
+                    
+                    {/* Colonne Image 1 */}
+                    <div 
+                      className="lg:col-span-8 cursor-zoom-in group"
+                      onClick={() => openLightbox(car.poster.image)}
+                    >
+                      <div className="w-full bg-[#EAE8E3]/50 p-2 md:p-4 border border-[#002FA7]/10 shadow-sm transition-opacity duration-300 group-hover:opacity-95">
+                        <img
+                          src={car.poster.image}
+                          alt="Porsche 754 Concept"
+                          className="w-full h-auto object-contain select-none rounded-none"
+                          loading="eager"
+                        />
                       </div>
                     </div>
-                  </div>
-                </div>
 
-                {/* Texte à côté */}
-                <div className="lg:col-span-5 flex flex-col justify-center">
-                  <span className="text-xs font-mono uppercase tracking-widest text-[#002FA7]/60 block mb-2 font-bold">
-                    {t.sketchTag}
-                  </span>
-                  <h3 className="text-2xl md:text-3xl font-display font-medium uppercase text-[#002FA7] mb-4 tracking-tight">
-                    {car.sketch.title[lang]}
-                  </h3>
-                  <p className="text-lg md:text-xl font-light text-[#002FA7]/85 leading-relaxed">
-                    {car.sketch.text[lang]}
-                  </p>
-                </div>
-              </div>
-            </section>
+                    {/* Colonne Texte épuré expliquant la démarche */}
+                    <div className="lg:col-span-4 flex flex-col justify-start space-y-4">
+                      <h3 className="text-2xl md:text-3xl font-display font-medium uppercase text-[#002FA7] tracking-tight">
+                        PORSCHE 754 CONCEPT
+                      </h3>
 
-            {/* --------------------------------------------------------------------- */}
-            {/* 3. UNIQUEMENT DES VISUELS PHOTOS (3) SANS TEXTE SUPERFLU             */}
-            {/* --------------------------------------------------------------------- */}
-            <section className="pt-12 border-t border-[#002FA7]/15">
-              {/* Grille épurée de 3 photos : aucun texte superflu */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-                {car.photos.slice(0, 3).map((photo, pIdx) => (
-                  <div
-                    key={photo.id}
-                    onClick={() => openLightbox(car, photo.image)}
-                    className="w-full relative group cursor-zoom-in rounded-2xl md:rounded-3xl overflow-hidden bg-white shadow-[0_15px_45px_rgba(0,47,167,0.08)] border border-[#002FA7]/15 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_25px_60px_rgba(0,47,167,0.18)] hover:border-[#002FA7]/40"
-                  >
-                    <div className="relative w-full aspect-[4/3] overflow-hidden bg-black/5 flex items-center justify-center min-h-[240px]">
-                      <img
-                        src={photo.image}
-                        alt={`Visual 0${pIdx + 1}`}
-                        className="w-full h-full object-cover transition-transform duration-700 ease-[0.16,1,0.3,1] group-hover:scale-105"
-                        loading="eager"
-                      />
-                      <div className="absolute inset-0 bg-[#002FA7]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                      
-                      {/* Zoom Indicator */}
-                      <div className="absolute bottom-4 right-4 px-3 py-1.5 rounded-full bg-white/95 text-[#002FA7] text-[11px] font-mono uppercase tracking-wider shadow-md backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1.5">
-                        <Maximize2 className="w-3 h-3" />
-                        <span>{t.clickZoom}</span>
-                      </div>
+                      <p className="text-base md:text-lg font-light text-[#002FA7]/90 leading-relaxed">
+                        {car.poster.description[lang]}
+                      </p>
                     </div>
                   </div>
-                ))}
+                </section>
+
+                {/* Images 2 & 3 : Essais Circuit Spa-Francorchamps */}
+                <section className="border-t border-[#002FA7]/15 pt-12 md:pt-16">
+                  <div className="mb-6">
+                    <h3 className="text-xl md:text-2xl font-display font-medium uppercase text-[#002FA7] tracking-tight">
+                      CIRCUIT DE SPA-FRANCORCHAMPS · 07:00 AM
+                    </h3>
+                  </div>
+
+                  {/* 2 Grandes Planches Photographiques posées côte à côte */}
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+                    
+                    {/* Image 2 : Vues Dynamique & Aérienne */}
+                    <div 
+                      className="w-full cursor-zoom-in group"
+                      onClick={() => openLightbox(car.photos[0]?.image || '/2.jpg')}
+                    >
+                      <div className="w-full bg-[#111622] p-2 md:p-3 border border-[#002FA7]/15 transition-transform duration-500 group-hover:scale-[1.01]">
+                        <img
+                          src={car.photos[0]?.image || '/2.jpg'}
+                          alt="Porsche 754 Spa-Francorchamps"
+                          className="w-full h-auto object-contain select-none rounded-none"
+                          loading="eager"
+                        />
+                      </div>
+                      {car.photos[0]?.caption && car.photos[0]?.caption[lang] && (
+                        <p className="mt-3 text-sm font-light text-[#002FA7]/80 leading-relaxed">
+                          {car.photos[0]?.caption[lang]}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Image 3 : Raidillon & Perspective Sol */}
+                    <div 
+                      className="w-full cursor-zoom-in group"
+                      onClick={() => openLightbox(car.photos[1]?.image || '/3.jpg')}
+                    >
+                      <div className="w-full bg-[#111622] p-2 md:p-3 border border-[#002FA7]/15 transition-transform duration-500 group-hover:scale-[1.01]">
+                        <img
+                          src={car.photos[1]?.image || '/3.jpg'}
+                          alt="Porsche 754 Spa-Francorchamps"
+                          className="w-full h-auto object-contain select-none rounded-none"
+                          loading="eager"
+                        />
+                      </div>
+                      {car.photos[1]?.caption && car.photos[1]?.caption[lang] && (
+                        <p className="mt-3 text-sm font-light text-[#002FA7]/80 leading-relaxed">
+                          {car.photos[1]?.caption[lang]}
+                        </p>
+                      )}
+                    </div>
+
+                  </div>
+                </section>
+
               </div>
-            </section>
+            ) : (
+              /* STRUCTURE CONCEPT 01 : LOBSTER CAR */
+              <div className="space-y-16 md:space-y-24">
+                {/* A. Les deux premières images côte à côte */}
+                <section>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-start">
+                    
+                    {/* Image 1 : car1.jpg */}
+                    <div 
+                      onClick={() => openLightbox(car.poster.image)}
+                      className="w-full cursor-zoom-in group"
+                    >
+                      <div className="w-full bg-[#EAE8E3]/50 p-2 md:p-3 border border-[#002FA7]/15 shadow-sm transition-transform duration-300 group-hover:scale-[1.01]">
+                        <img
+                          src={car.poster.image}
+                          alt={`${car.name}`}
+                          className="w-full h-auto object-contain rounded-none select-none"
+                          loading="eager"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Image 2 : car2.jpg */}
+                    <div 
+                      onClick={() => openLightbox('/car2.jpg')}
+                      className="w-full cursor-zoom-in group"
+                    >
+                      <div className="w-full bg-[#111622] p-2 md:p-3 border border-[#002FA7]/15 shadow-sm transition-transform duration-300 group-hover:scale-[1.01]">
+                        <img
+                          src="/car2.jpg"
+                          alt={`${car.name}`}
+                          className="w-full h-auto object-contain rounded-none select-none"
+                          loading="eager"
+                        />
+                      </div>
+                    </div>
+
+                  </div>
+
+                  {/* Petit texte épuré sous les deux premières images */}
+                  <div className="mt-6 pt-4 border-t border-[#002FA7]/15">
+                    <p className="text-base md:text-lg font-light text-[#002FA7]/90 leading-relaxed max-w-3xl">
+                      {car.poster.description[lang]}
+                    </p>
+                  </div>
+                </section>
+
+                {/* B. Troisième image (esquisses) avec le texte juste à côté */}
+                <section className="border-t border-[#002FA7]/15 pt-12 md:pt-16">
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
+                    <div 
+                      className="lg:col-span-8 cursor-zoom-in group"
+                      onClick={() => openLightbox(car.sketch.image)}
+                    >
+                      <div className="w-full bg-[#EAE8E3]/40 p-2 md:p-4 border border-[#002FA7]/15 shadow-sm transition-transform duration-300 group-hover:scale-[1.008]">
+                        <img
+                          src={car.sketch.image}
+                          alt="Styling Sketches"
+                          className="w-full h-auto object-contain rounded-none select-none"
+                          loading="eager"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Texte à côté de la troisième image */}
+                    <div className="lg:col-span-4 flex flex-col justify-start space-y-4">
+                      <h3 className="text-xl md:text-2xl font-display font-medium uppercase text-[#002FA7] tracking-tight">
+                        {car.sketch.title[lang]}
+                      </h3>
+                      <p className="text-base font-light text-[#002FA7]/85 leading-relaxed">
+                        {car.sketch.text[lang]}
+                      </p>
+                    </div>
+                  </div>
+                </section>
+
+                {/* C. Visuels Photographiques restants (car3.jpg et car5.jpg) */}
+                <section className="border-t border-[#002FA7]/15 pt-12 md:pt-16">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-start">
+                    {car.photos
+                      .filter((photo) => photo.image !== '/car2.jpg')
+                      .map((photo) => (
+                        <div
+                          key={photo.id}
+                          onClick={() => openLightbox(photo.image)}
+                          className="w-full cursor-zoom-in group"
+                        >
+                          <div className="w-full overflow-hidden bg-[#111622] p-2 md:p-3 border border-[#002FA7]/15 transition-transform duration-500 group-hover:scale-[1.01]">
+                            <img
+                              src={photo.image}
+                              alt={car.name}
+                              className="w-full h-auto object-contain rounded-none select-none"
+                              loading="eager"
+                            />
+                          </div>
+                        </div>
+                      ))}
+                  </div>
+                </section>
+              </div>
+            )}
 
           </article>
         ))}
       </main>
 
       {/* ========================================================================= */}
-      {/* LIGHTBOX PLEIN ÉCRAN POUR INSPECTER LES VISUELS EN HAUTE RÉSOLUTION      */}
+      {/* 3. VISIONNEUSE PLEIN ÉCRAN MINIMALISTE (TOUTES LES PHOTOS SANS ARRONDI)    */}
       {/* ========================================================================= */}
       <AnimatePresence>
         {lightbox && (
@@ -512,57 +530,57 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex flex-col justify-between p-4 md:p-8"
+            className="fixed inset-0 z-[200] bg-black/95 flex flex-col justify-between p-4 md:p-8"
             onClick={() => setLightbox(null)}
           >
-            {/* Top Bar */}
+            {/* Barre haute */}
             <div className="flex items-center justify-between w-full" onClick={(e) => e.stopPropagation()}>
               <span className="text-xs font-mono text-white/60 tracking-widest uppercase">
-                {lightboxIdx + 1} / {lightboxList.length}
+                {lightboxIdx + 1} / {allImagesList.length} — {lightbox.concept} — {lightbox.title}
               </span>
               <button
                 onClick={() => setLightbox(null)}
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-all hover:scale-105 active:scale-95"
+                className="w-10 h-10 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors rounded-none"
                 title="Fermer"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            {/* Main Image */}
+            {/* Image principale sans bord rond */}
             <div className="relative flex-1 flex items-center justify-center my-4 overflow-hidden" onClick={(e) => e.stopPropagation()}>
               <motion.img
                 key={lightbox.src}
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.98 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
                 src={lightbox.src}
                 alt={lightbox.title}
-                className="max-h-[84vh] max-w-[94vw] object-contain rounded-xl select-none shadow-2xl"
+                className="max-h-[88vh] max-w-[95vw] object-contain rounded-none select-none"
               />
 
-              {lightboxList.length > 1 && (
+              {allImagesList.length > 1 && (
                 <>
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      const prev = (lightboxIdx - 1 + lightboxList.length) % lightboxList.length;
+                      const prev = (lightboxIdx - 1 + allImagesList.length) % allImagesList.length;
                       setLightboxIdx(prev);
-                      setLightbox(lightboxList[prev]);
+                      setLightbox(allImagesList[prev]);
                     }}
-                    className="absolute left-2 md:left-6 w-12 h-12 rounded-full bg-black/40 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-all backdrop-blur-sm"
+                    className="absolute left-2 md:left-6 w-12 h-12 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors rounded-none"
                   >
                     <ChevronLeft className="w-6 h-6" />
                   </button>
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      const next = (lightboxIdx + 1) % lightboxList.length;
+                      const next = (lightboxIdx + 1) % allImagesList.length;
                       setLightboxIdx(next);
-                      setLightbox(lightboxList[next]);
+                      setLightbox(allImagesList[next]);
                     }}
-                    className="absolute right-2 md:right-6 w-12 h-12 rounded-full bg-black/40 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-all backdrop-blur-sm"
+                    className="absolute right-2 md:right-6 w-12 h-12 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors rounded-none"
                   >
                     <ChevronRight className="w-6 h-6" />
                   </button>
@@ -570,10 +588,10 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
               )}
             </div>
 
-            {/* Bottom Caption */}
+            {/* Pied de visionneuse */}
             <div className="w-full text-center" onClick={(e) => e.stopPropagation()}>
-              <p className="text-[11px] font-mono text-white/40 tracking-wider">
-                Utilisez ← et → pour naviguer · Échap pour fermer
+              <p className="text-[11px] font-mono text-white/40 tracking-widest uppercase">
+                ← / → POUR NAVIGUER · ÉCHAP POUR FERMER
               </p>
             </div>
           </motion.div>
@@ -581,18 +599,12 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
       </AnimatePresence>
 
       {/* ========================================================================= */}
-      {/* PIED DE PAGE AVEC RETOUR AU PORTFOLIO                                     */}
+      {/* 4. PIED DE PAGE ÉPURÉ                                                     */}
       {/* ========================================================================= */}
-      <footer className="w-full py-20 border-t border-[#002FA7]/10 flex justify-center bg-[#F5F5F3]">
-        {onClose && (
-          <button
-            onClick={onClose}
-            className="px-8 py-4 rounded-full bg-[#002FA7] text-white hover:bg-[#002FA7]/90 text-xs font-mono uppercase tracking-widest transition-all shadow-xl hover:scale-105 active:scale-95 flex items-center gap-3"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>{t.backToPortfolio}</span>
-          </button>
-        )}
+      <footer className="w-full py-16 md:py-20 border-t border-[#002FA7]/15 flex flex-col items-center justify-center bg-[#F5F5F3] text-center px-4">
+        <span className="font-mono text-xs uppercase tracking-widest text-[#002FA7]/40 font-medium">
+          Arthur Chauvin — Concept Cars © 2024
+        </span>
       </footer>
     </div>
   );

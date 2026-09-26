@@ -270,9 +270,9 @@ export const ProjectTemplate: React.FC<{
         {/* Massive Title */}
         <motion.div
           style={{ y: heroTextY }}
-          className="w-full text-right mt-16 md:-mt-12 md:mb-4 relative z-20 mix-blend-difference text-white pointer-events-none"
+          className="w-full text-right mt-8 sm:mt-12 md:-mt-12 md:mb-4 relative z-20 mix-blend-difference text-white pointer-events-none"
         >
-          <h1 className="text-[15vw] md:text-[13vw] font-display font-medium tracking-tighter leading-[0.8] uppercase whitespace-nowrap">
+          <h1 className="text-4xl sm:text-6xl md:text-[12vw] lg:text-[13vw] font-display font-medium tracking-tighter leading-[0.85] md:leading-[0.8] uppercase break-normal md:whitespace-nowrap">
             {data.title.split(" ").map((word: string, i: number) => (
               <RevealTitle key={i}>{word}</RevealTitle>
             ))}
@@ -280,7 +280,7 @@ export const ProjectTemplate: React.FC<{
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 1, duration: 0.5 }}
-              className="text-[4vw] align-top ml-2 inline-block text-white mix-blend-normal"
+              className="text-2xl sm:text-3xl md:text-[4vw] align-top ml-2 inline-block text-white mix-blend-normal"
             >
               ©
             </motion.span>
@@ -533,13 +533,8 @@ export const ProjectTemplate: React.FC<{
         </section>
       )}
 
-      {/* End of Project Trigger */}
-      <div className="w-full h-[5vh] bg-[#F5F5F3]" />
-      <motion.div 
-        onViewportEnter={() => onClose && onClose()}
-        className="w-full h-1"
-        viewport={{ margin: "100px" }}
-      />
+      {/* End of Project */}
+      <div className="w-full h-[8vh] bg-[#F5F5F3]" />
     </div>
   );
 };

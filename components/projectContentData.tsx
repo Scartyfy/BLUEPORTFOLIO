@@ -157,7 +157,7 @@ export const getProjectData = (id: string, lang: Language) => {
       concept: {
         title: "L'Aérodynamique comme Forme Pure",
         text: "Le concept Lobster Car explore une silhouette sculpturale inspirée des carapaces et des lignes de tension organiques. La carrosserie guide les flux d'air pour assurer la stabilité et l'efficience tout en proposant une identité visuelle radicale.",
-        image: "/1.webp"
+        image: "/car1.jpg"
       },
       techTitle: "Recherches & Compétences Appliquées",
       skills: true,
@@ -167,8 +167,8 @@ export const getProjectData = (id: string, lang: Language) => {
           text: "Optimisation de la silhouette et écoulement des flux",
           details: "Étude poussée des volumes et des écoulements d'air sur carrosserie sculpturale pour allier performance aérodynamique et présence esthétique.",
           images: [
-            { src: "/2.webp", label: "Étude Aérodynamique & Profil" },
-            { src: "/1.webp", label: "Affiche Principale" }
+            { src: "/car2.jpg", label: "Étude Aérodynamique & Profil" },
+            { src: "/car1.jpg", label: "Affiche Principale" }
           ]
         },
         {
@@ -176,7 +176,7 @@ export const getProjectData = (id: string, lang: Language) => {
           text: "Interface conducteur et ergonomie du poste de pilotage",
           details: "Conception ergonomique du poste de conduite : commandes physiques intuitives et visibilité optimale pour une expérience de conduite pure.",
           images: [
-            { src: "/3.webp", label: "Poste de Pilotage" }
+            { src: "/car3.jpg", label: "Poste de Pilotage" }
           ]
         },
         {
@@ -184,7 +184,7 @@ export const getProjectData = (id: string, lang: Language) => {
           text: "Recherche stylistique et études préliminaires",
           details: "De la feuille de croquis aux rendus volumiques, le processus explore les lignes de tension et l'équilibre des masses.",
           images: [
-            { src: "/4.webp", label: "Recherche Formelle & Croquis" }
+            { src: "/car4.jpg", label: "Recherche Formelle & Croquis" }
           ]
         }
       ],
@@ -194,25 +194,25 @@ export const getProjectData = (id: string, lang: Language) => {
         {
           title: "1. Affiche & Manifeste de Style",
           desc: "Présentation grand format définissant les intentions stylistiques et l'impact visuel du concept.",
-          image: "/1.webp"
+          image: "/car1.jpg"
         },
         {
           title: "2. Recherche & Esquisses Préparatoires",
           desc: "Étude des proportions et des lignes de force avant toute phase de modélisation.",
-          image: "/4.webp"
+          image: "/car4.jpg"
         },
         {
           title: "3. Visuels Photographiques",
           desc: "Rendus en situation révélant la silhouette, les détails de carrosserie et l'équilibre général.",
-          image: "/2.webp"
+          image: "/car2.jpg"
         }
       ],
       resultTitle: "Bilan & Acquis Ingénieur-Designer",
       resultText: "Cette étude complète valide une méthodologie double : aborder l'objet automobile avec la sensibilité formelle du designer et la rigueur technique de l'ingénieur.",
       images: {
-        heroBg: "/1.webp",
-        context: "/2.webp",
-        resultBg: "/5.webp"
+        heroBg: "/car1.jpg",
+        context: "/car2.jpg",
+        resultBg: "/car5.jpg"
       }
     },
     'p4': {

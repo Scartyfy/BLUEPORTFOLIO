@@ -77,7 +77,10 @@ export const MagneticCursor: FC<MagneticCursorProps> = ({
 }) => {
   const cursorRef = useRef<HTMLDivElement>(null);
   const cursorStateRef = useRef<CursorState | null>(null);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches;
+  });
 
   const configRef = useRef({
     magneticFactor,
