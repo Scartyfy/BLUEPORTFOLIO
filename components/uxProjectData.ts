@@ -37,7 +37,7 @@ export interface UxProjectContent {
   header: {
     title: { fr: string; en: string };
     subtitle: { fr: string; en: string };
-    tagline: { fr: string; en: string };
+    headerDesc: { fr: string; en: string };
     heroImage: string;
     intro: {
       fr: string;
@@ -71,7 +71,6 @@ export interface UxProjectContent {
       name: { fr: string; en: string };
       tag: { fr: string; en: string };
       desc: { fr: string; en: string };
-      icon: string;
     }>;
     questions: QuestionVerbatim[];
   };
@@ -108,11 +107,6 @@ export interface UxProjectContent {
     userTesting: {
       title: { fr: string; en: string };
       desc: { fr: string; en: string };
-      metrics: Array<{
-        label: { fr: string; en: string };
-        value: string;
-        sub: { fr: string; en: string };
-      }>;
       takeaways: Array<{ fr: string; en: string }>;
     };
     usageScenario: {
@@ -131,32 +125,32 @@ export interface UxProjectContent {
 export const UX_PROJECT_DATA: UxProjectContent = {
   header: {
     title: {
-      fr: "Maquette APP UX/UI",
-      en: "UX/UI App Prototype"
+      fr: "Maquette App UI",
+      en: "UI App Prototype"
     },
     subtitle: {
-      fr: "Expérience Muséale & Recherche Utilisateur",
-      en: "Museum Experience & User Research"
+      fr: "Expérience Visiteur & Enquête In Situ",
+      en: "Visitor Experience & On-Site Study"
     },
-    tagline: {
-      fr: "De l'immersion ethnographique in situ à la conception d'une application d'accompagnement de visite",
-      en: "From ethnographic field immersion to companion app design"
+    headerDesc: {
+      fr: "Musée d'Orsay & Quai Branly",
+      en: "Musée d'Orsay & Quai Branly"
     },
     heroImage: "https://images.unsplash.com/photo-1581291518196-7bb18ef77a28?auto=format&fit=crop&q=80&w=1600",
     intro: {
-      fr: "Conception complète d'une maquette d'application mobile pensée pour renouveler l'expérience des visiteurs dans les musées. Le projet est né d'une véritable démarche d'analyse terrain au Musée d'Orsay et au Musée du Quai Branly à Paris, combinant observations spontanées, entretiens informels, cartographie du parcours et prototypage centré sur l'utilisateur.",
-      en: "Complete design of a mobile app prototype to renew visitor museum experiences. Rooted in field immersion at Musée d'Orsay and Musée du Quai Branly in Paris, blending spontaneous observations, informal interviews, journey mapping, and user-centered prototyping."
+      fr: "Conception d'une maquette d'application mobile d'accompagnement muséal. Le projet s'appuie sur une enquête terrain menée au Musée d'Orsay et au Musée du Quai Branly à Paris, combinant observations spontanées, 23 entretiens in situ, cartographie du parcours et prototypage d'interface.",
+      en: "Design of a museum companion mobile application. Grounded in field research at Musée d'Orsay and Musée du Quai Branly in Paris, blending spontaneous observations, 23 on-site interviews, user journey mapping, and prototype design."
     }
   },
 
   fieldResearch: {
     title: {
-      fr: "1. Analyse Terrain & Recherche Utilisateur",
-      en: "1. Field Research & User Insights"
+      fr: "Analyse Terrain & Entretiens In Situ",
+      en: "Field Research & On-Site Interviews"
     },
     subtitle: {
-      fr: "Immersion in situ à Paris — Musée d'Orsay & Musée du Quai Branly",
-      en: "On-site immersion in Paris — Musée d'Orsay & Musée du Quai Branly"
+      fr: "Immersion au Musée d'Orsay et au Musée du Quai Branly (Paris)",
+      en: "Field study at Musée d'Orsay & Musée du Quai Branly (Paris)"
     },
     museums: [
       {
@@ -172,7 +166,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
         }
       },
       {
-        name: "Musée du Quai Branly - Jacques Chirac",
+        name: "Musée du Quai Branly — Jacques Chirac",
         location: "Paris 7e",
         details: {
           fr: "1 trinôme, 1 binôme et 1 personne seule interviewés",
@@ -188,11 +182,11 @@ export const UX_PROJECT_DATA: UxProjectContent = {
       totalParticipants: 23,
       duration: "5 à 10 min",
       methodology: {
-        fr: "Entretiens réalisés directement sur le lieu pendant le parcours de la visite, de manière informelle lors des pauses de repos (bancs, mezzanines, salons d'attente).",
+        fr: "Entretiens réalisés directement sur le lieu pendant le parcours de la visite, de manière informelle lors des pauses de repos (bancs, salons, mezzanines).",
         en: "Interviews conducted directly on-site during the museum visit, informally during resting breaks (benches, lounges, rest areas)."
       },
       collectionFormat: {
-        fr: "Démarche non intrusive, aucun enregistrement audio afin de favoriser la spontanéité totale et de mettre immédiatement les visiteurs à l'aise.",
+        fr: "Démarche non intrusive, aucun enregistrement audio pour favoriser la spontanéité totale et mettre les visiteurs à l'aise.",
         en: "Non-intrusive approach, no audio recording to ensure absolute spontaneity and put visitors at ease."
       }
     },
@@ -237,32 +231,30 @@ export const UX_PROJECT_DATA: UxProjectContent = {
           en: "Work & Academic Study"
         },
         desc: {
-          fr: "Présents pour leur travail, leurs études d'art ou des recherches ciblées. Ils examinent les détails techniques, le style, les cartels et ont besoin d'informations pointues.",
-          en: "Present for work, fine arts studies or targeted research. Examining technical details, styles, plaques, requiring sharp context."
-        },
-        icon: "GraduationCap"
+          fr: "Présents pour leur travail ou leurs études. Ils examinent les détails techniques, le style, les cartels et ont besoin d'informations pointues.",
+          en: "Visiting for work or academic studies. Examining technical details, styles, plaques, and seeking precise context."
+        }
       },
       {
         id: "p-social",
         name: {
-          fr: "Visite Sociale & Partage",
-          en: "Social & Shared Visit"
+          fr: "Visite Sociale",
+          en: "Social Visit"
         },
         tag: {
-          fr: "Divertissement & Échange",
-          en: "Entertainment & Voices"
+          fr: "Divertissement & Partage",
+          en: "Entertainment & Sharing"
         },
         desc: {
-          fr: "Visite en couple, entre amis ou en famille. L'accent est mis sur le plaisir d'être ensemble, le partage d'émotions en direct et l'expérience conviviale.",
-          en: "Visiting in pairs, friends or family. Focused on togetherness, sharing live impressions, and a conversational experience."
-        },
-        icon: "Users"
+          fr: "Visite à deux, entre amis ou en famille. L'accent est mis sur le plaisir d'être ensemble, le partage d'émotions en direct et l'échange oral.",
+          en: "Visiting in pairs, friends or family. Focused on togetherness, live impressions, and conversational exchange."
+        }
       },
       {
         id: "p-habits",
         name: {
-          fr: "Les Habitués & Passionnés",
-          en: "Frequent Visitors & Art Lovers"
+          fr: "Les Habitués",
+          en: "Frequent Visitors"
         },
         tag: {
           fr: "Enrichissement Personnel",
@@ -270,30 +262,27 @@ export const UX_PROJECT_DATA: UxProjectContent = {
         },
         desc: {
           fr: "Fréquentent régulièrement les musées par passion. Ils apprécient la contemplation, découvrent de nouvelles salles et approfondissent leur culture personnelle.",
-          en: "Regular museum goers motivated by passion. Enjoy contemplation, wandering into new galleries, and deepening personal culture."
-        },
-        icon: "Heart"
+          en: "Regular museum goers motivated by passion. Enjoy contemplation, wandering into new galleries, and personal culture."
+        }
       },
       {
         id: "p-tourists",
         name: {
           fr: "Les Touristes",
-          en: "Tourists & Explorers"
+          en: "Tourists"
         },
         tag: {
           fr: "Curiosité & Découverte",
           en: "Curiosity & Discovery"
         },
         desc: {
-          fr: "Présents par curiosité et attrait pour les chefs-d'œuvre majeurs de Paris. Rythme souvent plus rapide, désir de repérage simple sans surcharge d'informations.",
-          en: "Visiting out of curiosity for major Parisian highlights. Faster pace, seeking intuitive navigation without cognitive overload."
-        },
-        icon: "Compass"
+          fr: "Présents par curiosité pour voir les œuvres majeures de Paris. Rythme plus rapide, recherche d'un repérage simple sans surcharge d'informations.",
+          en: "Visiting out of curiosity for major highlights. Faster pace, seeking intuitive navigation without information overload."
+        }
       }
     ],
     // =========================================================================
     // QUESTIONS & VERBATIMS RECUEILLIS SUR LE TERRAIN
-    // (À REMPLACER OU ÉDITER AVEC VOS VERBATIMS DÉFINITIFS)
     // =========================================================================
     questions: [
       {
@@ -367,7 +356,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
       {
         question: {
           fr: "Lisez-vous les écrits ?",
-          en: "Do you read the wall labels & texts?"
+          en: "Do you read the wall labels?"
         },
         subtext: {
           fr: "Rapport aux cartels, textes explicatifs et fiches de salle",
@@ -404,7 +393,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
           en: "How do you memorize and retain artworks?"
         },
         subtext: {
-          fr: "Mécanismes de rétention, souvenirs et consolidation post-visite",
+          fr: "Mécanismes de rétention et souvenirs post-visite",
           en: "Retention mechanisms, memories and post-visit consolidation"
         },
         verbatims: [
@@ -436,96 +425,96 @@ export const UX_PROJECT_DATA: UxProjectContent = {
   },
 
   // =========================================================================
-  // 2. USER JOURNEY (3 IMAGES DE SUBSTITUTION EN ATTENDANT LES PHOTOS)
+  // 2. USER JOURNEY
   // =========================================================================
   userJourney: {
     title: {
-      fr: "2. User Journey",
-      en: "2. User Journey"
+      fr: "User Journey",
+      en: "User Journey"
     },
     subtitle: {
-      fr: "Cartographie du parcours visiteur — Avant, Pendant & Après la visite",
-      en: "Visitor Journey Mapping — Before, During & After the Museum Visit"
+      fr: "Cartographie du parcours — Avant, Pendant & Après la visite",
+      en: "Journey mapping — Before, During & After the Visit"
     },
     intro: {
-      fr: "Identification des étapes clés, des points de contact, des moments d'émerveillement et des ruptures cognitives vécues par les visiteurs sur le terrain.",
-      en: "Mapping key milestones, touchpoints, moments of delight, and cognitive friction experienced by visitors on-site."
+      fr: "Identification des étapes clés, des points de contact et des moments de rupture vécus par les visiteurs sur le terrain.",
+      en: "Mapping key milestones, touchpoints, and friction moments experienced by visitors on-site."
     },
     images: [
       {
         id: "uj-1",
         image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&q=80&w=1400",
         caption: {
-          fr: "User Journey 01 — Cartographie chronologique & Points de friction",
-          en: "User Journey 01 — Chronological mapping & Friction points"
+          fr: "User Journey 01 — Cartographie chronologique",
+          en: "User Journey 01 — Chronological mapping"
         }
       },
       {
         id: "uj-2",
         image: "https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&q=80&w=1400",
         caption: {
-          fr: "User Journey 02 — Courbe émotionnelle & Déclencheurs de curiosité",
-          en: "User Journey 02 — Emotional curve & Curiosity triggers"
+          fr: "User Journey 02 — Courbe d'engagement & Décrochages",
+          en: "User Journey 02 — Engagement curve & Drop-offs"
         }
       },
       {
         id: "uj-3",
         image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1400",
         caption: {
-          fr: "User Journey 03 — Opportunités de design & Consolidation de la mémoire",
-          en: "User Journey 03 — Design opportunities & Memory retention"
+          fr: "User Journey 03 — Opportunités de conception",
+          en: "User Journey 03 — Design opportunities"
         }
       }
     ]
   },
 
   // =========================================================================
-  // 3. INSPIRATIONS (BENCHMARK & MOODBOARD)
+  // 3. INSPIRATIONS
   // =========================================================================
   inspirations: {
     title: {
-      fr: "3. Inspirations",
-      en: "3. Inspirations"
+      fr: "Inspirations",
+      en: "Inspirations"
     },
     subtitle: {
-      fr: "Moodboard visuel, architecture muséale & design d'interaction",
-      en: "Visual moodboard, museum architecture & interaction design"
+      fr: "Moodboard visuel, architecture muséale & typographie",
+      en: "Visual moodboard, museum architecture & typography"
     },
     intro: {
-      fr: "Recherche iconographique et benchmarks d'interfaces culturelles : sobriété typographique, élégance des contrastes et mise en valeur absolue de l'œuvre d'art.",
-      en: "Iconographic research and cultural UI benchmarks: typographic restraint, elegant contrasts, and putting artwork center stage."
+      fr: "Recherche iconographique et références graphiques : sobriété typographique, mise en valeur de l'œuvre et discrétion de l'interface.",
+      en: "Iconographic research and graphic benchmarks: typographic restraint, artwork prominence, and interface discretion."
     },
     images: [
       {
         id: "insp-1",
         image: "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&q=80&w=1200",
         caption: {
-          fr: "Inspiration 01 — Espace, lumière & scénographie contemplative",
-          en: "Inspiration 01 — Space, lighting & contemplative curation"
+          fr: "Inspiration 01 — Scénographie & Espace",
+          en: "Inspiration 01 — Scenography & Space"
         }
       },
       {
         id: "insp-2",
         image: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&q=80&w=1200",
         caption: {
-          fr: "Inspiration 02 — Typographie éditoriale & hiérarchie visuelle",
-          en: "Inspiration 02 — Editorial typography & visual hierarchy"
+          fr: "Inspiration 02 — Typographie & Hiérarchie",
+          en: "Inspiration 02 — Typography & Hierarchy"
         }
       },
       {
         id: "insp-3",
         image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&q=80&w=1200",
         caption: {
-          fr: "Inspiration 03 — Couleurs, matières & profondeur émotionnelle",
-          en: "Inspiration 03 — Color palettes, textures & emotional depth"
+          fr: "Inspiration 03 — Matières & Textures",
+          en: "Inspiration 03 — Materials & Textures"
         }
       },
       {
         id: "insp-4",
         image: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&fit=crop&q=80&w=1200",
         caption: {
-          fr: "Inspiration 04 — Interfaces immersives et micro-interactions discrètes",
-          en: "Inspiration 04 — Immersive UI and unobtrusive micro-interactions"
+          fr: "Inspiration 04 — Micro-interactions discrètes",
+          en: "Inspiration 04 — Subtle micro-interactions"
         }
       }
     ]
@@ -536,33 +525,33 @@ export const UX_PROJECT_DATA: UxProjectContent = {
   // =========================================================================
   appPrototype: {
     title: {
-      fr: "4. La Maquette de notre Application",
-      en: "4. The Application Prototype"
+      fr: "La Maquette de l'Application",
+      en: "Application Prototype"
     },
     subtitle: {
-      fr: "De l'arborescence aux sketchs, rendus UI, tests et scénario d'usage",
-      en: "From site map to sketches, high-fidelity UI, user testing and scenarios"
+      fr: "Arborescence, sketchs, rendus UI, tests et scénario d'usage",
+      en: "Site map, sketches, UI mockups, testing and usage scenario"
     },
 
     arborescence: {
       title: {
-        fr: "Arborescence & Architecture de l'Information",
-        en: "Information Architecture & Site Map"
+        fr: "Arborescence de l'Application",
+        en: "Information Architecture"
       },
       desc: {
-        fr: "Structuration fluide en 3 piliers essentiels : Découverte / Parcours In Situ, Carnet Mémoire Personnel, et Mode Contemplation.",
-        en: "Clean 3-pillar structure: On-site Discovery, Personal Memory Journal, and Contemplative View."
+        fr: "Structure épurée articulée autour de la navigation in situ, de la capture rapide et du carnet personnel post-visite.",
+        en: "Clean structure articulated around on-site navigation, quick capture, and personal post-visit log."
       },
       image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&q=80&w=1400"
     },
 
     sketches: {
       title: {
-        fr: "Planches de Sketch & Idéation Manuelle",
-        en: "Sketching Boards & Manual Ideation"
+        fr: "Planches de Sketch",
+        en: "Sketching Boards"
       },
       desc: {
-        fr: "Recherches exploratoires sur papier : cadrage des flux, dispositions d'écrans et micro-interactions avant passage sur Figma.",
+        fr: "Recherches exploratoires sur papier : cadrage des flux, dispositions d'écrans et micro-interactions.",
         en: "Paper wireframes: exploring user flows, screen layouts, and gestures prior to Figma execution."
       },
       images: [
@@ -570,16 +559,16 @@ export const UX_PROJECT_DATA: UxProjectContent = {
           id: "sk-1",
           image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&q=80&w=1200",
           caption: {
-            fr: "Planche Sketch 01 — Wireframing de l'écran principal et du carnet de visite",
-            en: "Sketch Board 01 — Main screen wireframing & visit journal"
+            fr: "Planche Sketch 01 — Wireframing de l'écran principal",
+            en: "Sketch Board 01 — Main screen wireframing"
           }
         },
         {
           id: "sk-2",
           image: "https://images.unsplash.com/photo-1618761714954-0b8cd0026356?auto=format&fit=crop&q=80&w=1200",
           caption: {
-            fr: "Planche Sketch 02 — Gestuelle de capture intelligente et zoom sur l'œuvre",
-            en: "Sketch Board 02 — Smart capture gesture & artwork deep zoom"
+            fr: "Planche Sketch 02 — Gestuelle de capture et zoom",
+            en: "Sketch Board 02 — Capture gesture & zoom"
           }
         }
       ]
@@ -591,7 +580,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
         en: "Contextual UI Mockups"
       },
       desc: {
-        fr: "Deux rendus haute-fidélité illustrant l'application prise en main en conditions réelles dans les galeries du musée.",
+        fr: "Deux rendus illustrant l'application prise en main en conditions réelles dans les galeries du musée.",
         en: "Two high-fidelity mockups depicting the companion app held in real conditions across museum galleries."
       },
       images: [
@@ -599,16 +588,16 @@ export const UX_PROJECT_DATA: UxProjectContent = {
           id: "mk-1",
           image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=1200",
           caption: {
-            fr: "Rendu 01 — Prise en main in situ devant une œuvre majeure",
-            en: "Mockup 01 — Held in front of a major masterpiece"
+            fr: "Rendu 01 — Prise en main in situ devant une œuvre",
+            en: "Mockup 01 — Held in front of an artwork"
           }
         },
         {
           id: "mk-2",
           image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=1200",
           caption: {
-            fr: "Rendu 02 — Consultation du carnet de mémoire enrichi lors d'une pause",
-            en: "Mockup 02 — Browsing enriched memory book during a lounge break"
+            fr: "Rendu 02 — Consultation du carnet lors d'une pause",
+            en: "Mockup 02 — Browsing the visit book during a break"
           }
         }
       ]
@@ -616,42 +605,25 @@ export const UX_PROJECT_DATA: UxProjectContent = {
 
     userTesting: {
       title: {
-        fr: "Test Utilisateur & Retours d'Expérience",
-        en: "Usability Testing & Key Learnings"
+        fr: "Test Utilisateur",
+        en: "User Testing"
       },
       desc: {
-        fr: "Séances de tests sur prototypes interactifs avec des profils représentatifs. Évaluation de la charge mentale et de la facilité d'usage.",
-        en: "Usability testing on interactive Figma prototypes with representative users. Measuring cognitive load and ease of use."
+        fr: "Retours d'expérience et enseignements observés lors des tests du prototype interactif.",
+        en: "Feedback and learnings observed during interactive prototype testing sessions."
       },
-      metrics: [
-        {
-          label: { fr: "Taux de Réussite", en: "Success Rate" },
-          value: "94%",
-          sub: { fr: "Sur les tâches de capture et de consultation", en: "Across capture and browsing tasks" }
-        },
-        {
-          label: { fr: "Temps d'Action", en: "Action Time" },
-          value: "- 65%",
-          sub: { fr: "Par rapport à la prise photo + note classique", en: "Compared to standard camera + notes" }
-        },
-        {
-          label: { fr: "Satisfaction Globale", en: "Overall Score" },
-          value: "9.2/10",
-          sub: { fr: "Retour unanime sur la discrétion de l'interface", en: "Praise for minimal interface intrusion" }
-        }
-      ],
       takeaways: [
         {
-          fr: "L'interface doit rester invisible pendant la contemplation : l'écran ne doit jamais s'interposer entre l'œil et l'œuvre.",
-          en: "The interface must stay invisible during contemplation: the screen should never obstruct the artwork."
+          fr: "L'interface doit rester en retrait pendant la contemplation pour ne jamais s'interposer entre le regard et l'œuvre.",
+          en: "The interface must stay discreet during contemplation so it never obstructs the eye from the artwork."
         },
         {
-          fr: "La capture de l'information doit se faire en une seule geste sans forcer la lecture immédiate d'un cartel.",
-          en: "Information capture must occur in one fluid gesture without forcing immediate label reading."
+          fr: "L'enregistrement d'une œuvre doit se faire en une seule action pour ne pas alourdir la visite.",
+          en: "Artwork saving must happen in a single fluid gesture to keep the visit completely seamless."
         },
         {
-          fr: "La synthèse post-visite générée automatiquement transforme un dossier de photos mortes en souvenir mémorable.",
-          en: "Auto-generated post-visit synthesis turns dead camera rolls into an organized, lasting memory."
+          fr: "La synthèse générée en fin de visite redonne de la valeur aux œuvres vues sans imposer une lecture immédiate.",
+          en: "Post-visit summary brings real value to seen artworks without forcing immediate label reading."
         }
       ]
     },
@@ -662,55 +634,55 @@ export const UX_PROJECT_DATA: UxProjectContent = {
         en: "Illustrated Usage Scenario"
       },
       desc: {
-        fr: "Déroulement pas-à-pas de l'expérience d'un visiteur, de son entrée dans les galeries jusqu'à la redécouverte chez lui.",
+        fr: "Déroulement de l'expérience d'un visiteur, de son arrivée dans les galeries jusqu'à la redécouverte chez lui.",
         en: "Step-by-step visitor journey, from museum entry through gallery browsing to post-visit discovery at home."
       },
       steps: [
         {
           stepNumber: "01",
           title: {
-            fr: "Arrivée & Mode Sans Friction",
-            en: "Arrival & Zero Friction Mode"
+            fr: "Arrivée & Mode Discret",
+            en: "Arrival & Ambient Mode"
           },
           desc: {
-            fr: "Le visiteur entre dans la nef du musée. L'application détecte la salle sans configuration requise et passe en mode discret sombre.",
-            en: "Visitor enters the museum wing. The app detects the room seamlessly and switches into unobtrusive dark ambient mode."
+            fr: "Le visiteur entre dans le musée. L'application s'adapte sans configuration et passe en mode discret.",
+            en: "Visitor enters the museum wing. The app detects the room seamlessly and switches into ambient mode."
           },
           image: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&fit=crop&q=80&w=1000"
         },
         {
           stepNumber: "02",
           title: {
-            fr: "Approche & Détection Instantanée",
-            en: "Approach & Instant Recognition"
+            fr: "Approche de l'Œuvre",
+            en: "Artwork Approach"
           },
           desc: {
-            fr: "Face à une sculpture ou un tableau, une simple levée de l'appareil affiche le nom de l'œuvre et un audio-court facultatif sans cacher la vue.",
-            en: "Facing a sculpture, lifting the phone gently previews the artwork name and optional audio cue without blocking vision."
+            fr: "Face à une œuvre, une simple levée de l'appareil affiche le titre et l'auteur sans masquer la vue.",
+            en: "Facing an artwork, lifting the phone gently previews the title and artist without blocking vision."
           },
           image: "https://images.unsplash.com/photo-1544967082-d9d25d867d66?auto=format&fit=crop&q=80&w=1000"
         },
         {
           stepNumber: "03",
           title: {
-            fr: "Capture Mémorielle en 1 Geste",
-            en: "1-Tap Memory Snapshot"
+            fr: "Capture en 1 Geste",
+            en: "1-Tap Capture"
           },
           desc: {
-            fr: "D'une simple pression, l'œuvre est enregistrée dans le carnet personnel avec son contexte historique certifié, libérant le visiteur de photographier le cartel.",
-            en: "One single tap saves the piece into the personal visit book along with verified curatorial context, avoiding plaque photography."
+            fr: "D'un geste simple, l'œuvre est mémorisée dans le carnet personnel avec son cartel vérifié.",
+            en: "One single tap saves the piece into the personal visit book along with verified curatorial context."
           },
           image: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&q=80&w=1000"
         },
         {
           stepNumber: "04",
           title: {
-            fr: "Post-Visite & Partage Élégant",
-            en: "Post-Visit & Curated Sharing"
+            fr: "Post-Visite & Mémoire",
+            en: "Post-Visit & Memory"
           },
           desc: {
-            fr: "Au repos ou chez soi, le parcours se transforme en récit interactif enrichi, prêt à être exploré à tête reposée ou partagé en un clic.",
-            en: "At home or during a coffee break, the visit crystallizes into an interactive visual story, ready to explore or share."
+            fr: "Chez soi ou lors d'une pause, le parcours se consulte comme un carnet de visite clair et partagé.",
+            en: "At home or during a coffee break, the visit crystallizes into an organized visual story."
           },
           image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1000"
         }
@@ -718,3 +690,4 @@ export const UX_PROJECT_DATA: UxProjectContent = {
     }
   }
 };
+
