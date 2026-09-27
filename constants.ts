@@ -61,11 +61,11 @@ export const PROJECTS: Project[] = [
   },
   {
     id: 'p5',
-    title: { fr: 'Matière & Maquettage', en: 'Material & Prototyping' },
+    title: { fr: 'Matière & Maquette', en: 'Material & Making' },
     category: { fr: 'Prototypage Physique', en: 'Physical Prototyping' },
     description: {
-      fr: 'Mon besoin de concevoir ne s\'arrête pas aux écrans. Le travail de la matière, le maquettage et le prototypage physique sont pour moi un terrain de jeu essentiel. Qu\'il s\'agisse de concevoir une sculpture abstraite ou de reproduire fidèlement un casque des Daft Punk pour célébrer un événement, j\'aime me confronter à la résistance des matériaux. Ces projets incarnent ma créativité brute, mon ingéniosité technique et ma passion pour le \'faire-soi-même\'.',
-      en: 'My need to design doesn\'t stop at screens. Working with materials, modeling, and physical prototyping are an essential playground for me. Whether it is designing an abstract sculpture or faithfully reproducing a Daft Punk helmet to celebrate an event, I like to confront the resistance of materials. These projects embody my raw creativity, my technical ingenuity, and my passion for \'do-it-yourself\'.'
+      fr: 'Dans le cadre de mes études, j\'ai été amené à utiliser la matière et à créer dans un FabLab toutes sortes d\'objets pour illustrer des projets et leur faire prendre vie. C\'est également une pratique que je prolonge dans mes projets personnels pour explorer les matériaux et montrer que je sais manier un peu tout.',
+      en: 'Throughout my studies, I was led to work with physical materials and create in FabLabs all kinds of objects to illustrate projects and bring them to life. A practice I also cultivate in personal projects, demonstrating versatility and hands-on making.'
     },
     image: 'https://drive.google.com/thumbnail?id=1z-ZZdWXI2DyLbJ_6nSgWxZaKrIDcejox&sz=w1000',
     gallery: []

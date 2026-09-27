@@ -9,7 +9,7 @@ import {
   useMotionValueEvent,
 } from "motion/react";
 import { Language } from "../types";
-import { Target, BarChart2, ArrowRight, ArrowDownRight } from "lucide-react";
+import { Target, BarChart2, ArrowRight, ArrowDownRight, X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 import { getProjectData } from "./projectContentData";
 import { CarProjectTemplate } from "./CarProjectTemplate";
 
@@ -167,6 +167,36 @@ export const ProjectTemplate: React.FC<{
   const containerRef = useRef<HTMLDivElement>(null);
   const data = getProjectData(projectId, lang);
 
+  const [activeLightboxIdx, setActiveLightboxIdx] = useState<number | null>(null);
+
+  const openLightbox = (idx: number) => {
+    setActiveLightboxIdx(idx);
+  };
+  const closeLightbox = () => {
+    setActiveLightboxIdx(null);
+  };
+  const nextLightbox = () => {
+    if (activeLightboxIdx === null || !data.galleryImages) return;
+    setActiveLightboxIdx((activeLightboxIdx + 1) % data.galleryImages.length);
+  };
+  const prevLightbox = () => {
+    if (activeLightboxIdx === null || !data.galleryImages) return;
+    setActiveLightboxIdx(
+      (activeLightboxIdx - 1 + data.galleryImages.length) % data.galleryImages.length
+    );
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (activeLightboxIdx === null) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowRight") nextLightbox();
+      if (e.key === "ArrowLeft") prevLightbox();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeLightboxIdx, data.galleryImages]);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
@@ -311,9 +341,9 @@ export const ProjectTemplate: React.FC<{
               transition={{ delay: 0.6 }}
             >
               <h4 className="font-sans text-xs md:text-sm font-bold uppercase tracking-widest mb-2 md:mb-4">
-                Context
+                {data.contextTitle || "Context"}
               </h4>
-              <p className="text-base md:text-lg pr-4 md:pr-8 leading-relaxed max-w-sm font-bold whitespace-pre-wrap">
+              <p className="text-base md:text-lg pr-2 md:pr-6 leading-relaxed max-w-sm md:max-w-md lg:max-w-lg font-medium whitespace-pre-wrap text-[#002FA7]/90">
                 {data.contextText}
               </p>
             </motion.div>
@@ -540,6 +570,95 @@ export const ProjectTemplate: React.FC<{
         </section>
       )}
 
+      {/* Dedicated Gallery Section for Projects with galleryImages (like p5 - Matière & Maquette) */}
+      {data.galleryImages && data.galleryImages.length > 0 && (
+        <section className="relative w-full py-16 md:py-28 px-4 sm:px-6 md:px-12 lg:px-20 bg-[#F5F5F3] text-[#002FA7]">
+          <div className="max-w-[1700px] mx-auto flex flex-col gap-10">
+            {/* Header info */}
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#002FA7]/15 pb-6">
+              <div>
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-8 h-[2px] bg-[#002FA7]" />
+                  <span className="font-mono text-xs uppercase tracking-widest font-bold">
+                    {lang === 'fr' ? "Galerie d'Objets & Maquettes" : "Objects & Model Gallery"}
+                  </span>
+                </div>
+                <h3 className="text-3xl md:text-4xl lg:text-5xl font-display font-medium uppercase tracking-tight">
+                  {data.galleryTitle || (lang === 'fr' ? "Réalisations & Prototypes" : "Builds & Prototypes")}
+                </h3>
+              </div>
+              <div className="flex items-center gap-3 text-xs md:text-sm text-[#002FA7]/70 font-mono">
+                <span className="bg-[#002FA7]/10 px-3 py-1 rounded-full font-bold text-[#002FA7]">
+                  {data.galleryImages.length} {lang === 'fr' ? "photos" : "photos"}
+                </span>
+                <span>•</span>
+                <span>{lang === 'fr' ? "Cliquer pour agrandir" : "Click to expand"}</span>
+              </div>
+            </div>
+
+            {/* Gallery Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {data.galleryImages.map((item: any, idx: number) => {
+                const isWide = item.aspect === 'wide' || (idx % 5 === 0 && idx !== 0);
+                return (
+                  <motion.div
+                    key={item.id || idx}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "60px" }}
+                    transition={{ duration: 0.6, delay: (idx % 3) * 0.1 }}
+                    onClick={() => openLightbox(idx)}
+                    className={`group relative rounded-2xl md:rounded-3xl overflow-hidden bg-white border border-[#002FA7]/10 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-zoom-in touch-manipulation flex flex-col ${
+                      isWide ? "sm:col-span-2" : ""
+                    }`}
+                  >
+                    <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] overflow-hidden bg-[#002FA7]/5">
+                      <img
+                        src={item.image}
+                        alt={typeof item.title === 'string' ? item.title : item.title?.[lang] || `Photo ${idx + 1}`}
+                        referrerPolicy="no-referrer"
+                        loading={idx < 3 ? "eager" : "lazy"}
+                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
+                      
+                      {/* Top Badges */}
+                      <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none z-10">
+                        <span className="font-mono text-[10px] md:text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-md text-white border border-white/15">
+                          0{idx + 1}
+                        </span>
+                        {(item.tag || item.category) && (
+                          <span className="font-mono text-[10px] md:text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[#002FA7] shadow-sm">
+                            {typeof item.tag === 'string' ? item.tag : item.tag?.[lang] || item.category?.[lang] || item.category}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Bottom Info & Zoom Icon */}
+                      <div className="absolute bottom-0 inset-x-0 p-5 md:p-6 flex items-end justify-between gap-4 z-10 text-white">
+                        <div className="flex flex-col gap-1">
+                          <h4 className="font-display font-medium text-lg md:text-xl text-white tracking-tight leading-snug">
+                            {typeof item.title === 'string' ? item.title : item.title?.[lang] || `Prototype 0${idx + 1}`}
+                          </h4>
+                          {(item.subtitle || item.desc) && (
+                            <p className="text-xs md:text-sm text-white/75 line-clamp-2 font-light">
+                              {typeof item.subtitle === 'string' ? item.subtitle : item.subtitle?.[lang] || item.desc?.[lang] || item.desc}
+                            </p>
+                          )}
+                        </div>
+                        <div className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shrink-0 group-hover:bg-white group-hover:text-[#002FA7] transition-colors">
+                          <Maximize2 size={16} />
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Process Steps */}
       {data.steps && data.steps.length > 0 && (
         <VerticalProcess steps={data.steps} title={data.processTitle} />
@@ -563,6 +682,103 @@ export const ProjectTemplate: React.FC<{
           </div>
         </section>
       )}
+
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {activeLightboxIdx !== null && data.galleryImages && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex flex-col justify-between p-4 sm:p-6 md:p-8 select-none"
+            onClick={closeLightbox}
+          >
+            {/* Top Bar */}
+            <div
+              className="w-full flex items-center justify-between text-white z-20"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="font-mono text-xs sm:text-sm uppercase tracking-wider text-white/70">
+                <span className="text-white font-bold">{activeLightboxIdx + 1}</span> / {data.galleryImages.length} — {data.title}
+              </div>
+              <button
+                type="button"
+                onClick={closeLightbox}
+                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/25 active:scale-95 flex items-center justify-center text-white transition-all cursor-pointer"
+                aria-label="Close"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Center Image with Prev / Next */}
+            <div
+              className="relative flex-1 flex items-center justify-center my-2 max-h-[82vh]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {data.galleryImages.length > 1 && (
+                <button
+                  type="button"
+                  onClick={prevLightbox}
+                  className="absolute left-2 sm:left-4 z-30 w-11 h-11 rounded-full bg-black/50 hover:bg-white hover:text-black border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer active:scale-90"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft size={24} />
+                </button>
+              )}
+
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={activeLightboxIdx}
+                  src={data.galleryImages[activeLightboxIdx].image}
+                  alt={
+                    typeof data.galleryImages[activeLightboxIdx].title === 'string'
+                      ? data.galleryImages[activeLightboxIdx].title
+                      : data.galleryImages[activeLightboxIdx].title?.[lang] || 'Prototype'
+                  }
+                  referrerPolicy="no-referrer"
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.25 }}
+                  className="max-w-[92vw] max-h-[78vh] w-auto h-auto object-contain rounded-lg shadow-2xl"
+                />
+              </AnimatePresence>
+
+              {data.galleryImages.length > 1 && (
+                <button
+                  type="button"
+                  onClick={nextLightbox}
+                  className="absolute right-2 sm:right-4 z-30 w-11 h-11 rounded-full bg-black/50 hover:bg-white hover:text-black border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer active:scale-90"
+                  aria-label="Next image"
+                >
+                  <ChevronRight size={24} />
+                </button>
+              )}
+            </div>
+
+            {/* Bottom Caption */}
+            <div
+              className="w-full text-center text-white z-20 flex flex-col items-center gap-1"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h4 className="font-display font-medium text-base sm:text-lg">
+                {typeof data.galleryImages[activeLightboxIdx].title === 'string'
+                  ? data.galleryImages[activeLightboxIdx].title
+                  : data.galleryImages[activeLightboxIdx].title?.[lang]}
+              </h4>
+              {(data.galleryImages[activeLightboxIdx].subtitle || data.galleryImages[activeLightboxIdx].desc) && (
+                <p className="text-xs sm:text-sm text-white/60 font-light max-w-xl">
+                  {typeof data.galleryImages[activeLightboxIdx].subtitle === 'string'
+                    ? data.galleryImages[activeLightboxIdx].subtitle
+                    : data.galleryImages[activeLightboxIdx].subtitle?.[lang] || data.galleryImages[activeLightboxIdx].desc?.[lang]}
+                </p>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* End of Project */}
       <div className="w-full h-[8vh] bg-[#F5F5F3]" />

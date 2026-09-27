@@ -288,48 +288,98 @@ export const getProjectData = (id: string, lang: Language) => {
       pdfUrl: "https://drive.google.com/file/d/1jJGwkYIGr3go1w2FGDS6b6XGvN1AarIy/preview"
     },
     'p5': {
-      subtitle: "Maker & Concepteur",
-      title: "La Matière",
-      headerDesc: "Casque Daft Punk & Sculpture",
-      contextTitle: "La Problématique & Le Défi",
-      contextText: "L'ingénierie et le design se rencontrent souvent dans le prototypage physique. J'éprouve le besoin constant de travailler avec mes mains. J'ai donc conçu une sculpture originale et reproduit fidèlement un casque des Daft Punk pour l'anniversaire d'un ami.",
-      techTitle: "Technologies & Compétences",
-      skills: {
-        col1Label: "Tech",
-        col1Text: "Impression 3D, Électronique de base (LEDs)",
-        col2Label: "Design",
-        col2Text: "Maquettage, Ponçage, Modélisation 3D",
-        col3Label: "Méthodologie",
-        col3Text: "Assemblage, Ingénierie inversée, Peinture"
-      },
-      processTitle: "Mon Processus & Mes Actions",
-      steps: [
-        {
-          title: "Modélisation & Découpage",
-          desc: "Conception 3D des pièces ou récupération de patrons pour préparer l'assemblage physique.",
-          icon: <Layers className="w-6 h-6 text-[#002FA7]" />,
-          image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&q=80&w=1000"
-        },
-        {
-          title: "Fabrication Structurelle",
-          desc: "Utilisation de l'impression 3D et de divers matériaux pour créer la structure de base.",
-          icon: <Settings className="w-6 h-6 text-[#002FA7]" />,
-          image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=1000"
-        },
-        {
-          title: "Finition & Électronique",
-          desc: "Travail de ponçage, d'apprêt et de peinture, couplé à l'intégration d'un circuit LED.",
-          icon: <Zap className="w-6 h-6 text-[#002FA7]" />,
-          image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000"
-        }
-      ],
-      resultTitle: "Le Résultat & L'Apprentissage",
-      resultText: "Le monde physique ne pardonne pas les erreurs de calcul. Ces projets personnels démontrent ma capacité à prototyper des objets, à résoudre des problèmes concrets d'assemblage et à livrer un produit aux finitions professionnelles.",
+      subtitle: lang === 'fr' ? "FabLab & Prototypage Physique" : "FabLab & Physical Prototyping",
+      title: lang === 'fr' ? "Matière & Maquette" : "Material & Making",
+      headerDesc: lang === 'fr' ? "FabLab & Projets Personnels" : "FabLab & Personal Builds",
+      contextTitle: lang === 'fr' ? "Introduction & Démarche" : "Introduction & Approach",
+      contextText: lang === 'fr'
+        ? "Dans le cadre de mes études, j'ai été amené à utiliser la matière et à créer dans un FabLab toutes sortes d'objets pour illustrer des projets et leur faire prendre vie. C'est également une pratique que je prolonge dans mes projets personnels : explorer les matériaux, façonner, imprimer en 3D, découper et assembler, pour montrer que je sais manier un peu tout et concrétiser chaque concept."
+        : "Throughout my studies, I was led to work with physical materials and create in FabLabs all kinds of objects to illustrate projects and bring them to life. It is also an approach I pursue through personal projects: experimenting with diverse materials, shaping, 3D printing, laser cutting, and assembling, demonstrating versatility and the ability to turn any concept into reality.",
+      galleryTitle: lang === 'fr' ? "Galerie d'Objets & Maquettes" : "Objects & Models Gallery",
       images: {
         heroBg: "https://drive.google.com/thumbnail?id=1z-ZZdWXI2DyLbJ_6nSgWxZaKrIDcejox&sz=w2000",
-        context: "https://images.unsplash.com/photo-1621084556062-c100ebaf8a44?auto=format&fit=crop&q=80&w=1000",
-        resultBg: "https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?auto=format&fit=crop&q=80&w=2000"
-      }
+      },
+      // =========================================================================
+      // IMAGES DU PROJET MAQUETTE (À INTÉGRER / REMPLACER CI-DESSOUS) :
+      // Remplacez simplement les URLs par vos propres photos
+      // (ex: './ma_photo.jpg' ou liens Google Drive / web),
+      // ajoutez-en de nouvelles ou modifiez les titres selon vos souhaits !
+      // =========================================================================
+      galleryImages: [
+        {
+          id: 'img-1',
+          image: "https://drive.google.com/thumbnail?id=1z-ZZdWXI2DyLbJ_6nSgWxZaKrIDcejox&sz=w2000",
+          title: lang === 'fr' ? "Casque Daft Punk & Finitions" : "Daft Punk Helmet & Finishes",
+          subtitle: lang === 'fr' ? "Projet personnel — Assemblage, ponçage, visière et électronique" : "Personal project — Assembly, sanding, visor and electronics",
+          tag: lang === 'fr' ? "Projet Perso" : "Personal",
+          aspect: "wide",
+        },
+        {
+          id: 'img-2',
+          image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&q=80&w=1200",
+          title: lang === 'fr' ? "Impression 3D & Prototypage Rapide" : "3D Printing & Rapid Prototyping",
+          subtitle: lang === 'fr' ? "Validation volumique et études d'échelle en FabLab" : "Volume validation and scale studies in FabLab",
+          tag: "FabLab",
+        },
+        {
+          id: 'img-3',
+          image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=1200",
+          title: lang === 'fr' ? "Maquette d'Étude & Façonnage Manuel" : "Study Model & Handcrafting",
+          subtitle: lang === 'fr' ? "Travail de la matière, gabarits et découpes" : "Material shaping, templates and cuts",
+          tag: lang === 'fr' ? "Études" : "Studies",
+        },
+        {
+          id: 'img-4',
+          image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200",
+          title: lang === 'fr' ? "Composants, LEDs & Câblage" : "Components, LEDs & Wiring",
+          subtitle: lang === 'fr' ? "Intégration électronique pour maquette interactive" : "Electronic integration for interactive model",
+          tag: "Tech",
+        },
+        {
+          id: 'img-5',
+          image: "https://images.unsplash.com/photo-1621084556062-c100ebaf8a44?auto=format&fit=crop&q=80&w=1200",
+          title: lang === 'fr' ? "Découpe Laser & Assemblages Précis" : "Laser Cutting & Precision Assembly",
+          subtitle: lang === 'fr' ? "Usinage numérique et emboîtements structurels" : "Digital fabrication and structural interlocking",
+          tag: "FabLab",
+          aspect: "wide",
+        },
+        {
+          id: 'img-6',
+          image: "https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?auto=format&fit=crop&q=80&w=1200",
+          title: lang === 'fr' ? "Sculpture & Recherche Morphologique" : "Sculpture & Morphological Research",
+          subtitle: lang === 'fr' ? "Exploration formelle libre et expérimentation de textures" : "Freeform exploration and texture experimentation",
+          tag: lang === 'fr' ? "Projet Perso" : "Personal",
+        },
+        {
+          id: 'img-7',
+          image: "https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1200",
+          title: lang === 'fr' ? "Traitement de Surface & Peinture" : "Surface Treatment & Paint",
+          subtitle: lang === 'fr' ? "Ponçage fin, apprêt et finitions de carrosserie" : "Fine sanding, primer and bodywork finishes",
+          tag: lang === 'fr' ? "Atelier" : "Workshop",
+        },
+        {
+          id: 'img-8',
+          image: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&q=80&w=1200",
+          title: lang === 'fr' ? "Objets Hybrides & Échelle 1:1" : "Hybrid Objects & 1:1 Scale",
+          subtitle: lang === 'fr' ? "Confrontation directe aux contraintes d'ergonomie et d'usage" : "Direct testing of ergonomic and usage constraints",
+          tag: lang === 'fr' ? "Études" : "Studies",
+        },
+        {
+          id: 'img-9',
+          image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&q=80&w=1200",
+          title: lang === 'fr' ? "Détails & Prototypage d'Intérieur" : "Details & Interior Prototyping",
+          subtitle: lang === 'fr' ? "Ajustements précis et tenue mécanique" : "Precise adjustments and mechanical fit",
+          tag: "FabLab",
+        },
+        {
+          id: 'img-10',
+          image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&q=80&w=1200",
+          title: lang === 'fr' ? "Expérimentation & Résultat Final" : "Experimentation & Final Result",
+          subtitle: lang === 'fr' ? "Aboutissement du prototype physique fonctionnel" : "Culmination of functional physical prototype",
+          tag: lang === 'fr' ? "Projet Perso" : "Personal",
+          aspect: "wide",
+        }
+      ]
     },
     'p6': {
       subtitle: "",
