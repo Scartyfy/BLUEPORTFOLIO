@@ -300,85 +300,22 @@ export const getProjectData = (id: string, lang: Language) => {
         heroBg: "https://drive.google.com/thumbnail?id=1z-ZZdWXI2DyLbJ_6nSgWxZaKrIDcejox&sz=w2000",
       },
       // =========================================================================
-      // IMAGES DU PROJET MAQUETTE (À INTÉGRER / REMPLACER CI-DESSOUS) :
-      // Remplacez simplement les URLs par vos propres photos
-      // (ex: './ma_photo.jpg' ou liens Google Drive / web),
-      // ajoutez-en de nouvelles ou modifiez les titres selon vos souhaits !
+      // PHOTOS DU PROJET MAQUETTE (SANS AUCUN TEXTE AUTOUR) :
+      // Remplacez simplement les URLs par vos propres photos ou ajoutez-en !
       // =========================================================================
       galleryImages: [
-        {
-          id: 'img-1',
-          image: "https://drive.google.com/thumbnail?id=1z-ZZdWXI2DyLbJ_6nSgWxZaKrIDcejox&sz=w2000",
-          title: lang === 'fr' ? "Casque Daft Punk & Finitions" : "Daft Punk Helmet & Finishes",
-          subtitle: lang === 'fr' ? "Projet personnel — Assemblage, ponçage, visière et électronique" : "Personal project — Assembly, sanding, visor and electronics",
-          tag: lang === 'fr' ? "Projet Perso" : "Personal",
-          aspect: "wide",
-        },
-        {
-          id: 'img-2',
-          image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&q=80&w=1200",
-          title: lang === 'fr' ? "Impression 3D & Prototypage Rapide" : "3D Printing & Rapid Prototyping",
-          subtitle: lang === 'fr' ? "Validation volumique et études d'échelle en FabLab" : "Volume validation and scale studies in FabLab",
-          tag: "FabLab",
-        },
-        {
-          id: 'img-3',
-          image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=1200",
-          title: lang === 'fr' ? "Maquette d'Étude & Façonnage Manuel" : "Study Model & Handcrafting",
-          subtitle: lang === 'fr' ? "Travail de la matière, gabarits et découpes" : "Material shaping, templates and cuts",
-          tag: lang === 'fr' ? "Études" : "Studies",
-        },
-        {
-          id: 'img-4',
-          image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200",
-          title: lang === 'fr' ? "Composants, LEDs & Câblage" : "Components, LEDs & Wiring",
-          subtitle: lang === 'fr' ? "Intégration électronique pour maquette interactive" : "Electronic integration for interactive model",
-          tag: "Tech",
-        },
-        {
-          id: 'img-5',
-          image: "https://images.unsplash.com/photo-1621084556062-c100ebaf8a44?auto=format&fit=crop&q=80&w=1200",
-          title: lang === 'fr' ? "Découpe Laser & Assemblages Précis" : "Laser Cutting & Precision Assembly",
-          subtitle: lang === 'fr' ? "Usinage numérique et emboîtements structurels" : "Digital fabrication and structural interlocking",
-          tag: "FabLab",
-          aspect: "wide",
-        },
-        {
-          id: 'img-6',
-          image: "https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?auto=format&fit=crop&q=80&w=1200",
-          title: lang === 'fr' ? "Sculpture & Recherche Morphologique" : "Sculpture & Morphological Research",
-          subtitle: lang === 'fr' ? "Exploration formelle libre et expérimentation de textures" : "Freeform exploration and texture experimentation",
-          tag: lang === 'fr' ? "Projet Perso" : "Personal",
-        },
-        {
-          id: 'img-7',
-          image: "https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1200",
-          title: lang === 'fr' ? "Traitement de Surface & Peinture" : "Surface Treatment & Paint",
-          subtitle: lang === 'fr' ? "Ponçage fin, apprêt et finitions de carrosserie" : "Fine sanding, primer and bodywork finishes",
-          tag: lang === 'fr' ? "Atelier" : "Workshop",
-        },
-        {
-          id: 'img-8',
-          image: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&q=80&w=1200",
-          title: lang === 'fr' ? "Objets Hybrides & Échelle 1:1" : "Hybrid Objects & 1:1 Scale",
-          subtitle: lang === 'fr' ? "Confrontation directe aux contraintes d'ergonomie et d'usage" : "Direct testing of ergonomic and usage constraints",
-          tag: lang === 'fr' ? "Études" : "Studies",
-        },
-        {
-          id: 'img-9',
-          image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&q=80&w=1200",
-          title: lang === 'fr' ? "Détails & Prototypage d'Intérieur" : "Details & Interior Prototyping",
-          subtitle: lang === 'fr' ? "Ajustements précis et tenue mécanique" : "Precise adjustments and mechanical fit",
-          tag: "FabLab",
-        },
-        {
-          id: 'img-10',
-          image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&q=80&w=1200",
-          title: lang === 'fr' ? "Expérimentation & Résultat Final" : "Experimentation & Final Result",
-          subtitle: lang === 'fr' ? "Aboutissement du prototype physique fonctionnel" : "Culmination of functional physical prototype",
-          tag: lang === 'fr' ? "Projet Perso" : "Personal",
-          aspect: "wide",
-        }
+        { id: 'img-1', image: "https://drive.google.com/thumbnail?id=1z-ZZdWXI2DyLbJ_6nSgWxZaKrIDcejox&sz=w2000" },
+        { id: 'img-2', image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&q=80&w=1200" },
+        { id: 'img-3', image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=1200" },
+        { id: 'img-4', image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200" },
+        { id: 'img-5', image: "https://images.unsplash.com/photo-1621084556062-c100ebaf8a44?auto=format&fit=crop&q=80&w=1200" },
+        { id: 'img-6', image: "https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?auto=format&fit=crop&q=80&w=1200" },
+        { id: 'img-7', image: "https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1200" },
+        { id: 'img-8', image: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&q=80&w=1200" },
+        { id: 'img-9', image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&q=80&w=1200" },
+        { id: 'img-10', image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&q=80&w=1200" },
+        { id: 'img-11', image: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&q=80&w=1200" },
+        { id: 'img-12', image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=1200" }
       ]
     },
     'p6': {

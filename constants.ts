@@ -38,10 +38,10 @@ export const PROJECTS: Project[] = [
   {
     id: 'p4',
     title: { fr: 'Maquette APP UX/UI', en: 'UX/UI App Prototype' },
-    category: { fr: 'Design Interface', en: 'Interface Design' },
+    category: { fr: 'Design Interface & Recherche', en: 'Interface Design & Research' },
     description: {
-      fr: 'Conception d\'une maquette d\'application axée sur l\'expérience utilisateur (UX) et l\'interface utilisateur (UI). Ce projet regroupe une réflexion approfondie sur l\'architecture de l\'information, l\'ergonomie et le design visuel pour créer une solution intuitive et esthétique',
-      en: 'Design of an application prototype focused on user experience (UX) and user interface (UI). This project brings together in-depth thought on information architecture, ergonomics, and visual design to create an intuitive and aesthetic solution.'
+      fr: 'Conception d\'une application muséale mobile de bout en bout, ancrée dans une enquête terrain au Musée d\'Orsay et au Musée du Quai Branly (23 participants interviewés). De l\'analyse des verbatims au User Journey, jusqu\'aux sketchs, maquettes interactives et scénario d\'usage.',
+      en: 'End-to-end design of a museum companion mobile app, grounded in field research at Musée d\'Orsay and Musée du Quai Branly (23 participants interviewed). From qualitative verbatim analysis and User Journey to sketching, UI mockups, and usage scenarios.'
     },
     image: 'https://drive.google.com/thumbnail?id=1jJGwkYIGr3go1w2FGDS6b6XGvN1AarIy&sz=w1000',
     gallery: [],

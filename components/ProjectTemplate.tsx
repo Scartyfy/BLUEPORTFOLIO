@@ -12,6 +12,7 @@ import { Language } from "../types";
 import { Target, BarChart2, ArrowRight, ArrowDownRight, X, ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 import { getProjectData } from "./projectContentData";
 import { CarProjectTemplate } from "./CarProjectTemplate";
+import { UxProjectTemplate } from "./UxProjectTemplate";
 
 const MarqueeText = ({ children, direction = 1 }: { children: React.ReactNode, direction?: number }) => (
   <div className="w-full flex overflow-hidden whitespace-nowrap opacity-[0.03] pointer-events-none select-none">
@@ -162,6 +163,9 @@ export const ProjectTemplate: React.FC<{
 }> = ({ projectId, lang, scrollContainerRef, onClose }) => {
   if (projectId === 'p3') {
     return <CarProjectTemplate lang={lang} scrollContainerRef={scrollContainerRef} onClose={onClose} />;
+  }
+  if (projectId === 'p4') {
+    return <UxProjectTemplate lang={lang} scrollContainerRef={scrollContainerRef} onClose={onClose} />;
   }
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -572,85 +576,29 @@ export const ProjectTemplate: React.FC<{
 
       {/* Dedicated Gallery Section for Projects with galleryImages (like p5 - Matière & Maquette) */}
       {data.galleryImages && data.galleryImages.length > 0 && (
-        <section className="relative w-full py-16 md:py-28 px-4 sm:px-6 md:px-12 lg:px-20 bg-[#F5F5F3] text-[#002FA7]">
-          <div className="max-w-[1700px] mx-auto flex flex-col gap-10">
-            {/* Header info */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#002FA7]/15 pb-6">
-              <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="w-8 h-[2px] bg-[#002FA7]" />
-                  <span className="font-mono text-xs uppercase tracking-widest font-bold">
-                    {lang === 'fr' ? "Galerie d'Objets & Maquettes" : "Objects & Model Gallery"}
-                  </span>
-                </div>
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-display font-medium uppercase tracking-tight">
-                  {data.galleryTitle || (lang === 'fr' ? "Réalisations & Prototypes" : "Builds & Prototypes")}
-                </h3>
-              </div>
-              <div className="flex items-center gap-3 text-xs md:text-sm text-[#002FA7]/70 font-mono">
-                <span className="bg-[#002FA7]/10 px-3 py-1 rounded-full font-bold text-[#002FA7]">
-                  {data.galleryImages.length} {lang === 'fr' ? "photos" : "photos"}
-                </span>
-                <span>•</span>
-                <span>{lang === 'fr' ? "Cliquer pour agrandir" : "Click to expand"}</span>
-              </div>
-            </div>
-
-            {/* Gallery Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <section className="relative w-full py-12 md:py-20 px-4 sm:px-6 md:px-12 lg:px-20 bg-[#F5F5F3]">
+          <div className="max-w-[1700px] mx-auto">
+            {/* Clean Photos Grid with NO text around them */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
               {data.galleryImages.map((item: any, idx: number) => {
-                const isWide = item.aspect === 'wide' || (idx % 5 === 0 && idx !== 0);
+                const imgUrl = typeof item === 'string' ? item : item.image;
                 return (
                   <motion.div
                     key={item.id || idx}
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "60px" }}
-                    transition={{ duration: 0.6, delay: (idx % 3) * 0.1 }}
+                    transition={{ duration: 0.5, delay: (idx % 4) * 0.05 }}
                     onClick={() => openLightbox(idx)}
-                    className={`group relative rounded-2xl md:rounded-3xl overflow-hidden bg-white border border-[#002FA7]/10 shadow-lg hover:shadow-2xl transition-all duration-500 cursor-zoom-in touch-manipulation flex flex-col ${
-                      isWide ? "sm:col-span-2" : ""
-                    }`}
+                    className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-neutral-200 shadow-md hover:shadow-2xl transition-all duration-300 cursor-zoom-in group border border-black/5"
                   >
-                    <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] overflow-hidden bg-[#002FA7]/5">
-                      <img
-                        src={item.image}
-                        alt={typeof item.title === 'string' ? item.title : item.title?.[lang] || `Photo ${idx + 1}`}
-                        referrerPolicy="no-referrer"
-                        loading={idx < 3 ? "eager" : "lazy"}
-                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
-                      
-                      {/* Top Badges */}
-                      <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none z-10">
-                        <span className="font-mono text-[10px] md:text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-md text-white border border-white/15">
-                          0{idx + 1}
-                        </span>
-                        {(item.tag || item.category) && (
-                          <span className="font-mono text-[10px] md:text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-[#002FA7] shadow-sm">
-                            {typeof item.tag === 'string' ? item.tag : item.tag?.[lang] || item.category?.[lang] || item.category}
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Bottom Info & Zoom Icon */}
-                      <div className="absolute bottom-0 inset-x-0 p-5 md:p-6 flex items-end justify-between gap-4 z-10 text-white">
-                        <div className="flex flex-col gap-1">
-                          <h4 className="font-display font-medium text-lg md:text-xl text-white tracking-tight leading-snug">
-                            {typeof item.title === 'string' ? item.title : item.title?.[lang] || `Prototype 0${idx + 1}`}
-                          </h4>
-                          {(item.subtitle || item.desc) && (
-                            <p className="text-xs md:text-sm text-white/75 line-clamp-2 font-light">
-                              {typeof item.subtitle === 'string' ? item.subtitle : item.subtitle?.[lang] || item.desc?.[lang] || item.desc}
-                            </p>
-                          )}
-                        </div>
-                        <div className="w-9 h-9 rounded-full bg-white/20 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shrink-0 group-hover:bg-white group-hover:text-[#002FA7] transition-colors">
-                          <Maximize2 size={16} />
-                        </div>
-                      </div>
-                    </div>
+                    <img
+                      src={imgUrl}
+                      alt="Maquette"
+                      referrerPolicy="no-referrer"
+                      loading={idx < 4 ? "eager" : "lazy"}
+                      className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                    />
                   </motion.div>
                 );
               })}
@@ -758,24 +706,26 @@ export const ProjectTemplate: React.FC<{
               )}
             </div>
 
-            {/* Bottom Caption */}
-            <div
-              className="w-full text-center text-white z-20 flex flex-col items-center gap-1"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <h4 className="font-display font-medium text-base sm:text-lg">
-                {typeof data.galleryImages[activeLightboxIdx].title === 'string'
-                  ? data.galleryImages[activeLightboxIdx].title
-                  : data.galleryImages[activeLightboxIdx].title?.[lang]}
-              </h4>
-              {(data.galleryImages[activeLightboxIdx].subtitle || data.galleryImages[activeLightboxIdx].desc) && (
-                <p className="text-xs sm:text-sm text-white/60 font-light max-w-xl">
-                  {typeof data.galleryImages[activeLightboxIdx].subtitle === 'string'
-                    ? data.galleryImages[activeLightboxIdx].subtitle
-                    : data.galleryImages[activeLightboxIdx].subtitle?.[lang] || data.galleryImages[activeLightboxIdx].desc?.[lang]}
-                </p>
-              )}
-            </div>
+            {/* Bottom Caption (only if title exists) */}
+            {data.galleryImages[activeLightboxIdx]?.title && (
+              <div
+                className="w-full text-center text-white z-20 flex flex-col items-center gap-1"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <h4 className="font-display font-medium text-base sm:text-lg">
+                  {typeof data.galleryImages[activeLightboxIdx].title === 'string'
+                    ? data.galleryImages[activeLightboxIdx].title
+                    : data.galleryImages[activeLightboxIdx].title?.[lang]}
+                </h4>
+                {(data.galleryImages[activeLightboxIdx].subtitle || data.galleryImages[activeLightboxIdx].desc) && (
+                  <p className="text-xs sm:text-sm text-white/60 font-light max-w-xl">
+                    {typeof data.galleryImages[activeLightboxIdx].subtitle === 'string'
+                      ? data.galleryImages[activeLightboxIdx].subtitle
+                      : data.galleryImages[activeLightboxIdx].subtitle?.[lang] || data.galleryImages[activeLightboxIdx].desc?.[lang]}
+                  </p>
+                )}
+              </div>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
