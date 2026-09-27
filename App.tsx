@@ -291,8 +291,8 @@ export const App: React.FC = () => {
                     texts={[nav.introTop, nav.introBottom]}
                     morphTime={0.75}
                     cooldownTime={1.25}
-                    className="h-[80px] sm:h-[110px] md:h-[160px] w-full max-w-[280px] sm:max-w-[420px] md:max-w-[600px] flex items-center justify-start"
-                    textClassName="font-display font-bold tracking-tighter text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-left left-0 text-white"
+                    className="h-[70px] xs:h-[80px] sm:h-[110px] md:h-[160px] w-full max-w-[280px] sm:max-w-[420px] md:max-w-[600px] flex items-center justify-start"
+                    textClassName="font-display font-bold tracking-tighter text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-left left-0 text-white"
                   />
                 </div>
             </div>
@@ -301,7 +301,7 @@ export const App: React.FC = () => {
         
         {/* Welcome Button */}
         <div className={`fixed inset-0 flex items-center justify-center z-[60] pointer-events-none transition-all duration-1000 ease-in-out ${viewState === ViewState.INTRO && introStep === 'WELCOME' ? 'opacity-100' : 'opacity-0'}`}>
-            <div className={`relative flex flex-col md:flex-row items-center justify-center mt-44 sm:mt-56 md:mt-0 ${viewState === ViewState.INTRO && introStep === 'WELCOME' ? 'pointer-events-auto' : 'pointer-events-none'}`}>
+            <div className={`relative flex flex-col md:flex-row items-center justify-center mt-36 sm:mt-48 md:mt-0 ${viewState === ViewState.INTRO && introStep === 'WELCOME' ? 'pointer-events-auto' : 'pointer-events-none'}`}>
                 <MotionButton
                     label="Portfolio"
                     onClick={() => {
@@ -408,7 +408,7 @@ export const App: React.FC = () => {
               <motion.div 
                 key="pick"
                 exit={{ opacity: 0, filter: 'blur(10px)', scale: 1.05, transition: { duration: 0.8, ease: "easeOut" } }}
-                className="text-[#002FA7] font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-center px-4 sm:px-6 flex flex-col gap-2 md:gap-4 absolute bottom-12 sm:bottom-20 md:bottom-32"
+                className="text-[#002FA7] font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-center px-4 sm:px-6 flex flex-col gap-2 md:gap-4 absolute top-20 xs:top-24 sm:top-28 md:top-auto md:bottom-28 z-[80]"
               >
                 <div className="flex flex-wrap justify-center gap-x-2 md:gap-x-3">
                   {nav.pick.split(' ').map((word, wordIndex, words) => {
@@ -431,6 +431,14 @@ export const App: React.FC = () => {
                     );
                   })}
                 </div>
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.9, duration: 0.6 }}
+                  className="md:hidden font-mono text-[11px] uppercase tracking-[0.22em] text-[#002FA7]/60 font-medium"
+                >
+                  {lang === 'fr' ? 'Touchez une carte pour révéler' : 'Tap a card to reveal'}
+                </motion.p>
               </motion.div>
             )}
           </AnimatePresence>

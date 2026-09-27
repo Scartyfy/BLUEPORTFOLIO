@@ -173,26 +173,40 @@ export const SkillWheel: React.FC<{ lang: Language }> = ({ lang }) => {
             })}
         </div>
         <div className="md:hidden flex flex-col border-t border-white/10">
-            {skills.map((skill, index) => (
-                <div key={skill.id} className={`border-b border-white/10 overflow-hidden transition-colors duration-300 ${activeId === skill.id ? 'bg-white text-[#002FA7]' : 'bg-[#002FA7] text-white'}`} onClick={() => setActiveId(activeId === skill.id ? null : skill.id)} onMouseEnter={() => setActiveId(skill.id)}>
-                    <div className="p-6 flex items-center justify-between cursor-pointer">
-                        <div className="flex items-center gap-4">
-                            <span className={`flex items-center justify-center min-w-[32px] h-8 rounded-full font-mono text-[10px] font-bold transition-colors duration-300 ${activeId === skill.id ? 'bg-[#002FA7] text-white' : 'bg-white text-[#002FA7]'}`}>0{index + 1}</span>
-                            <span className="font-display font-bold text-lg tracking-widest">{skill.label}</span>
-                        </div>
-                        <span className={`text-xl font-light transition-transform duration-300 ${activeId === skill.id ? 'rotate-45' : 'rotate-0'}`}>+</span>
-                    </div>
-                    {activeId === skill.id && (
-                        <div className="px-6 pb-8">
-                            <div className="pl-6 opacity-60">
-                                <p className="font-display font-light text-justify text-sm leading-relaxed">
-                                    {skill.desc}
-                                </p>
+            {skills.map((skill, index) => {
+              const relatedSoftware = SKILL_SOFTWARE_MAP[skill.id] || [];
+              const isSelected = activeId === skill.id;
+              return (
+                <div key={skill.id} className={`border-b border-white/10 overflow-hidden transition-colors duration-300 ${isSelected ? 'bg-white text-[#002FA7]' : 'bg-[#002FA7] text-white'}`} onClick={() => setActiveId(isSelected ? null : skill.id)}>
+                    <div className="p-5 flex items-center justify-between cursor-pointer">
+                        <div className="flex items-center gap-3">
+                            <span className={`flex items-center justify-center min-w-[32px] h-8 rounded-full font-mono text-[10px] font-bold transition-colors duration-300 ${isSelected ? 'bg-[#002FA7] text-white' : 'bg-white text-[#002FA7]'}`}>0{index + 1}</span>
+                            <div>
+                              <span className="font-display font-bold text-lg tracking-tight block">{skill.label}</span>
+                              <span className={`font-mono text-[10px] uppercase tracking-wider block ${isSelected ? 'text-[#002FA7]/60' : 'text-white/60'}`}>{skill.category}</span>
                             </div>
+                        </div>
+                        <span className={`text-2xl font-light transition-transform duration-300 ${isSelected ? 'rotate-45' : 'rotate-0'}`}>+</span>
+                    </div>
+                    {isSelected && (
+                        <div className="px-5 pb-6">
+                            <p className="font-display font-light text-left text-sm leading-relaxed mb-4 text-[#002FA7]/85">
+                                {skill.desc}
+                            </p>
+                            {relatedSoftware.length > 0 && (
+                              <div className="flex flex-wrap gap-2 pt-2 border-t border-[#002FA7]/15">
+                                {relatedSoftware.map((name) => (
+                                  <span key={name} className="font-mono text-xs px-2.5 py-1 bg-[#002FA7]/10 text-[#002FA7] rounded font-medium">
+                                    {name}
+                                  </span>
+                                ))}
+                              </div>
+                            )}
                         </div>
                     )}
                 </div>
-            ))}
+              );
+            })}
         </div>
       </div>
     </div>

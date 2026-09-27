@@ -58,14 +58,14 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
 
   // All images flattened sequentially across both concepts (without /4.jpg)
   const allImagesList = [
-    { src: '/car1.jpg', title: 'LOBSTER CAR — Affiche & Manifeste de Style', concept: 'Lobster Car' },
-    { src: '/car2.jpg', title: 'LOBSTER CAR — Rendu Dynamique & Aérodynamique', concept: 'Lobster Car' },
-    { src: '/car4.jpg', title: 'LOBSTER CAR — Recherche & Croquis Préparatoires', concept: 'Lobster Car' },
-    { src: '/car3.jpg', title: 'LOBSTER CAR — Poste de Pilotage & Ergonomie', concept: 'Lobster Car' },
-    { src: '/car5.jpg', title: 'LOBSTER CAR — Vue Arrière & Signature Lumineuse', concept: 'Lobster Car' },
-    { src: '/1.jpg', title: 'PORSCHE 754 — Planche Stylistique & Manifeste', concept: 'Porsche 754 Concept' },
-    { src: '/2.jpg', title: 'PORSCHE 754 — Spa-Francorchamps · Vues Dynamique & Aérienne', concept: 'Porsche 754 Concept' },
-    { src: '/3.jpg', title: 'PORSCHE 754 — Spa-Francorchamps · Raidillon & Perspective Sol', concept: 'Porsche 754 Concept' },
+    { src: './car1.jpg', title: 'LOBSTER CAR — Affiche & Manifeste de Style', concept: 'Lobster Car' },
+    { src: './car2.jpg', title: 'LOBSTER CAR — Rendu Dynamique & Aérodynamique', concept: 'Lobster Car' },
+    { src: './car4.jpg', title: 'LOBSTER CAR — Recherche & Croquis Préparatoires', concept: 'Lobster Car' },
+    { src: './car3.jpg', title: 'LOBSTER CAR — Poste de Pilotage & Ergonomie', concept: 'Lobster Car' },
+    { src: './car5.jpg', title: 'LOBSTER CAR — Vue Arrière & Signature Lumineuse', concept: 'Lobster Car' },
+    { src: './1.jpg', title: 'PORSCHE 754 — Planche Stylistique & Manifeste', concept: 'Porsche 754 Concept' },
+    { src: './2.jpg', title: 'PORSCHE 754 — Spa-Francorchamps · Vues Dynamique & Aérienne', concept: 'Porsche 754 Concept' },
+    { src: './3.jpg', title: 'PORSCHE 754 — Spa-Francorchamps · Raidillon & Perspective Sol', concept: 'Porsche 754 Concept' },
   ];
 
   // Keyboard navigation for lightbox
@@ -289,9 +289,9 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
                   duration: 1.4,
                   ease: [0.76, 0, 0.24, 1],
                 }}
-                src="/car1.jpg"
+                src="./car1.jpg"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/1.jpg';
+                  (e.target as HTMLImageElement).src = './1.jpg';
                 }}
                 alt="Automotive Design"
                 className="w-full h-full object-cover object-bottom origin-bottom contrast-[1.05] rounded-none select-none"
@@ -374,11 +374,11 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
                     {/* Image 2 : Vues Dynamique & Aérienne */}
                     <div 
                       className="w-full cursor-zoom-in group"
-                      onClick={() => openLightbox(car.photos[0]?.image || '/2.jpg')}
+                      onClick={() => openLightbox(car.photos[0]?.image || './2.jpg')}
                     >
                       <div className="w-full bg-[#111622] p-2 md:p-3 border border-[#002FA7]/15 transition-transform duration-500 group-hover:scale-[1.01]">
                         <img
-                          src={car.photos[0]?.image || '/2.jpg'}
+                          src={car.photos[0]?.image || './2.jpg'}
                           alt="Porsche 754 Spa-Francorchamps"
                           className="w-full h-auto object-contain select-none rounded-none"
                           loading="eager"
@@ -389,11 +389,11 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
                     {/* Image 3 : Raidillon & Perspective Sol */}
                     <div 
                       className="w-full cursor-zoom-in group"
-                      onClick={() => openLightbox(car.photos[1]?.image || '/3.jpg')}
+                      onClick={() => openLightbox(car.photos[1]?.image || './3.jpg')}
                     >
                       <div className="w-full bg-[#111622] p-2 md:p-3 border border-[#002FA7]/15 transition-transform duration-500 group-hover:scale-[1.01]">
                         <img
-                          src={car.photos[1]?.image || '/3.jpg'}
+                          src={car.photos[1]?.image || './3.jpg'}
                           alt="Porsche 754 Spa-Francorchamps"
                           className="w-full h-auto object-contain select-none rounded-none"
                           loading="eager"
@@ -429,12 +429,12 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
 
                     {/* Image 2 : car2.jpg */}
                     <div 
-                      onClick={() => openLightbox('/car2.jpg')}
+                      onClick={() => openLightbox('./car2.jpg')}
                       className="w-full cursor-zoom-in group"
                     >
                       <div className="w-full bg-[#111622] p-2 md:p-3 border border-[#002FA7]/15 shadow-sm transition-transform duration-300 group-hover:scale-[1.01]">
                         <img
-                          src="/car2.jpg"
+                          src="./car2.jpg"
                           alt={`${car.name}`}
                           className="w-full h-auto object-contain rounded-none select-none"
                           loading="eager"
@@ -485,7 +485,7 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
                 <section className="border-t border-[#002FA7]/15 pt-12 md:pt-16">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-start">
                     {car.photos
-                      .filter((photo) => photo.image !== '/car2.jpg')
+                      .filter((photo) => photo.image !== './car2.jpg' && photo.image !== '/car2.jpg')
                       .map((photo) => (
                         <div
                           key={photo.id}

@@ -310,7 +310,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                 }`}
               >
                 <img
-                  src={project.image || project.gallery?.[0]}
+                  src={project.image?.startsWith('/') ? `.${project.image}` : (project.image || project.gallery?.[0])}
                   referrerPolicy="no-referrer"
                   className="absolute inset-0 w-full h-full object-cover blur-[160px] scale-[1.2] brightness-125 saturate-200"
                 />
@@ -351,41 +351,48 @@ export const ProjectList: React.FC<ProjectListProps> = ({
               </motion.div>
 
               {/* Mobile Project Cards List (Touch-friendly, fully readable) */}
-              <div className="md:hidden w-full flex flex-col gap-4 py-2 pointer-events-auto">
-                {projects.slice(0, 6).map((project, index) => (
-                  <motion.div
-                    key={`mobile-${project.id}`}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: isReady ? 1 : 0, y: isReady ? 0 : 30 }}
-                    transition={{ duration: 0.6, delay: 0.08 * index }}
-                    onClick={() => setSelectedProject(project)}
-                    className="relative w-full h-[220px] rounded-2xl overflow-hidden shadow-2xl active:scale-[0.98] transition-transform cursor-pointer border border-white/15"
-                  >
-                    <img
-                      src={project.image || project.gallery?.[0]}
-                      referrerPolicy="no-referrer"
-                      alt={project.title[lang]}
-                      className="absolute inset-0 w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/20" />
-                    <div className="absolute inset-0 p-5 flex flex-col justify-between z-10">
-                      <div className="flex justify-between items-center">
-                        <span className="font-mono text-[10px] uppercase tracking-[0.2em] bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-white border border-white/10">
-                          {project.category[lang]}
-                        </span>
-                        <div className="w-8 h-8 rounded-full bg-white text-[#002FA7] flex items-center justify-center shadow-lg">
-                          <ArrowUpRight size={18} strokeWidth={2.5} />
+              <div className="md:hidden w-full flex flex-col gap-5 py-2 pointer-events-auto">
+                {projects.slice(0, 6).map((project, index) => {
+                  const rawImg = project.image || project.gallery?.[0] || '';
+                  const imgSrc = rawImg.startsWith('/') ? `.${rawImg}` : rawImg;
+                  return (
+                    <motion.div
+                      key={`mobile-${project.id}`}
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: isReady ? 1 : 0, y: isReady ? 0 : 30 }}
+                      transition={{ duration: 0.6, delay: 0.08 * index }}
+                      onClick={() => setSelectedProject(project)}
+                      className="relative w-full h-[250px] xs:h-[270px] rounded-2xl overflow-hidden shadow-2xl active:scale-[0.98] transition-transform cursor-pointer border border-white/15 group touch-manipulation"
+                    >
+                      <img
+                        src={imgSrc}
+                        referrerPolicy="no-referrer"
+                        alt={project.title[lang]}
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/20" />
+                      <div className="absolute inset-0 p-5 xs:p-6 flex flex-col justify-between z-10">
+                        <div className="flex justify-between items-center">
+                          <div className="flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-white/80"></span>
+                            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/90 font-medium">
+                              {project.category[lang]}
+                            </span>
+                          </div>
+                          <div className="w-9 h-9 rounded-full bg-white text-[#002FA7] flex items-center justify-center shadow-lg active:scale-90 transition-transform">
+                            <ArrowUpRight size={18} strokeWidth={2.5} />
+                          </div>
+                        </div>
+                        <div>
+                          <span className="font-mono text-[11px] text-white/50 mb-1 block">0{index + 1}</span>
+                          <h3 className="font-display font-medium text-2xl xs:text-3xl text-white tracking-tight leading-snug">
+                            {project.title[lang]}
+                          </h3>
                         </div>
                       </div>
-                      <div>
-                        <span className="font-mono text-[10px] text-white/60 mb-1 block">0{index + 1}</span>
-                        <h3 className="font-display font-medium text-2xl text-white tracking-tight leading-snug">
-                          {project.title[lang]}
-                        </h3>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
+                    </motion.div>
+                  );
+                })}
               </div>
 
               {/* Desktop Lamelles Accordion */}
@@ -434,7 +441,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                             initial={{ scale: 1.2 }}
                             animate={{ scale: isActive ? 1.05 : 1.1 }}
                             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                            src={project.image || project.gallery?.[0]}
+                            src={project.image?.startsWith('/') ? `.${project.image}` : (project.image || project.gallery?.[0])}
                             referrerPolicy="no-referrer"
                             className={`absolute inset-0 w-full h-full object-cover transition-all duration-[1200ms] ${isActive ? "scale-105 grayscale-0" : "scale-100 grayscale"}`}
                           />

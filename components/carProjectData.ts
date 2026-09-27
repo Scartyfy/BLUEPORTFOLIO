@@ -536,7 +536,7 @@ export const CONCEPT_CARS: ConceptCarData[] = [
       weight: '1 420 kg'
     },
     poster: {
-      image: '/car1.jpg',
+      image: './car1.jpg',
       title: {
         fr: 'LOBSTER CAR — Affiche & Manifeste de Style',
         en: 'LOBSTER CAR — Poster & Style Manifesto'
@@ -547,7 +547,7 @@ export const CONCEPT_CARS: ConceptCarData[] = [
       }
     },
     sketch: {
-      image: '/car4.jpg',
+      image: './car4.jpg',
       title: {
         fr: 'Recherche & Croquis Préparatoires',
         en: 'Styling Sketches & Formal Research'
@@ -576,7 +576,7 @@ export const CONCEPT_CARS: ConceptCarData[] = [
     photos: [
       {
         id: 'c1-p1',
-        image: '/car2.jpg',
+        image: './car2.jpg',
         title: {
           fr: 'LOBSTER CAR — Visuel 01',
           en: 'LOBSTER CAR — Visual 01'
@@ -588,7 +588,7 @@ export const CONCEPT_CARS: ConceptCarData[] = [
       },
       {
         id: 'c1-p2',
-        image: '/car3.jpg',
+        image: './car3.jpg',
         title: {
           fr: 'LOBSTER CAR — Visuel 02',
           en: 'LOBSTER CAR — Visual 02'
@@ -600,7 +600,7 @@ export const CONCEPT_CARS: ConceptCarData[] = [
       },
       {
         id: 'c1-p3',
-        image: '/car5.jpg',
+        image: './car5.jpg',
         title: {
           fr: 'LOBSTER CAR — Visuel 03',
           en: 'LOBSTER CAR — Visual 03'
@@ -638,7 +638,7 @@ export const CONCEPT_CARS: ConceptCarData[] = [
       weight: '1 340 kg'
     },
     poster: {
-      image: '/1.jpg',
+      image: './1.jpg',
       title: {
         fr: 'PORSCHE 754 CONCEPT — Planche Stylistique & Manifeste',
         en: 'PORSCHE 754 CONCEPT — Styling Board & Manifesto'
@@ -649,7 +649,7 @@ export const CONCEPT_CARS: ConceptCarData[] = [
       }
     },
     sketch: {
-      image: '/1.jpg',
+      image: './1.jpg',
       title: {
         fr: 'Étude Formelle & Recherche Aérodynamique',
         en: 'Styling Ideation & Aerodynamic Architecture'
@@ -678,7 +678,7 @@ export const CONCEPT_CARS: ConceptCarData[] = [
     photos: [
       {
         id: 'c2-p1',
-        image: '/2.jpg',
+        image: './2.jpg',
         title: {
           fr: 'PORSCHE 754 — Spa-Francorchamps · Vues Dynamique & Aérienne',
           en: 'PORSCHE 754 — Spa-Francorchamps · Dynamic & Aerial Views'
@@ -690,7 +690,7 @@ export const CONCEPT_CARS: ConceptCarData[] = [
       },
       {
         id: 'c2-p2',
-        image: '/3.jpg',
+        image: './3.jpg',
         title: {
           fr: 'PORSCHE 754 — Spa-Francorchamps · Raidillon & Perspective Sol',
           en: 'PORSCHE 754 — Spa-Francorchamps · Raidillon Ascent & Ground Stance'
