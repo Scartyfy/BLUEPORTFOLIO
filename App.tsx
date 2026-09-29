@@ -259,20 +259,6 @@ export const App: React.FC = () => {
               </span>
             </a>
           </div>
-
-          <div className="fixed bottom-4 right-4 z-[9999] flex flex-wrap items-center gap-2">
-            <button
-              onClick={() => {
-                setSelectedProjectForModal(null);
-                setViewState(ViewState.PROJECTS);
-                setShowProjects(true);
-                document.body.style.overflow = '';
-              }}
-              className="bg-black/90 text-white px-3.5 py-2.5 rounded-full font-mono font-bold text-xs hover:bg-black hover:scale-105 active:scale-95 transition-all border border-white/20 backdrop-blur-md"
-            >
-              {lang === 'fr' ? 'TOUS LES PROJETS' : 'ALL PROJECTS'}
-            </button>
-          </div>
         </>
       )}
 
