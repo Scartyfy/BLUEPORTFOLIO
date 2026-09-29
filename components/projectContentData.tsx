@@ -7,9 +7,11 @@ export const getProjectData = (id: string, lang: Language) => {
     'p1': {
       subtitle: "",
       title: "That's My Jam",
-      headerDesc: "Création d'entreprise",
-      contextTitle: "La Problématique & Le Défi",
-      contextText: "À côté de mes études, avec deux amis, nous avons monté une start-up qui nous permet d'appliquer toutes les compétences apprises à l'école dans un projet concret. Cela me permet d'aller encore plus loin et de monter en compétence sur de nombreux sujets qui touchent à l'entrepreneuriat.",
+      headerDesc: lang === 'fr' ? "Création d'entreprise" : "Startup Venture",
+      contextTitle: lang === 'fr' ? "La Problématique & Le Défi" : "The Challenge & Context",
+      contextText: lang === 'fr'
+        ? "À côté de mes études, avec deux amis, nous avons monté une start-up qui nous permet d'appliquer toutes les compétences apprises à l'école dans un projet concret. Cela me permet d'aller encore plus loin et de monter en compétence sur de nombreux sujets qui touchent à l'entrepreneuriat."
+        : "Alongside my studies, with two friends, we founded a startup that allows us to apply everything learned in school into a concrete project. This pushes me further and accelerates my skills across diverse facets of entrepreneurship.",
       concept: {
         title: lang === 'fr' ? "Le Concept & Fonctionnement" : "The Concept & How It Works",
         text: lang === 'fr'
@@ -21,7 +23,7 @@ export const getProjectData = (id: string, lang: Language) => {
       skills: true,
       skillsList: [
         {
-          label: "Relational Database",
+          label: lang === 'fr' ? "Base de Données Relationnelle" : "Relational Database",
           text: lang === 'fr' ? "Modélisation et requêtes via base de données relationnelle" : "Relational database modeling and queries",
           details: lang === 'fr'
             ? "Mise en pratique de l'ingénierie apprise à l'école avec la création d'une base de données relationnelle robuste pour gérer les salles, les utilisateurs et les votes en temps réel."
@@ -45,15 +47,17 @@ export const getProjectData = (id: string, lang: Language) => {
           ]
         },
         {
-          label: "Design d'Expérience",
+          label: lang === 'fr' ? "Design d'Expérience" : "Experience Design",
           text: lang === 'fr' ? "Créer un dialogue continu avec le public" : "Continuous dialogue with the live crowd",
           details: lang === 'fr'
             ? "Conception d'une boucle interactive en temps réel : le public vote via QR code, le groupe visualise en direct les tendances sur scène et module l'ambiance sonore pour une communion totale."
             : "Designing a real-time interactive loop: the crowd votes via QR code, the band visualizes live trends on stage and modulates sound atmosphere for total communion."
         }
       ],
-      resultTitle: "Le Résultat & L'Apprentissage",
-      resultText: "Cette expérience entrepreneuriale immersive m'a apporté une vision à 360° de la création d'un produit. Les retours actuels sur la boîte sont très prometteurs : le public comme les artistes saluent une interface intuitive qui révolutionne l'ambiance des événements sans en casser le rythme.",
+      resultTitle: lang === 'fr' ? "Le Résultat & L'Apprentissage" : "Results & Takeaways",
+      resultText: lang === 'fr'
+        ? "Cette expérience entrepreneuriale immersive m'a apporté une vision à 360° de la création d'un produit. Les retours actuels sur la boîte sont très prometteurs : le public comme les artistes saluent une interface intuitive qui révolutionne l'ambiance des événements sans en casser le rythme."
+        : "This immersive entrepreneurial experience gave me a 360° perspective on end-to-end product design. Current feedback is extremely encouraging: audiences and artists praise an intuitive interface that transforms live atmospheres without friction.",
       images: {
         heroBg: "https://drive.google.com/thumbnail?id=12Y1whGrGWg2l--aMALl6DM2Y_IJWkgoo&sz=w2000",
         context: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&q=80&w=1000",
@@ -62,18 +66,22 @@ export const getProjectData = (id: string, lang: Language) => {
     },
     'p2': {
       subtitle: "",
-      title: "Projet SNCF",
-      headerDesc: "Projet partenaire",
-      contextTitle: "",
-      contextText: "Réhumaniser le voyage TER à l'ère de l'hyperdigitalisation.",
-      techTitle: "Observations & Recherches",
+      title: lang === 'fr' ? "Projet SNCF" : "SNCF Project",
+      headerDesc: lang === 'fr' ? "Projet Partenaire" : "Partner Project",
+      contextTitle: lang === 'fr' ? "Le Contexte & L'Objectif" : "Context & Objective",
+      contextText: lang === 'fr'
+        ? "Réhumaniser le voyage TER à l'ère de l'hyperdigitalisation."
+        : "Rehumanizing regional TER rail travel in an era of hyper-digitization.",
+      techTitle: lang === 'fr' ? "Observations & Recherches" : "Field Research & Insights",
       skills: true,
       skillsList: [
         {
-          label: "Interviews Terrain",
-          text: "12 personnes interviewées & Agent TER Occitanie",
-          details: "Impact du sous-effectif : manque de présence humaine et insécurité. L'uniforme est perçu comme une barrière. Aux arrêts isolés (PANG sans borne de validation), le contrôleur reste la seule ressource. La nécessité de privilégier les contacts humains a été confirmée.",
-          quotes: [
+          label: lang === 'fr' ? "Interviews Terrain" : "Field Interviews",
+          text: lang === 'fr' ? "12 personnes interviewées & Agent TER Occitanie" : "12 people interviewed & Occitanie TER Onboard Agent",
+          details: lang === 'fr'
+            ? "Impact du sous-effectif : manque de présence humaine et insécurité. L'uniforme est perçu comme une barrière. Aux arrêts isolés (PANG sans borne de validation), le contrôleur reste la seule ressource. La nécessité de privilégier les contacts humains a été confirmée."
+            : "Impact of understaffing: lack of human presence and insecurity. The uniform is perceived as a barrier. At unstaffed halts without ticket machines, the conductor remains the only resource. The necessity of prioritizing interpersonal human contact was confirmed.",
+          quotes: lang === 'fr' ? [
             { text: "Je choisis les petites gares pour être sûre de trouver un humain au guichet.", author: "Voyageuse" },
             { text: "Sans ce TER, notre village serait complètement coupé du monde.", author: "Étudiant" },
             { text: "C'est l'uniforme qu'ils engueulent, pas la personne.", author: "Agent de bord" },
@@ -84,47 +92,72 @@ export const getProjectData = (id: string, lang: Language) => {
             { text: "Ici, pas de touristes. Juste des travailleurs et des étudiants qui font le trajet tous les jours.", author: "Travailleur pendulaire" },
             { text: "Prendre son temps dans une gare historique, ça change tout.", author: "Voyageuse occasionnelle" },
             { text: "Le contrôleur, c'est bien plus qu'un simple vérificateur de billets.", author: "Habitué de la ligne" }
+          ] : [
+            { text: "I pick smaller stations to make sure there's an actual human at the counter.", author: "Female Traveler" },
+            { text: "Without this regional train, our village would be completely cut off.", author: "Student" },
+            { text: "It's the uniform they yell at, not the human behind it.", author: "Onboard Agent" },
+            { text: "The platform validator was broken—luckily the conductor sorted me out!", author: "Regular Commuter" },
+            { text: "We sorely lack human presence; evenings can feel very isolated.", author: "Female Traveler" },
+            { text: "Alone managing a whole train at night, feeling vulnerable rises quickly.", author: "Conductor" },
+            { text: "Train stalled: within ten minutes, everyone organized carpooling together.", author: "Passenger" },
+            { text: "No tourists here. Just workers and students making the daily commute.", author: "Daily Commuter" },
+            { text: "Taking time in a historic station changes the entire mindset.", author: "Occasional Traveler" },
+            { text: "The conductor is so much more than just a ticket inspector.", author: "Line Regular" }
           ]
         },
         {
-          label: "La Concurrence",
-          text: "Veille concurrentielle & Offres alternatives",
-          details: "La concurrence (e.g. Transdev) propose une offre doublée, un engagement strict sur la ponctualité, et des trains de dernière génération: plus de personnel à bord, sièges confortables, Wi-Fi, espaces vélos et sécurité renforcée, le tout axé sur l'accessibilité à tous."
+          label: lang === 'fr' ? "La Concurrence" : "Competitive Analysis",
+          text: lang === 'fr' ? "Veille concurrentielle & Offres alternatives" : "Benchmarking & Alternative Mobility",
+          details: lang === 'fr'
+            ? "La concurrence (e.g. Transdev) propose une offre doublée, un engagement strict sur la ponctualité, et des trains de dernière génération: plus de personnel à bord, sièges confortables, Wi-Fi, espaces vélos et sécurité renforcée, le tout axé sur l'accessibilité à tous."
+            : "Competitors (e.g. Transdev) offer doubled frequency, strict punctuality guarantees, and latest-gen rolling stock: more onboard staff, ergonomic seating, Wi-Fi, bike bays, and reinforced safety—all anchored in universal accessibility."
         },
         {
-          label: "La Sociologie",
+          label: lang === 'fr' ? "La Sociologie" : "Sociology",
           text: "The Social Life of Small Urban Spaces (William H. Whyte)",
-          details: "Une place ne dépend pas de son esthétique mais de sa capacité à favoriser les intéractions sociales via : la Triangulation (quelque chose d'extérieur qui crée le lien), la Projection, et le Mouvement (l'humain aime regarder le mouvement).",
+          details: lang === 'fr'
+            ? "Une place ne dépend pas de son esthétique mais de sa capacité à favoriser les intéractions sociales via : la Triangulation (quelque chose d'extérieur qui crée le lien), la Projection, et le Mouvement (l'humain aime regarder le mouvement)."
+            : "A public space depends not on pure aesthetics, but on its ability to catalyze social interaction through: Triangulation (an external element creating a bond), Projection, and Movement (humans love observing motion).",
           image: "https://drive.google.com/thumbnail?id=10ZggtwEmj4Da76AQ2U30Go4n2Mn2fHH4&sz=w1000"
         }
       ],
-      postResearchText: "Constat :\n\nCe sous-effectif étant inévitable, il fallait se concentrer sur le dernier humain présent dans les trains : l'agent TER, et faire passer l'agent d'une figure de contrôle isolée et répressive à un repère rassurant et accessible pour les voyageurs.",
-      processTitle: "Solution",
+      postResearchText: lang === 'fr'
+        ? "Constat :\n\nCe sous-effectif étant inévitable, il fallait se concentrer sur le dernier humain présent dans les trains : l'agent TER, et faire passer l'agent d'une figure de contrôle isolée et répressive à un repère rassurant et accessible pour les voyageurs."
+        : "Finding:\n\nWith understaffing unavoidable, the solution had to focus on the last human present aboard: the TER agent—shifting the conductor from an isolated enforcement figure into a reassuring, accessible guide for passengers.",
+      processTitle: lang === 'fr' ? "Solution" : "Solution",
       steps: [
         {
-          title: "Concept Général",
-          desc: "Un système de géolocalisation interne à bord du train permettant de localiser facilement le contrôleur.\n\nComment ça marche ? L'agent porte un émetteur qui envoie un signal en continu. Ce signal est capté par des récepteurs situés dans chaque wagon de la rame.",
+          title: lang === 'fr' ? "Concept Général" : "General Concept",
+          desc: lang === 'fr'
+            ? "Un système de géolocalisation interne à bord du train permettant de localiser facilement le contrôleur.\n\nComment ça marche ? L'agent porte un émetteur qui envoie un signal en continu. Ce signal est capté par des récepteurs situés dans chaque wagon de la rame."
+            : "An onboard indoor positioning system allowing passengers to locate the conductor effortlessly.\n\nHow does it work? The agent wears a continuous transmitter whose signal is captured by receivers installed in each car of the train.",
         },
         {
-          title: "Le Matériel : L'Émetteur",
-          desc: "Un petit boîtier électronique (TAG) porté par l'agent qui émet un signal en continu. Composé d'une carte ESP32, d'une batterie Li-Po 5V et d'une LED, son design a été pensé pour l'ergonomie de l'agent.",
+          title: lang === 'fr' ? "Le Matériel : L'Émetteur" : "Hardware: The Wearable Tag",
+          desc: lang === 'fr'
+            ? "Un petit boîtier électronique (TAG) porté par l'agent qui émet un signal en continu. Composé d'une carte ESP32, d'une batterie Li-Po 5V et d'une LED, son design a été pensé pour l'ergonomie de l'agent."
+            : "A compact wearable electronic tag worn by the agent broadcasting continuously. Built with an ESP32 board, a 5V Li-Po battery, and a status LED, designed specifically for staff ergonomic comfort.",
           image: "https://drive.google.com/thumbnail?id=1J5dudpctxl4QwO1UEGodEbrGOCSj_8Tp&sz=w1000",
           image2: "https://drive.google.com/thumbnail?id=1nIZ3cYLqpC4KCv_rWDGGWJtzRDgOhhqN&sz=w1000"
         },
         {
-          title: "Les Récepteurs",
-          desc: "Des petits récepteurs discrets (ancres) répartis au plafond dans chaque wagon du train. Ils captent le signal de l'émetteur porté par l'agent. Architecture intérieure des ancres. Composants embarqués sécurisés pour s'intégrer discrètement au plafond de chaque wagon.",
+          title: lang === 'fr' ? "Les Récepteurs" : "Receivers & Anchors",
+          desc: lang === 'fr'
+            ? "Des petits récepteurs discrets (ancres) répartis au plafond dans chaque wagon du train. Ils captent le signal de l'émetteur porté par l'agent. Architecture intérieure des ancres. Composants embarqués sécurisés pour s'intégrer discrètement au plafond de chaque wagon."
+            : "Discreet ceiling-mounted anchors across each train car that capture signals from the wearable tag. Secure onboard components engineered for low-profile integration.",
           image: "https://drive.google.com/thumbnail?id=1dV8PDpPb23biy6QHFpyOdrefsZftAgnY&sz=w1000",
           image2: "https://drive.google.com/thumbnail?id=1xfu-EW3-CtAnS1V-UoOvc_I0ubfxIRjy&sz=w1000"
         },
         {
-          title: "L'Infrastructure Technique",
-          desc: "Un système Plug & Play très facile à implémenter : les récepteurs se calent sur le réseau existant du train, évitant l'ajout de nouveaux câbles. Il traite les signaux et affiche en direct sur tous les écrans de la rame où se trouve exactement le contrôleur (ex. \"Votre agent est en voiture 4\").",
+          title: lang === 'fr' ? "L'Infrastructure Technique" : "Technical Infrastructure",
+          desc: lang === 'fr'
+            ? "Un système Plug & Play très facile à implémenter : les récepteurs se calent sur le réseau existant du train, évitant l'ajout de nouveaux câbles. Il traite les signaux et affiche en direct sur tous les écrans de la rame où se trouve exactement le contrôleur (ex. \"Votre agent est en voiture 4\")."
+            : "A Plug & Play architecture easily deployed across the train's existing network without additional wiring. It processes positioning signals and displays live conductor location on all car screens (e.g. \"Your agent is currently in Car 4\").",
           image: "https://drive.google.com/thumbnail?id=1wV1HyHVQjdHoaCBJBrk15-HfKp7CcLMD&sz=w1000"
         },
         {
-          title: "L'Expérience Humaine",
-          blocks: [
+          title: lang === 'fr' ? "L'Expérience Humaine" : "The Human Experience",
+          blocks: lang === 'fr' ? [
             {
               title: "Pour l'Agent",
               text: "Le système pallie le sentiment de sous-effectif, l'agent \"occupe\" visuellement tout le train.\nLa dynamique s'inverse : ce n'est plus l'agent qui traque le client pour exiger un titre, c'est la technologie qui guide le client vers l'agent. Les conflits sont désamorcés."
@@ -133,23 +166,38 @@ export const getProjectData = (id: string, lang: Language) => {
               title: "Pour le Passager",
               text: "En cas de problème (borne en panne, besoin d'info), il ne stresse plus à sa place : il sait exactement où aller.\nSavoir l'agent présent (\"L'agent est en Voiture 2\") crée un filet de sécurité psychologique, même à distance."
             }
+          ] : [
+            {
+              title: "For the Staff",
+              text: "The system alleviates the feeling of understaffing; the conductor visually \"occupies\" the entire train.\nThe dynamic inverts: staff no longer hunt down passengers; technology peacefully guides passengers to staff, de-escalating potential conflict."
+            },
+            {
+              title: "For the Passenger",
+              text: "In case of issues (broken validator, travel inquiry), passengers no longer stress in their seats: they know exactly where to go.\nKnowing the conductor is onboard creates a reassuring psychological safety net even from afar."
+            }
           ]
         },
         {
           image: "https://drive.google.com/thumbnail?id=12jVPNY-uvmuAwicHia_nnjDDRYxvrQf3&sz=w1000"
         },
         {
-          title: "La Gestion de la Fraude",
-          desc: "La position de l'agent étant affichée en direct, un passager sans billet a l'obligation stricte de se lever et de marcher dans sa direction.\n\nLa transparence totale justifie l'amende maximale pour les personnes de mauvaise foi, tout en préservant la bienveillance pour les voyageurs honnêtes.",
+          title: lang === 'fr' ? "La Gestion de la Fraude" : "Fare Enforcement Dynamics",
+          desc: lang === 'fr'
+            ? "La position de l'agent étant affichée en direct, un passager sans billet a l'obligation stricte de se lever et de marcher dans sa direction.\n\nLa transparence totale justifie l'amende maximale pour les personnes de mauvaise foi, tout en préservant la bienveillance pour les voyageurs honnêtes."
+            : "With conductor location displayed transparently, passengers without tickets are obliged to walk toward the conductor.\n\nTotal transparency legitimately penalizes dishonest evasion while preserving goodwill for honest travelers.",
         },
         {
-          title: "Preuve de Concept (LE POC)",
-          desc: "Des tests de terrain et des interviews (9 participants) ont été réalisés dans les gares avec de faux flyers annonçant la fonctionnalité. \n\nRetours usagers : \"Ça cartonnerait chez les jeunes\", \"À son époque l'agent faisait un appel vocal pour dire où il était\", \"Good idea, it could have helped me during my trip\".",
+          title: lang === 'fr' ? "Preuve de Concept (LE POC)" : "Proof of Concept (POC)",
+          desc: lang === 'fr'
+            ? "Des tests de terrain et des interviews (9 participants) ont été réalisés dans les gares avec de faux flyers annonçant la fonctionnalité. \n\nRetours usagers : \"Ça cartonnerait chez les jeunes\", \"À son époque l'agent faisait un appel vocal pour dire où il était\", \"Good idea, it could have helped me during my trip\"."
+            : "Station field tests and user interviews (9 participants) were conducted using flyers announcing the feature.\n\nUser feedback: \"Young travelers would love this\", \"Conductors used to make PA announcements telling people where they were\", \"Good idea, it could have helped me during my trip\".",
           image: "https://drive.google.com/thumbnail?id=1lYWhBA1v2wQ7zI4Fsb34NRhBFjGqpnD1&sz=w1000"
         }
       ],
-      resultTitle: "Le Résultat & L'Apprentissage",
-      resultText: "Ce projet m'a permis de comprendre comment l'intégration de technologies simples et robustes peut avoir un impact significatif sur l'expérience utilisateur globale, en réhumanisant le contact et en apaisant les tensions dans un environnement contraint.",
+      resultTitle: lang === 'fr' ? "Le Résultat & L'Apprentissage" : "Results & Takeaways",
+      resultText: lang === 'fr'
+        ? "Ce projet m'a permis de comprendre comment l'intégration de technologies simples et robustes peut avoir un impact significatif sur l'expérience utilisateur globale, en réhumanisant le contact et en apaisant les tensions dans un environnement contraint."
+        : "This project taught me how integrating simple and robust technologies can have a significant impact on overall user experience, rehumanizing contact and easing tensions in a constrained environment.",
       images: {
         heroBg: "https://drive.google.com/thumbnail?id=1lLITLZdFeR9_07zkoQxYjThbcnY7DTku&sz=w2000",
         context: "https://images.unsplash.com/photo-1540039155732-d68a91b4fa7b?auto=format&fit=crop&q=80&w=1000",
@@ -158,65 +206,85 @@ export const getProjectData = (id: string, lang: Language) => {
     },
     'p3': {
       subtitle: lang === 'fr' ? "Design automobile" : "Automotive Design",
-      title: "Concept-car",
+      title: lang === 'fr' ? "Concept-car" : "Concept Car",
       headerDesc: lang === 'fr' ? "Design Automobile & Aérodynamique" : "Automotive Design & Aerodynamics",
-      contextTitle: "Le Défi & La Vision",
-      contextText: "Conception de concept cars explorant la convergence entre efficience aérodynamique, morphologie sculptée et ergonomie de l'habitacle. En tant qu'ingénieur-designer, l'enjeu était de créer une présence visuelle forte dictée par l'équilibre des volumes et la pureté des lignes.",
+      contextTitle: lang === 'fr' ? "Le Défi & La Vision" : "Challenge & Vision",
+      contextText: lang === 'fr'
+        ? "Conception de concept cars explorant la convergence entre efficience aérodynamique, morphologie sculptée et ergonomie de l'habitacle. En tant qu'ingénieur-designer, l'enjeu était de créer une présence visuelle forte dictée par l'équilibre des volumes et la pureté des lignes."
+        : "Concept car design exploring the convergence between aerodynamic efficiency, sculpted morphology, and cockpit ergonomics. As an engineer-designer, the challenge was to create a commanding visual presence driven by volume balance and clean lines.",
       concept: {
-        title: "L'Aérodynamique comme Forme Pure",
-        text: "Le concept Lobster Car explore une silhouette sculpturale inspirée des carapaces et des lignes de tension organiques. La carrosserie guide les flux d'air pour assurer la stabilité et l'efficience tout en proposant une identité visuelle radicale.",
+        title: lang === 'fr' ? "L'Aérodynamique comme Forme Pure" : "Aerodynamics as Pure Form",
+        text: lang === 'fr'
+          ? "Le concept Lobster Car explore une silhouette sculpturale inspirée des carapaces et des lignes de tension organiques. La carrosserie guide les flux d'air pour assurer la stabilité et l'efficience tout en proposant une identité visuelle radicale."
+          : "The Lobster Car concept explores a sculptural silhouette inspired by carapaces and organic tension lines. The bodywork channels airflow to ensure stability and efficiency while asserting a radical visual identity.",
         image: "./car1.jpg"
       },
-      techTitle: "Recherches & Compétences Appliquées",
+      techTitle: lang === 'fr' ? "Recherches & Compétences Appliquées" : "Research & Applied Skills",
       skills: true,
       skillsList: [
         {
-          label: "Aérodynamique & Forme Extérieure",
-          text: "Optimisation de la silhouette et écoulement des flux",
-          details: "Étude poussée des volumes et des écoulements d'air sur carrosserie sculpturale pour allier performance aérodynamique et présence esthétique.",
+          label: lang === 'fr' ? "Aérodynamique & Forme Extérieure" : "Aerodynamics & Exterior Styling",
+          text: lang === 'fr' ? "Optimisation de la silhouette et écoulement des flux" : "Silhouette optimization and aerodynamic airflow",
+          details: lang === 'fr'
+            ? "Étude poussée des volumes et des écoulements d'air sur carrosserie sculpturale pour allier performance aérodynamique et présence esthétique."
+            : "In-depth volume and airflow analysis over sculptural body panels to unite aerodynamic performance and aesthetic impact.",
           images: [
-            { src: "./car2.jpg", label: "Étude Aérodynamique & Profil" },
-            { src: "./car1.jpg", label: "Affiche Principale" }
+            { src: "./car2.jpg", label: lang === 'fr' ? "Étude Aérodynamique & Profil" : "Aerodynamic Study & Profile" },
+            { src: "./car1.jpg", label: lang === 'fr' ? "Affiche Principale" : "Main Poster" }
           ]
         },
         {
-          label: "Cockpit & Ergonomie",
-          text: "Interface conducteur et ergonomie du poste de pilotage",
-          details: "Conception ergonomique du poste de conduite : commandes physiques intuitives et visibilité optimale pour une expérience de conduite pure.",
+          label: lang === 'fr' ? "Cockpit & Ergonomie" : "Cockpit & Ergonomics",
+          text: lang === 'fr' ? "Interface conducteur et ergonomie du poste de pilotage" : "Driver interface and cockpit ergonomic layout",
+          details: lang === 'fr'
+            ? "Conception ergonomique du poste de conduite : commandes physiques intuitives et visibilité optimale pour une expérience de conduite pure."
+            : "Ergonomic cockpit design: intuitive physical controls and optimal sightlines for an uncompromised driving experience.",
           images: [
-            { src: "./car3.jpg", label: "Poste de Pilotage" }
+            { src: "./car3.jpg", label: lang === 'fr' ? "Poste de Pilotage" : "Driver Cockpit" }
           ]
         },
         {
-          label: "Esquisses & Recherche Formelle",
-          text: "Recherche stylistique et études préliminaires",
-          details: "De la feuille de croquis aux rendus volumiques, le processus explore les lignes de tension et l'équilibre des masses.",
+          label: lang === 'fr' ? "Esquisses & Recherche Formelle" : "Ideation & Formal Sketching",
+          text: lang === 'fr' ? "Recherche stylistique et études préliminaires" : "Stylistic research and preliminary studies",
+          details: lang === 'fr'
+            ? "De la feuille de croquis aux rendus volumiques, le processus explore les lignes de tension et l'équilibre des masses."
+            : "From rough sketchbook explorations to volumetric renderings, the process investigates tension lines and mass distribution.",
           images: [
-            { src: "./car4.jpg", label: "Recherche Formelle & Croquis" }
+            { src: "./car4.jpg", label: lang === 'fr' ? "Recherche Formelle & Croquis" : "Formal Research & Sketches" }
           ]
         }
       ],
-      postResearchText: "Constat :\n\nLe projet Lobster Car démontre la synergie entre vision formelle de designer et précision de conception. Une démarche épurée où chaque élément visuel trouve sa justification.",
-      processTitle: "Architecture & Solutions Techniques",
+      postResearchText: lang === 'fr'
+        ? "Constat :\n\nLe projet Lobster Car démontre la synergie entre vision formelle de designer et précision de conception. Une démarche épurée où chaque élément visuel trouve sa justification."
+        : "Finding:\n\nThe Lobster Car project demonstrates the synergy between designer formal vision and engineering precision. A refined process where every visual element is purposeful.",
+      processTitle: lang === 'fr' ? "Architecture & Solutions Techniques" : "Architecture & Technical Solutions",
       steps: [
         {
-          title: "1. Affiche & Manifeste de Style",
-          desc: "Présentation grand format définissant les intentions stylistiques et l'impact visuel du concept.",
+          title: lang === 'fr' ? "1. Affiche & Manifeste de Style" : "1. Poster & Styling Manifesto",
+          desc: lang === 'fr'
+            ? "Présentation grand format définissant les intentions stylistiques et l'impact visuel du concept."
+            : "Large-format showcase defining styling intentions and visual punch of the concept.",
           image: "./car1.jpg"
         },
         {
-          title: "2. Recherche & Esquisses Préparatoires",
-          desc: "Étude des proportions et des lignes de force avant toute phase de modélisation.",
+          title: lang === 'fr' ? "2. Recherche & Esquisses Préparatoires" : "2. Research & Preliminary Sketches",
+          desc: lang === 'fr'
+            ? "Étude des proportions et des lignes de force avant toute phase de modélisation."
+            : "Proportion and key character line explorations prior to 3D modeling.",
           image: "./car4.jpg"
         },
         {
-          title: "3. Visuels Photographiques",
-          desc: "Rendus en situation révélant la silhouette, les détails de carrosserie et l'équilibre général.",
+          title: lang === 'fr' ? "3. Visuels Photographiques" : "3. Photographic Visuals",
+          desc: lang === 'fr'
+            ? "Rendus en situation révélant la silhouette, les détails de carrosserie et l'équilibre général."
+            : "Contextual track renders revealing silhouette, surface details, and overall stance.",
           image: "./car2.jpg"
         }
       ],
-      resultTitle: "Bilan & Acquis Ingénieur-Designer",
-      resultText: "Cette étude complète valide une méthodologie double : aborder l'objet automobile avec la sensibilité formelle du designer et la rigueur technique de l'ingénieur.",
+      resultTitle: lang === 'fr' ? "Bilan & Acquis Ingénieur-Designer" : "Synthesis & Engineer-Designer Learnings",
+      resultText: lang === 'fr'
+        ? "Cette étude complète valide une méthodologie double : aborder l'objet automobile avec la sensibilité formelle du designer et la rigueur technique de l'ingénieur."
+        : "This comprehensive exploration validates a dual approach: tackling the automobile with a designer's formal sensitivity and an engineer's technical rigor.",
       images: {
         heroBg: "./car1.jpg",
         context: "./car2.jpg",

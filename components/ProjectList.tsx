@@ -737,13 +737,9 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                       <div className="hidden lg:flex flex-col fixed left-4 top-1/2 -translate-y-1/2 h-fit gap-10 z-[100]">
                         {[0, 1, 2, 3, 4].map((i) => {
                           const isActive = activeDay === i;
-                          const labels = [
-                            "IMMERSION",
-                            "PERSONAS",
-                            "MOCKUPS",
-                            "PROTOTYPE",
-                            "FINAL",
-                          ];
+                          const labels = lang === 'fr' 
+                            ? ["IMMERSION", "PERSONAS", "MAQUETTES", "PROTOTYPE", "FINAL"]
+                            : ["IMMERSION", "PERSONAS", "MOCKUPS", "PROTOTYPE", "FINAL"];
                           return (
                             <button
                               key={i}
@@ -780,7 +776,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                               {t.day1}
                             </span>
                             <h2 className="text-4xl md:text-6xl font-display font-bold text-white tracking-tighter">
-                              Immersion Terrain
+                              {lang === 'fr' ? 'Immersion Terrain' : 'Field Immersion'}
                             </h2>
                             <p className="text-xl text-white/60 font-light leading-relaxed max-w-2xl italic">
                               {t.day1Desc}
@@ -918,7 +914,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                               {t.day4}
                             </span>
                             <h2 className="text-4xl md:text-6xl font-display font-bold text-white tracking-tighter">
-                              Prototypage FabLab
+                              {lang === 'fr' ? 'Prototypage FabLab' : 'FabLab Prototyping'}
                             </h2>
                             <p className="text-xl text-white/60 font-light leading-relaxed max-w-2xl italic">
                               {t.day4Desc}
@@ -946,7 +942,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                               {t.dayFinal}
                             </span>
                             <h2 className="text-4xl md:text-6xl font-display font-bold text-white tracking-tighter">
-                              Revue Client & Livrable
+                              {lang === 'fr' ? 'Revue Client & Livrable' : 'Client Review & Deliverable'}
                             </h2>
                             <p className="text-xl text-white/60 font-light leading-relaxed max-w-2xl italic">
                               {t.dayFinalDesc}
@@ -961,7 +957,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                             />
                             <div className="absolute bottom-10 left-10 z-20">
                               <span className="text-[11px] font-mono text-white/50 tracking-[0.6em]">
-                                Livrable Final // CY Tech // 2024
+                                {lang === 'fr' ? 'Livrable Final // CY Tech // 2024' : 'Final Deliverable // CY Tech // 2024'}
                               </span>
                             </div>
                           </div>

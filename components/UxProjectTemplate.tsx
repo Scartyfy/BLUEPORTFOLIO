@@ -196,7 +196,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
               <motion.img
                 style={{ y: heroImageY }}
                 src={data.header.heroImage}
-                alt="Projet Maquette App UI"
+                alt={lang === 'fr' ? "Projet Maquette App UI" : "App UI Prototype Project"}
                 className="absolute inset-0 w-full h-[120%] -top-[10%] object-cover contrast-[1.05] saturate-50 origin-center"
               />
             </div>
@@ -268,7 +268,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
                 {data.fieldResearch.stats.totalParticipants}
               </span>
               <span className="text-xs uppercase font-mono tracking-wider text-[#002FA7]/60">
-                {lang === 'fr' ? 'Participants In Situ' : 'Participants In Situ'}
+                {lang === 'fr' ? 'Participants In Situ' : 'On-Site Participants'}
               </span>
             </div>
           </div>
@@ -727,7 +727,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
               >
                 <img
                   src={data.appPrototype.usageScenario.overviewImage}
-                  alt="Planche Scénario d'Usage"
+                  alt={lang === 'fr' ? "Planche Scénario d'Usage" : "Usage Scenario Board"}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs font-mono text-[#002FA7] shadow">

@@ -276,22 +276,49 @@ export const App: React.FC = () => {
         </>
       )}
 
-      {/* LANGUAGE TOGGLE - HIDDEN WHEN PROJECT IS OPEN */}
-      {!isProjectOpen && (
-        <div className="fixed top-6 right-4 md:right-6 z-[110] flex flex-col items-center group/lang transition-opacity duration-500">
-           <button 
-              onClick={toggleLang} 
-              className={`group relative flex flex-col items-center gap-0 overflow-hidden h-[32px] px-3 transition-all duration-300 rounded-full border border-transparent ${isWhiteBg ? 'hover:bg-[#002FA7]/5 hover:border-[#002FA7]/10' : 'hover:bg-white/5 hover:border-white/10'}`}
-              data-magnetic
-           >
-              <div className={`flex flex-col items-center transition-transform duration-600 cubic-bezier(0.76, 0, 0.24, 1) ${lang === 'en' ? '-translate-y-1/2' : 'translate-y-0'}`}>
-                  <span className={`font-mono text-[10px] tracking-[0.2em] h-[32px] flex items-center text-white/50 transition-colors duration-300 ${isWhiteBg ? 'group-hover/lang:text-[#002FA7]' : 'group-hover/lang:text-white'}`}>FR</span>
-                  <span className={`font-mono text-[10px] tracking-[0.2em] h-[32px] flex items-center text-white/50 transition-colors duration-300 ${isWhiteBg ? 'group-hover/lang:text-[#002FA7]' : 'group-hover/lang:text-white'}`}>EN</span>
-              </div>
-           </button>
-           <div className={`w-1 h-1 rounded-full mt-1.5 transition-all duration-500 group-hover/lang:scale-125 animate-pulse-light ${isWhiteBg ? 'bg-[#002FA7]' : 'bg-white'}`}></div>
-        </div>
-      )}
+      {/* LANGUAGE TOGGLE - ACCESSIBLE EVERYWHERE INCLUDING PROJECT MODALS */}
+      <div className={`fixed transition-all duration-500 z-[510] flex flex-col items-center group/lang ${
+        isProjectOpen 
+          ? 'top-6 right-20 md:top-8 md:right-28' 
+          : 'top-6 right-4 md:right-6'
+      }`}>
+         <button 
+            onClick={toggleLang} 
+            className={`group relative flex flex-col items-center gap-0 overflow-hidden h-[34px] px-3.5 transition-all duration-300 rounded-full ${
+              isProjectOpen
+                ? 'bg-black/80 hover:bg-black text-white border border-white/20 shadow-md backdrop-blur-md'
+                : isWhiteBg 
+                  ? 'hover:bg-[#002FA7]/5 hover:border-[#002FA7]/10 border border-transparent' 
+                  : 'hover:bg-white/5 hover:border-white/10 border border-transparent'
+            }`}
+            data-magnetic
+            title={lang === 'fr' ? 'Switch to English' : 'Passer en français'}
+         >
+            <div className={`flex flex-col items-center transition-transform duration-600 cubic-bezier(0.76, 0, 0.24, 1) ${lang === 'en' ? '-translate-y-1/2' : 'translate-y-0'}`}>
+                <span className={`font-mono text-[10px] font-bold tracking-[0.2em] h-[34px] flex items-center transition-colors duration-300 ${
+                  isProjectOpen 
+                    ? 'text-white' 
+                    : isWhiteBg 
+                      ? 'text-[#002FA7]/60 group-hover/lang:text-[#002FA7]' 
+                      : 'text-white/60 group-hover/lang:text-white'
+                }`}>FR</span>
+                <span className={`font-mono text-[10px] font-bold tracking-[0.2em] h-[34px] flex items-center transition-colors duration-300 ${
+                  isProjectOpen 
+                    ? 'text-white' 
+                    : isWhiteBg 
+                      ? 'text-[#002FA7]/60 group-hover/lang:text-[#002FA7]' 
+                      : 'text-white/60 group-hover/lang:text-white'
+                }`}>EN</span>
+            </div>
+         </button>
+         <div className={`w-1 h-1 rounded-full mt-1.5 transition-all duration-500 group-hover/lang:scale-125 animate-pulse-light ${
+           isProjectOpen 
+             ? 'bg-white' 
+             : isWhiteBg 
+               ? 'bg-[#002FA7]' 
+               : 'bg-white'
+         }`}></div>
+      </div>
 
       {viewState === ViewState.PROJECTS && !isProjectOpen && (
         <>
@@ -321,7 +348,7 @@ export const App: React.FC = () => {
       {/* INTRO TEXT RIGHT */}
       <div className={`fixed right-6 bottom-6 md:right-8 md:bottom-8 z-[110] transition-opacity duration-1000 ${viewState === ViewState.INTRO && introStep === 'WELCOME' ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         <p className={`font-mono text-[8px] tracking-[0.3em] uppercase text-white`}>
-          ARTHUR CHAUVIN PORTFOLIO — ALL RIGHTS RESERVED © 2024
+          {lang === 'fr' ? "ARTHUR CHAUVIN PORTFOLIO — TOUS DROITS RÉSERVÉS © 2024" : "ARTHUR CHAUVIN PORTFOLIO — ALL RIGHTS RESERVED © 2024"}
         </p>
       </div>
 

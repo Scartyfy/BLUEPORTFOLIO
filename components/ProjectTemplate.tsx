@@ -83,7 +83,7 @@ const SkillRow = ({ label, text, index, details, image, images, quotes, theme = 
                      </div>
                    ) : (
                       <div className="w-full flex justify-center items-center h-full">
-                        <div className={`relative overflow-hidden rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-black/5 ${img.label === 'Vue Public' ? 'w-4/5 md:w-[90%] lg:w-[85%]' : 'w-full'}`}>
+                        <div className={`relative overflow-hidden rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-black/5 ${img.label === 'Vue Public' || img.label === 'Public View' ? 'w-4/5 md:w-[90%] lg:w-[85%]' : 'w-full'}`}>
                           <img src={img.src as string} referrerPolicy="no-referrer" className="w-full h-auto object-contain transition-transform duration-700 hover:scale-105" alt={img.label} />
                         </div>
                       </div>
@@ -418,10 +418,12 @@ export const ProjectTemplate: React.FC<{
             >
               <div className="flex items-center gap-6">
                 <div className="w-16 h-[2px] bg-white"></div>
-                <span className="font-mono text-sm uppercase tracking-widest font-bold">L'Idée Fondatrice</span>
+                <span className="font-mono text-sm uppercase tracking-widest font-bold">
+                  {lang === 'fr' ? "L'Idée Fondatrice" : "Founding Concept"}
+                </span>
               </div>
               <h2 className="text-4xl md:text-5xl lg:text-7xl font-display font-medium tracking-tight uppercase leading-[0.9]">
-                {data.concept.title || "Le Concept"}
+                {data.concept.title || (lang === 'fr' ? "Le Concept" : "The Concept")}
               </h2>
               <div className="text-lg md:text-xl font-light leading-relaxed text-white/80 whitespace-pre-wrap mt-4">
                 {data.concept.text}
@@ -459,26 +461,12 @@ export const ProjectTemplate: React.FC<{
              transition={{ ease: "linear", duration: 120, repeat: Infinity }}
              className="text-2xl md:text-4xl font-display font-light uppercase tracking-widest text-[#002FA7] whitespace-nowrap flex shrink-0 items-center gap-12"
           >
-            <span>COMPÉTENCES APPLIQUÉES</span>
-            <span className="w-3 h-3 rounded-full bg-[#002FA7]/30"></span>
-            <span>COMPÉTENCES APPLIQUÉES</span>
-            <span className="w-3 h-3 rounded-full bg-[#002FA7]/30"></span>
-            <span>COMPÉTENCES APPLIQUÉES</span>
-            <span className="w-3 h-3 rounded-full bg-[#002FA7]/30"></span>
-            <span>COMPÉTENCES APPLIQUÉES</span>
-            <span className="w-3 h-3 rounded-full bg-[#002FA7]/30"></span>
-            <span>COMPÉTENCES APPLIQUÉES</span>
-            <span className="w-3 h-3 rounded-full bg-[#002FA7]/30"></span>
-            <span>COMPÉTENCES APPLIQUÉES</span>
-            <span className="w-3 h-3 rounded-full bg-[#002FA7]/30"></span>
-            <span>COMPÉTENCES APPLIQUÉES</span>
-            <span className="w-3 h-3 rounded-full bg-[#002FA7]/30"></span>
-            <span>COMPÉTENCES APPLIQUÉES</span>
-            <span className="w-3 h-3 rounded-full bg-[#002FA7]/30"></span>
-            <span>COMPÉTENCES APPLIQUÉES</span>
-            <span className="w-3 h-3 rounded-full bg-[#002FA7]/30"></span>
-            <span>COMPÉTENCES APPLIQUÉES</span>
-            <span className="w-3 h-3 rounded-full bg-[#002FA7]/30"></span>
+            {Array.from({ length: 12 }).map((_, i) => (
+              <React.Fragment key={i}>
+                <span>{lang === 'fr' ? 'COMPÉTENCES APPLIQUÉES' : 'APPLIED SKILLS'}</span>
+                <span className="w-3 h-3 rounded-full bg-[#002FA7]/30"></span>
+              </React.Fragment>
+            ))}
           </motion.div>
         </div>
       )}
@@ -514,7 +502,7 @@ export const ProjectTemplate: React.FC<{
       {data.postResearchText && (
         <section className="relative w-full py-20 md:py-32 px-6 md:px-12 bg-white text-[#002FA7]">
           <div className="max-w-[1200px] mx-auto flex flex-col md:flex-row gap-8 md:gap-24 px-4 md:px-8">
-            {data.postResearchText.startsWith("Constat :") ? (
+            {data.postResearchText.startsWith("Constat :") || data.postResearchText.startsWith("Finding:") ? (
               <>
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
@@ -524,7 +512,7 @@ export const ProjectTemplate: React.FC<{
                   className="md:w-1/3 flex flex-col pt-2 md:border-l-4 md:border-[#002FA7] md:pl-8"
                 >
                   <h2 className="text-3xl md:text-5xl font-medium font-display tracking-tight uppercase">
-                    Constat
+                    {lang === 'fr' ? "Constat" : "Finding"}
                   </h2>
                 </motion.div>
                 <motion.p
@@ -534,10 +522,14 @@ export const ProjectTemplate: React.FC<{
                   transition={{ duration: 0.8, delay: 0.2 }}
                   className="md:w-2/3 text-lg md:text-xl lg:text-2xl font-light text-[#002FA7]/80 leading-[1.6] whitespace-pre-wrap"
                 >
-                  {data.postResearchText.replace('Constat :\n\n', '').split("l'agent TER").map((part: string, index: number, array: string[]) => (
+                  {data.postResearchText
+                    .replace('Constat :\n\n', '')
+                    .replace('Finding:\n\n', '')
+                    .split(lang === 'fr' ? "l'agent TER" : "the TER agent")
+                    .map((part: string, index: number, array: string[]) => (
                     <span key={index}>
                       {part}
-                      {index < array.length - 1 && <strong className="font-bold">l'agent TER</strong>}
+                      {index < array.length - 1 && <strong className="font-bold">{lang === 'fr' ? "l'agent TER" : "the TER agent"}</strong>}
                     </span>
                   ))}
                 </motion.p>
