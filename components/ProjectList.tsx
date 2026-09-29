@@ -37,6 +37,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
   const [questionOpacity, setQuestionOpacity] = useState(1);
   const [isYesHidden, setIsYesHidden] = useState(false);
   const [isMagicAnimating, setIsMagicAnimating] = useState(false);
+  const [userChoice, setUserChoice] = useState<"YES" | "NO">("NO");
 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -73,13 +74,17 @@ export const ProjectList: React.FC<ProjectListProps> = ({
   const t = {
     fr: {
       bio: "Ingénieur informatique et designer global. J'aborde chaque problème complexe avec une double grille de lecture : l'exploration empathique pour identifier le vrai besoin, et la méthode de l'ingénieur pour structurer la meilleure solution. Ma valeur ajoutée réside dans cette synergie : concevoir avec la vision du designer et bâtir avec la précision de l'ingénieur.",
-      trickTitle: "Était-ce votre carte ?",
-      trickQuestionLines: ["ÉTAIT-CE", "VOTRE", "CARTE ?"],
+      trickTitle: "Est-ce votre carte ?",
+      trickQuestionLines: ["EST-CE", "VOTRE", "CARTE ?"],
       yes: "Oui",
       no: "Non",
       prestige: "Le Prestige",
-      manifestoMain:
+      manifestoNo:
+        "Une erreur ? Non, simplement une vision incomplète. Pour faire émerger une réponse globale, chaque problème doit être questionné, retourné et changé de couleur. C'est mon approche : changer de perspective pour transformer une idée en solutions viables et respectueuses de toutes les parties prenantes.",
+      manifestoYes:
         "Regardez ce Cœur devenir un Pique. Même forme, nouvel angle, fondation solide. C'est mon approche d'ingénieur-designer : partir de l'empathie du Cœur pour cerner le besoin, puis le retourner et le structurer avec la rigueur du Pique. Le problème et la solution ne sont qu'une question de perspective.",
+      manifestoMain:
+        "Une erreur ? Non, simplement une vision incomplète. Pour faire émerger une réponse globale, chaque problème doit être questionné, retourné et changé de couleur. C'est mon approche : changer de perspective pour transformer une idée en solutions viables et respectueuses de toutes les parties prenantes.",
       manifestoBold: "",
       close: "Fermer",
       year: "Année",
@@ -130,13 +135,17 @@ export const ProjectList: React.FC<ProjectListProps> = ({
     },
     en: {
       bio: "Computer engineer and global designer. I approach each complex problem with a dual perspective: empathetic exploration to identify the real need, and the engineer's method to structure the best solution. My added value lies in this synergy: designing with the vision of the designer and building with the precision of the engineer.",
-      trickTitle: "Was this your card?",
-      trickQuestionLines: ["WAS THIS", "YOUR", "CARD?"],
+      trickTitle: "Is this your card?",
+      trickQuestionLines: ["IS THIS", "YOUR", "CARD?"],
       yes: "Yes",
       no: "No",
       prestige: "The Prestige",
-      manifestoMain:
+      manifestoNo:
+        "A mistake? No, simply an incomplete vision. To bring forth a global answer, every problem must be questioned, turned upside down, and change color. This is my approach: shifting perspective to transform an idea into viable solutions that respect all stakeholders.",
+      manifestoYes:
         "Watch this Heart turn into a Spade. Same shape, new angle, solid foundation. This is my engineer-designer approach: starting with the Heart's empathy to understand the need, then turning it around and structuring it with the rigor of the Spade. The problem and the solution are merely a matter of perspective.",
+      manifestoMain:
+        "A mistake? No, simply an incomplete vision. To bring forth a global answer, every problem must be questioned, turned upside down, and change color. This is my approach: shifting perspective to transform an idea into viable solutions that respect all stakeholders.",
       manifestoBold: "",
       close: "Close",
       year: "Year",
@@ -223,9 +232,17 @@ export const ProjectList: React.FC<ProjectListProps> = ({
     }
   }, [initialProject]);
 
-  const handleClose = () => setSelectedProject(null);
+  const handleClose = () => {
+    const activeLightbox = document.querySelector('[data-lightbox-active="true"]');
+    if (activeLightbox) {
+      window.dispatchEvent(new CustomEvent('close-lightbox'));
+      return;
+    }
+    setSelectedProject(null);
+  };
 
-  const handleRevealMagic = () => {
+  const handleRevealMagic = (choice: "YES" | "NO" = "NO") => {
+    setUserChoice(choice);
     setQuestionOpacity(0);
     setPerceptionShift(true);
     setIsMagicAnimating(true);
@@ -362,7 +379,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                       animate={{ opacity: isReady ? 1 : 0, y: isReady ? 0 : 30 }}
                       transition={{ duration: 0.6, delay: 0.08 * index }}
                       onClick={() => setSelectedProject(project)}
-                      className="relative w-full h-[250px] xs:h-[270px] rounded-2xl overflow-hidden shadow-2xl active:scale-[0.98] transition-transform cursor-pointer border border-white/15 group touch-manipulation"
+                      className="relative w-full h-[250px] xs:h-[270px] rounded-2xl overflow-hidden active:scale-[0.98] transition-transform cursor-pointer border border-white/15 group touch-manipulation"
                     >
                       <img
                         src={imgSrc}
@@ -379,7 +396,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                               {project.category[lang]}
                             </span>
                           </div>
-                          <div className="w-9 h-9 rounded-full bg-white text-[#002FA7] flex items-center justify-center shadow-lg active:scale-90 transition-transform">
+                          <div className="w-9 h-9 rounded-full bg-white text-[#002FA7] flex items-center justify-center active:scale-90 transition-transform">
                             <ArrowUpRight size={18} strokeWidth={2.5} />
                           </div>
                         </div>
@@ -549,21 +566,21 @@ export const ProjectList: React.FC<ProjectListProps> = ({
           <div className="w-full md:w-1/2 flex flex-col justify-center relative min-h-[450px] md:min-h-[500px]">
             {/* ASK PHASE TEXT & BUTTONS */}
             <div className={`absolute inset-0 flex flex-col items-center text-center justify-center transition-all duration-1000 ease-[0.16,1,0.3,1] ${trickStep === "ASK" ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-20 pointer-events-none"}`}>
-              <h2 className="text-5xl md:text-7xl xl:text-[6vw] font-display font-medium uppercase tracking-tighter text-white leading-[0.85] mb-12 drop-shadow-2xl flex flex-col items-center">
+              <h2 className="text-5xl md:text-7xl xl:text-[6vw] font-display font-medium uppercase tracking-tighter text-white leading-[0.85] mb-12 flex flex-col items-center">
                 <span className="block overflow-hidden pb-2"><motion.span initial={{y:"100%"}} whileInView={{y:0}} transition={{duration:0.8}} className="block">{t.trickQuestionLines[0]}</motion.span></span>
                 <span className="block overflow-hidden pb-2"><motion.span initial={{y:"100%"}} whileInView={{y:0}} transition={{delay:0.1, duration:0.8}} className="block text-white/50">{t.trickQuestionLines[1]}</motion.span></span>
                 <span className="block overflow-hidden pb-4 -mb-4"><motion.span initial={{y:"100%"}} whileInView={{y:0}} transition={{delay:0.2, duration:0.8}} className="block">{t.trickQuestionLines[2]}</motion.span></span>
               </h2>
               <div className="flex gap-6 items-center justify-center" style={{ opacity: questionOpacity }}>
                 <button
-                  onClick={handleRevealMagic}
-                  className={`group px-10 py-5 md:py-6 bg-white text-[#002FA7] font-bold text-xl md:text-2xl uppercase tracking-widest rounded-full hover:scale-105 transition-all duration-500 shadow-2xl flex items-center justify-center min-w-[140px] ${isYesHidden ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+                  onClick={() => handleRevealMagic("YES")}
+                  className={`group px-10 py-5 md:py-6 bg-white text-[#002FA7] font-bold text-xl md:text-2xl uppercase tracking-widest rounded-full hover:scale-105 transition-all duration-500 flex items-center justify-center min-w-[140px] ${isYesHidden ? "opacity-0 pointer-events-none" : "opacity-100"}`}
                 >
                   <span className="relative z-10">{t.yes}</span>
                 </button>
                 <button
-                  onClick={handleRevealMagic}
-                  className="group px-10 py-5 md:py-6 bg-white text-[#002FA7] font-bold text-xl md:text-2xl uppercase tracking-widest rounded-full hover:scale-105 transition-all duration-500 shadow-2xl flex items-center justify-center min-w-[140px]"
+                  onClick={() => handleRevealMagic("NO")}
+                  className="group px-10 py-5 md:py-6 bg-white text-[#002FA7] font-bold text-xl md:text-2xl uppercase tracking-widest rounded-full hover:scale-105 transition-all duration-500 flex items-center justify-center min-w-[140px]"
                 >
                   <span className="relative z-10">{t.no}</span>
                 </button>
@@ -573,7 +590,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
             {/* REVEAL PHASE TEXT */}
             <div className={`absolute inset-0 flex flex-col items-center text-center justify-center transition-all duration-1000 delay-300 ease-[0.16,1,0.3,1] ${trickStep === "REVEAL" ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-20 pointer-events-none"}`}>
               <p className="font-display font-light text-base md:text-lg lg:text-xl text-white/90 leading-[1.6] mb-6 md:mb-10 max-w-lg">
-                {t.manifestoMain}
+                {userChoice === "NO" ? t.manifestoNo : t.manifestoYes}
                 {t.manifestoBold && (
                   <span className="font-medium text-white block mt-4 border-t border-white/20 pt-4 mx-auto max-w-[80%]">{t.manifestoBold}</span>
                 )}
@@ -586,7 +603,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                   data-magnetic
                   data-magnetic-no-pull
                 >
-                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white transition-all shadow-xl">
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white transition-all">
                     <svg className="w-5 h-5 text-white/60 group-hover:text-[#002FA7]" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                     </svg>
@@ -602,7 +619,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                   data-magnetic-no-pull
                   title="Télécharger mon CV (PDF)"
                 >
-                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white transition-all shadow-xl">
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white transition-all">
                     <svg className="w-5 h-5 text-white/60 group-hover:text-[#002FA7]" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
                     </svg>
@@ -615,7 +632,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                   data-magnetic
                   data-magnetic-no-pull
                 >
-                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white transition-all shadow-xl">
+                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white transition-all">
                     <svg className="w-5 h-5 text-white/60 group-hover:text-[#002FA7]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                     </svg>
@@ -1002,7 +1019,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                       </h2>
                       <button
                         onClick={handleClose}
-                        className="group relative overflow-hidden px-10 py-5 bg-white rounded-full flex items-center justify-center shadow-2xl hover:scale-105 transition-all duration-500"
+                        className="group relative overflow-hidden px-10 py-5 bg-white rounded-full flex items-center justify-center hover:scale-105 transition-all duration-500"
                         data-magnetic
                       >
                         <div className="absolute inset-0 bg-black/5 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
@@ -1021,7 +1038,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
             <div className={`fixed top-6 right-6 md:top-8 md:right-10 z-[500]`}>
               <button
                 onClick={handleClose}
-                className="group relative w-12 h-12 md:w-14 md:h-14 flex items-center justify-center bg-[#002FA7] rounded-full shadow-2xl hover:scale-110 transition-all duration-300 pointer-events-auto border border-white/20"
+                className="group relative w-12 h-12 md:w-14 md:h-14 flex items-center justify-center bg-[#002FA7] rounded-full hover:scale-110 transition-all duration-300 pointer-events-auto border border-white/20"
                 data-magnetic
               >
                 <div className="relative w-5 h-5 md:w-6 md:h-6">

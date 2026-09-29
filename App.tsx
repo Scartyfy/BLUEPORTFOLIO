@@ -14,6 +14,9 @@ import { AnimatedLayerButton } from './components/ui/button';
 import MotionButton from './components/ui/motion-button';
 import { MenuToggleIcon } from './components/ui/menu-toggle-icon';
 import { PortfolioCube } from './components/PortfolioCube';
+import { TypewriterExperience } from './components/TypewriterExperience';
+import { TypewriterPickCard } from './components/TypewriterPickCard';
+import { TypewriterMemorizeCard } from './components/TypewriterMemorizeCard';
 
 export const App: React.FC = () => {
   const [lang, setLang] = useState<Language>('fr');
@@ -50,7 +53,7 @@ export const App: React.FC = () => {
       // Show memorize text after the card has flipped
       const memorizeTimer = setTimeout(() => {
         setShowMemorizeText(true);
-      }, 1000);
+      }, 700);
 
       const transitionTimer = setTimeout(() => {
         setShowMemorizeText(false);
@@ -62,10 +65,10 @@ export const App: React.FC = () => {
         const textTimer = setTimeout(() => {
           document.body.style.overflow = 'hidden'; 
           setShowMotionText(true);
-        }, 100); // Reduced delay to appear almost immediately
+        }, 100); 
         
         return () => clearTimeout(textTimer);
-      }, 3000); // 1s flip + 2s memorization time (reduced from 3.5s)
+      }, 3300); // Allow complete typewriter animation and reading time
       
       return () => {
         clearTimeout(memorizeTimer);
@@ -108,13 +111,13 @@ export const App: React.FC = () => {
       skills: "COMPÉTENCES", 
       contact: "CONTACT", 
       scroll: "DÉFILER", 
-      pick: "CHOISISSEZ UNE CARTE", 
+      pick: "Choisissez une carte", 
       menu: "MENU", 
       close: "FERMER",
       introTop: "INGÉNIEUR",
       introBottom: "DESIGNEUR*",
-      experiencePart1: "LE DESIGN N'EST PAS CE QUE L'ON VOIT,",
-      experiencePart2: "C'EST LA FAÇON DONT ON REGARDE."
+      experiencePart1: "Le design n'est pas ce que l'on voit, c'est la façon dont on regarde.",
+      experiencePart2: "Et parce qu'une vision s'assimile mieux quand elle se vit, je vous propose une courte expérience"
     },
     en: { 
       work: "WORK", 
@@ -122,13 +125,13 @@ export const App: React.FC = () => {
       skills: "SKILLS", 
       contact: "CONTACT", 
       scroll: "SCROLL", 
-      pick: "PICK A CARD", 
+      pick: "Pick a card", 
       menu: "MENU", 
       close: "CLOSE",
       introTop: "ENGINEER",
       introBottom: "DESIGNER*",
-      experiencePart1: "DESIGN IS NOT WHAT YOU SEE,",
-      experiencePart2: "IT'S THE WAY YOU LOOK AT IT."
+      experiencePart1: "Design is not what you see, it's the way you look at it.",
+      experiencePart2: "And because a vision is best understood when experienced, I invite you to a short experience"
     }
   }[lang];
 
@@ -150,7 +153,7 @@ export const App: React.FC = () => {
         <AnimatePresence>
         {showMotionText && (
           <MotionText 
-            text={lang === 'fr' ? "VOYONS QUELQUES PROJETS" : "LET'S SEE SOME PROJECTS"} 
+            text={lang === 'fr' ? "VOICI QUELQUES PROJETS" : "HERE ARE SOME PROJECTS"} 
             onComplete={handleMotionComplete} 
           />
         )}
@@ -159,7 +162,7 @@ export const App: React.FC = () => {
       <AnimatePresence>
         {showPhotoshopTransition && (
           <PhotoshopTransition 
-            text={lang === 'fr' ? "VOYONS QUELQUES PROJETS" : "LET'S SEE SOME PROJECTS"} 
+            text={lang === 'fr' ? "VOICI QUELQUES PROJETS" : "HERE ARE SOME PROJECTS"} 
             onComplete={handlePhotoshopComplete} 
             onStartSlide={() => setShowProjects(true)}
           />
@@ -168,30 +171,9 @@ export const App: React.FC = () => {
 
       <AnimatePresence>
         {showMemorizeText && (
-          <motion.div 
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ 
-              opacity: 0, 
-              y: -20, 
-              scale: 1.05, 
-              transition: { duration: 0.6, ease: "easeOut" }
-            }}
-            className="fixed top-24 left-0 right-0 z-[100] pointer-events-none flex flex-col items-center gap-3"
-          >
-            <motion.div
-              variants={{ hidden: { opacity: 1 }, show: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.2 } } }}
-              initial="hidden"
-              animate="show"
-              className="flex flex-wrap justify-center gap-x-2 md:gap-x-3 text-white font-display text-3xl md:text-5xl font-bold tracking-tight text-center px-6"
-            >
-              {(lang === 'fr' ? "RETENEZ BIEN CETTE CARTE" : "MEMORIZE THIS CARD").split(' ').map((word, i) => (
-                <motion.span key={i} variants={{ hidden: { opacity: 0, y: 20, filter: 'blur(8px)' }, show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } }} className="inline-block">
-                  {word}
-                </motion.span>
-              ))}
-            </motion.div>
-          </motion.div>
+          <TypewriterMemorizeCard 
+            text={lang === 'fr' ? "RETENEZ BIEN CETTE CARTE" : "MEMORIZE THIS CARD"} 
+          />
         )}
       </AnimatePresence>
 
@@ -222,7 +204,7 @@ export const App: React.FC = () => {
               setShowProjects(true);
               document.body.style.overflow = '';
             }}
-            className="bg-black/90 text-white px-3.5 py-2.5 rounded-full font-mono font-bold text-xs shadow-xl hover:bg-black hover:scale-105 active:scale-95 transition-all border border-white/20 backdrop-blur-md"
+            className="bg-black/90 text-white px-3.5 py-2.5 rounded-full font-mono font-bold text-xs hover:bg-black hover:scale-105 active:scale-95 transition-all border border-white/20 backdrop-blur-md"
           >
             {lang === 'fr' ? 'TOUS LES PROJETS' : 'ALL PROJECTS'}
           </button>
@@ -242,7 +224,7 @@ export const App: React.FC = () => {
                   <span className={`font-mono text-[10px] tracking-[0.2em] h-[32px] flex items-center text-white/50 transition-colors duration-300 ${isWhiteBg ? 'group-hover/lang:text-[#002FA7]' : 'group-hover/lang:text-white'}`}>EN</span>
               </div>
            </button>
-           <div className={`w-1 h-1 rounded-full mt-1.5 transition-all duration-500 group-hover/lang:scale-125 animate-pulse-light ${isWhiteBg ? 'bg-[#002FA7] group-hover/lang:shadow-[0_0_8px_rgba(0,47,167,0.5)]' : 'bg-white group-hover/lang:shadow-[0_0_8px_rgba(255,255,255,0.5)]'}`}></div>
+           <div className={`w-1 h-1 rounded-full mt-1.5 transition-all duration-500 group-hover/lang:scale-125 animate-pulse-light ${isWhiteBg ? 'bg-[#002FA7]' : 'bg-white'}`}></div>
         </div>
       )}
 
@@ -310,9 +292,6 @@ export const App: React.FC = () => {
                         
                         setTimeout(() => {
                             setIntroStep('SHOW_TEXT');
-                            setTimeout(() => {
-                                setIntroStep('PICK_CARD');
-                            }, 4500);
                         }, 400);
                     }}
                 />
@@ -355,91 +334,17 @@ export const App: React.FC = () => {
         <div className={`fixed inset-0 z-[80] flex flex-col items-center justify-center pointer-events-none`}>
           <AnimatePresence>
             {introStep === 'SHOW_TEXT' && (
-              <motion.div 
-                key="experience"
-                exit={{ opacity: 0, filter: 'blur(10px)', scale: 1.05, transition: { duration: 0.8, ease: "easeOut" } }}
-                className="text-[#002FA7] font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-center px-4 sm:px-6 flex flex-col gap-2 md:gap-4 absolute"
-              >
-                <div className="flex flex-wrap justify-center gap-x-2 md:gap-x-3">
-                  {nav.experiencePart1.split(' ').map((word, wordIndex, words) => {
-                    const baseCharIndex = words.slice(0, wordIndex).join('').length + wordIndex;
-                    return (
-                      <span key={wordIndex} className="inline-flex overflow-hidden pb-1" style={{ lineHeight: 1.1 }}>
-                        {word.split('').map((char, charIndex) => (
-                           <motion.span 
-                             key={charIndex}
-                             variants={{ hidden: { y: "120%" }, show: { y: 0 } }}
-                             initial="hidden"
-                             animate="show"
-                             transition={{ ease: [0.16, 1, 0.3, 1], duration: 1, delay: 0.2 + (baseCharIndex + charIndex) * 0.04 }}
-                             className="inline-block origin-bottom"
-                           >
-                             {char}
-                           </motion.span>
-                        ))}
-                      </span>
-                    );
-                  })}
-                </div>
-                <div className="flex flex-wrap justify-center gap-x-2 md:gap-x-3">
-                  {nav.experiencePart2.split(' ').map((word, wordIndex, words) => {
-                    const baseCharIndex = words.slice(0, wordIndex).join('').length + wordIndex;
-                    return (
-                      <span key={wordIndex} className="inline-flex overflow-hidden pb-1" style={{ lineHeight: 1.1 }}>
-                        {word.split('').map((char, charIndex) => (
-                           <motion.span 
-                             key={charIndex}
-                             variants={{ hidden: { y: "120%" }, show: { y: 0 } }}
-                             initial="hidden"
-                             animate="show"
-                             transition={{ ease: [0.16, 1, 0.3, 1], duration: 1, delay: 1.5 + (baseCharIndex + charIndex) * 0.04 }}
-                             className="inline-block origin-bottom"
-                           >
-                             {char}
-                           </motion.span>
-                        ))}
-                      </span>
-                    );
-                  })}
-                </div>
-              </motion.div>
+              <TypewriterExperience
+                line1={nav.experiencePart1}
+                line2={nav.experiencePart2}
+                onComplete={() => setIntroStep('PICK_CARD')}
+              />
             )}
             {introStep === 'PICK_CARD' && viewState === ViewState.INTRO && (
-              <motion.div 
-                key="pick"
-                exit={{ opacity: 0, filter: 'blur(10px)', scale: 1.05, transition: { duration: 0.8, ease: "easeOut" } }}
-                className="text-[#002FA7] font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-center px-4 sm:px-6 flex flex-col gap-2 md:gap-4 absolute top-20 xs:top-24 sm:top-28 md:top-auto md:bottom-28 z-[80]"
-              >
-                <div className="flex flex-wrap justify-center gap-x-2 md:gap-x-3">
-                  {nav.pick.split(' ').map((word, wordIndex, words) => {
-                    const baseCharIndex = words.slice(0, wordIndex).join('').length + wordIndex;
-                    return (
-                      <span key={wordIndex} className="inline-flex overflow-hidden pb-1" style={{ lineHeight: 1.1 }}>
-                        {word.split('').map((char, charIndex) => (
-                           <motion.span 
-                             key={charIndex}
-                             variants={{ hidden: { y: "120%" }, show: { y: 0 } }}
-                             initial="hidden"
-                             animate="show"
-                             transition={{ ease: [0.16, 1, 0.3, 1], duration: 1, delay: 0.2 + (baseCharIndex + charIndex) * 0.04 }}
-                             className="inline-block origin-bottom"
-                           >
-                             {char}
-                           </motion.span>
-                        ))}
-                      </span>
-                    );
-                  })}
-                </div>
-                <motion.p
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.9, duration: 0.6 }}
-                  className="md:hidden font-mono text-[11px] uppercase tracking-[0.22em] text-[#002FA7]/60 font-medium"
-                >
-                  {lang === 'fr' ? 'Touchez une carte pour révéler' : 'Tap a card to reveal'}
-                </motion.p>
-              </motion.div>
+              <TypewriterPickCard
+                text={nav.pick}
+                subtext={lang === 'fr' ? 'Touchez une carte pour révéler' : 'Tap a card to reveal'}
+              />
             )}
           </AnimatePresence>
         </div>

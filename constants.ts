@@ -32,7 +32,7 @@ export const PROJECTS: Project[] = [
       fr: 'Exploration stylistique, morphologique et recherche aérodynamique. Présentation de deux concept cars d\'exception : Lobster Car et Porsche 754 Concept. Des esquisses manuelles d\'idéation jusqu\'aux visuels photographiques et planches de style.',
       en: 'Stylistic and morphological exploration with aerodynamic sculpting. Presentation of two concept cars: Lobster Car and Porsche 754 Concept. Spanning from hand sketches and ideation boards to photographic track visuals.'
     },
-    image: './car1.jpg',
+    image: './ppconceptcar.png',
     gallery: ['./car1.jpg', './car4.jpg', './car2.jpg', './car3.jpg', './car5.jpg', './1.jpg', './4.jpg', './2.jpg', './3.jpg']
   },
   {

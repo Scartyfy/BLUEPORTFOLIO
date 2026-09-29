@@ -557,8 +557,8 @@ export const CONCEPT_CARS: ConceptCarData[] = [
         en: 'Formal exploration and proportion board'
       },
       text: {
-        fr: 'La phase d\'esquisse et de recherche graphique permet de tester l\'équilibre des volumes, d\'éprouver la silhouette et d\'ancrer les intentions esthétiques fondamentales avant toute modélisation 3D.',
-        en: 'The sketching and ideation phase tests volume balance, challenges the silhouette, and anchors core aesthetic intent before transitioning to 3D modeling.'
+        fr: "Comme il s'agit d'une voiture homard, j'ai créé tout un univers sur un bateau, en lien direct avec l'océan, afin d'offrir une vraie mise en situation immersive. J'ai ensuite également réalisé un rendu réaliste pour montrer précisément comment elle pourrait rendre et s'intégrer sur route dans la vraie vie.",
+        en: "As this is a lobster-inspired car, I crafted an entire world aboard a ship, in direct dialogue with the ocean, to deliver a truly immersive setting. I then also created a realistic render to depict precisely how it would stand and integrate on the road in real life."
       },
       bullets: {
         fr: [

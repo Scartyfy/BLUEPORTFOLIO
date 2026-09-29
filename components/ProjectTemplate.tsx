@@ -201,6 +201,14 @@ export const ProjectTemplate: React.FC<{
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [activeLightboxIdx, data.galleryImages]);
 
+  // Listen for global close-lightbox event (from top-right close button)
+  useEffect(() => {
+    if (activeLightboxIdx === null) return;
+    const handleCloseEvent = () => closeLightbox();
+    window.addEventListener('close-lightbox', handleCloseEvent);
+    return () => window.removeEventListener('close-lightbox', handleCloseEvent);
+  }, [activeLightboxIdx]);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
@@ -635,40 +643,35 @@ export const ProjectTemplate: React.FC<{
       <AnimatePresence>
         {activeLightboxIdx !== null && data.galleryImages && (
           <motion.div
+            data-lightbox-active="true"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex flex-col justify-between p-4 sm:p-6 md:p-8 select-none"
+            className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex flex-col justify-between p-4 sm:p-6 md:p-8 select-none cursor-zoom-out"
             onClick={closeLightbox}
           >
             {/* Top Bar */}
             <div
-              className="w-full flex items-center justify-between text-white z-20"
+              className="w-full flex items-center justify-between text-white z-20 pr-16 md:pr-20"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="font-mono text-xs sm:text-sm uppercase tracking-wider text-white/70">
                 <span className="text-white font-bold">{activeLightboxIdx + 1}</span> / {data.galleryImages.length} — {data.title}
               </div>
-              <button
-                type="button"
-                onClick={closeLightbox}
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/25 active:scale-95 flex items-center justify-center text-white transition-all cursor-pointer"
-                aria-label="Close"
-              >
-                <X size={20} />
-              </button>
             </div>
 
             {/* Center Image with Prev / Next */}
             <div
               className="relative flex-1 flex items-center justify-center my-2 max-h-[82vh]"
-              onClick={(e) => e.stopPropagation()}
             >
               {data.galleryImages.length > 1 && (
                 <button
                   type="button"
-                  onClick={prevLightbox}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    prevLightbox();
+                  }}
                   className="absolute left-2 sm:left-4 z-30 w-11 h-11 rounded-full bg-black/50 hover:bg-white hover:text-black border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer active:scale-90"
                   aria-label="Previous image"
                 >
@@ -686,18 +689,22 @@ export const ProjectTemplate: React.FC<{
                       : data.galleryImages[activeLightboxIdx].title?.[lang] || 'Prototype'
                   }
                   referrerPolicy="no-referrer"
+                  onClick={(e) => e.stopPropagation()}
                   initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.96 }}
                   transition={{ duration: 0.25 }}
-                  className="max-w-[92vw] max-h-[78vh] w-auto h-auto object-contain rounded-lg shadow-2xl"
+                  className="max-w-[92vw] max-h-[78vh] w-auto h-auto object-contain rounded-lg shadow-2xl cursor-default"
                 />
               </AnimatePresence>
 
               {data.galleryImages.length > 1 && (
                 <button
                   type="button"
-                  onClick={nextLightbox}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    nextLightbox();
+                  }}
                   className="absolute right-2 sm:right-4 z-30 w-11 h-11 rounded-full bg-black/50 hover:bg-white hover:text-black border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer active:scale-90"
                   aria-label="Next image"
                 >

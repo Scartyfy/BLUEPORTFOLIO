@@ -11,37 +11,45 @@ export const getProjectData = (id: string, lang: Language) => {
       contextTitle: "La Problématique & Le Défi",
       contextText: "À côté de mes études, avec deux amis, nous avons monté une start-up qui nous permet d'appliquer toutes les compétences apprises à l'école dans un projet concret. Cela me permet d'aller encore plus loin et de monter en compétence sur de nombreux sujets qui touchent à l'entrepreneuriat.",
       concept: {
-        title: "Le Concept",
-        text: "That's My Jam est né d'une ambition simple : briser le mur invisible entre la scène et la fosse.\n\nNous avons conçu une plateforme web interactive qui transforme les spectateurs en acteurs de l'événement. Le public vote en temps réel pour ses morceaux préférés depuis son smartphone, tandis que l'artiste (DJ ou groupe) reçoit les tendances en direct pour adapter sa setlist et créer une synergie électrique dans la salle.",
+        title: lang === 'fr' ? "Le Concept & Fonctionnement" : "The Concept & How It Works",
+        text: lang === 'fr'
+          ? "That's My Jam est né d'une ambition simple : briser le mur invisible entre la scène et la fosse pour transformer les spectateurs en véritables acteurs de l'événement.\n\nConcrètement, le public est invité à voter en temps réel en scannant un QR code affiché dans la salle ou projeté sur scène, directement depuis son smartphone et sans aucune application à installer. Le groupe ou le DJ met à disposition l'ensemble des sons et des morceaux pouvant être joués durant la soirée. Sur scène, les artistes reçoivent en direct les votes et les tendances du public, ce qui leur permet d'adapter l'ambiance de la salle instantanément, d'ajuster leur setlist en direct et de répondre au mieux aux attentes et à l'énergie de la foule."
+          : "That's My Jam was born from a simple ambition: breaking the invisible wall between the stage and the crowd to turn spectators into active participants in the live experience.\n\nIn practice, the audience is invited to vote in real time simply by scanning a QR code displayed across the venue or projected on stage, directly from their smartphone without installing any app. The band or DJ uploads all the tracks and sounds that can be played during the performance. On stage, artists receive live incoming votes and trends from the room, enabling them to instantly modulate the atmosphere, adapt their setlist dynamically, and respond perfectly to the crowd's energy and expectations.",
         image: "https://drive.google.com/thumbnail?id=1FHJs5vCDogyqyLkG-C4bg9UHaSMu4lYn&sz=w2000"
       },
-      techTitle: "Compétences Appliquées",
+      techTitle: lang === 'fr' ? "Compétences Appliquées" : "Applied Skills",
       skills: true,
       skillsList: [
         {
           label: "Relational Database",
-          text: "Modélisation et requêtes via base de données relationnelle",
-          details: "Mise en pratique de l'ingénierie apprise à l'école avec la création d'une base de données relationnelle robuste pour gérer les salles, les utilisateurs et les votes en temps réel.",
+          text: lang === 'fr' ? "Modélisation et requêtes via base de données relationnelle" : "Relational database modeling and queries",
+          details: lang === 'fr'
+            ? "Mise en pratique de l'ingénierie apprise à l'école avec la création d'une base de données relationnelle robuste pour gérer les salles, les utilisateurs et les votes en temps réel."
+            : "Practical application of software engineering with a robust relational database managing live venues, users, and real-time votes.",
           image: "https://drive.google.com/thumbnail?id=1EoFttAcjlnFPrtDQDddkxs54gTrCPSP-&sz=w1000"
         },
         {
           label: "Interface UX/UI",
-          text: "Clarté, accessibilité et compréhension immédiate",
-          details: "Création d'une interface claire, accessible et compréhensible pour tout le monde, assurant qu'un invité peu technophile puisse s'en servir immédiatement lors d'un événement festif.",
+          text: lang === 'fr' ? "Clarté, accessibilité et compréhension immédiate" : "Clarity, accessibility, and immediate onboarding",
+          details: lang === 'fr'
+            ? "Création d'une interface ultra-accessible via scan de QR code, pensée pour un vote fluide en 3 secondes dans une salle de concert sombre et sans aucune friction de connexion."
+            : "Creation of an ultra-accessible interface via QR code scan, designed for smooth 3-second voting in dark concert venues without login friction.",
           images: [
-            { src: "https://drive.google.com/thumbnail?id=1ipGpwDlo4zdXIgsCYGKFpZoUefeTmQw9&sz=w1000", label: "Vue Public" },
+            { src: "https://drive.google.com/thumbnail?id=1ipGpwDlo4zdXIgsCYGKFpZoUefeTmQw9&sz=w1000", label: lang === 'fr' ? "Vue Public" : "Public View" },
             { src: [
                 "https://drive.google.com/thumbnail?id=1DgjrZ3QifQYEQo_G4wJ2jDkKxYUg3nbK&sz=w1000",
                 "https://drive.google.com/thumbnail?id=1RzPdPqclgXampDIvFUq4dv8LHGbhgqTO&sz=w1000"
               ], 
-              label: "Vue Artiste" 
+              label: lang === 'fr' ? "Vue Artiste" : "Artist View" 
             }
           ]
         },
         {
           label: "Design d'Expérience",
-          text: "Créer un dialogue continu avec le public",
-          details: "Le design d'expérience a été pensé pour recréer du lien et créer un fort engagement envers le groupe. Il s'agit d'instaurer un vrai dialogue interactif entre les personnes présentes dans la salle et le groupe ou le DJ sur scène."
+          text: lang === 'fr' ? "Créer un dialogue continu avec le public" : "Continuous dialogue with the live crowd",
+          details: lang === 'fr'
+            ? "Conception d'une boucle interactive en temps réel : le public vote via QR code, le groupe visualise en direct les tendances sur scène et module l'ambiance sonore pour une communion totale."
+            : "Designing a real-time interactive loop: the crowd votes via QR code, the band visualizes live trends on stage and modulates sound atmosphere for total communion."
         }
       ],
       resultTitle: "Le Résultat & L'Apprentissage",
@@ -216,76 +224,26 @@ export const getProjectData = (id: string, lang: Language) => {
       }
     },
     'p4': {
-      subtitle: "Conception Interface",
-      title: "Maquette APP UX/UI",
-      headerDesc: "Ergonomie & Design Visuel",
-      contextTitle: "La Problématique & Le Défi",
-      contextText: "L'objectif était de concevoir une maquette d'application de bout en bout, en articulant les méthodes de l'UX design avec le raffinement de l'interface graphique (UI). Le défi consistait à résoudre des problèmes complexes tout en offrant une expérience sans friction, digne des standards de l'industrie.",
-      techTitle: "Observations & Recherches",
-      skills: true,
-      skillsList: [
-        {
-          label: "Recherche Utilisateur",
-          text: "Cartographie des Parcours & Pain Points",
-          details: "L'empathie est au cœur du processus. Avant de tracer la moindre ligne de pixel, j'ai mené des interviews et des tests d'utilisabilité pour comprendre les véritables frictions des utilisateurs. Les observations ont révélé que la charge cognitive était trop élevée sur les écrans clés.",
-          image: "https://images.unsplash.com/photo-1581291518196-7bb18ef77a28?auto=format&fit=crop&q=80&w=1000",
-          quotes: [
-            { text: "Je suis souvent perdu au moment de valider, il y a trop d'informations.", author: "Utilisateur Test" },
-            { text: "Je veux juste que ce soit rapide et que je n'aie pas à réfléchir.", author: "Utilisateur Test" }
-          ]
-        },
-        {
-          label: "Architecture de l'Info",
-          text: "Wireframing & Structuration",
-          details: "La restructuration de l'architecture de l'information s'est traduite par la création de wireframes basse-fidélité. L'objectif : définir une hiérarchie claire et prioriser les actions primaires (Call to Action) avant d'appliquer la surcouche visuelle.",
-          images: [
-            { src: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&q=80&w=1000", label: "Wireframes" },
-            { src: "https://images.unsplash.com/photo-1618761714954-0b8cd0026356?auto=format&fit=crop&q=80&w=1000", label: "User Flow" }
-          ]
-        },
-        {
-          label: "Interface UX/UI",
-          text: "Design System & Micro-interactions",
-          details: "Le design visuel a été pensé pour être minimaliste, accessible et engageant. Un Design System complet a été mis en place (couleurs, typographie, composants réutilisables) pour garantir une cohérence parfaite sur l'ensemble de l'application.",
-          images: [
-            { src: ["https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=1000", "https://images.unsplash.com/photo-1542744094-24638ea0b3b5?auto=format&fit=crop&q=80&w=1000"], label: "Design System" },
-            { src: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=1000", label: "Composants" }
-          ]
-        }
-      ],
-      postResearchText: "Constat :\n\nL'expérience actuelle manquait de fluidité. La nouvelle architecture devait impérativement guider l'utilisateur naturellement vers son but, en utilisant le design visuel non pas comme décoration, mais comme outil de compréhension et de hiérarchie.",
-      processTitle: "Solution & Parcours",
-      steps: [
-        {
-          title: "Le Flow d'Onboarding",
-          desc: "Un processus d'accueil réduit à 3 étapes claires, permettant à l'utilisateur de comprendre immédiatement la valeur de l'application sans friction à l'inscription.",
-          image: "https://images.unsplash.com/photo-1616423640778-28d1b53229bd?auto=format&fit=crop&q=80&w=1000",
-          image2: "https://images.unsplash.com/photo-1616423641405-b6d4c5520e5c?auto=format&fit=crop&q=80&w=1000"
-        },
-        {
-          title: "Dashboard Principal",
-          desc: "L'écran central a été épuré pour mettre en évidence les métriques clés. Utilisation des principes de la Gestalt pour regrouper les informations logiquement.",
-          blocks: [
-            { title: "Hiérarchie", text: "Mise en avant des actions principales via des contrastes forts." },
-            { title: "Accessibilité", text: "Vérification des contrastes typographiques pour les normes WCAG AA." }
-          ],
-          image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000"
-        },
-        {
-          title: "Prototypage & Animations",
-          desc: "L'intégration de micro-interactions (hover states, transitions de pages douces) donne vie à l'interface et fournit un feedback immédiat à l'utilisateur, renforçant le sentiment de qualité.",
-          image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1000",
-          image2: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&q=80&w=1000"
-        }
-      ],
-      resultTitle: "Le Résultat & L'Apprentissage",
-      resultText: "Cette conception UX/UI met en évidence l'importance primordiale de placer l'utilisateur final au centre de chaque décision créative et fonctionnelle. Le prototype interactif final offre une navigation fluide, validée par des tests utilisateurs concluant à une baisse significative du taux d'abandon.",
+      subtitle: "",
+      title: lang === 'fr' ? "Maquette APP UX/UI" : "UX/UI App Prototype",
+      headerDesc: "",
+      contextTitle: lang === 'fr' ? "Le Contexte & Le Défi" : "Context & Challenge",
+      contextText: lang === 'fr'
+        ? "Comment se souvenir de notre visite au musée de façon ludique et instructive ? Conception d'une application après-musée pour transformer l'ancrage mémoriel en expérience sociale et interactive à travers le grattage et le jeu."
+        : "How to remember our museum visit in a fun and educational way? Designing a post-museum companion app to transform memory retention into an interactive, social experience through scratch mechanics and games.",
+      techTitle: lang === 'fr' ? "Compétences & Outils" : "Skills & Tools",
+      skills: {
+        col1Label: lang === 'fr' ? "Outils" : "Tools",
+        col1Text: "Figma, Illustrator, Miro",
+        col2Label: "Design",
+        col2Text: lang === 'fr' ? "Enquête terrain, User Journey, Wireframes" : "Field research, User Journey, Wireframes",
+        col3Label: "UX/UI",
+        col3Text: lang === 'fr' ? "Design System, Maquettage, Tests utilisateurs" : "Design System, Mockups, User testing"
+      },
       images: {
         heroBg: "https://drive.google.com/thumbnail?id=1jJGwkYIGr3go1w2FGDS6b6XGvN1AarIy&sz=w2000",
-        context: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&q=80&w=1000",
-        resultBg: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=2000"
       },
-      pdfUrl: "https://drive.google.com/file/d/1jJGwkYIGr3go1w2FGDS6b6XGvN1AarIy/preview"
+      slides: []
     },
     'p5': {
       subtitle: lang === 'fr' ? "FabLab & Prototypage Physique" : "FabLab & Physical Prototyping",

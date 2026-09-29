@@ -109,7 +109,7 @@ export const PhotoshopTransition: React.FC<PhotoshopTransitionProps> = ({ text, 
         style={{ left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }}
       >
         <div className="relative">
-            <MousePointer2 size={28} fill="white" fillOpacity={0.9} stroke="rgba(0,0,0,0.8)" strokeWidth={1.5} className="text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]" />
+            <MousePointer2 size={28} fill="white" fillOpacity={0.9} stroke="rgba(0,0,0,0.8)" strokeWidth={1.5} className="text-white" />
         </div>
       </motion.div>
 
@@ -133,7 +133,7 @@ export const PhotoshopTransition: React.FC<PhotoshopTransitionProps> = ({ text, 
             style={{ transformStyle: 'preserve-3d' }}
           >
             <motion.div className="relative">
-              <Folder size={120} className="text-white drop-shadow-[0_0_40px_rgba(255,255,255,0.25)]" fill="white" fillOpacity={1} stroke="white" strokeWidth={0.5} style={{ filter: 'url(#liquid)' }} />
+              <Folder size={120} className="text-white" fill="white" fillOpacity={1} stroke="white" strokeWidth={0.5} style={{ filter: 'url(#liquid)' }} />
             </motion.div>
           </motion.div>
         )}

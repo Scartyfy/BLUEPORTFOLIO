@@ -7,7 +7,7 @@ import {
   AnimatePresence,
 } from 'motion/react';
 import { Language } from '../types';
-import { X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
 import { UX_PROJECT_DATA } from './uxProjectData';
 
 interface UxProjectTemplateProps {
@@ -37,6 +37,12 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
     list.push({ src: data.appPrototype.arborescence.image, caption: data.appPrototype.arborescence.title[lang] });
     data.appPrototype.sketches.images.forEach((s) => list.push({ src: s.image, caption: s.caption?.[lang] }));
     data.appPrototype.mockups.images.forEach((s) => list.push({ src: s.image, caption: s.caption?.[lang] }));
+    if (data.appPrototype.userTesting.image) {
+      list.push({ src: data.appPrototype.userTesting.image, caption: data.appPrototype.userTesting.title[lang] });
+    }
+    if (data.appPrototype.usageScenario.overviewImage) {
+      list.push({ src: data.appPrototype.usageScenario.overviewImage, caption: data.appPrototype.usageScenario.title[lang] });
+    }
     data.appPrototype.usageScenario.steps.forEach((s) => list.push({ src: s.image, caption: `${s.stepNumber}. ${s.title[lang]}` }));
     setAllImages(list);
   }, [lang]);
@@ -76,6 +82,14 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
     return () => window.removeEventListener('keydown', handleKey);
   }, [lightboxImage, lightboxIdx, allImages]);
 
+  // Listen for global close-lightbox event (from top-right close button)
+  useEffect(() => {
+    if (!lightboxImage) return;
+    const handleCloseEvent = () => closeLightbox();
+    window.addEventListener('close-lightbox', handleCloseEvent);
+    return () => window.removeEventListener('close-lightbox', handleCloseEvent);
+  }, [lightboxImage]);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end'],
@@ -104,17 +118,6 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
             'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")',
         }}
       />
-
-      {/* Floating Close Button */}
-      {onClose && (
-        <button
-          onClick={onClose}
-          className="fixed top-6 right-6 z-50 w-12 h-12 rounded-full bg-[#002FA7] text-white flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-all cursor-pointer"
-          aria-label="Close"
-        >
-          <X size={20} />
-        </button>
-      )}
 
       {/* =========================================================================
           HERO SECTION — EXACT SAME DA & BRUTALIST GRID AS OTHER PROJECTS
@@ -286,7 +289,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
               </span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {data.fieldResearch.slides.map((slide, idx) => (
                 <div
                   key={slide.id}
@@ -636,17 +639,44 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
 
           {/* 4.4 TEST UTILISATEUR */}
           <div className="p-8 md:p-12 rounded-3xl bg-white border border-[#002FA7]/15 flex flex-col gap-8 shadow-sm">
-            <div>
-              <span className="font-mono text-xs uppercase tracking-widest text-[#002FA7]/60 block mb-1">
-                Évaluation & Enseignements
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+              <div>
+                <span className="font-mono text-xs uppercase tracking-widest text-[#002FA7]/60 block mb-1">
+                  Évaluation &amp; Enseignements
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-display font-medium">
+                  {data.appPrototype.userTesting.title[lang]}
+                </h3>
+                <p className="text-[#002FA7]/80 text-base mt-2 max-w-3xl font-normal">
+                  {data.appPrototype.userTesting.desc[lang]}
+                </p>
+              </div>
+              <span className="text-xs font-mono text-[#002FA7]/60">
+                {lang === 'fr' ? 'Cliquer pour examiner' : 'Click to inspect'}
               </span>
-              <h3 className="text-2xl sm:text-3xl font-display font-medium">
-                {data.appPrototype.userTesting.title[lang]}
-              </h3>
-              <p className="text-[#002FA7]/80 text-base mt-2 max-w-3xl font-normal">
-                {data.appPrototype.userTesting.desc[lang]}
-              </p>
             </div>
+
+            {/* Test Utilisateur Slide Visual */}
+            {data.appPrototype.userTesting.image && (
+              <div
+                onClick={() =>
+                  openLightbox(
+                    data.appPrototype.userTesting.image!,
+                    data.appPrototype.userTesting.title[lang]
+                  )
+                }
+                className="relative w-full aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden bg-neutral-100 border border-[#002FA7]/15 cursor-zoom-in group shadow-md"
+              >
+                <img
+                  src={data.appPrototype.userTesting.image}
+                  alt="Planche Test Utilisateur"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs font-mono text-[#002FA7] shadow">
+                  Zoom
+                </div>
+              </div>
+            )}
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {data.appPrototype.userTesting.takeaways.map((item, idx) => (
@@ -667,17 +697,44 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
 
           {/* 4.5 SCÉNARIO D'USAGE ILLUSTRÉ */}
           <div className="flex flex-col gap-8">
-            <div>
-              <span className="font-mono text-xs uppercase tracking-widest text-[#002FA7]/60 block mb-1">
-                Parcours Illustré
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+              <div>
+                <span className="font-mono text-xs uppercase tracking-widest text-[#002FA7]/60 block mb-1">
+                  Parcours Illustré
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-display font-medium">
+                  {data.appPrototype.usageScenario.title[lang]}
+                </h3>
+                <p className="text-[#002FA7]/80 text-base mt-2 max-w-2xl font-normal">
+                  {data.appPrototype.usageScenario.desc[lang]}
+                </p>
+              </div>
+              <span className="text-xs font-mono text-[#002FA7]/60">
+                {lang === 'fr' ? 'Cliquer pour examiner' : 'Click to inspect'}
               </span>
-              <h3 className="text-2xl sm:text-3xl font-display font-medium">
-                {data.appPrototype.usageScenario.title[lang]}
-              </h3>
-              <p className="text-[#002FA7]/80 text-base mt-2 max-w-2xl font-normal">
-                {data.appPrototype.usageScenario.desc[lang]}
-              </p>
             </div>
+
+            {/* Scénario d'Usage Storyboard Visual */}
+            {data.appPrototype.usageScenario.overviewImage && (
+              <div
+                onClick={() =>
+                  openLightbox(
+                    data.appPrototype.usageScenario.overviewImage!,
+                    data.appPrototype.usageScenario.title[lang]
+                  )
+                }
+                className="relative w-full aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden bg-neutral-100 border border-[#002FA7]/15 cursor-zoom-in group shadow-md"
+              >
+                <img
+                  src={data.appPrototype.usageScenario.overviewImage}
+                  alt="Planche Scénario d'Usage"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs font-mono text-[#002FA7] shadow">
+                  Zoom
+                </div>
+              </div>
+            )}
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {data.appPrototype.usageScenario.steps.map((st) => (
@@ -716,41 +773,36 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
       <AnimatePresence>
         {lightboxImage && (
           <motion.div
+            data-lightbox-active="true"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex flex-col justify-between p-4 sm:p-6 md:p-8 select-none"
+            className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex flex-col justify-between p-4 sm:p-6 md:p-8 select-none cursor-zoom-out"
             onClick={closeLightbox}
           >
             {/* Top Bar */}
             <div
-              className="w-full flex items-center justify-between text-white z-20"
+              className="w-full flex items-center justify-between text-white z-20 pr-16 md:pr-20"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="font-mono text-xs sm:text-sm uppercase tracking-wider text-white/70">
                 <span className="text-white font-bold">{lightboxIdx + 1}</span> / {allImages.length}
                 {lightboxImage.caption && ` — ${lightboxImage.caption}`}
               </div>
-              <button
-                type="button"
-                onClick={closeLightbox}
-                className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/25 active:scale-95 flex items-center justify-center text-white transition-all cursor-pointer"
-                aria-label="Close"
-              >
-                <X size={20} />
-              </button>
             </div>
 
             {/* Center Image with Prev / Next */}
             <div
               className="relative flex-1 flex items-center justify-center my-2 max-h-[82vh]"
-              onClick={(e) => e.stopPropagation()}
             >
               {allImages.length > 1 && (
                 <button
                   type="button"
-                  onClick={prevLightbox}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    prevLightbox();
+                  }}
                   className="absolute left-2 sm:left-4 z-30 w-11 h-11 rounded-full bg-black/50 hover:bg-white hover:text-black border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer active:scale-90"
                   aria-label="Previous image"
                 >
@@ -763,18 +815,22 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
                   key={lightboxImage.src}
                   src={lightboxImage.src}
                   alt={lightboxImage.caption || 'Preview'}
+                  onClick={(e) => e.stopPropagation()}
                   initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.96 }}
                   transition={{ duration: 0.25 }}
-                  className="max-w-[92vw] max-h-[78vh] w-auto h-auto object-contain rounded-lg shadow-2xl"
+                  className="max-w-[92vw] max-h-[78vh] w-auto h-auto object-contain rounded-lg shadow-2xl cursor-default"
                 />
               </AnimatePresence>
 
               {allImages.length > 1 && (
                 <button
                   type="button"
-                  onClick={nextLightbox}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    nextLightbox();
+                  }}
                   className="absolute right-2 sm:right-4 z-30 w-11 h-11 rounded-full bg-black/50 hover:bg-white hover:text-black border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer active:scale-90"
                   aria-label="Next image"
                 >

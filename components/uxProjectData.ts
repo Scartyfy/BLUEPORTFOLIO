@@ -107,11 +107,13 @@ export interface UxProjectContent {
     userTesting: {
       title: { fr: string; en: string };
       desc: { fr: string; en: string };
+      image?: string;
       takeaways: Array<{ fr: string; en: string }>;
     };
     usageScenario: {
       title: { fr: string; en: string };
       desc: { fr: string; en: string };
+      overviewImage?: string;
       steps: Array<{
         stepNumber: string;
         title: { fr: string; en: string };
@@ -191,31 +193,47 @@ export const UX_PROJECT_DATA: UxProjectContent = {
       }
     },
     // =========================================================================
-    // SLIDES DE STATISTIQUES (À REMPLACER PAR VOS PROPRES IMAGES)
+    // SLIDES DE RECHERCHE TERRAIN & STATISTIQUES
     // =========================================================================
     slides: [
       {
         id: "stat-slide-1",
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200",
+        image: "./ux/slide_observation_orsay_branly.svg",
         caption: {
-          fr: "Slide Statistique 01 — Répartition des visiteurs et habitudes de visite",
-          en: "Statistic Slide 01 — Visitor breakdown and visiting habits"
+          fr: "Observations In Situ — Musée d'Orsay & Musée du Quai Branly",
+          en: "On-Site Observations — Musée d'Orsay & Musée du Quai Branly"
         }
       },
       {
         id: "stat-slide-2",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200",
+        image: "./ux/slide_stats_juan_prim.svg",
         caption: {
-          fr: "Slide Statistique 02 — Fréquence de capture photo et consultation des cartels",
-          en: "Statistic Slide 02 — Photo taking frequency and plaque reading"
+          fr: "Étude In Situ — Donut d'attention devant « Juan Prim » (Henri Regnault)",
+          en: "Field Study — Attention donut facing “Juan Prim” (Henri Regnault)"
         }
       },
       {
         id: "stat-slide-3",
-        image: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&q=80&w=1200",
+        image: "./ux/slide_stats_victor_navlet.svg",
         caption: {
-          fr: "Slide Statistique 03 — Rétention mémorielle des œuvres post-visite",
-          en: "Statistic Slide 03 — Post-visit artwork memory retention"
+          fr: "Étude In Situ — Donut d'observation devant « Victor Navlet » (Vue de Paris)",
+          en: "Field Study — Observation donut facing “Victor Navlet” (Paris view)"
+        }
+      },
+      {
+        id: "stat-slide-4",
+        image: "./ux/slide_stats_photos.svg",
+        caption: {
+          fr: "Interviews In Situ — « Pourquoi prenez-vous des photos ? » (37.7% Si belle, 37.7% Partage, 24.6% Étude)",
+          en: "On-Site Interviews — “Why do you take photos?” (37.7% Aesthetic, 37.7% Share, 24.6% Study)"
+        }
+      },
+      {
+        id: "stat-slide-5",
+        image: "./ux/slide_stats_usage.svg",
+        caption: {
+          fr: "Interviews In Situ — « Qu'en faites-vous ? » (62.3% Partage, 24.6% Travail, 13.2% Archive)",
+          en: "On-Site Interviews — “What do you do with them?” (62.3% Share, 24.6% Work, 13.2% Archive)"
         }
       }
     ],
@@ -437,32 +455,32 @@ export const UX_PROJECT_DATA: UxProjectContent = {
       en: "Journey mapping — Before, During & After the Visit"
     },
     intro: {
-      fr: "Identification des étapes clés, des points de contact et des moments de rupture vécus par les visiteurs sur le terrain.",
-      en: "Mapping key milestones, touchpoints, and friction moments experienced by visitors on-site."
+      fr: "Identification des étapes clés, des points de contact, des courbes émotionnelles et des opportunités identifiées sur le terrain.",
+      en: "Mapping key milestones, touchpoints, emotional curves, and opportunities observed on-site."
     },
     images: [
       {
         id: "uj-1",
-        image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&q=80&w=1400",
+        image: "./ux/slide_user_journey_1.svg",
         caption: {
-          fr: "User Journey 01 — Cartographie chronologique",
-          en: "User Journey 01 — Chronological mapping"
+          fr: "User Journey Phase 1 — Avant la visite (Idée de visite & Organisation)",
+          en: "User Journey Phase 1 — Before Visit (Idea & Organization)"
         }
       },
       {
         id: "uj-2",
-        image: "https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&q=80&w=1400",
+        image: "./ux/slide_user_journey_2.svg",
         caption: {
-          fr: "User Journey 02 — Courbe d'engagement & Décrochages",
-          en: "User Journey 02 — Engagement curve & Drop-offs"
+          fr: "User Journey Phase 2 — Pendant la visite (Arrivée, Déambulation & Fatigue)",
+          en: "User Journey Phase 2 — During Visit (Arrival, Browsing & Fatigue)"
         }
       },
       {
         id: "uj-3",
-        image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1400",
+        image: "./ux/slide_user_journey_3.svg",
         caption: {
-          fr: "User Journey 03 — Opportunités de conception",
-          en: "User Journey 03 — Design opportunities"
+          fr: "User Journey Phase 3 — Après la visite (Notification déclic & Rétention mémorielle)",
+          en: "User Journey Phase 3 — Post-Visit (Trigger notification & Memory retention)"
         }
       }
     ]
@@ -481,40 +499,40 @@ export const UX_PROJECT_DATA: UxProjectContent = {
       en: "Visual moodboard, museum architecture & typography"
     },
     intro: {
-      fr: "Recherche iconographique et références graphiques : sobriété typographique, mise en valeur de l'œuvre et discrétion de l'interface.",
-      en: "Iconographic research and graphic benchmarks: typographic restraint, artwork prominence, and interface discretion."
+      fr: "Recherche iconographique et références graphiques : mécaniques de grattage ludique (FDJ), partage instantané (BeReal/Locket), gamification (DuoLingo) et sobriété suisse.",
+      en: "Iconographic research and graphic benchmarks: scratch-off mechanics (FDJ), instant sharing (BeReal/Locket), gamification (DuoLingo), and Swiss typographic restraint."
     },
     images: [
       {
         id: "insp-1",
-        image: "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&q=80&w=1200",
+        image: "./ux/slide_inspirations.svg",
         caption: {
-          fr: "Inspiration 01 — Scénographie & Espace",
-          en: "Inspiration 01 — Scenography & Space"
+          fr: "Inspirations — Moodboard de références (FDJ Grattage, BeReal & DuoLingo)",
+          en: "Inspirations — Reference Moodboard (FDJ Scratch, BeReal & DuoLingo)"
         }
       },
       {
         id: "insp-2",
-        image: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?auto=format&fit=crop&q=80&w=1200",
+        image: "./ux/slide_inspirations_gamification.svg",
         caption: {
-          fr: "Inspiration 02 — Typographie & Hiérarchie",
-          en: "Inspiration 02 — Typography & Hierarchy"
+          fr: "Inspirations — Gamification & Streaks de visite 🔥",
+          en: "Inspirations — Gamification & Visit Streaks 🔥"
         }
       },
       {
         id: "insp-3",
-        image: "https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&q=80&w=1200",
+        image: "./ux/slide_inspirations_scenography.svg",
         caption: {
-          fr: "Inspiration 03 — Matières & Textures",
-          en: "Inspiration 03 — Materials & Textures"
+          fr: "Inspirations — Scénographie & Silence visuel muséal",
+          en: "Inspirations — Scenography & Museum Visual Restraint"
         }
       },
       {
         id: "insp-4",
-        image: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&fit=crop&q=80&w=1200",
+        image: "./ux/slide_inspirations_typography.svg",
         caption: {
-          fr: "Inspiration 04 — Micro-interactions discrètes",
-          en: "Inspiration 04 — Subtle micro-interactions"
+          fr: "Inspirations — Typographie Suisse & Cartels épurés",
+          en: "Inspirations — Swiss Typography & Minimal Wall Labels"
         }
       }
     ]
@@ -539,10 +557,10 @@ export const UX_PROJECT_DATA: UxProjectContent = {
         en: "Information Architecture"
       },
       desc: {
-        fr: "Structure épurée articulée autour de la navigation in situ, de la capture rapide et du carnet personnel post-visite.",
-        en: "Clean structure articulated around on-site navigation, quick capture, and personal post-visit log."
+        fr: "Structure épurée articulée autour de 5 piliers : Accueil (carte à gratter & QCM), Ma galerie, Studio de jeux, Ajout d'amis et Compte.",
+        en: "Clean structure articulated around 5 pillars: Home (scratch card & quiz), My gallery, Game studio, Friend add, and Account."
       },
-      image: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&q=80&w=1400"
+      image: "./ux/slide_arborescence.svg"
     },
 
     sketches: {
@@ -551,24 +569,24 @@ export const UX_PROJECT_DATA: UxProjectContent = {
         en: "Sketching Boards"
       },
       desc: {
-        fr: "Recherches exploratoires sur papier : cadrage des flux, dispositions d'écrans et micro-interactions.",
-        en: "Paper wireframes: exploring user flows, screen layouts, and gestures prior to Figma execution."
+        fr: "Recherches exploratoires sur papier : cadrage des flux, ergonomie du pouce (one-thumb reach) et interactions de grattage tactile.",
+        en: "Paper wireframes: exploring user flows, one-thumb ergonomic reach, and tactile scratch gestures prior to Figma execution."
       },
       images: [
         {
           id: "sk-1",
-          image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&q=80&w=1200",
+          image: "./ux/slide_sketch_1.svg",
           caption: {
-            fr: "Planche Sketch 01 — Wireframing de l'écran principal",
-            en: "Sketch Board 01 — Main screen wireframing"
+            fr: "Planche Sketch 01 — Idéation papier & ergonomie one-thumb",
+            en: "Sketch Board 01 — Paper wireframing & one-thumb ergonomics"
           }
         },
         {
           id: "sk-2",
-          image: "https://images.unsplash.com/photo-1618761714954-0b8cd0026356?auto=format&fit=crop&q=80&w=1200",
+          image: "./ux/slide_sketch_2.svg",
           caption: {
-            fr: "Planche Sketch 02 — Gestuelle de capture et zoom",
-            en: "Sketch Board 02 — Capture gesture & zoom"
+            fr: "Planche Sketch 02 — Gestuelles de grattage & mécaniques de jeux",
+            en: "Sketch Board 02 — Tactile scratch gestures & mini-game mechanics"
           }
         }
       ]
@@ -580,24 +598,24 @@ export const UX_PROJECT_DATA: UxProjectContent = {
         en: "Contextual UI Mockups"
       },
       desc: {
-        fr: "Deux rendus illustrant l'application prise en main en conditions réelles dans les galeries du musée.",
-        en: "Two high-fidelity mockups depicting the companion app held in real conditions across museum galleries."
+        fr: "Deux planches de rendus haute-fidélité illustrant l'application en conditions réelles et les différents modes de jeux.",
+        en: "Two high-fidelity mockup boards depicting the companion app held in real conditions and game studio modes."
       },
       images: [
         {
           id: "mk-1",
-          image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=1200",
+          image: "./ux/slide_mockup_1.svg",
           caption: {
-            fr: "Rendu 01 — Prise en main in situ devant une œuvre",
-            en: "Mockup 01 — Held in front of an artwork"
+            fr: "Rendu 01 — Écrans principaux (Accueil 3🔥, Ma Galerie, Ajout d'amis, Compte)",
+            en: "Mockup 01 — Main screens (Home 3🔥, My Gallery, Friends, Account)"
           }
         },
         {
           id: "mk-2",
-          image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=1200",
+          image: "./ux/slide_mockup_2.svg",
           caption: {
-            fr: "Rendu 02 — Consultation du carnet lors d'une pause",
-            en: "Mockup 02 — Browsing the visit book during a break"
+            fr: "Rendu 02 — Studio de Jeux (Rat de Musée, Gartic Master, IA ou Vrai ?)",
+            en: "Mockup 02 — Game Studio (Museum Rat, Gartic Master, AI or Real?)"
           }
         }
       ]
@@ -609,9 +627,10 @@ export const UX_PROJECT_DATA: UxProjectContent = {
         en: "User Testing"
       },
       desc: {
-        fr: "Retours d'expérience et enseignements observés lors des tests du prototype interactif.",
-        en: "Feedback and learnings observed during interactive prototype testing sessions."
+        fr: "Expérimentations in situ dans les galeries du musée avec la mascotte peluche Rat de Musée, protocole de questions et axes d'amélioration.",
+        en: "On-site testing across museum galleries with the Museum Rat mascot, task protocol, and design iterations."
       },
+      image: "./ux/slide_user_testing.svg",
       takeaways: [
         {
           fr: "L'interface doit rester en retrait pendant la contemplation pour ne jamais s'interposer entre le regard et l'œuvre.",
@@ -634,9 +653,10 @@ export const UX_PROJECT_DATA: UxProjectContent = {
         en: "Illustrated Usage Scenario"
       },
       desc: {
-        fr: "Déroulement de l'expérience d'un visiteur, de son arrivée dans les galeries jusqu'à la redécouverte chez lui.",
-        en: "Step-by-step visitor journey, from museum entry through gallery browsing to post-visit discovery at home."
+        fr: "Déroulement pas-à-pas de l'expérience d'un visiteur, de son arrivée dans les galeries jusqu'à l'ancrage mémoriel chez lui 3 jours plus tard.",
+        en: "Step-by-step visitor journey, from museum entry through gallery browsing to memory consolidation at home 3 days later."
       },
+      overviewImage: "./ux/slide_scenario_1.svg",
       steps: [
         {
           stepNumber: "01",
@@ -648,43 +668,43 @@ export const UX_PROJECT_DATA: UxProjectContent = {
             fr: "Le visiteur entre dans le musée. L'application s'adapte sans configuration et passe en mode discret.",
             en: "Visitor enters the museum wing. The app detects the room seamlessly and switches into ambient mode."
           },
-          image: "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&fit=crop&q=80&w=1000"
+          image: "./ux/slide_scenario_step1.svg"
         },
         {
           stepNumber: "02",
           title: {
-            fr: "Approche de l'Œuvre",
-            en: "Artwork Approach"
+            fr: "Approche & Prise de Photo",
+            en: "Artwork Approach & 1-Tap Save"
           },
           desc: {
-            fr: "Face à une œuvre, une simple levée de l'appareil affiche le titre et l'auteur sans masquer la vue.",
-            en: "Facing an artwork, lifting the phone gently previews the title and artist without blocking vision."
+            fr: "Face à une œuvre, une photo rapide en 1 geste sauvegarde le tableau et son cartel vérifié.",
+            en: "Facing an artwork, 1 single tap saves the piece into the visit book along with verified context."
           },
-          image: "https://images.unsplash.com/photo-1544967082-d9d25d867d66?auto=format&fit=crop&q=80&w=1000"
+          image: "./ux/slide_scenario_step2.svg"
         },
         {
           stepNumber: "03",
           title: {
-            fr: "Capture en 1 Geste",
-            en: "1-Tap Capture"
+            fr: "Notification Déclic",
+            en: "Trigger Notification"
           },
           desc: {
-            fr: "D'un geste simple, l'œuvre est mémorisée dans le carnet personnel avec son cartel vérifié.",
-            en: "One single tap saves the piece into the personal visit book along with verified curatorial context."
+            fr: "3 jours plus tard à 12h50, notification pop-up : votre tableau du jour est prêt à être gratté !",
+            en: "3 days later at 12:50 PM, notification: your artwork of the day is ready to be revealed!"
           },
-          image: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&q=80&w=1000"
+          image: "./ux/slide_scenario_step3.svg"
         },
         {
           stepNumber: "04",
           title: {
-            fr: "Post-Visite & Mémoire",
-            en: "Post-Visit & Memory"
+            fr: "Grattage & Ancrage Mémoriel",
+            en: "Scratch & Memory Anchoring"
           },
           desc: {
-            fr: "Chez soi ou lors d'une pause, le parcours se consulte comme un carnet de visite clair et partagé.",
-            en: "At home or during a coffee break, the visit crystallizes into an organized visual story."
+            fr: "Le visiteur gratte la carte, mémorise le cartel et l'œuvre s'inscrit durablement dans ses souvenirs.",
+            en: "Visitor scratches the card, answers the quick quiz, and the memory crystallizes forever."
           },
-          image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1000"
+          image: "./ux/slide_scenario_step4.svg"
         }
       ]
     }

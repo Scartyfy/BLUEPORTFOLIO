@@ -7,7 +7,7 @@ import {
   AnimatePresence,
 } from 'motion/react';
 import { Language } from '../types';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { CONCEPT_CARS } from './carProjectData';
 
 interface CarProjectTemplateProps {
@@ -91,6 +91,14 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [lightbox, lightboxIdx, allImagesList]);
+
+  // Listen for global close-lightbox event (from top-right close button)
+  useEffect(() => {
+    if (!lightbox) return;
+    const handleCloseEvent = () => setLightbox(null);
+    window.addEventListener('close-lightbox', handleCloseEvent);
+    return () => window.removeEventListener('close-lightbox', handleCloseEvent);
+  }, [lightbox]);
 
   const openLightbox = (currentSrc: string) => {
     const found = allImagesList.findIndex((i) => i.src === currentSrc);
@@ -517,28 +525,22 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
       <AnimatePresence>
         {lightbox && (
           <motion.div
+            data-lightbox-active="true"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[200] bg-black/95 flex flex-col justify-between p-4 md:p-8"
+            className="fixed inset-0 z-[200] bg-black/95 flex flex-col justify-between p-4 md:p-8 cursor-zoom-out select-none"
             onClick={() => setLightbox(null)}
           >
             {/* Barre haute */}
-            <div className="flex items-center justify-between w-full" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between w-full pr-16 md:pr-20" onClick={(e) => e.stopPropagation()}>
               <span className="text-xs font-mono text-white/60 tracking-widest uppercase">
                 {lightboxIdx + 1} / {allImagesList.length} — {lightbox.concept} — {lightbox.title}
               </span>
-              <button
-                onClick={() => setLightbox(null)}
-                className="w-10 h-10 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors rounded-none"
-                title="Fermer"
-              >
-                <X className="w-5 h-5" />
-              </button>
             </div>
 
             {/* Image principale sans bord rond */}
-            <div className="relative flex-1 flex items-center justify-center my-4 overflow-hidden" onClick={(e) => e.stopPropagation()}>
+            <div className="relative flex-1 flex items-center justify-center my-4 overflow-hidden">
               <motion.img
                 key={lightbox.src}
                 initial={{ opacity: 0 }}
@@ -547,7 +549,8 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
                 transition={{ duration: 0.2 }}
                 src={lightbox.src}
                 alt={lightbox.title}
-                className="max-h-[88vh] max-w-[95vw] object-contain rounded-none select-none"
+                onClick={(e) => e.stopPropagation()}
+                className="max-h-[88vh] max-w-[95vw] object-contain rounded-none select-none cursor-default"
               />
 
               {allImagesList.length > 1 && (

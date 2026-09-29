@@ -184,6 +184,25 @@
         animation: scroll 30s linear infinite;
       }
 
+      /* Seamless Software Marquee */
+      @keyframes skillMarquee {
+        0% { transform: translate3d(0, 0, 0); }
+        100% { transform: translate3d(-50%, 0, 0); }
+      }
+      .animate-skill-marquee {
+        animation: skillMarquee 22s linear infinite;
+        will-change: transform;
+      }
+
+      /* Typewriter Cursor Blink Animation */
+      @keyframes cursor-blink {
+        0%, 49% { opacity: 1; }
+        50%, 100% { opacity: 0; }
+      }
+      .animate-cursor-blink {
+        animation: cursor-blink 0.8s step-end infinite;
+      }
+
       /* --- CUSTOM CURSOR --- */
       .custom-cursor {
         pointer-events: none;
