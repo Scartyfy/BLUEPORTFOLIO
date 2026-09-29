@@ -528,18 +528,11 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[200] bg-black/95 flex flex-col justify-between p-4 md:p-8 cursor-zoom-out select-none"
+            className="fixed inset-0 z-[200] bg-black/95 flex items-center justify-center p-4 md:p-8 cursor-zoom-out select-none"
             onClick={() => setLightbox(null)}
           >
-            {/* Barre haute */}
-            <div className="flex items-center justify-between w-full pr-16 md:pr-20" onClick={(e) => e.stopPropagation()}>
-              <span className="text-xs font-mono text-white/60 tracking-widest uppercase">
-                {lightboxIdx + 1} / {allImagesList.length} — {lightbox.concept} — {lightbox.title}
-              </span>
-            </div>
-
             {/* Image principale sans bord rond */}
-            <div className="relative flex-1 flex items-center justify-center my-4 overflow-hidden">
+            <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
               <motion.img
                 key={lightbox.src}
                 initial={{ opacity: 0 }}
@@ -549,7 +542,7 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
                 src={lightbox.src}
                 alt={lightbox.title}
                 onClick={(e) => e.stopPropagation()}
-                className="max-h-[88vh] max-w-[95vw] object-contain rounded-none select-none cursor-default"
+                className="max-h-[92vh] max-w-[95vw] object-contain rounded-none select-none cursor-default"
               />
 
               {allImagesList.length > 1 && (
@@ -561,7 +554,8 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
                       setLightboxIdx(prev);
                       setLightbox(allImagesList[prev]);
                     }}
-                    className="absolute left-2 md:left-6 w-12 h-12 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors rounded-none"
+                    className="absolute left-2 md:left-6 w-12 h-12 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors rounded-none z-30"
+                    aria-label="Previous image"
                   >
                     <ChevronLeft className="w-6 h-6" />
                   </button>
@@ -572,19 +566,13 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
                       setLightboxIdx(next);
                       setLightbox(allImagesList[next]);
                     }}
-                    className="absolute right-2 md:right-6 w-12 h-12 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors rounded-none"
+                    className="absolute right-2 md:right-6 w-12 h-12 border border-white/30 flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors rounded-none z-30"
+                    aria-label="Next image"
                   >
                     <ChevronRight className="w-6 h-6" />
                   </button>
                 </>
               )}
-            </div>
-
-            {/* Pied de visionneuse */}
-            <div className="w-full text-center" onClick={(e) => e.stopPropagation()}>
-              <p className="text-[11px] font-mono text-white/40 tracking-widest uppercase">
-                ← / → POUR NAVIGUER · ÉCHAP POUR FERMER
-              </p>
             </div>
           </motion.div>
         )}

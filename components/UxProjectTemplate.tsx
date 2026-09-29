@@ -778,23 +778,12 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex flex-col justify-between p-4 sm:p-6 md:p-8 select-none cursor-zoom-out"
+            className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 sm:p-6 md:p-8 select-none cursor-zoom-out"
             onClick={closeLightbox}
           >
-            {/* Top Bar */}
-            <div
-              className="w-full flex items-center justify-between text-white z-20 pr-16 md:pr-20"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="font-mono text-xs sm:text-sm uppercase tracking-wider text-white/70">
-                <span className="text-white font-bold">{lightboxIdx + 1}</span> / {allImages.length}
-                {lightboxImage.caption && ` — ${lightboxImage.caption}`}
-              </div>
-            </div>
-
             {/* Center Image with Prev / Next */}
             <div
-              className="relative flex-1 flex items-center justify-center my-2 max-h-[82vh]"
+              className="relative w-full h-full flex items-center justify-center"
             >
               {allImages.length > 1 && (
                 <button
@@ -803,10 +792,10 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
                     e.stopPropagation();
                     prevLightbox();
                   }}
-                  className="absolute left-2 sm:left-4 z-30 w-11 h-11 rounded-full bg-black/50 hover:bg-white hover:text-black border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer active:scale-90"
+                  className="absolute left-2 sm:left-6 z-30 w-12 h-12 rounded-full bg-black/50 hover:bg-white hover:text-black border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer active:scale-90"
                   aria-label="Previous image"
                 >
-                  <ChevronLeft size={24} />
+                  <ChevronLeft size={26} />
                 </button>
               )}
 
@@ -816,11 +805,11 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
                   src={lightboxImage.src}
                   alt={lightboxImage.caption || 'Preview'}
                   onClick={(e) => e.stopPropagation()}
-                  initial={{ opacity: 0, scale: 0.96 }}
+                  initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.96 }}
-                  transition={{ duration: 0.25 }}
-                  className="max-w-[92vw] max-h-[78vh] w-auto h-auto object-contain rounded-lg shadow-2xl cursor-default"
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.2 }}
+                  className="max-w-[94vw] max-h-[92vh] w-auto h-auto object-contain rounded-lg shadow-2xl cursor-default"
                 />
               </AnimatePresence>
 
@@ -831,23 +820,11 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
                     e.stopPropagation();
                     nextLightbox();
                   }}
-                  className="absolute right-2 sm:right-4 z-30 w-11 h-11 rounded-full bg-black/50 hover:bg-white hover:text-black border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer active:scale-90"
+                  className="absolute right-2 sm:right-6 z-30 w-12 h-12 rounded-full bg-black/50 hover:bg-white hover:text-black border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer active:scale-90"
                   aria-label="Next image"
                 >
-                  <ChevronRight size={24} />
+                  <ChevronRight size={26} />
                 </button>
-              )}
-            </div>
-
-            {/* Bottom Caption */}
-            <div
-              className="w-full text-center text-white z-20 flex flex-col items-center"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {lightboxImage.caption && (
-                <p className="text-xs sm:text-sm text-white/80 font-light max-w-xl">
-                  {lightboxImage.caption}
-                </p>
               )}
             </div>
           </motion.div>
