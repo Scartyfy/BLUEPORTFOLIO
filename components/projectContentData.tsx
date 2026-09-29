@@ -325,6 +325,16 @@ export const getProjectData = (id: string, lang: Language) => {
           id: 'maquette-13',
           image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_9156.JPG`,
           title: lang === 'fr' ? "Finition & Texture" : "Finishing & Texture"
+        },
+        {
+          id: 'maquette-14',
+          image: `${import.meta.env.BASE_URL}photo%20maquette/10.jpg`,
+          title: lang === 'fr' ? "Étude de Modélisation & Volumes" : "Modeling & Volume Study"
+        },
+        {
+          id: 'maquette-15',
+          image: `${import.meta.env.BASE_URL}photo%20maquette/11.jpg`,
+          title: lang === 'fr' ? "Rendu & Présentation Finale" : "Rendering & Final Showcase"
         }
       ]
     },
