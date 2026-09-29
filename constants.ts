@@ -67,12 +67,8 @@ export const PROJECTS: Project[] = [
       fr: 'Dans le cadre de mes études, j\'ai été amené à utiliser la matière et à créer dans un FabLab toutes sortes d\'objets pour illustrer des projets et leur faire prendre vie. C\'est également une pratique que je prolonge dans mes projets personnels pour explorer les matériaux et montrer que je sais manier un peu tout.',
       en: 'Throughout my studies, I was led to work with physical materials and create in FabLabs all kinds of objects to illustrate projects and bring them to life. A practice I also cultivate in personal projects, demonstrating versatility and hands-on making.'
     },
-    image: './photo-maquette/IMG_3207.jpg',
-    gallery: [
-      './photo-maquette/IMG_3145.jpg',
-      './photo-maquette/IMG_3204.jpg',
-      './photo-maquette/IMG_3207.jpg'
-    ]
+    image: 'https://drive.google.com/thumbnail?id=1z-ZZdWXI2DyLbJ_6nSgWxZaKrIDcejox&sz=w1000',
+    gallery: []
   }
 ];
 

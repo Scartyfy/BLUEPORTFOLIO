@@ -255,7 +255,7 @@ export const getProjectData = (id: string, lang: Language) => {
         : "Throughout my studies, I was led to work with physical materials and create in FabLabs all kinds of objects to illustrate projects and bring them to life. It is also an approach I pursue through personal projects: experimenting with diverse materials, shaping, 3D printing, laser cutting, and assembling, demonstrating versatility and the ability to turn any concept into reality.",
       galleryTitle: lang === 'fr' ? "Galerie d'Objets & Maquettes" : "Objects & Models Gallery",
       images: {
-        heroBg: `${import.meta.env.BASE_URL}photo-maquette/IMG_3207.jpg`,
+        heroBg: "https://drive.google.com/thumbnail?id=1z-ZZdWXI2DyLbJ_6nSgWxZaKrIDcejox&sz=w2000",
       },
       // =========================================================================
       // PHOTOS DU PROJET MAQUETTE (SANS AUCUN TEXTE AUTOUR) :
@@ -263,17 +263,17 @@ export const getProjectData = (id: string, lang: Language) => {
       galleryImages: [
         {
           id: 'maquette-1',
-          image: `${import.meta.env.BASE_URL}photo-maquette/IMG_3145.jpg`,
+          image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_3145.JPG`,
           title: lang === 'fr' ? "Maquette Physique FabLab" : "FabLab Physical Prototype"
         },
         {
           id: 'maquette-2',
-          image: `${import.meta.env.BASE_URL}photo-maquette/IMG_3204.jpg`,
+          image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_3204.JPG`,
           title: lang === 'fr' ? "Usinage & Assemblage" : "Machining & Assembly"
         },
         {
           id: 'maquette-3',
-          image: `${import.meta.env.BASE_URL}photo-maquette/IMG_3207.jpg`,
+          image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_3207.JPG`,
           title: lang === 'fr' ? "Détail Matière & Finitions" : "Material Details & Finishes"
         }
       ]
