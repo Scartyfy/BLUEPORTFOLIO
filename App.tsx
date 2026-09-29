@@ -92,6 +92,32 @@ export const App: React.FC = () => {
     document.body.style.overflow = '';
   };
 
+  const handleDownloadCV = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const fileUrl = `${import.meta.env.BASE_URL}cv.pdf`;
+    try {
+      const response = await fetch(fileUrl);
+      if (!response.ok) throw new Error("Network error");
+      const blob = await response.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = "CV_Arthur_Chauvin.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setTimeout(() => window.URL.revokeObjectURL(blobUrl), 1000);
+    } catch {
+      const link = document.createElement("a");
+      link.href = fileUrl;
+      link.download = "CV_Arthur_Chauvin.pdf";
+      link.target = "_blank";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -199,19 +225,55 @@ export const App: React.FC = () => {
 
       {/* QUICK ACCESS BUTTONS - Only shown in intro and not during project modal */}
       {!isProjectOpen && viewState !== ViewState.PROJECTS && (
-        <div className="fixed bottom-4 right-4 z-[9999] flex flex-wrap items-center gap-2">
-          <button
-            onClick={() => {
-              setSelectedProjectForModal(null);
-              setViewState(ViewState.PROJECTS);
-              setShowProjects(true);
-              document.body.style.overflow = '';
-            }}
-            className="bg-black/90 text-white px-3.5 py-2.5 rounded-full font-mono font-bold text-xs hover:bg-black hover:scale-105 active:scale-95 transition-all border border-white/20 backdrop-blur-md"
-          >
-            {lang === 'fr' ? 'TOUS LES PROJETS' : 'ALL PROJECTS'}
-          </button>
-        </div>
+        <>
+          {/* CV DOWNLOAD BUTTON - Bottom Left (Intro) */}
+          <div className="fixed bottom-4 left-4 md:bottom-6 md:left-6 z-[9999] transition-opacity duration-500">
+            <a
+              href={`${import.meta.env.BASE_URL}cv.pdf`}
+              download="CV_Arthur_Chauvin.pdf"
+              onClick={handleDownloadCV}
+              className="group flex flex-col gap-2 items-center text-center cursor-pointer select-none"
+              data-magnetic
+              data-magnetic-no-pull
+              title={lang === 'fr' ? "Télécharger mon CV (PDF)" : "Download my CV (PDF)"}
+            >
+              <div className={`w-12 h-12 md:w-14 md:h-14 rounded-full border flex items-center justify-center transition-all duration-300 backdrop-blur-sm ${
+                isWhiteBg 
+                  ? 'border-[#002FA7]/20 group-hover:bg-[#002FA7] group-hover:border-[#002FA7]' 
+                  : 'border-white/20 group-hover:bg-white group-hover:border-white'
+              }`}>
+                <svg className={`w-5 h-5 transition-colors duration-300 ${
+                  isWhiteBg 
+                    ? 'text-[#002FA7]/70 group-hover:text-white' 
+                    : 'text-white/70 group-hover:text-[#002FA7]'
+                }`} fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
+                </svg>
+              </div>
+              <span className={`text-[9px] uppercase font-bold tracking-[0.2em] transition-colors duration-300 ${
+                isWhiteBg 
+                  ? 'text-[#002FA7]/60 group-hover:text-[#002FA7]' 
+                  : 'text-white/50 group-hover:text-white'
+              }`}>
+                CV
+              </span>
+            </a>
+          </div>
+
+          <div className="fixed bottom-4 right-4 z-[9999] flex flex-wrap items-center gap-2">
+            <button
+              onClick={() => {
+                setSelectedProjectForModal(null);
+                setViewState(ViewState.PROJECTS);
+                setShowProjects(true);
+                document.body.style.overflow = '';
+              }}
+              className="bg-black/90 text-white px-3.5 py-2.5 rounded-full font-mono font-bold text-xs hover:bg-black hover:scale-105 active:scale-95 transition-all border border-white/20 backdrop-blur-md"
+            >
+              {lang === 'fr' ? 'TOUS LES PROJETS' : 'ALL PROJECTS'}
+            </button>
+          </div>
+        </>
       )}
 
       {/* LANGUAGE TOGGLE - HIDDEN WHEN PROJECT IS OPEN */}
