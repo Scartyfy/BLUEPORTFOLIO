@@ -584,30 +584,28 @@ export const ProjectTemplate: React.FC<{
 
       {/* Dedicated Gallery Section for Projects with galleryImages (like p5 - Matière & Maquette) */}
       {data.galleryImages && data.galleryImages.length > 0 && (
-        <section className="relative w-full py-12 md:py-20 px-4 sm:px-6 md:px-12 lg:px-20 bg-[#F5F5F3]">
+        <section className="relative w-full py-10 md:py-16 px-4 sm:px-6 md:px-12 lg:px-20 bg-[#F5F5F3]">
           <div className="max-w-[1700px] mx-auto">
-            {/* Clean Photos Grid with NO text around them */}
-            <div className={`grid grid-cols-1 sm:grid-cols-2 ${data.galleryImages.length <= 3 ? 'md:grid-cols-3 max-w-5xl mx-auto' : data.galleryImages.length === 6 ? 'md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto' : 'md:grid-cols-3 lg:grid-cols-4'} gap-5 sm:gap-8`}>
+            {/* Clean Photos Grid with instant performance and zero layout stutter */}
+            <div className={`grid grid-cols-1 sm:grid-cols-2 ${data.galleryImages.length <= 3 ? 'md:grid-cols-3 max-w-5xl mx-auto' : data.galleryImages.length === 6 ? 'md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto' : 'md:grid-cols-3 lg:grid-cols-4'} gap-4 sm:gap-6`}>
               {data.galleryImages.map((item: any, idx: number) => {
                 const imgUrl = typeof item === 'string' ? item : item.image;
                 return (
-                  <motion.div
+                  <div
                     key={item.id || idx}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "60px" }}
-                    transition={{ duration: 0.5, delay: (idx % 4) * 0.05 }}
                     onClick={() => openLightbox(idx)}
-                    className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden bg-neutral-200 shadow-md hover:shadow-2xl transition-all duration-300 cursor-zoom-in group border border-black/5"
+                    className="relative w-full aspect-[3/4] rounded-xl overflow-hidden bg-neutral-200 border border-black/10 cursor-zoom-in hover:opacity-95 transition-opacity"
+                    style={{ contentVisibility: 'auto', containIntrinsicSize: '300px 400px' }}
                   >
                     <img
                       src={imgUrl}
                       alt="Maquette"
                       referrerPolicy="no-referrer"
-                      loading={idx < 4 ? "eager" : "lazy"}
-                      className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                      loading={idx < 2 ? "eager" : "lazy"}
+                      decoding="async"
+                      className="w-full h-full object-cover select-none pointer-events-none"
                     />
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
