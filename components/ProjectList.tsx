@@ -453,16 +453,13 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                         style={{ cursor: "none" }}
                         data-magnetic-no-pull
                       >
-                        <div className="absolute inset-0 flex flex-col justify-between p-0 origin-bottom overflow-hidden" style={{ transformStyle: "preserve-3d" }}>
-                          {/* Fixed-scale window: image NEVER scales or zooms as strip width changes */}
-                          <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[800px] h-full pointer-events-none select-none">
-                            <img
-                              src={project.image?.startsWith('/') ? `.${project.image}` : (project.image || project.gallery?.[0])}
-                              referrerPolicy="no-referrer"
-                              alt={project.title[lang]}
-                              className={`w-full h-full object-cover transition-opacity duration-700 ${isActive ? "grayscale-0 opacity-100" : "grayscale opacity-85"}`}
-                            />
-                          </div>
+                        <div className="absolute inset-0 flex flex-col justify-between p-0 origin-bottom" style={{ transformStyle: "preserve-3d" }}>
+                          <img
+                            src={project.image?.startsWith('/') ? `.${project.image}` : (project.image || project.gallery?.[0])}
+                            referrerPolicy="no-referrer"
+                            alt={project.title[lang]}
+                            className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${isActive ? "grayscale-0 opacity-100" : "grayscale opacity-85"}`}
+                          />
                           <div
                             className={`absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent transition-opacity duration-700 pointer-events-none ${isActive ? "opacity-100" : "opacity-0"}`}
                           />
