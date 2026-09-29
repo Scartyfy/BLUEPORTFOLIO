@@ -194,7 +194,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
             <div className="w-full aspect-[4/3] md:aspect-[21/9] relative z-20 overflow-hidden shadow-2xl rounded-2xl md:rounded-3xl bg-neutral-200">
               <div className="absolute inset-0 bg-[#002FA7]/10 z-10 pointer-events-none mix-blend-multiply" />
               <motion.img
-                style={{ y: heroImageY, scale: heroImageScale }}
+                style={{ y: heroImageY }}
                 src={data.header.heroImage}
                 alt="Projet Maquette App UI"
                 className="absolute inset-0 w-full h-[120%] -top-[10%] object-cover contrast-[1.05] saturate-50 origin-center"
@@ -661,7 +661,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
               <div
                 onClick={() =>
                   openLightbox(
-                    data.appPrototype.userTesting.image!,
+                    data.appPrototype.userTesting.image,
                     data.appPrototype.userTesting.title[lang]
                   )
                 }
@@ -670,7 +670,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
                 <img
                   src={data.appPrototype.userTesting.image}
                   alt="Planche Test Utilisateur"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover"
                 />
                 <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs font-mono text-[#002FA7] shadow">
                   Zoom
@@ -728,7 +728,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
                 <img
                   src={data.appPrototype.usageScenario.overviewImage}
                   alt="Planche Scénario d'Usage"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover"
                 />
                 <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs font-mono text-[#002FA7] shadow">
                   Zoom
@@ -747,7 +747,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
                     <img
                       src={st.image}
                       alt={st.title[lang]}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="w-full h-full object-cover"
                     />
                     <div className="absolute top-3 left-3 bg-[#002FA7] text-white font-mono text-xs px-2.5 py-1 rounded-md font-bold">
                       {st.stepNumber}

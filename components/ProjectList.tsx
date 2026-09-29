@@ -442,8 +442,8 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                           clipPath: isReady ? "inset(0% 0 0 0)" : "inset(100% 0 0 0)"
                         }}
                         transition={{
-                          duration: 0.7,
-                          delay: isReady ? index * 0.04 : 0,
+                          duration: 1.1,
+                          delay: isReady ? index * 0.05 : 0,
                           ease: [0.16, 1, 0.3, 1],
                         }}
                         onMouseEnter={() => setActiveProjectId(project.id)}
@@ -453,13 +453,16 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                         style={{ cursor: "none" }}
                         data-magnetic-no-pull
                       >
-                        <div className="absolute inset-0 flex flex-col justify-between p-0 origin-bottom" style={{ transformStyle: "preserve-3d" }}>
-                          <img
-                            src={project.image?.startsWith('/') ? `.${project.image}` : (project.image || project.gallery?.[0])}
-                            referrerPolicy="no-referrer"
-                            alt={project.title[lang]}
-                            className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${isActive ? "grayscale-0 opacity-100" : "grayscale opacity-85"}`}
-                          />
+                        <div className="absolute inset-0 flex flex-col justify-between p-0 origin-bottom overflow-hidden" style={{ transformStyle: "preserve-3d" }}>
+                          {/* Fixed-scale window: image NEVER scales or zooms as strip width changes */}
+                          <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[800px] h-full pointer-events-none select-none">
+                            <img
+                              src={project.image?.startsWith('/') ? `.${project.image}` : (project.image || project.gallery?.[0])}
+                              referrerPolicy="no-referrer"
+                              alt={project.title[lang]}
+                              className={`w-full h-full object-cover transition-opacity duration-700 ${isActive ? "grayscale-0 opacity-100" : "grayscale opacity-85"}`}
+                            />
+                          </div>
                           <div
                             className={`absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent transition-opacity duration-700 pointer-events-none ${isActive ? "opacity-100" : "opacity-0"}`}
                           />
@@ -792,7 +795,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                               <img
                                 src={selectedProject.gallery?.[2]}
                                 referrerPolicy="no-referrer"
-                                className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1500ms]"
+                                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[1000ms]"
                               />
                             </div>
                             <div className="aspect-[4/3] bg-[#002480] rounded-2xl overflow-hidden border border-white/10 group relative">
@@ -800,7 +803,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                               <img
                                 src="https://picsum.photos/1200/800?grayscale&random=immersion"
                                 referrerPolicy="no-referrer"
-                                className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1500ms]"
+                                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[1000ms]"
                               />
                             </div>
                           </div>
@@ -886,7 +889,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                                 <img
                                   src={selectedProject.gallery?.[0]}
                                   referrerPolicy="no-referrer"
-                                  className="w-full h-full object-contain grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1500ms]"
+                                  className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-[1000ms]"
                                 />
                               </div>
                             </div>
@@ -898,7 +901,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                                 <img
                                   src={selectedProject.gallery?.[1]}
                                   referrerPolicy="no-referrer"
-                                  className="w-full h-full object-contain grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1500ms]"
+                                  className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-[1000ms]"
                                 />
                               </div>
                             </div>
@@ -928,7 +931,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                             <img
                               src="https://picsum.photos/1920/1080?grayscale&random=proto"
                               referrerPolicy="no-referrer"
-                              className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1500ms]"
+                              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[1000ms]"
                             />
                           </div>
                         </section>
@@ -957,7 +960,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                             <img
                               src={selectedProject.gallery?.[3]}
                               referrerPolicy="no-referrer"
-                              className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1500ms]"
+                              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[1000ms]"
                             />
                             <div className="absolute bottom-10 left-10 z-20">
                               <span className="text-[11px] font-mono text-white/50 tracking-[0.6em]">
@@ -995,7 +998,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                                 src={imgUrl}
                                 referrerPolicy="no-referrer"
                                 alt={`Gallery item ${idx}`}
-                                className="w-full h-auto grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
+                                className="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-1000"
                               />
                             </div>
                           </div>

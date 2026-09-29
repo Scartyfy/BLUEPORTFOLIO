@@ -289,12 +289,11 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
               className="w-full aspect-[16/10] md:aspect-[21/9] relative z-20 overflow-hidden rounded-none border border-[#002FA7]/15 bg-[#121622] shadow-sm"
             >
               <motion.img
-                initial={{ scale: 1.05 }}
-                animate={{ scale: 1 }}
-                style={{ scale: heroImageScale }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 transition={{
                   delay: 0.2,
-                  duration: 1.4,
+                  duration: 1.0,
                   ease: [0.76, 0, 0.24, 1],
                 }}
                 src="./car1.jpg"

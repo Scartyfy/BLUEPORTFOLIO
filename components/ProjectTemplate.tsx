@@ -381,12 +381,12 @@ export const ProjectTemplate: React.FC<{
                 <div className="absolute inset-0 bg-[#002FA7]/10 z-10 pointer-events-none mix-blend-multiply" />
               )}
               <motion.img
-                initial={{ scale: 1.15 }}
-                animate={{ scale: 1 }}
-                style={{ y: heroImageY, scale: heroImageScale }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                style={{ y: heroImageY }}
                 transition={{
                   delay: 0.2,
-                  duration: 1.4,
+                  duration: 1.0,
                   ease: [0.76, 0, 0.24, 1],
                 }}
                 src={data.images.heroBg}
@@ -911,7 +911,7 @@ const VerticalProcess = ({
                     src={step.image}
                     alt={step.title || 'Project content image'}
                     referrerPolicy="no-referrer"
-                    className="w-full h-auto object-contain relative z-10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] transition-transform duration-[1.5s] hover:scale-[1.02]"
+                    className="w-full h-auto object-contain relative z-10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)]"
                   />
                 </motion.div>
                 {step.image2 && (
