@@ -164,7 +164,10 @@ export const App: React.FC = () => {
           <PhotoshopTransition 
             text={lang === 'fr' ? "VOICI QUELQUES PROJETS" : "HERE ARE SOME PROJECTS"} 
             onComplete={handlePhotoshopComplete} 
-            onStartSlide={() => setShowProjects(true)}
+            onStartSlide={() => {
+              setShowProjects(true);
+              document.body.style.overflow = '';
+            }}
           />
         )}
       </AnimatePresence>

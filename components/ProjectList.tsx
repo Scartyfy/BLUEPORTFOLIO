@@ -377,7 +377,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                       key={`mobile-${project.id}`}
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: isReady ? 1 : 0, y: isReady ? 0 : 30 }}
-                      transition={{ duration: 0.6, delay: 0.08 * index }}
+                      transition={{ duration: 0.5, delay: isReady ? index * 0.04 : 0 }}
                       onClick={() => setSelectedProject(project)}
                       className="relative w-full h-[250px] xs:h-[270px] rounded-2xl overflow-hidden active:scale-[0.98] transition-transform cursor-pointer border border-white/15 group touch-manipulation"
                     >
@@ -385,7 +385,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                         src={imgSrc}
                         referrerPolicy="no-referrer"
                         alt={project.title[lang]}
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="absolute inset-0 w-full h-full object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/20" />
                       <div className="absolute inset-0 p-5 xs:p-6 flex flex-col justify-between z-10">
@@ -435,16 +435,16 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                     return (
                       <motion.div
                         key={project.id}
-                        initial={{ opacity: 0, y: 150, clipPath: "inset(100% 0 0 0)" }}
+                        initial={{ opacity: 0, y: 120, clipPath: "inset(100% 0 0 0)" }}
                         animate={{
                           opacity: isReady ? 1 : 0,
-                          y: isReady ? 0 : 150,
+                          y: isReady ? 0 : 120,
                           clipPath: isReady ? "inset(0% 0 0 0)" : "inset(100% 0 0 0)"
                         }}
                         transition={{
-                          duration: 1.4,
-                          delay: isReady ? 0.1 + index * 0.1 : 0,
-                          ease: [0.76, 0, 0.24, 1],
+                          duration: 0.7,
+                          delay: isReady ? index * 0.04 : 0,
+                          ease: [0.16, 1, 0.3, 1],
                         }}
                         onMouseEnter={() => setActiveProjectId(project.id)}
                         onMouseLeave={() => setActiveProjectId(null)}
@@ -454,13 +454,11 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                         data-magnetic-no-pull
                       >
                         <div className="absolute inset-0 flex flex-col justify-between p-0 origin-bottom" style={{ transformStyle: "preserve-3d" }}>
-                          <motion.img
-                            initial={{ scale: 1.2 }}
-                            animate={{ scale: isActive ? 1.05 : 1.1 }}
-                            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                          <img
                             src={project.image?.startsWith('/') ? `.${project.image}` : (project.image || project.gallery?.[0])}
                             referrerPolicy="no-referrer"
-                            className={`absolute inset-0 w-full h-full object-cover transition-all duration-[1200ms] ${isActive ? "scale-105 grayscale-0" : "scale-100 grayscale"}`}
+                            alt={project.title[lang]}
+                            className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${isActive ? "grayscale-0 opacity-100" : "grayscale opacity-85"}`}
                           />
                           <div
                             className={`absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent transition-opacity duration-700 pointer-events-none ${isActive ? "opacity-100" : "opacity-0"}`}

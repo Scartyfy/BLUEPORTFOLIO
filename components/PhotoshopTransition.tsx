@@ -14,13 +14,13 @@ export const PhotoshopTransition: React.FC<PhotoshopTransitionProps> = ({ text, 
   useEffect(() => {
     const timers = [
       setTimeout(() => setStep('SELECTING'), 50),
-      setTimeout(() => setStep('DRAGGING'), 1500),
-      setTimeout(() => setStep('CENTERED'), 2500),
+      setTimeout(() => setStep('DRAGGING'), 1300),
+      setTimeout(() => setStep('CENTERED'), 2100),
       setTimeout(() => {
         setStep('SLIDING_LEFT');
         if (onStartSlide) onStartSlide();
-      }, 3200),
-      setTimeout(() => onComplete(), 4600), // Completes when sliding left finishes
+      }, 2350),
+      setTimeout(() => onComplete(), 3050), // Completes promptly as folder finishes slide up
     ];
 
     return () => timers.forEach(t => clearTimeout(t));
@@ -31,10 +31,10 @@ export const PhotoshopTransition: React.FC<PhotoshopTransitionProps> = ({ text, 
   return (
     <motion.div 
       initial={{ opacity: 1 }}
-      animate={{ opacity: 1 }}
+      animate={{ opacity: step === 'SLIDING_LEFT' ? 0 : 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.8 }}
-      className="fixed inset-0 z-[150] flex items-center justify-center overflow-hidden pointer-events-auto" 
+      transition={{ duration: 0.5 }}
+      className={`fixed inset-0 z-[150] flex items-center justify-center overflow-hidden ${step === 'SLIDING_LEFT' ? 'pointer-events-none' : 'pointer-events-auto'}`} 
       style={{ perspective: '1200px' }}
     >
       <svg className="absolute invisible w-0 h-0">
@@ -118,16 +118,16 @@ export const PhotoshopTransition: React.FC<PhotoshopTransitionProps> = ({ text, 
           <motion.div
             initial={{ opacity: 0, scale: 0, y: 300, filter: 'blur(10px)', rotateX: 0 }}
             animate={{ 
-              opacity: step === 'SLIDING_LEFT' ? 0.2 : 1, 
-              scale: step === 'SLIDING_LEFT' ? 0.8 : 1, 
+              opacity: step === 'SLIDING_LEFT' ? 0 : 1, 
+              scale: step === 'SLIDING_LEFT' ? 0.85 : 1, 
               y: step === 'DRAGGING' ? 300 : (step === 'SLIDING_LEFT' ? -1200 : 0),
               x: 0,
               rotateX: 0,
               filter: step === 'DRAGGING' ? ['blur(0px)', 'blur(8px)', 'blur(0px)'] : 'blur(0px)',
             }}
             transition={{
-              duration: step === 'SLIDING_LEFT' ? 1.5 : 0.6,
-              ease: step === 'SLIDING_LEFT' ? [0.4, 0, 0.2, 1] : [0.16, 1, 0.3, 1]
+              duration: step === 'SLIDING_LEFT' ? 0.7 : 0.6,
+              ease: step === 'SLIDING_LEFT' ? [0.22, 1, 0.36, 1] : [0.16, 1, 0.3, 1]
             }}
             className="fixed z-[170] flex flex-col items-center gap-4 pointer-events-none"
             style={{ transformStyle: 'preserve-3d' }}
