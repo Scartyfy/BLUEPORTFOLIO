@@ -346,7 +346,7 @@ export const App: React.FC = () => {
       )}
 
       {/* INTRO TEXT RIGHT */}
-      <div className={`fixed right-6 bottom-6 md:right-8 md:bottom-8 z-[110] transition-opacity duration-1000 ${viewState === ViewState.INTRO && introStep === 'WELCOME' ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+      <div className={`fixed right-6 bottom-6 md:right-8 md:bottom-8 z-[110] transition-opacity duration-1000 hidden md:block ${viewState === ViewState.INTRO && introStep === 'WELCOME' ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         <p className={`font-mono text-[8px] tracking-[0.3em] uppercase text-white`}>
           {lang === 'fr' ? "ARTHUR CHAUVIN PORTFOLIO — TOUS DROITS RÉSERVÉS © 2024" : "ARTHUR CHAUVIN PORTFOLIO — ALL RIGHTS RESERVED © 2024"}
         </p>
@@ -354,28 +354,29 @@ export const App: React.FC = () => {
 
       {/* Main Container */}
       <div className="w-full flex flex-col items-center">
-        <div className="fixed inset-0 flex items-center px-6 sm:px-8 md:px-16 pointer-events-none z-50"
+        {/* Intro Text (Centered above button on mobile, left-aligned on desktop) */}
+        <div className="fixed inset-0 flex items-center justify-center md:justify-start px-4 sm:px-8 md:px-16 pointer-events-none z-50"
             style={{ 
               opacity: viewState !== ViewState.INTRO || introStep === 'PICK_CARD' ? 0 : 1, 
               transition: 'all 0.5s linear' 
             }}>
-            <div className="flex-1 flex justify-start">
-                <div className="transition-all duration-75 ease-out">
+            <div className="w-full md:flex-1 flex justify-center md:justify-start -translate-y-[84px] xs:-translate-y-[88px] sm:-translate-y-[96px] md:translate-y-0 transition-transform duration-300">
+                <div className="transition-all duration-75 ease-out w-full max-w-[320px] xs:max-w-[380px] sm:max-w-[440px] md:max-w-[600px] flex justify-center md:justify-start">
                     <GooeyText
                     texts={[nav.introTop, nav.introBottom]}
                     morphTime={0.75}
                     cooldownTime={1.25}
-                    className="h-[70px] xs:h-[80px] sm:h-[110px] md:h-[160px] w-full max-w-[280px] sm:max-w-[420px] md:max-w-[600px] flex items-center justify-start"
-                    textClassName="font-display font-bold tracking-tighter text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-left left-0 text-white"
+                    className="h-[60px] xs:h-[70px] sm:h-[80px] md:h-[160px] w-full flex items-center justify-center md:justify-start"
+                    textClassName="font-display font-bold tracking-tighter text-3xl xs:text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-center md:text-left left-0 w-full md:w-auto text-white"
                   />
                 </div>
             </div>
             {/* Empty divs to balance the flex layout so the center is perfectly centered if needed, but since button is in another container, we just need to align text left */}
         </div>
         
-        {/* Welcome Button */}
+        {/* Welcome Button (Centered in the middle on mobile and desktop) */}
         <div className={`fixed inset-0 flex items-center justify-center z-[60] pointer-events-none transition-all duration-1000 ease-in-out ${viewState === ViewState.INTRO && introStep === 'WELCOME' ? 'opacity-100' : 'opacity-0'}`}>
-            <div className={`relative flex flex-col md:flex-row items-center justify-center mt-36 sm:mt-48 md:mt-0 ${viewState === ViewState.INTRO && introStep === 'WELCOME' ? 'pointer-events-auto' : 'pointer-events-none'}`}>
+            <div className={`relative flex flex-col md:flex-row items-center justify-center mt-0 ${viewState === ViewState.INTRO && introStep === 'WELCOME' ? 'pointer-events-auto' : 'pointer-events-none'}`}>
                 <MotionButton
                     label="Portfolio"
                     onClick={() => {
@@ -390,9 +391,9 @@ export const App: React.FC = () => {
             </div>
         </div>
 
-        {/* Vitruvian Man (Homme de Vitruve) - Hidden on extra-small mobile to prevent horizontal blowout */}
+        {/* Vitruvian Man (Homme de Vitruve) - Hidden on mobile (< md) */}
         <div 
-          className={`fixed right-0 hidden sm:flex w-[26vw] md:w-[24.5vw] lg:w-[26vw] xl:w-[26vw] h-screen overflow-hidden items-center justify-start z-[55] pointer-events-none transition-all duration-[1500ms] cubic-bezier(0.16, 1, 0.3, 1) ${
+          className={`fixed right-0 hidden md:flex w-[26vw] md:w-[24.5vw] lg:w-[26vw] xl:w-[26vw] h-screen overflow-hidden items-center justify-start z-[55] pointer-events-none transition-all duration-[1500ms] cubic-bezier(0.16, 1, 0.3, 1) ${
             viewState === ViewState.INTRO && introStep === 'WELCOME' 
               ? 'opacity-100 translate-x-0' 
               : 'opacity-0 translate-x-[15vw] pointer-events-none'
