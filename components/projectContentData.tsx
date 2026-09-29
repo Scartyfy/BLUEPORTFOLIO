@@ -290,6 +290,41 @@ export const getProjectData = (id: string, lang: Language) => {
           id: 'maquette-6',
           image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_3207.JPG`,
           title: lang === 'fr' ? "Détail Matière & Finitions" : "Material Details & Finishes"
+        },
+        {
+          id: 'maquette-7',
+          image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_6269.JPG`,
+          title: lang === 'fr' ? "Prototype & Modélisation" : "Prototyping & Modeling"
+        },
+        {
+          id: 'maquette-8',
+          image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_6635.JPG`,
+          title: lang === 'fr' ? "Atelier & Fabrication" : "Workshop & Fabrication"
+        },
+        {
+          id: 'maquette-9',
+          image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_6641.JPG`,
+          title: lang === 'fr' ? "Expérimentation Matérielle" : "Material Experimentation"
+        },
+        {
+          id: 'maquette-10',
+          image: `${import.meta.env.BASE_URL}photo%20maquette/75DDE74F-4374-4036-B43F-48AA2F8026F4.JPG`,
+          title: lang === 'fr' ? "Vue d'Ensemble & Volume" : "Volume & Spatial Overview"
+        },
+        {
+          id: 'maquette-11',
+          image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_6709.jpg`,
+          title: lang === 'fr' ? "Composition & Relief" : "Composition & Relief"
+        },
+        {
+          id: 'maquette-12',
+          image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_9153.JPG`,
+          title: lang === 'fr' ? "Façonnage & Précision" : "Shaping & Precision"
+        },
+        {
+          id: 'maquette-13',
+          image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_9156.JPG`,
+          title: lang === 'fr' ? "Finition & Texture" : "Finishing & Texture"
         }
       ]
     },
