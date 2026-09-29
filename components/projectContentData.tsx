@@ -255,25 +255,27 @@ export const getProjectData = (id: string, lang: Language) => {
         : "Throughout my studies, I was led to work with physical materials and create in FabLabs all kinds of objects to illustrate projects and bring them to life. It is also an approach I pursue through personal projects: experimenting with diverse materials, shaping, 3D printing, laser cutting, and assembling, demonstrating versatility and the ability to turn any concept into reality.",
       galleryTitle: lang === 'fr' ? "Galerie d'Objets & Maquettes" : "Objects & Models Gallery",
       images: {
-        heroBg: "https://drive.google.com/thumbnail?id=1z-ZZdWXI2DyLbJ_6nSgWxZaKrIDcejox&sz=w2000",
+        heroBg: `${import.meta.env.BASE_URL}photo-maquette/IMG_3207.jpg`,
       },
       // =========================================================================
       // PHOTOS DU PROJET MAQUETTE (SANS AUCUN TEXTE AUTOUR) :
-      // Remplacez simplement les URLs par vos propres photos ou ajoutez-en !
       // =========================================================================
       galleryImages: [
-        { id: 'img-1', image: "https://drive.google.com/thumbnail?id=1z-ZZdWXI2DyLbJ_6nSgWxZaKrIDcejox&sz=w2000" },
-        { id: 'img-2', image: "https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&q=80&w=1200" },
-        { id: 'img-3', image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=1200" },
-        { id: 'img-4', image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200" },
-        { id: 'img-5', image: "https://images.unsplash.com/photo-1621084556062-c100ebaf8a44?auto=format&fit=crop&q=80&w=1200" },
-        { id: 'img-6', image: "https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?auto=format&fit=crop&q=80&w=1200" },
-        { id: 'img-7', image: "https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1200" },
-        { id: 'img-8', image: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&q=80&w=1200" },
-        { id: 'img-9', image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&q=80&w=1200" },
-        { id: 'img-10', image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&q=80&w=1200" },
-        { id: 'img-11', image: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&q=80&w=1200" },
-        { id: 'img-12', image: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=1200" }
+        {
+          id: 'maquette-1',
+          image: `${import.meta.env.BASE_URL}photo-maquette/IMG_3145.jpg`,
+          title: lang === 'fr' ? "Maquette Physique FabLab" : "FabLab Physical Prototype"
+        },
+        {
+          id: 'maquette-2',
+          image: `${import.meta.env.BASE_URL}photo-maquette/IMG_3204.jpg`,
+          title: lang === 'fr' ? "Usinage & Assemblage" : "Machining & Assembly"
+        },
+        {
+          id: 'maquette-3',
+          image: `${import.meta.env.BASE_URL}photo-maquette/IMG_3207.jpg`,
+          title: lang === 'fr' ? "Détail Matière & Finitions" : "Material Details & Finishes"
+        }
       ]
     },
     'p6': {

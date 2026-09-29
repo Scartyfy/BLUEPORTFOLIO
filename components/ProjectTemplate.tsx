@@ -587,7 +587,7 @@ export const ProjectTemplate: React.FC<{
         <section className="relative w-full py-12 md:py-20 px-4 sm:px-6 md:px-12 lg:px-20 bg-[#F5F5F3]">
           <div className="max-w-[1700px] mx-auto">
             {/* Clean Photos Grid with NO text around them */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+            <div className={`grid grid-cols-1 sm:grid-cols-2 ${data.galleryImages.length <= 3 ? 'md:grid-cols-3 max-w-5xl mx-auto' : 'md:grid-cols-3 lg:grid-cols-4'} gap-5 sm:gap-8`}>
               {data.galleryImages.map((item: any, idx: number) => {
                 const imgUrl = typeof item === 'string' ? item : item.image;
                 return (
@@ -598,7 +598,7 @@ export const ProjectTemplate: React.FC<{
                     viewport={{ once: true, margin: "60px" }}
                     transition={{ duration: 0.5, delay: (idx % 4) * 0.05 }}
                     onClick={() => openLightbox(idx)}
-                    className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-neutral-200 shadow-md hover:shadow-2xl transition-all duration-300 cursor-zoom-in group border border-black/5"
+                    className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden bg-neutral-200 shadow-md hover:shadow-2xl transition-all duration-300 cursor-zoom-in group border border-black/5"
                   >
                     <img
                       src={imgUrl}
@@ -682,11 +682,15 @@ export const ProjectTemplate: React.FC<{
               <AnimatePresence mode="wait">
                 <motion.img
                   key={activeLightboxIdx}
-                  src={data.galleryImages[activeLightboxIdx].image}
+                  src={
+                    typeof data.galleryImages[activeLightboxIdx] === 'string'
+                      ? data.galleryImages[activeLightboxIdx]
+                      : data.galleryImages[activeLightboxIdx].image
+                  }
                   alt={
-                    typeof data.galleryImages[activeLightboxIdx].title === 'string'
+                    typeof data.galleryImages[activeLightboxIdx]?.title === 'string'
                       ? data.galleryImages[activeLightboxIdx].title
-                      : data.galleryImages[activeLightboxIdx].title?.[lang] || 'Prototype'
+                      : data.galleryImages[activeLightboxIdx]?.title?.[lang] || 'Maquette'
                   }
                   referrerPolicy="no-referrer"
                   onClick={(e) => e.stopPropagation()}
