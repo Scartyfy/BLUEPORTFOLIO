@@ -334,7 +334,7 @@ export const App: React.FC = () => {
       {/* INTRO TEXT RIGHT */}
       <div className={`fixed right-6 bottom-6 md:right-8 md:bottom-8 z-[110] transition-opacity duration-1000 hidden md:block ${viewState === ViewState.INTRO && introStep === 'WELCOME' ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         <p className={`font-mono text-[8px] tracking-[0.3em] uppercase text-white`}>
-          {lang === 'fr' ? "ARTHUR CHAUVIN PORTFOLIO — TOUS DROITS RÉSERVÉS © 2024" : "ARTHUR CHAUVIN PORTFOLIO — ALL RIGHTS RESERVED © 2024"}
+          {lang === 'fr' ? "ARTHUR CHAUVIN PORTFOLIO — TOUS DROITS RÉSERVÉS © 2026" : "ARTHUR CHAUVIN PORTFOLIO — ALL RIGHTS RESERVED © 2026"}
         </p>
       </div>
 

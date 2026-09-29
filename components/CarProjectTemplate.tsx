@@ -583,7 +583,7 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
       {/* ========================================================================= */}
       <footer className="w-full py-16 md:py-20 border-t border-[#002FA7]/15 flex flex-col items-center justify-center bg-[#F5F5F3] text-center px-4">
         <span className="font-mono text-xs uppercase tracking-widest text-[#002FA7]/40 font-medium">
-          Arthur Chauvin — Concept Cars © 2024
+          Arthur Chauvin — Concept Cars © 2026
         </span>
       </footer>
     </div>

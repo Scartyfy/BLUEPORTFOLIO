@@ -678,7 +678,7 @@ export const ProjectList: React.FC<ProjectListProps> = ({
 
         <footer className="w-full py-8 text-center border-t border-white/5 z-20">
           <p className="font-mono text-[9px] tracking-widest text-white/40 uppercase">
-            © 2024 ARTHUR CHAUVIN. {t.rights}
+            © 2026 ARTHUR CHAUVIN. {t.rights}
           </p>
         </footer>
       </div>
