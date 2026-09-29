@@ -587,7 +587,7 @@ export const ProjectTemplate: React.FC<{
         <section className="relative w-full py-12 md:py-20 px-4 sm:px-6 md:px-12 lg:px-20 bg-[#F5F5F3]">
           <div className="max-w-[1700px] mx-auto">
             {/* Clean Photos Grid with NO text around them */}
-            <div className={`grid grid-cols-1 sm:grid-cols-2 ${data.galleryImages.length <= 3 ? 'md:grid-cols-3 max-w-5xl mx-auto' : 'md:grid-cols-3 lg:grid-cols-4'} gap-5 sm:gap-8`}>
+            <div className={`grid grid-cols-1 sm:grid-cols-2 ${data.galleryImages.length <= 3 ? 'md:grid-cols-3 max-w-5xl mx-auto' : data.galleryImages.length === 6 ? 'md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto' : 'md:grid-cols-3 lg:grid-cols-4'} gap-5 sm:gap-8`}>
               {data.galleryImages.map((item: any, idx: number) => {
                 const imgUrl = typeof item === 'string' ? item : item.image;
                 return (

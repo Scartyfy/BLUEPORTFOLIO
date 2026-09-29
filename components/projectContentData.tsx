@@ -263,16 +263,31 @@ export const getProjectData = (id: string, lang: Language) => {
       galleryImages: [
         {
           id: 'maquette-1',
+          image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_3100.JPG`,
+          title: lang === 'fr' ? "Recherche de Forme & Ébauche" : "Form Exploration & Rough Model"
+        },
+        {
+          id: 'maquette-2',
+          image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_3137.JPG`,
+          title: lang === 'fr' ? "Découpe & Usinage Matériaux" : "Material Cutting & Shaping"
+        },
+        {
+          id: 'maquette-3',
+          image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_3142.JPG`,
+          title: lang === 'fr' ? "Assemblage & Ajustements" : "Assembly & Adjustments"
+        },
+        {
+          id: 'maquette-4',
           image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_3145.JPG`,
           title: lang === 'fr' ? "Maquette Physique FabLab" : "FabLab Physical Prototype"
         },
         {
-          id: 'maquette-2',
+          id: 'maquette-5',
           image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_3204.JPG`,
           title: lang === 'fr' ? "Usinage & Assemblage" : "Machining & Assembly"
         },
         {
-          id: 'maquette-3',
+          id: 'maquette-6',
           image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_3207.JPG`,
           title: lang === 'fr' ? "Détail Matière & Finitions" : "Material Details & Finishes"
         }
