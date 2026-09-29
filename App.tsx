@@ -226,8 +226,8 @@ export const App: React.FC = () => {
       {/* QUICK ACCESS BUTTONS - Only shown in intro and not during project modal */}
       {!isProjectOpen && viewState !== ViewState.PROJECTS && (
         <>
-          {/* CV DOWNLOAD BUTTON - Bottom Left (Intro) */}
-          <div className="fixed bottom-4 left-4 md:bottom-6 md:left-6 z-[9999] transition-opacity duration-500">
+          {/* CV DOWNLOAD BUTTON - Bottom Left (Intro, shifted up and right) */}
+          <div className="fixed bottom-8 left-8 md:bottom-11 md:left-11 z-[9999] transition-opacity duration-500">
             <a
               href={`${import.meta.env.BASE_URL}cv.pdf`}
               download="CV_Arthur_Chauvin.pdf"
