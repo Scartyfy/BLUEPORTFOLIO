@@ -549,8 +549,8 @@ export const CONCEPT_CARS: ConceptCarData[] = [
     sketch: {
       image: './car4.jpg',
       title: {
-        fr: 'Recherche & Croquis Préparatoires',
-        en: 'Styling Sketches & Formal Research'
+        fr: '',
+        en: ''
       },
       caption: {
         fr: 'Planche d\'exploration formelle et de proportions',

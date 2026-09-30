@@ -60,7 +60,7 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
   const allImagesList = [
     { src: './car1.jpg', title: 'LOBSTER CAR — Affiche & Manifeste de Style', concept: 'Lobster Car' },
     { src: './car2.jpg', title: 'LOBSTER CAR — Rendu Dynamique & Aérodynamique', concept: 'Lobster Car' },
-    { src: './car4.jpg', title: 'LOBSTER CAR — Recherche & Croquis Préparatoires', concept: 'Lobster Car' },
+    { src: './car4.jpg', title: 'LOBSTER CAR', concept: 'Lobster Car' },
     { src: './car3.jpg', title: 'LOBSTER CAR — Poste de Pilotage & Ergonomie', concept: 'Lobster Car' },
     { src: './car5.jpg', title: 'LOBSTER CAR — Vue Arrière & Signature Lumineuse', concept: 'Lobster Car' },
     { src: './1.jpg', title: 'PORSCHE 754 — Planche Stylistique & Manifeste', concept: 'Porsche 754 Concept' },
@@ -477,10 +477,7 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
                     </div>
 
                     {/* Texte à côté de la troisième image */}
-                    <div className="lg:col-span-4 flex flex-col justify-start space-y-4">
-                      <h3 className="text-xl md:text-2xl font-display font-medium uppercase text-[#002FA7] tracking-tight">
-                        {car.sketch.title[lang]}
-                      </h3>
+                    <div className="lg:col-span-4 flex flex-col justify-start">
                       <p className="text-base font-light text-[#002FA7]/85 leading-relaxed">
                         {car.sketch.text[lang]}
                       </p>
