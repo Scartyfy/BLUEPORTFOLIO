@@ -58,6 +58,7 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
 
   // All images flattened sequentially across both concepts (without /4.jpg)
   const allImagesList = [
+    { src: './IMG_4351.jpg', title: 'CONCEPT CARS — Études de Proportions & Design', concept: 'Concept Cars' },
     { src: './car1.jpg', title: 'LOBSTER CAR — Affiche & Manifeste de Style', concept: 'Lobster Car' },
     { src: './car2.jpg', title: 'LOBSTER CAR — Rendu Dynamique & Aérodynamique', concept: 'Lobster Car' },
     { src: './car4.jpg', title: 'LOBSTER CAR', concept: 'Lobster Car' },
@@ -272,7 +273,7 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
             </motion.div>
           </div>
 
-          {/* Large Hero Banner : cadrée sur le bas de l'image (voiture sur l'axe des abscisses) */}
+          {/* Large Hero Banner : cadrée sur l'image */}
           <div className="md:col-span-9 relative w-full h-full flex items-end">
             <motion.div
               initial={{
@@ -286,7 +287,8 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
                 duration: 1.4,
                 ease: [0.76, 0, 0.24, 1],
               }}
-              className="w-full aspect-[16/10] md:aspect-[21/9] relative z-20 overflow-hidden rounded-none border border-[#002FA7]/15 bg-[#121622] shadow-sm"
+              onClick={() => openLightbox('./IMG_4351.jpg')}
+              className="w-full aspect-[16/10] md:aspect-[21/9] relative z-20 overflow-hidden rounded-none border border-[#002FA7]/15 bg-[#121622] shadow-sm cursor-zoom-in group"
             >
               <motion.img
                 initial={{ opacity: 0 }}
@@ -296,12 +298,12 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
                   duration: 1.0,
                   ease: [0.76, 0, 0.24, 1],
                 }}
-                src="./car1.jpg"
+                src="./IMG_4351.jpg"
                 onError={(e) => {
-                  (e.target as HTMLImageElement).src = './1.jpg';
+                  (e.target as HTMLImageElement).src = './car1.jpg';
                 }}
                 alt="Automotive Design"
-                className="w-full h-full object-cover object-bottom origin-bottom contrast-[1.05] rounded-none select-none"
+                className="w-full h-full object-cover object-center contrast-[1.02] rounded-none select-none transition-transform duration-500 group-hover:scale-[1.01]"
               />
             </motion.div>
           </div>

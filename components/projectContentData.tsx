@@ -286,7 +286,7 @@ export const getProjectData = (id: string, lang: Language) => {
         ? "Cette étude complète valide une méthodologie double : aborder l'objet automobile avec la sensibilité formelle du designer et la rigueur technique de l'ingénieur."
         : "This comprehensive exploration validates a dual approach: tackling the automobile with a designer's formal sensitivity and an engineer's technical rigor.",
       images: {
-        heroBg: "./car1.jpg",
+        heroBg: "./IMG_4351.jpg",
         context: "./car2.jpg",
         resultBg: "./car5.jpg"
       }
