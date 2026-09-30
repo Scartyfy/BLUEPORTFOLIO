@@ -138,7 +138,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
       fr: "Musée d'Orsay & Quai Branly",
       en: "Musée d'Orsay & Quai Branly"
     },
-    heroImage: "https://images.unsplash.com/photo-1581291518196-7bb18ef77a28?auto=format&fit=crop&q=80&w=1600",
+    heroImage: "./placeholder-fil-rouge.svg",
     intro: {
       fr: "Conception d'une maquette d'application mobile d'accompagnement muséal. Le projet s'appuie sur une enquête terrain menée au Musée d'Orsay et au Musée du Quai Branly à Paris, combinant observations spontanées, 23 entretiens in situ, cartographie du parcours et prototypage d'interface.",
       en: "Design of a museum companion mobile application. Grounded in field research at Musée d'Orsay and Musée du Quai Branly in Paris, blending spontaneous observations, 23 on-site interviews, user journey mapping, and prototype design."
@@ -198,7 +198,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
     slides: [
       {
         id: "stat-slide-1",
-        image: "./ux/slide_observation_orsay_branly.svg",
+        image: "./placeholder-fil-rouge.svg",
         caption: {
           fr: "Observations In Situ — Musée d'Orsay & Musée du Quai Branly",
           en: "On-Site Observations — Musée d'Orsay & Musée du Quai Branly"
@@ -206,7 +206,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
       },
       {
         id: "stat-slide-2",
-        image: "./ux/slide_stats_juan_prim.svg",
+        image: "./placeholder-fil-rouge.svg",
         caption: {
           fr: "Étude In Situ — Donut d'attention devant « Juan Prim » (Henri Regnault)",
           en: "Field Study — Attention donut facing “Juan Prim” (Henri Regnault)"
@@ -214,7 +214,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
       },
       {
         id: "stat-slide-3",
-        image: "./ux/slide_stats_victor_navlet.svg",
+        image: "./placeholder-fil-rouge.svg",
         caption: {
           fr: "Étude In Situ — Donut d'observation devant « Victor Navlet » (Vue de Paris)",
           en: "Field Study — Observation donut facing “Victor Navlet” (Paris view)"
@@ -222,7 +222,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
       },
       {
         id: "stat-slide-4",
-        image: "./ux/slide_stats_photos.svg",
+        image: "./placeholder-fil-rouge.svg",
         caption: {
           fr: "Interviews In Situ — « Pourquoi prenez-vous des photos ? » (37.7% Si belle, 37.7% Partage, 24.6% Étude)",
           en: "On-Site Interviews — “Why do you take photos?” (37.7% Aesthetic, 37.7% Share, 24.6% Study)"
@@ -230,7 +230,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
       },
       {
         id: "stat-slide-5",
-        image: "./ux/slide_stats_usage.svg",
+        image: "./placeholder-fil-rouge.svg",
         caption: {
           fr: "Interviews In Situ — « Qu'en faites-vous ? » (62.3% Partage, 24.6% Travail, 13.2% Archive)",
           en: "On-Site Interviews — “What do you do with them?” (62.3% Share, 24.6% Work, 13.2% Archive)"
@@ -461,7 +461,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
     images: [
       {
         id: "uj-1",
-        image: "./ux/slide_user_journey_1.svg",
+        image: "./placeholder-fil-rouge.svg",
         caption: {
           fr: "User Journey Phase 1 — Avant la visite (Idée de visite & Organisation)",
           en: "User Journey Phase 1 — Before Visit (Idea & Organization)"
@@ -469,7 +469,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
       },
       {
         id: "uj-2",
-        image: "./ux/slide_user_journey_2.svg",
+        image: "./placeholder-fil-rouge.svg",
         caption: {
           fr: "User Journey Phase 2 — Pendant la visite (Arrivée, Déambulation & Fatigue)",
           en: "User Journey Phase 2 — During Visit (Arrival, Browsing & Fatigue)"
@@ -477,7 +477,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
       },
       {
         id: "uj-3",
-        image: "./ux/slide_user_journey_3.svg",
+        image: "./placeholder-fil-rouge.svg",
         caption: {
           fr: "User Journey Phase 3 — Après la visite (Notification déclic & Rétention mémorielle)",
           en: "User Journey Phase 3 — Post-Visit (Trigger notification & Memory retention)"
@@ -505,7 +505,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
     images: [
       {
         id: "insp-1",
-        image: "./ux/slide_inspirations.svg",
+        image: "./placeholder-fil-rouge.svg",
         caption: {
           fr: "Inspirations — Moodboard de références (FDJ Grattage, BeReal & DuoLingo)",
           en: "Inspirations — Reference Moodboard (FDJ Scratch, BeReal & DuoLingo)"
@@ -513,7 +513,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
       },
       {
         id: "insp-2",
-        image: "./ux/slide_inspirations_gamification.svg",
+        image: "./placeholder-fil-rouge.svg",
         caption: {
           fr: "Inspirations — Gamification & Streaks de visite 🔥",
           en: "Inspirations — Gamification & Visit Streaks 🔥"
@@ -521,7 +521,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
       },
       {
         id: "insp-3",
-        image: "./ux/slide_inspirations_scenography.svg",
+        image: "./placeholder-fil-rouge.svg",
         caption: {
           fr: "Inspirations — Scénographie & Silence visuel muséal",
           en: "Inspirations — Scenography & Museum Visual Restraint"
@@ -529,7 +529,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
       },
       {
         id: "insp-4",
-        image: "./ux/slide_inspirations_typography.svg",
+        image: "./placeholder-fil-rouge.svg",
         caption: {
           fr: "Inspirations — Typographie Suisse & Cartels épurés",
           en: "Inspirations — Swiss Typography & Minimal Wall Labels"
@@ -560,7 +560,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
         fr: "Structure épurée articulée autour de 5 piliers : Accueil (carte à gratter & QCM), Ma galerie, Studio de jeux, Ajout d'amis et Compte.",
         en: "Clean structure articulated around 5 pillars: Home (scratch card & quiz), My gallery, Game studio, Friend add, and Account."
       },
-      image: "./ux/slide_arborescence.svg"
+      image: "./placeholder-fil-rouge.svg"
     },
 
     sketches: {
@@ -575,7 +575,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
       images: [
         {
           id: "sk-1",
-          image: "./ux/slide_sketch_1.svg",
+          image: "./placeholder-fil-rouge.svg",
           caption: {
             fr: "Planche Sketch 01 — Idéation papier & ergonomie one-thumb",
             en: "Sketch Board 01 — Paper wireframing & one-thumb ergonomics"
@@ -583,7 +583,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
         },
         {
           id: "sk-2",
-          image: "./ux/slide_sketch_2.svg",
+          image: "./placeholder-fil-rouge.svg",
           caption: {
             fr: "Planche Sketch 02 — Gestuelles de grattage & mécaniques de jeux",
             en: "Sketch Board 02 — Tactile scratch gestures & mini-game mechanics"
@@ -604,7 +604,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
       images: [
         {
           id: "mk-1",
-          image: "./ux/slide_mockup_1.svg",
+          image: "./placeholder-fil-rouge.svg",
           caption: {
             fr: "Rendu 01 — Écrans principaux (Accueil 3🔥, Ma Galerie, Ajout d'amis, Compte)",
             en: "Mockup 01 — Main screens (Home 3🔥, My Gallery, Friends, Account)"
@@ -612,7 +612,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
         },
         {
           id: "mk-2",
-          image: "./ux/slide_mockup_2.svg",
+          image: "./placeholder-fil-rouge.svg",
           caption: {
             fr: "Rendu 02 — Studio de Jeux (Rat de Musée, Gartic Master, IA ou Vrai ?)",
             en: "Mockup 02 — Game Studio (Museum Rat, Gartic Master, AI or Real?)"
@@ -630,7 +630,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
         fr: "Expérimentations in situ dans les galeries du musée avec la mascotte peluche Rat de Musée, protocole de questions et axes d'amélioration.",
         en: "On-site testing across museum galleries with the Museum Rat mascot, task protocol, and design iterations."
       },
-      image: "./ux/slide_user_testing.svg",
+      image: "./placeholder-fil-rouge.svg",
       takeaways: [
         {
           fr: "L'interface doit rester en retrait pendant la contemplation pour ne jamais s'interposer entre le regard et l'œuvre.",
@@ -656,7 +656,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
         fr: "Déroulement pas-à-pas de l'expérience d'un visiteur, de son arrivée dans les galeries jusqu'à l'ancrage mémoriel chez lui 3 jours plus tard.",
         en: "Step-by-step visitor journey, from museum entry through gallery browsing to memory consolidation at home 3 days later."
       },
-      overviewImage: "./ux/slide_scenario_1.svg",
+      overviewImage: "./placeholder-fil-rouge.svg",
       steps: [
         {
           stepNumber: "01",
@@ -668,7 +668,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
             fr: "Le visiteur entre dans le musée. L'application s'adapte sans configuration et passe en mode discret.",
             en: "Visitor enters the museum wing. The app detects the room seamlessly and switches into ambient mode."
           },
-          image: "./ux/slide_scenario_step1.svg"
+          image: "./placeholder-fil-rouge.svg"
         },
         {
           stepNumber: "02",
@@ -680,7 +680,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
             fr: "Face à une œuvre, une photo rapide en 1 geste sauvegarde le tableau et son cartel vérifié.",
             en: "Facing an artwork, 1 single tap saves the piece into the visit book along with verified context."
           },
-          image: "./ux/slide_scenario_step2.svg"
+          image: "./placeholder-fil-rouge.svg"
         },
         {
           stepNumber: "03",
@@ -692,7 +692,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
             fr: "3 jours plus tard à 12h50, notification pop-up : votre tableau du jour est prêt à être gratté !",
             en: "3 days later at 12:50 PM, notification: your artwork of the day is ready to be revealed!"
           },
-          image: "./ux/slide_scenario_step3.svg"
+          image: "./placeholder-fil-rouge.svg"
         },
         {
           stepNumber: "04",
@@ -704,7 +704,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
             fr: "Le visiteur gratte la carte, mémorise le cartel et l'œuvre s'inscrit durablement dans ses souvenirs.",
             en: "Visitor scratches the card, answers the quick quiz, and the memory crystallizes forever."
           },
-          image: "./ux/slide_scenario_step4.svg"
+          image: "./placeholder-fil-rouge.svg"
         }
       ]
     }

@@ -309,7 +309,7 @@ export const getProjectData = (id: string, lang: Language) => {
         col3Text: lang === 'fr' ? "Design System, Maquettage, Tests utilisateurs" : "Design System, Mockups, User testing"
       },
       images: {
-        heroBg: "https://drive.google.com/thumbnail?id=1jJGwkYIGr3go1w2FGDS6b6XGvN1AarIy&sz=w2000",
+        heroBg: "./placeholder-fil-rouge.svg",
       },
       slides: []
     },

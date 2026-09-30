@@ -191,13 +191,16 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
           </div>
 
           <div className="md:col-span-8 relative w-full h-full flex items-end">
-            <div className="w-full aspect-[4/3] md:aspect-[21/9] relative z-20 overflow-hidden shadow-2xl rounded-2xl md:rounded-3xl bg-neutral-200">
-              <div className="absolute inset-0 bg-[#002FA7]/10 z-10 pointer-events-none mix-blend-multiply" />
+            <div 
+              onClick={() => openLightbox(data.header.heroImage, lang === 'fr' ? "Visuel en cours d'ajout" : "Visual coming soon")}
+              className="w-full aspect-[4/3] md:aspect-[21/9] relative z-20 overflow-hidden shadow-2xl rounded-2xl md:rounded-3xl bg-[#F4F3EF] border border-[#002FA7]/15 cursor-zoom-in group"
+            >
               <motion.img
                 style={{ y: heroImageY }}
                 src={data.header.heroImage}
-                alt={lang === 'fr' ? "Projet Maquette App UI" : "App UI Prototype Project"}
-                className="absolute inset-0 w-full h-[120%] -top-[10%] object-cover contrast-[1.05] saturate-50 origin-center"
+                onError={(e) => { (e.target as HTMLImageElement).src = "./placeholder-fil-rouge.svg"; }}
+                alt={lang === 'fr' ? "Visuel en cours d'ajout" : "Visual coming soon"}
+                className="absolute inset-0 w-full h-[120%] -top-[10%] object-cover origin-center transition-transform duration-500 group-hover:scale-[1.01]"
               />
             </div>
           </div>
@@ -803,7 +806,8 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
                 <motion.img
                   key={lightboxImage.src}
                   src={lightboxImage.src}
-                  alt={lightboxImage.caption || 'Preview'}
+                  onError={(e) => { (e.target as HTMLImageElement).src = "./placeholder-fil-rouge.svg"; }}
+                  alt={lightboxImage.caption || "Visuel en cours d'ajout"}
                   onClick={(e) => e.stopPropagation()}
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
