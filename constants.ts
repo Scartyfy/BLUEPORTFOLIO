@@ -43,7 +43,7 @@ export const PROJECTS: Project[] = [
       fr: 'Conception d\'une application muséale mobile de bout en bout, ancrée dans une enquête terrain au Musée d\'Orsay et au Musée du Quai Branly (23 participants interviewés). De l\'analyse des verbatims au User Journey, jusqu\'aux sketchs, maquettes interactives et scénario d\'usage.',
       en: 'End-to-end design of a museum companion mobile app, grounded in field research at Musée d\'Orsay and Musée du Quai Branly (23 participants interviewed). From qualitative verbatim analysis and User Journey to sketching, UI mockups, and usage scenarios.'
     },
-    image: './placeholder-fil-rouge.svg',
+    image: 'https://drive.google.com/thumbnail?id=1jJGwkYIGr3go1w2FGDS6b6XGvN1AarIy&sz=w1000',
     gallery: [],
     pdfUrl: 'https://drive.google.com/file/d/1jJGwkYIGr3go1w2FGDS6b6XGvN1AarIy/preview'
   },
