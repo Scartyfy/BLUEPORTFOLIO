@@ -579,61 +579,27 @@ export const ProjectTemplate: React.FC<{
         <section className="relative w-full py-12 md:py-20 px-4 sm:px-6 md:px-12 lg:px-20 bg-[#F5F5F3]">
           <div className="max-w-[1700px] mx-auto flex flex-col gap-12 md:gap-20">
             
-            {/* Quick Filter / Jump Tabs */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#002FA7]/15">
-              <div className="flex items-center gap-3">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#002FA7] animate-pulse" />
-                <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#002FA7] font-bold">
-                  {lang === 'fr' ? "4 Projets d'Atelier & Prototypage" : "4 Workshop & Prototyping Projects"}
-                </span>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {data.galleryGroups.map((grp: any) => (
-                  <button
-                    key={grp.id}
-                    type="button"
-                    onClick={() => {
-                      const el = document.getElementById(grp.id);
-                      if (el) {
-                        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                      }
-                    }}
-                    className="px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider border border-[#002FA7]/20 bg-white/90 text-[#002FA7] hover:bg-[#002FA7] hover:text-white transition-all cursor-pointer shadow-sm hover:shadow"
-                  >
-                    {grp.number} • {grp.title.split('—')[0].trim()}
-                  </button>
-                ))}
-              </div>
-            </div>
-
             {/* List of the 4 Distinct Grouped Projects */}
             {data.galleryGroups.map((group: any, gIdx: number) => (
               <div
                 key={group.id}
                 id={group.id}
-                className="scroll-mt-24 p-6 sm:p-8 md:p-12 rounded-3xl bg-white border border-[#002FA7]/10 shadow-[0_8px_30px_rgba(0,47,167,0.03)] flex flex-col gap-8 transition-all hover:border-[#002FA7]/25"
+                className="p-6 sm:p-8 md:p-12 rounded-3xl bg-white border border-[#002FA7]/10 shadow-[0_8px_30px_rgba(0,47,167,0.03)] flex flex-col gap-8 transition-all hover:border-[#002FA7]/25"
               >
                 {/* Project Header */}
-                <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-neutral-100">
-                  <div className="flex flex-col gap-3 max-w-4xl">
-                    <div className="flex items-center gap-2">
-                      <span className="inline-block w-2 h-2 rounded-full bg-[#002FA7]" />
-                      <span className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.22em] text-[#002FA7] font-bold">
-                        {group.tag}
-                      </span>
-                    </div>
-                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-display font-medium text-neutral-900 tracking-tight">
-                      {group.title}
-                    </h3>
-                    <p className="text-sm sm:text-base md:text-lg text-neutral-600 font-light leading-relaxed">
-                      {group.description}
-                    </p>
-                  </div>
-                  <div className="shrink-0 self-start lg:self-auto">
-                    <span className="font-mono text-xs uppercase px-3.5 py-2 rounded-full bg-[#002FA7]/5 text-[#002FA7] border border-[#002FA7]/20 font-medium">
-                      {group.images.length} {lang === 'fr' ? (group.images.length > 1 ? "Photos" : "Photo") : (group.images.length > 1 ? "Photos" : "Photo")}
+                <div className="flex flex-col gap-3 pb-6 border-b border-neutral-100 max-w-4xl">
+                  <div className="flex items-center gap-2">
+                    <span className="inline-block w-2 h-2 rounded-full bg-[#002FA7]" />
+                    <span className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.22em] text-[#002FA7] font-bold">
+                      {group.tag}
                     </span>
                   </div>
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-display font-medium text-neutral-900 tracking-tight">
+                    {group.title}
+                  </h3>
+                  <p className="text-sm sm:text-base md:text-lg text-neutral-600 font-light leading-relaxed">
+                    {group.description}
+                  </p>
                 </div>
 
                 {/* Project Photos Grid */}
