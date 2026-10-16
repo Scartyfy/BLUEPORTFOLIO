@@ -108,7 +108,7 @@ export interface UxProjectContent {
       title: { fr: string; en: string };
       desc: { fr: string; en: string };
       image?: string;
-      takeaways: Array<{ fr: string; en: string }>;
+      takeaways?: Array<{ fr: string; en: string }>;
     };
     usageScenario: {
       title: { fr: string; en: string };
@@ -461,14 +461,6 @@ export const UX_PROJECT_DATA: UxProjectContent = {
     images: [
       {
         id: "uj-1",
-        image: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Adam%20(9).jpg`,
-        caption: {
-          fr: "Phase 1 : Avant la visite — Idée de visite & Organisation",
-          en: "Phase 1: Before Visit — Visit Concept & Organization"
-        }
-      },
-      {
-        id: "uj-2",
         image: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Adam%20(10).jpg`,
         caption: {
           fr: "Phase 2 : Pendant la visite (Début) — Arrivée, Orientation & Déambulation",
@@ -476,7 +468,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
         }
       },
       {
-        id: "uj-3",
+        id: "uj-2",
         image: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Adam%20(11).jpg`,
         caption: {
           fr: "Phase 2 : Pendant la visite (Milieu/Fin) — Fatigue & Fin de visite / Sortie",
@@ -484,7 +476,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
         }
       },
       {
-        id: "uj-4",
+        id: "uj-3",
         image: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Adam%20(12).jpg`,
         caption: {
           fr: "Phase 3 : Après la visite — Retour immédiat & Ancrage mémoriel",
@@ -639,20 +631,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
         en: "On-site testing across museum galleries with the Museum Rat mascot, task protocol, and design iterations."
       },
       image: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Arthur%20(8).jpg`,
-      takeaways: [
-        {
-          fr: "L'interface doit rester en retrait pendant la contemplation pour ne jamais s'interposer entre le regard et l'œuvre.",
-          en: "The interface must stay discreet during contemplation so it never obstructs the eye from the artwork."
-        },
-        {
-          fr: "L'enregistrement d'une œuvre doit se faire en une seule action pour ne pas alourdir la visite.",
-          en: "Artwork saving must happen in a single fluid gesture to keep the visit completely seamless."
-        },
-        {
-          fr: "La synthèse générée en fin de visite redonne de la valeur aux œuvres vues sans imposer une lecture immédiate.",
-          en: "Post-visit summary brings real value to seen artworks without forcing immediate label reading."
-        }
-      ]
+      takeaways: []
     },
 
     usageScenario: {

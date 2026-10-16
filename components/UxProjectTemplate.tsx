@@ -429,8 +429,8 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
             </p>
           </div>
 
-          {/* 4 Phases User Journey */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* 3 Phases User Journey */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {data.userJourney.images.map((ujItem, idx) => (
               <div
                 key={ujItem.id}
@@ -681,21 +681,23 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
               </div>
             )}
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {data.appPrototype.userTesting.takeaways.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="p-6 rounded-2xl bg-[#F5F5F3] border border-[#002FA7]/10 flex flex-col justify-between"
-                >
-                  <span className="font-mono text-xs font-bold text-[#002FA7]/60 mb-3">
-                    0{idx + 1}
-                  </span>
-                  <p className="text-sm md:text-base text-[#002FA7] leading-relaxed font-normal">
-                    {item[lang]}
-                  </p>
-                </div>
-              ))}
-            </div>
+            {data.appPrototype.userTesting.takeaways && data.appPrototype.userTesting.takeaways.length > 0 && (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {data.appPrototype.userTesting.takeaways.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="p-6 rounded-2xl bg-[#F5F5F3] border border-[#002FA7]/10 flex flex-col justify-between"
+                  >
+                    <span className="font-mono text-xs font-bold text-[#002FA7]/60 mb-3">
+                      0{idx + 1}
+                    </span>
+                    <p className="text-sm md:text-base text-[#002FA7] leading-relaxed font-normal">
+                      {item[lang]}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* 4.5 SCÉNARIO D'USAGE ILLUSTRÉ */}
