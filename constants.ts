@@ -64,8 +64,8 @@ export const PROJECTS: Project[] = [
     title: { fr: 'Matière & Maquette', en: 'Material & Making' },
     category: { fr: 'Prototypage Physique', en: 'Physical Prototyping' },
     description: {
-      fr: 'Dans le cadre de mes études, j\'ai été amené à utiliser la matière et à créer dans un FabLab toutes sortes d\'objets pour illustrer des projets et leur faire prendre vie. C\'est également une pratique que je prolonge dans mes projets personnels pour explorer les matériaux et montrer que je sais manier un peu tout.',
-      en: 'Throughout my studies, I was led to work with physical materials and create in FabLabs all kinds of objects to illustrate projects and bring them to life. A practice I also cultivate in personal projects, demonstrating versatility and hands-on making.'
+      fr: 'Exploration de la matière et prototypage physique à travers 4 réalisations concrètes : réplique de casque Daft Punk au FabLab, sculpture artistique hybride, siège mobile ergonomique pour crèche et maquette 1/20 d\'une salle de pause adaptée aux personnes en situation de handicap.',
+      en: 'Hands-on material exploration and physical prototyping across 4 tangible projects: FabLab Daft Punk helmet replica, hybrid organic sculpture, ergonomic mobile daycare stool, and 1:20 architectural model of an accessible breakroom.'
     },
     image: 'https://drive.google.com/thumbnail?id=1z-ZZdWXI2DyLbJ_6nSgWxZaKrIDcejox&sz=w1000',
     gallery: []

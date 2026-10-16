@@ -574,8 +574,113 @@ export const ProjectTemplate: React.FC<{
         </section>
       )}
 
-      {/* Dedicated Gallery Section for Projects with galleryImages (like p5 - Matière & Maquette) */}
-      {data.galleryImages && data.galleryImages.length > 0 && (
+      {/* Grouped Gallery Sections for Projects (e.g. p5 - Matière & Maquette) */}
+      {data.galleryGroups && data.galleryGroups.length > 0 ? (
+        <section className="relative w-full py-12 md:py-20 px-4 sm:px-6 md:px-12 lg:px-20 bg-[#F5F5F3]">
+          <div className="max-w-[1700px] mx-auto flex flex-col gap-12 md:gap-20">
+            
+            {/* Quick Filter / Jump Tabs */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#002FA7]/15">
+              <div className="flex items-center gap-3">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#002FA7] animate-pulse" />
+                <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#002FA7] font-bold">
+                  {lang === 'fr' ? "4 Projets d'Atelier & Prototypage" : "4 Workshop & Prototyping Projects"}
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {data.galleryGroups.map((grp: any) => (
+                  <button
+                    key={grp.id}
+                    type="button"
+                    onClick={() => {
+                      const el = document.getElementById(grp.id);
+                      if (el) {
+                        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }
+                    }}
+                    className="px-3.5 py-1.5 rounded-full text-xs font-mono tracking-wider border border-[#002FA7]/20 bg-white/90 text-[#002FA7] hover:bg-[#002FA7] hover:text-white transition-all cursor-pointer shadow-sm hover:shadow"
+                  >
+                    {grp.number} • {grp.title.split('—')[0].trim()}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* List of the 4 Distinct Grouped Projects */}
+            {data.galleryGroups.map((group: any, gIdx: number) => (
+              <div
+                key={group.id}
+                id={group.id}
+                className="scroll-mt-24 p-6 sm:p-8 md:p-12 rounded-3xl bg-white border border-[#002FA7]/10 shadow-[0_8px_30px_rgba(0,47,167,0.03)] flex flex-col gap-8 transition-all hover:border-[#002FA7]/25"
+              >
+                {/* Project Header */}
+                <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-neutral-100">
+                  <div className="flex flex-col gap-3 max-w-4xl">
+                    <div className="flex items-center gap-2">
+                      <span className="inline-block w-2 h-2 rounded-full bg-[#002FA7]" />
+                      <span className="font-mono text-[11px] sm:text-xs uppercase tracking-[0.22em] text-[#002FA7] font-bold">
+                        {group.tag}
+                      </span>
+                    </div>
+                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-display font-medium text-neutral-900 tracking-tight">
+                      {group.title}
+                    </h3>
+                    <p className="text-sm sm:text-base md:text-lg text-neutral-600 font-light leading-relaxed">
+                      {group.description}
+                    </p>
+                  </div>
+                  <div className="shrink-0 self-start lg:self-auto">
+                    <span className="font-mono text-xs uppercase px-3.5 py-2 rounded-full bg-[#002FA7]/5 text-[#002FA7] border border-[#002FA7]/20 font-medium">
+                      {group.images.length} {lang === 'fr' ? (group.images.length > 1 ? "Photos" : "Photo") : (group.images.length > 1 ? "Photos" : "Photo")}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Project Photos Grid */}
+                <div className={`grid ${group.gridCols || 'grid-cols-2 md:grid-cols-3'} gap-4 sm:gap-6 items-stretch`}>
+                  {group.images.map((item: any) => {
+                    const imgUrl = typeof item === 'string' ? item : item.image;
+                    const itemTitle = typeof item === 'string' ? '' : (item.title || '');
+                    const gIndex = typeof item === 'object' && typeof item.globalIndex === 'number'
+                      ? item.globalIndex
+                      : data.galleryImages.findIndex((gi: any) => (typeof gi === 'string' ? gi : gi.image) === imgUrl);
+
+                    return (
+                      <div
+                        key={item.id || imgUrl}
+                        onClick={() => openLightbox(gIndex >= 0 ? gIndex : 0)}
+                        className={`group relative w-full ${group.aspectRatio || 'aspect-[3/4]'} rounded-2xl overflow-hidden bg-neutral-100 border border-neutral-200/90 cursor-zoom-in hover:shadow-xl transition-all duration-300`}
+                        style={{ contentVisibility: 'auto' }}
+                      >
+                        <img
+                          src={imgUrl}
+                          alt={itemTitle || group.title}
+                          referrerPolicy="no-referrer"
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none"
+                        />
+                        {/* Overlay with title & zoom hint */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 sm:p-5 pointer-events-none">
+                          <div className="flex items-center justify-between gap-3">
+                            <span className="text-white text-xs sm:text-sm font-light leading-snug">
+                              {itemTitle}
+                            </span>
+                            <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center shrink-0 text-white">
+                              <Maximize2 size={14} />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+
+          </div>
+        </section>
+      ) : data.galleryImages && data.galleryImages.length > 0 ? (
         <section className="relative w-full py-10 md:py-16 px-4 sm:px-6 md:px-12 lg:px-20 bg-[#F5F5F3]">
           <div className="max-w-[1700px] mx-auto">
             {/* Clean Photos Grid with instant performance and zero layout stutter */}
@@ -603,7 +708,7 @@ export const ProjectTemplate: React.FC<{
             </div>
           </div>
         </section>
-      )}
+      ) : null}
 
       {/* Process Steps */}
       {data.steps && data.steps.length > 0 && (
@@ -638,12 +743,32 @@ export const ProjectTemplate: React.FC<{
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 sm:p-6 md:p-8 select-none cursor-zoom-out"
+            className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-between p-4 sm:p-6 md:p-8 select-none cursor-zoom-out"
             onClick={closeLightbox}
           >
+            {/* Top Bar with Close Button */}
+            <div className="w-full flex justify-between items-center z-40 pointer-events-none">
+              <div className="pointer-events-auto">
+                <span className="font-mono text-xs uppercase tracking-widest text-white/60 bg-white/10 px-3 py-1.5 rounded-full border border-white/15">
+                  {activeLightboxIdx + 1} / {data.galleryImages.length}
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  closeLightbox();
+                }}
+                className="w-11 h-11 rounded-full bg-white/10 hover:bg-white hover:text-black border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer pointer-events-auto active:scale-90"
+                aria-label="Close"
+              >
+                <X size={20} />
+              </button>
+            </div>
+
             {/* Center Image with Prev / Next */}
             <div
-              className="relative w-full h-full flex items-center justify-center"
+              className="relative w-full flex-1 flex items-center justify-center my-2"
             >
               {data.galleryImages.length > 1 && (
                 <button
@@ -652,7 +777,7 @@ export const ProjectTemplate: React.FC<{
                     e.stopPropagation();
                     prevLightbox();
                   }}
-                  className="absolute left-2 sm:left-6 z-30 w-12 h-12 rounded-full bg-black/50 hover:bg-white hover:text-black border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer active:scale-90"
+                  className="absolute left-2 sm:left-6 z-30 w-12 h-12 rounded-full bg-black/60 hover:bg-white hover:text-black border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer active:scale-90"
                   aria-label="Previous image"
                 >
                   <ChevronLeft size={26} />
@@ -678,7 +803,7 @@ export const ProjectTemplate: React.FC<{
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.98 }}
                   transition={{ duration: 0.2 }}
-                  className="max-w-[94vw] max-h-[92vh] w-auto h-auto object-contain rounded-lg shadow-2xl cursor-default"
+                  className="max-w-[94vw] max-h-[82vh] w-auto h-auto object-contain rounded-lg shadow-2xl cursor-default"
                 />
               </AnimatePresence>
 
@@ -689,12 +814,30 @@ export const ProjectTemplate: React.FC<{
                     e.stopPropagation();
                     nextLightbox();
                   }}
-                  className="absolute right-2 sm:right-6 z-30 w-12 h-12 rounded-full bg-black/50 hover:bg-white hover:text-black border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer active:scale-90"
+                  className="absolute right-2 sm:right-6 z-30 w-12 h-12 rounded-full bg-black/60 hover:bg-white hover:text-black border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer active:scale-90"
                   aria-label="Next image"
                 >
                   <ChevronRight size={26} />
                 </button>
               )}
+            </div>
+
+            {/* Bottom Caption Pill */}
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="z-40 px-5 py-2.5 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-white text-xs sm:text-sm font-mono flex items-center gap-3 select-none pointer-events-auto shadow-2xl max-w-[90vw]"
+            >
+              <span className="text-[#3b82f6] font-semibold shrink-0">
+                {typeof data.galleryImages[activeLightboxIdx] === 'object' && data.galleryImages[activeLightboxIdx].projectTitle
+                  ? data.galleryImages[activeLightboxIdx].projectTitle
+                  : 'Matière & Maquette'}
+              </span>
+              <span className="w-1 h-1 rounded-full bg-white/40 shrink-0" />
+              <span className="text-white/80 truncate">
+                {typeof data.galleryImages[activeLightboxIdx] === 'object'
+                  ? data.galleryImages[activeLightboxIdx].title || ''
+                  : ''}
+              </span>
             </div>
           </motion.div>
         )}

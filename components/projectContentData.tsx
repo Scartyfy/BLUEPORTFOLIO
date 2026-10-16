@@ -321,88 +321,278 @@ export const getProjectData = (id: string, lang: Language) => {
       contextText: lang === 'fr'
         ? "Dans le cadre de mes études, j'ai été amené à utiliser la matière et à créer dans un FabLab toutes sortes d'objets pour illustrer des projets et leur faire prendre vie. C'est également une pratique que je prolonge dans mes projets personnels : explorer les matériaux, façonner, imprimer en 3D, découper et assembler, pour montrer que je sais manier un peu tout et concrétiser chaque concept."
         : "Throughout my studies, I was led to work with physical materials and create in FabLabs all kinds of objects to illustrate projects and bring them to life. It is also an approach I pursue through personal projects: experimenting with diverse materials, shaping, 3D printing, laser cutting, and assembling, demonstrating versatility and the ability to turn any concept into reality.",
-      galleryTitle: lang === 'fr' ? "Galerie d'Objets & Maquettes" : "Objects & Models Gallery",
+      galleryTitle: lang === 'fr' ? "Projets d'Atelier, FabLab & Maquettes" : "Workshop, FabLab & Model Projects",
       images: {
         heroBg: "https://drive.google.com/thumbnail?id=1z-ZZdWXI2DyLbJ_6nSgWxZaKrIDcejox&sz=w2000",
       },
       // =========================================================================
-      // PHOTOS DU PROJET MAQUETTE (SANS AUCUN TEXTE AUTOUR) :
+      // 4 PROJETS MAQUETTE GROUPÉS :
       // =========================================================================
+      galleryGroups: [
+        {
+          id: 'daft-punk',
+          number: '01',
+          tag: lang === 'fr' ? "PROJET 01 • PROTOTYPAGE PHYSIQUE & FABLAB" : "PROJECT 01 • PHYSICAL PROTOTYPING & FABLAB",
+          title: lang === 'fr' ? "Casque Daft Punk — Réplique & Finitions Atelier" : "Daft Punk Helmet — Workshop Replica & Finishes",
+          description: lang === 'fr'
+            ? "Conception et fabrication complète d'une réplique de casque au FabLab : modélisation et impression 3D, ponçage méticuleux des surfaces, application d'apprêt de carrosserie, chromage effet miroir et confection de la visière thermoformée fumée."
+            : "Complete replica fabrication in the FabLab: 3D printing of shell parts, manual surface sanding, automotive primer, mirror chrome paint, and tinted thermoformed visor integration.",
+          aspectRatio: 'aspect-[3/4]',
+          gridCols: 'grid-cols-2 sm:grid-cols-3 xl:grid-cols-6',
+          images: [
+            {
+              id: 'maquette-1',
+              globalIndex: 0,
+              image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_3100.JPG`,
+              title: lang === 'fr' ? "Préparation des coques & ponçage manuel" : "Shell preparation & manual sanding",
+              projectTitle: lang === 'fr' ? "Casque Daft Punk" : "Daft Punk Helmet"
+            },
+            {
+              id: 'maquette-2',
+              globalIndex: 1,
+              image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_3137.JPG`,
+              title: lang === 'fr' ? "Application de la première couche d'apprêt" : "First primer coat application",
+              projectTitle: lang === 'fr' ? "Casque Daft Punk" : "Daft Punk Helmet"
+            },
+            {
+              id: 'maquette-3',
+              globalIndex: 2,
+              image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_3142.JPG`,
+              title: lang === 'fr' ? "Finition des surfaces avant métallisation" : "Surface prep before metallization",
+              projectTitle: lang === 'fr' ? "Casque Daft Punk" : "Daft Punk Helmet"
+            },
+            {
+              id: 'maquette-4',
+              globalIndex: 3,
+              image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_3145.JPG`,
+              title: lang === 'fr' ? "Peinture métallisée chrome & oreilles latérales" : "Chrome metallic coat & side ear caps",
+              projectTitle: lang === 'fr' ? "Casque Daft Punk" : "Daft Punk Helmet"
+            },
+            {
+              id: 'maquette-5',
+              globalIndex: 4,
+              image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_3204.JPG`,
+              title: lang === 'fr' ? "Assemblage final & intégration de la visière fumée" : "Final assembly & tinted visor fitting",
+              projectTitle: lang === 'fr' ? "Casque Daft Punk" : "Daft Punk Helmet"
+            },
+            {
+              id: 'maquette-6',
+              globalIndex: 5,
+              image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_3207.JPG`,
+              title: lang === 'fr' ? "Casque Daft Punk achevé sur table de billard" : "Completed Daft Punk helmet showcase",
+              projectTitle: lang === 'fr' ? "Casque Daft Punk" : "Daft Punk Helmet"
+            }
+          ]
+        },
+        {
+          id: 'sculpture-matiere',
+          number: '02',
+          tag: lang === 'fr' ? "PROJET 02 • EXPÉRIMENTATION PLASTIQUE & ART DE LA MATIÈRE" : "PROJECT 02 • SCULPTURAL & MATERIAL EXPERIMENTATION",
+          title: lang === 'fr' ? "Sculpture Organique — Apprentissage & Maîtrise de la Matière" : "Organic Sculpture — Material Mastery & Form Study",
+          description: lang === 'fr'
+            ? "Projet purement artistique dédié à l'apprentissage et à la manipulation de la matière brute : modelage d'un volume organique complexe en terre et résine, confrontation des textures minérales brutes et de surfaces métallisées, inclusion d'une forme aérodynamique laquée rouge vif et montage sur socle en bois massif."
+            : "Artistic project focused on understanding and manipulating raw physical matter: organic sculpting in clay and resin, contrasting raw mineral textures against mirror metallics, inserting a bold red lacquered volume, and final mounting on a solid hardwood base.",
+          aspectRatio: 'aspect-[3/4]',
+          gridCols: 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-5',
+          images: [
+            {
+              id: 'maquette-7',
+              globalIndex: 6,
+              image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_6269.JPG`,
+              title: lang === 'fr' ? "Modelage initial & recherche de volumes organiques" : "Initial modeling & organic volume study",
+              projectTitle: lang === 'fr' ? "Sculpture Matière" : "Material Sculpture"
+            },
+            {
+              id: 'maquette-8',
+              globalIndex: 7,
+              image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_6635.JPG`,
+              title: lang === 'fr' ? "Travail d'atelier : métallisation & pièce rouge" : "Workshop stage: metallization & red insert",
+              projectTitle: lang === 'fr' ? "Sculpture Matière" : "Material Sculpture"
+            },
+            {
+              id: 'maquette-9',
+              globalIndex: 8,
+              image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_6641.JPG`,
+              title: lang === 'fr' ? "Ajustement du volume central & contrastes" : "Central volume fitting & contrast balance",
+              projectTitle: lang === 'fr' ? "Sculpture Matière" : "Material Sculpture"
+            },
+            {
+              id: 'maquette-10',
+              globalIndex: 9,
+              image: `${import.meta.env.BASE_URL}photo%20maquette/75DDE74F-4374-4036-B43F-48AA2F8026F4.JPG`,
+              title: lang === 'fr' ? "Montage sur socle bois en atelier" : "Mounting on solid wooden plinth",
+              projectTitle: lang === 'fr' ? "Sculpture Matière" : "Material Sculpture"
+            },
+            {
+              id: 'maquette-11',
+              globalIndex: 10,
+              image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_6709.jpg`,
+              title: lang === 'fr' ? "Sculpture finale achevée en studio photo" : "Final completed sculpture in studio",
+              projectTitle: lang === 'fr' ? "Sculpture Matière" : "Material Sculpture"
+            }
+          ]
+        },
+        {
+          id: 'siege-creche',
+          number: '03',
+          tag: lang === 'fr' ? "PROJET 03 • ERGONOMIE & SANTÉ AU TRAVAIL" : "PROJECT 03 • ERGONOMICS & HEALTH AT WORK",
+          title: lang === 'fr' ? "Siège Mobile Bas pour Crèches — Prévention du Mal de Dos" : "Mobile Low Stool for Daycare Staff — Back Pain Relief",
+          description: lang === 'fr'
+            ? "Conception et maquettage à échelle 1 d'un siège mobile bas dédié aux professionnelles de la petite enfance en crèche. Pensé pour lutter contre les troubles musculo-squelettiques (TMS) et soulager les douleurs lombaires lors des activités prolongées au sol : assise ergonomique en mousse haute résilience, garnissage textile robuste et base mobile compacte."
+            : "Full-scale 1:1 prototype of an ergonomic low mobile seat created for nursery and daycare staff. Engineered to alleviate chronic back pain and prevent musculoskeletal disorders from prolonged floor-level postures: resilient foam cushioning, durable fabric upholstery, and compact multidirectional mobility.",
+          aspectRatio: 'aspect-[3/4]',
+          gridCols: 'grid-cols-1 sm:grid-cols-2 max-w-3xl',
+          images: [
+            {
+              id: 'maquette-12',
+              globalIndex: 11,
+              image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_9153.JPG`,
+              title: lang === 'fr' ? "Prototype échelle 1 : mousse & garnissage textile" : "1:1 Prototype: foam core & textile upholstery",
+              projectTitle: lang === 'fr' ? "Siège Ergonomique Crèche" : "Daycare Ergonomic Seat"
+            },
+            {
+              id: 'maquette-13',
+              globalIndex: 12,
+              image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_9156.JPG`,
+              title: lang === 'fr' ? "Vue perspective de l'assise ergonomique mobile" : "Perspective view of the ergonomic mobile stool",
+              projectTitle: lang === 'fr' ? "Siège Ergonomique Crèche" : "Daycare Ergonomic Seat"
+            }
+          ]
+        },
+        {
+          id: 'salle-pause-handicap',
+          number: '04',
+          tag: lang === 'fr' ? "PROJET 04 • ARCHITECTURE D'INTÉRIEUR & INCLUSION" : "PROJECT 04 • INTERIOR ARCHITECTURE & INCLUSION",
+          title: lang === 'fr' ? "Salle de Pause Inclusive — Accessibilité & Handicap" : "Inclusive Breakroom — Accessibility & Spatial Planning",
+          description: lang === 'fr'
+            ? "Projet d'architecture d'intérieur et d'aménagement d'une salle de pause adaptée aux personnes en situation de handicap : maquette architecturale à l'échelle 1/20 en carton plume, agencement de mobilier sur-mesure respectant les normes d'accessibilité PMR, et figurines découpées au laser pour visualiser les espaces de giration et l'ergonomie globale du lieu."
+            : "Interior architecture and spatial planning for a breakroom fully accessible to individuals with disabilities: 1:20 scale foam-board model, bespoke accessible furniture layout adhering to mobility standards, and laser-cut scale figures testing wheelchair circulation and spatial ergonomics.",
+          aspectRatio: 'aspect-[16/9]',
+          gridCols: 'grid-cols-1 md:grid-cols-2 max-w-5xl',
+          images: [
+            {
+              id: 'maquette-14',
+              globalIndex: 13,
+              image: `${import.meta.env.BASE_URL}photo%20maquette/10.jpg`,
+              title: lang === 'fr' ? "Plan masse, cotations & maquette 1/20 en carton plume" : "Floor plan, dimensions & 1:20 foam board model",
+              projectTitle: lang === 'fr' ? "Salle de Pause Accessible" : "Accessible Breakroom"
+            },
+            {
+              id: 'maquette-15',
+              globalIndex: 14,
+              image: `${import.meta.env.BASE_URL}photo%20maquette/11.jpg`,
+              title: lang === 'fr' ? "Vues détaillées des espaces de repos & circulation PMR" : "Detailed views of lounge areas & accessible circulation",
+              projectTitle: lang === 'fr' ? "Salle de Pause Accessible" : "Accessible Breakroom"
+            }
+          ]
+        }
+      ],
+      // Conservation de la liste globale pour l'indexation de la Lightbox :
       galleryImages: [
         {
           id: 'maquette-1',
+          globalIndex: 0,
           image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_3100.JPG`,
-          title: lang === 'fr' ? "Recherche de Forme & Ébauche" : "Form Exploration & Rough Model"
+          title: lang === 'fr' ? "Préparation des coques & ponçage manuel" : "Shell preparation & manual sanding",
+          projectTitle: lang === 'fr' ? "Casque Daft Punk" : "Daft Punk Helmet"
         },
         {
           id: 'maquette-2',
+          globalIndex: 1,
           image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_3137.JPG`,
-          title: lang === 'fr' ? "Découpe & Usinage Matériaux" : "Material Cutting & Shaping"
+          title: lang === 'fr' ? "Application de la première couche d'apprêt" : "First primer coat application",
+          projectTitle: lang === 'fr' ? "Casque Daft Punk" : "Daft Punk Helmet"
         },
         {
           id: 'maquette-3',
+          globalIndex: 2,
           image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_3142.JPG`,
-          title: lang === 'fr' ? "Assemblage & Ajustements" : "Assembly & Adjustments"
+          title: lang === 'fr' ? "Finition des surfaces avant métallisation" : "Surface prep before metallization",
+          projectTitle: lang === 'fr' ? "Casque Daft Punk" : "Daft Punk Helmet"
         },
         {
           id: 'maquette-4',
+          globalIndex: 3,
           image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_3145.JPG`,
-          title: lang === 'fr' ? "Maquette Physique FabLab" : "FabLab Physical Prototype"
+          title: lang === 'fr' ? "Peinture métallisée chrome & oreilles latérales" : "Chrome metallic coat & side ear caps",
+          projectTitle: lang === 'fr' ? "Casque Daft Punk" : "Daft Punk Helmet"
         },
         {
           id: 'maquette-5',
+          globalIndex: 4,
           image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_3204.JPG`,
-          title: lang === 'fr' ? "Usinage & Assemblage" : "Machining & Assembly"
+          title: lang === 'fr' ? "Assemblage final & intégration de la visière fumée" : "Final assembly & tinted visor fitting",
+          projectTitle: lang === 'fr' ? "Casque Daft Punk" : "Daft Punk Helmet"
         },
         {
           id: 'maquette-6',
+          globalIndex: 5,
           image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_3207.JPG`,
-          title: lang === 'fr' ? "Détail Matière & Finitions" : "Material Details & Finishes"
+          title: lang === 'fr' ? "Casque Daft Punk achevé sur table de billard" : "Completed Daft Punk helmet showcase",
+          projectTitle: lang === 'fr' ? "Casque Daft Punk" : "Daft Punk Helmet"
         },
         {
           id: 'maquette-7',
+          globalIndex: 6,
           image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_6269.JPG`,
-          title: lang === 'fr' ? "Prototype & Modélisation" : "Prototyping & Modeling"
+          title: lang === 'fr' ? "Modelage initial & recherche de volumes organiques" : "Initial modeling & organic volume study",
+          projectTitle: lang === 'fr' ? "Sculpture Matière" : "Material Sculpture"
         },
         {
           id: 'maquette-8',
+          globalIndex: 7,
           image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_6635.JPG`,
-          title: lang === 'fr' ? "Atelier & Fabrication" : "Workshop & Fabrication"
+          title: lang === 'fr' ? "Travail d'atelier : métallisation & pièce rouge" : "Workshop stage: metallization & red insert",
+          projectTitle: lang === 'fr' ? "Sculpture Matière" : "Material Sculpture"
         },
         {
           id: 'maquette-9',
+          globalIndex: 8,
           image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_6641.JPG`,
-          title: lang === 'fr' ? "Expérimentation Matérielle" : "Material Experimentation"
+          title: lang === 'fr' ? "Ajustement du volume central & contrastes" : "Central volume fitting & contrast balance",
+          projectTitle: lang === 'fr' ? "Sculpture Matière" : "Material Sculpture"
         },
         {
           id: 'maquette-10',
+          globalIndex: 9,
           image: `${import.meta.env.BASE_URL}photo%20maquette/75DDE74F-4374-4036-B43F-48AA2F8026F4.JPG`,
-          title: lang === 'fr' ? "Vue d'Ensemble & Volume" : "Volume & Spatial Overview"
+          title: lang === 'fr' ? "Montage sur socle bois en atelier" : "Mounting on solid wooden plinth",
+          projectTitle: lang === 'fr' ? "Sculpture Matière" : "Material Sculpture"
         },
         {
           id: 'maquette-11',
+          globalIndex: 10,
           image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_6709.jpg`,
-          title: lang === 'fr' ? "Composition & Relief" : "Composition & Relief"
+          title: lang === 'fr' ? "Sculpture finale achevée en studio photo" : "Final completed sculpture in studio",
+          projectTitle: lang === 'fr' ? "Sculpture Matière" : "Material Sculpture"
         },
         {
           id: 'maquette-12',
+          globalIndex: 11,
           image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_9153.JPG`,
-          title: lang === 'fr' ? "Façonnage & Précision" : "Shaping & Precision"
+          title: lang === 'fr' ? "Prototype échelle 1 : mousse & garnissage textile" : "1:1 Prototype: foam core & textile upholstery",
+          projectTitle: lang === 'fr' ? "Siège Ergonomique Crèche" : "Daycare Ergonomic Seat"
         },
         {
           id: 'maquette-13',
+          globalIndex: 12,
           image: `${import.meta.env.BASE_URL}photo%20maquette/IMG_9156.JPG`,
-          title: lang === 'fr' ? "Finition & Texture" : "Finishing & Texture"
+          title: lang === 'fr' ? "Vue perspective de l'assise ergonomique mobile" : "Perspective view of the ergonomic mobile stool",
+          projectTitle: lang === 'fr' ? "Siège Ergonomique Crèche" : "Daycare Ergonomic Seat"
         },
         {
           id: 'maquette-14',
+          globalIndex: 13,
           image: `${import.meta.env.BASE_URL}photo%20maquette/10.jpg`,
-          title: lang === 'fr' ? "Étude de Modélisation & Volumes" : "Modeling & Volume Study"
+          title: lang === 'fr' ? "Plan masse, cotations & maquette 1/20 en carton plume" : "Floor plan, dimensions & 1:20 foam board model",
+          projectTitle: lang === 'fr' ? "Salle de Pause Accessible" : "Accessible Breakroom"
         },
         {
           id: 'maquette-15',
+          globalIndex: 14,
           image: `${import.meta.env.BASE_URL}photo%20maquette/11.jpg`,
-          title: lang === 'fr' ? "Rendu & Présentation Finale" : "Rendering & Final Showcase"
+          title: lang === 'fr' ? "Vues détaillées des espaces de repos & circulation PMR" : "Detailed views of lounge areas & accessible circulation",
+          projectTitle: lang === 'fr' ? "Salle de Pause Accessible" : "Accessible Breakroom"
         }
       ]
     },
