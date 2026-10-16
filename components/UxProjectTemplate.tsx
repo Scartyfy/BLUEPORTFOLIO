@@ -31,7 +31,6 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
   // Collect all images across sections for seamless lightbox browsing
   useEffect(() => {
     const list: Array<{ src: string; caption?: string }> = [];
-    data.fieldResearch.slides.forEach((s) => list.push({ src: s.image, caption: s.caption?.[lang] }));
     data.userJourney.images.forEach((s) => list.push({ src: s.image, caption: s.caption?.[lang] }));
     data.inspirations.images.forEach((s) => list.push({ src: s.image, caption: s.caption?.[lang] }));
     list.push({ src: data.appPrototype.arborescence.image, caption: data.appPrototype.arborescence.title[lang] });
@@ -40,10 +39,6 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
     if (data.appPrototype.userTesting.image) {
       list.push({ src: data.appPrototype.userTesting.image, caption: data.appPrototype.userTesting.title[lang] });
     }
-    if (data.appPrototype.usageScenario.overviewImage) {
-      list.push({ src: data.appPrototype.usageScenario.overviewImage, caption: data.appPrototype.usageScenario.title[lang] });
-    }
-    data.appPrototype.usageScenario.steps.forEach((s) => list.push({ src: s.image, caption: `${s.stepNumber}. ${s.title[lang]}` }));
     setAllImages(list);
   }, [lang]);
 
@@ -276,48 +271,6 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
             </div>
           </div>
 
-          {/* Slides Statistiques (Placeholders pour les planches du user) */}
-          <div className="flex flex-col gap-6">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-[#002FA7]/15 pb-4">
-              <div>
-                <span className="font-mono text-xs uppercase tracking-widest text-[#002FA7]/60 block mb-1">
-                  Recherche Documentaire
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-display font-medium uppercase">
-                  {lang === 'fr' ? 'Slides & Synthèse Statistique' : 'Research Slides & Stats'}
-                </h3>
-              </div>
-              <span className="font-mono text-xs text-[#002FA7]/60">
-                {lang === 'fr' ? 'Cliquer pour agrandir' : 'Click to enlarge'}
-              </span>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {data.fieldResearch.slides.map((slide, idx) => (
-                <div
-                  key={slide.id}
-                  onClick={() => openLightbox(slide.image, slide.caption?.[lang])}
-                  className="group rounded-2xl overflow-hidden bg-white border border-[#002FA7]/15 shadow-sm hover:shadow-xl transition-all cursor-zoom-in"
-                >
-                  <div className="aspect-[16/10] overflow-hidden bg-neutral-200 relative">
-                    <img
-                      src={slide.image}
-                      alt={slide.caption?.[lang] || `Slide ${idx + 1}`}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm p-1.5 rounded-lg text-[#002FA7] opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Maximize2 size={14} />
-                    </div>
-                  </div>
-                  <div className="p-4">
-                    <span className="text-xs font-mono text-[#002FA7]/80 line-clamp-1">
-                      {slide.caption?.[lang]}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
 
           {/* Profils de Visiteurs */}
           <div className="flex flex-col gap-6">
@@ -700,76 +653,6 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
             )}
           </div>
 
-          {/* 4.5 SCÉNARIO D'USAGE ILLUSTRÉ */}
-          <div className="flex flex-col gap-8">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-              <div>
-                <span className="font-mono text-xs uppercase tracking-widest text-[#002FA7]/60 block mb-1">
-                  Parcours Illustré
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-display font-medium">
-                  {data.appPrototype.usageScenario.title[lang]}
-                </h3>
-                <p className="text-[#002FA7]/80 text-base mt-2 max-w-2xl font-normal">
-                  {data.appPrototype.usageScenario.desc[lang]}
-                </p>
-              </div>
-              <span className="text-xs font-mono text-[#002FA7]/60">
-                {lang === 'fr' ? 'Cliquer pour examiner' : 'Click to inspect'}
-              </span>
-            </div>
-
-            {/* Scénario d'Usage Storyboard Visual */}
-            {data.appPrototype.usageScenario.overviewImage && (
-              <div
-                onClick={() =>
-                  openLightbox(
-                    data.appPrototype.usageScenario.overviewImage!,
-                    data.appPrototype.usageScenario.title[lang]
-                  )
-                }
-                className="relative w-full aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden bg-neutral-100 border border-[#002FA7]/15 cursor-zoom-in group shadow-md"
-              >
-                <img
-                  src={data.appPrototype.usageScenario.overviewImage}
-                  alt={lang === 'fr' ? "Planche Scénario d'Usage" : "Usage Scenario Board"}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs font-mono text-[#002FA7] shadow">
-                  Zoom
-                </div>
-              </div>
-            )}
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {data.appPrototype.usageScenario.steps.map((st) => (
-                <div
-                  key={st.stepNumber}
-                  onClick={() => openLightbox(st.image, `${st.stepNumber}. ${st.title[lang]}`)}
-                  className="group rounded-2xl overflow-hidden bg-white border border-[#002FA7]/15 flex flex-col justify-between shadow-sm cursor-zoom-in hover:shadow-xl transition-all"
-                >
-                  <div className="aspect-[4/3] overflow-hidden bg-neutral-200 relative">
-                    <img
-                      src={st.image}
-                      alt={st.title[lang]}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute top-3 left-3 bg-[#002FA7] text-white font-mono text-xs px-2.5 py-1 rounded-md font-bold">
-                      {st.stepNumber}
-                    </div>
-                  </div>
-                  <div className="p-5 flex flex-col gap-2">
-                    <h4 className="font-display font-medium text-lg leading-snug">
-                      {st.title[lang]}
-                    </h4>
-                    <p className="text-xs sm:text-sm text-[#002FA7]/75 font-normal leading-relaxed">
-                      {st.desc[lang]}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
 
         </div>
       </section>

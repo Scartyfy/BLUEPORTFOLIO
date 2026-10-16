@@ -168,7 +168,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
         }
       },
       {
-        name: "Musée du Quai Branly — Jacques Chirac",
+        name: "Musée du Quai Branly",
         location: "Paris 7e",
         details: {
           fr: "1 trinôme, 1 binôme et 1 personne seule interviewés",
@@ -547,8 +547,8 @@ export const UX_PROJECT_DATA: UxProjectContent = {
       en: "Application Prototype"
     },
     subtitle: {
-      fr: "Arborescence, sketchs, rendus UI, tests et scénario d'usage",
-      en: "Site map, sketches, UI mockups, testing and usage scenario"
+      fr: "Arborescence, sketchs, rendus UI et tests utilisateurs",
+      en: "Site map, sketches, UI mockups, and user testing"
     },
 
     arborescence: {
