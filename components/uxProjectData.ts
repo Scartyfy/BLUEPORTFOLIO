@@ -138,7 +138,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
       fr: "Musée d'Orsay & Quai Branly",
       en: "Musée d'Orsay & Quai Branly"
     },
-    heroImage: "./placeholder-fil-rouge.svg",
+    heroImage: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Arthur%20(5).jpg`,
     intro: {
       fr: "Conception d'une maquette d'application mobile d'accompagnement muséal. Le projet s'appuie sur une enquête terrain menée au Musée d'Orsay et au Musée du Quai Branly à Paris, combinant observations spontanées, 23 entretiens in situ, cartographie du parcours et prototypage d'interface.",
       en: "Design of a museum companion mobile application. Grounded in field research at Musée d'Orsay and Musée du Quai Branly in Paris, blending spontaneous observations, 23 on-site interviews, user journey mapping, and prototype design."
@@ -461,26 +461,34 @@ export const UX_PROJECT_DATA: UxProjectContent = {
     images: [
       {
         id: "uj-1",
-        image: "./placeholder-fil-rouge.svg",
+        image: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Adam%20(9).jpg`,
         caption: {
-          fr: "User Journey Phase 1 — Avant la visite (Idée de visite & Organisation)",
-          en: "User Journey Phase 1 — Before Visit (Idea & Organization)"
+          fr: "Phase 1 : Avant la visite — Idée de visite & Organisation",
+          en: "Phase 1: Before Visit — Visit Concept & Organization"
         }
       },
       {
         id: "uj-2",
-        image: "./placeholder-fil-rouge.svg",
+        image: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Adam%20(10).jpg`,
         caption: {
-          fr: "User Journey Phase 2 — Pendant la visite (Arrivée, Déambulation & Fatigue)",
-          en: "User Journey Phase 2 — During Visit (Arrival, Browsing & Fatigue)"
+          fr: "Phase 2 : Pendant la visite (Début) — Arrivée, Orientation & Déambulation",
+          en: "Phase 2: During Visit (Start) — Arrival, Orientation & Browsing"
         }
       },
       {
         id: "uj-3",
-        image: "./placeholder-fil-rouge.svg",
+        image: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Adam%20(11).jpg`,
         caption: {
-          fr: "User Journey Phase 3 — Après la visite (Notification déclic & Rétention mémorielle)",
-          en: "User Journey Phase 3 — Post-Visit (Trigger notification & Memory retention)"
+          fr: "Phase 2 : Pendant la visite (Milieu/Fin) — Fatigue & Fin de visite / Sortie",
+          en: "Phase 2: During Visit (End) — Fatigue & Departure"
+        }
+      },
+      {
+        id: "uj-4",
+        image: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Adam%20(12).jpg`,
+        caption: {
+          fr: "Phase 3 : Après la visite — Retour immédiat & Ancrage mémoriel",
+          en: "Phase 3: Post-Visit — Immediate Recall & Long-term Retention"
         }
       }
     ]
@@ -560,7 +568,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
         fr: "Structure épurée articulée autour de 5 piliers : Accueil (carte à gratter & QCM), Ma galerie, Studio de jeux, Ajout d'amis et Compte.",
         en: "Clean structure articulated around 5 pillars: Home (scratch card & quiz), My gallery, Game studio, Friend add, and Account."
       },
-      image: "./placeholder-fil-rouge.svg"
+      image: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Arthur%20(2).jpg`
     },
 
     sketches: {
@@ -575,18 +583,18 @@ export const UX_PROJECT_DATA: UxProjectContent = {
       images: [
         {
           id: "sk-1",
-          image: "./placeholder-fil-rouge.svg",
+          image: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Arthur%20(3).jpg`,
           caption: {
-            fr: "Planche Sketch 01 — Idéation papier & ergonomie one-thumb",
-            en: "Sketch Board 01 — Paper wireframing & one-thumb ergonomics"
+            fr: "Sketch et Idées — Cadrage des flux, navigation basse au pouce & iconographie",
+            en: "Sketch and Ideas — User flow layout, bottom thumb-reach navigation & icons"
           }
         },
         {
           id: "sk-2",
-          image: "./placeholder-fil-rouge.svg",
+          image: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Arthur%20(4).jpg`,
           caption: {
-            fr: "Planche Sketch 02 — Gestuelles de grattage & mécaniques de jeux",
-            en: "Sketch Board 02 — Tactile scratch gestures & mini-game mechanics"
+            fr: "Les Jeux — Gamification (Studio de jeux, Rat de Musée, IA ou Vrai ?, friction positive)",
+            en: "Games & Gamification — Mini-game mechanics (Game studio, Museum Rat, AI vs Real)"
           }
         }
       ]
@@ -604,7 +612,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
       images: [
         {
           id: "mk-1",
-          image: "./placeholder-fil-rouge.svg",
+          image: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Arthur%20(5).jpg`,
           caption: {
             fr: "Rendu 01 — Écrans principaux (Accueil 3🔥, Ma Galerie, Ajout d'amis, Compte)",
             en: "Mockup 01 — Main screens (Home 3🔥, My Gallery, Friends, Account)"
@@ -612,7 +620,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
         },
         {
           id: "mk-2",
-          image: "./placeholder-fil-rouge.svg",
+          image: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Arthur%20(6).jpg`,
           caption: {
             fr: "Rendu 02 — Studio de Jeux (Rat de Musée, Gartic Master, IA ou Vrai ?)",
             en: "Mockup 02 — Game Studio (Museum Rat, Gartic Master, AI or Real?)"
@@ -630,7 +638,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
         fr: "Expérimentations in situ dans les galeries du musée avec la mascotte peluche Rat de Musée, protocole de questions et axes d'amélioration.",
         en: "On-site testing across museum galleries with the Museum Rat mascot, task protocol, and design iterations."
       },
-      image: "./placeholder-fil-rouge.svg",
+      image: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Arthur%20(8).jpg`,
       takeaways: [
         {
           fr: "L'interface doit rester en retrait pendant la contemplation pour ne jamais s'interposer entre le regard et l'œuvre.",

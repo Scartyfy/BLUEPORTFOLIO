@@ -429,15 +429,15 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
             </p>
           </div>
 
-          {/* 3 Images de substitution pour User Journey */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {/* 4 Phases User Journey */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {data.userJourney.images.map((ujItem, idx) => (
               <div
                 key={ujItem.id}
                 onClick={() => openLightbox(ujItem.image, ujItem.caption?.[lang])}
                 className="group rounded-2xl md:rounded-3xl overflow-hidden bg-white/10 border border-white/20 shadow-lg cursor-zoom-in transition-all"
               >
-                <div className="aspect-[4/3] overflow-hidden bg-white/5 relative">
+                <div className="aspect-[16/9] overflow-hidden bg-white/5 relative">
                   <img
                     src={ujItem.image}
                     alt={ujItem.caption?.[lang] || `User Journey 0${idx + 1}`}
@@ -579,7 +579,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
                   onClick={() => openLightbox(skItem.image, skItem.caption?.[lang])}
                   className="group rounded-2xl md:rounded-3xl overflow-hidden bg-white border border-[#002FA7]/15 shadow-sm hover:shadow-xl transition-all cursor-zoom-in"
                 >
-                  <div className="aspect-[4/3] overflow-hidden bg-neutral-200 relative">
+                  <div className="aspect-[16/9] overflow-hidden bg-neutral-200 relative">
                     <img
                       src={skItem.image}
                       alt={skItem.caption?.[lang] || `Sketch 0${idx + 1}`}
@@ -620,7 +620,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
                   onClick={() => openLightbox(mkItem.image, mkItem.caption?.[lang])}
                   className="group rounded-2xl md:rounded-3xl overflow-hidden bg-white border border-[#002FA7]/15 shadow-sm hover:shadow-xl transition-all cursor-zoom-in"
                 >
-                  <div className="aspect-[4/3] overflow-hidden bg-neutral-200 relative">
+                  <div className="aspect-[16/9] overflow-hidden bg-neutral-200 relative">
                     <img
                       src={mkItem.image}
                       alt={mkItem.caption?.[lang] || `Rendu 0${idx + 1}`}
