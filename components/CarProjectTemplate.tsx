@@ -288,7 +288,7 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
                 ease: [0.76, 0, 0.24, 1],
               }}
               onClick={() => openLightbox('./IMG_4351.jpg')}
-              className="w-full aspect-[16/10] md:aspect-[21/9] relative z-20 overflow-hidden rounded-none border border-[#002FA7]/15 bg-[#121622] shadow-sm cursor-zoom-in group"
+              className="w-full aspect-[16/10] md:aspect-[21/9] relative z-20 overflow-hidden rounded-none border border-[#002FA7]/15 bg-[#121622] cursor-zoom-in group"
             >
               <motion.img
                 initial={{ opacity: 0 }}
@@ -346,7 +346,7 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
                       className="lg:col-span-8 cursor-zoom-in group"
                       onClick={() => openLightbox(car.poster.image)}
                     >
-                      <div className="w-full bg-[#EAE8E3]/50 p-2 md:p-4 border border-[#002FA7]/10 shadow-sm transition-opacity duration-300 group-hover:opacity-95">
+                      <div className="w-full bg-[#EAE8E3]/50 p-2 md:p-4 border border-[#002FA7]/10 transition-opacity duration-300 group-hover:opacity-95">
                         <img
                           src={car.poster.image}
                           alt="Porsche 754 Concept"
@@ -426,7 +426,7 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
                       onClick={() => openLightbox(car.poster.image)}
                       className="w-full cursor-zoom-in group"
                     >
-                      <div className="w-full bg-[#EAE8E3]/50 p-2 md:p-3 border border-[#002FA7]/15 shadow-sm transition-transform duration-300 group-hover:scale-[1.01]">
+                      <div className="w-full bg-[#EAE8E3]/50 p-2 md:p-3 border border-[#002FA7]/15 transition-transform duration-300 group-hover:scale-[1.01]">
                         <img
                           src={car.poster.image}
                           alt={`${car.name}`}
@@ -441,7 +441,7 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
                       onClick={() => openLightbox('./car2.jpg')}
                       className="w-full cursor-zoom-in group"
                     >
-                      <div className="w-full bg-[#111622] p-2 md:p-3 border border-[#002FA7]/15 shadow-sm transition-transform duration-300 group-hover:scale-[1.01]">
+                      <div className="w-full bg-[#111622] p-2 md:p-3 border border-[#002FA7]/15 transition-transform duration-300 group-hover:scale-[1.01]">
                         <img
                           src="./car2.jpg"
                           alt={`${car.name}`}
@@ -468,7 +468,7 @@ export const CarProjectTemplate: React.FC<CarProjectTemplateProps> = ({
                       className="lg:col-span-8 cursor-zoom-in group"
                       onClick={() => openLightbox(car.sketch.image)}
                     >
-                      <div className="w-full bg-[#EAE8E3]/40 p-2 md:p-4 border border-[#002FA7]/15 shadow-sm transition-transform duration-300 group-hover:scale-[1.008]">
+                      <div className="w-full bg-[#EAE8E3]/40 p-2 md:p-4 border border-[#002FA7]/15 transition-transform duration-300 group-hover:scale-[1.008]">
                         <img
                           src={car.sketch.image}
                           alt="Styling Sketches"

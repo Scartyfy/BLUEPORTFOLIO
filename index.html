@@ -212,7 +212,6 @@
         height: 20px;
         background-color: transparent;
         border: 2.5px solid rgba(255, 255, 255, 0.85);
-        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2); /* Light black outline */
         border-radius: 50%;
         transform: translate(-50%, -50%);
         transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1), 
@@ -229,7 +228,15 @@
         background-color: rgba(255, 255, 255, 0.02);
         border-color: #ffffff;
         border-width: 2.5px;
-        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3); /* Slightly stronger outline on hover */
+      }
+
+      /* Global removal of all shadows across the site */
+      *, *::before, *::after {
+        box-shadow: none !important;
+        text-shadow: none !important;
+        --tw-shadow: 0 0 #0000 !important;
+        --tw-shadow-colored: 0 0 #0000 !important;
+        --tw-drop-shadow: drop-shadow(0 0 #0000) !important;
       }
 
       @keyframes fade-in {

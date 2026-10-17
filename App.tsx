@@ -272,7 +272,7 @@ export const App: React.FC = () => {
             onClick={toggleLang} 
             className={`group relative flex flex-col items-center gap-0 overflow-hidden h-[34px] px-3.5 transition-all duration-300 rounded-full ${
               isProjectOpen
-                ? 'bg-black/80 hover:bg-black text-white border border-white/20 shadow-md backdrop-blur-md'
+                ? 'bg-black/80 hover:bg-black text-white border border-white/20 backdrop-blur-md'
                 : isWhiteBg 
                   ? 'hover:bg-[#002FA7]/5 hover:border-[#002FA7]/10 border border-transparent' 
                   : 'hover:bg-white/5 hover:border-white/10 border border-transparent'

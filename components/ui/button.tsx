@@ -15,9 +15,8 @@ const AnimatedLayerButton = React.forwardRef<
       className={cn(
         // Base styles for the button
         "group relative flex h-[50px] w-[180px] items-center justify-center overflow-hidden rounded-[30px] border-none",
-        "cursor-pointer bg-primary shadow-[8px_8px_0px_hsl(var(--foreground))] transition-all duration-300 ease-in-out",
-        // FIX: Removed incorrect translateX and used precise translateY for the "pushed" effect
-        "hover:translate-y-[5px] hover:shadow-[3px_3px_0px_hsl(var(--foreground))]",
+        "cursor-pointer bg-primary transition-all duration-300 ease-in-out",
+        "hover:translate-y-[2px]",
         // Accessibility focus styles
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
         "disabled:pointer-events-none disabled:opacity-50",

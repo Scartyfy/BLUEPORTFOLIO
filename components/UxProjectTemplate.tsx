@@ -193,7 +193,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
           <div className="md:col-span-8 relative w-full h-full flex items-end">
             <div 
               onClick={() => openLightbox(data.header.heroImage, data.header.subtitle[lang])}
-              className="w-full aspect-[4/3] md:aspect-[21/9] relative z-20 overflow-hidden shadow-2xl rounded-2xl md:rounded-3xl bg-[#F4F3EF] border border-[#002FA7]/15 cursor-zoom-in group"
+              className="w-full aspect-[4/3] md:aspect-[21/9] relative z-20 overflow-hidden rounded-2xl md:rounded-3xl bg-[#F4F3EF] border border-[#002FA7]/15 cursor-zoom-in group"
             >
               <motion.img
                 style={{ y: heroImageY }}
@@ -231,7 +231,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
             {data.fieldResearch.museums.map((m, idx) => (
               <div
                 key={m.name}
-                className="p-8 md:p-10 rounded-2xl md:rounded-3xl bg-white border border-[#002FA7]/15 flex flex-col justify-between shadow-sm"
+                className="p-8 md:p-10 rounded-2xl md:rounded-3xl bg-white border border-[#002FA7]/15 flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
@@ -254,7 +254,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
           </div>
 
           {/* Methodology Info Box */}
-          <div className="p-8 md:p-10 rounded-2xl md:rounded-3xl bg-white border border-[#002FA7]/15 flex flex-col md:flex-row gap-8 items-start md:items-center justify-between shadow-sm">
+          <div className="p-8 md:p-10 rounded-2xl md:rounded-3xl bg-white border border-[#002FA7]/15 flex flex-col md:flex-row gap-8 items-start md:items-center justify-between">
             <div className="max-w-2xl flex flex-col gap-2">
               <span className="font-mono text-xs uppercase tracking-wider text-[#002FA7]/60">
                 {lang === 'fr' ? 'Méthodologie & Démarche' : 'Methodology & Approach'}
@@ -292,7 +292,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
               {data.fieldResearch.profiles.map((p, idx) => (
                 <div
                   key={p.id}
-                  className="p-6 md:p-8 rounded-2xl bg-white border border-[#002FA7]/15 flex flex-col justify-between shadow-sm hover:border-[#002FA7] transition-colors"
+                  className="p-6 md:p-8 rounded-2xl bg-white border border-[#002FA7]/15 flex flex-col justify-between hover:border-[#002FA7] transition-colors"
                 >
                   <div>
                     <span className="font-mono text-xs font-bold text-[#002FA7]/60 block mb-4">
@@ -328,7 +328,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
               {data.fieldResearch.questions.map((qItem, qIdx) => (
                 <div
                   key={qIdx}
-                  className="p-8 rounded-3xl bg-white border border-[#002FA7]/15 flex flex-col gap-6 shadow-sm"
+                  className="p-8 rounded-3xl bg-white border border-[#002FA7]/15 flex flex-col gap-6"
                 >
                   <div>
                     <span className="font-mono text-xs uppercase tracking-wider text-[#002FA7]/60 block mb-1">
@@ -393,7 +393,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
               <div
                 key={ujItem.id}
                 onClick={() => openLightbox(ujItem.image, ujItem.caption?.[lang])}
-                className="group rounded-2xl md:rounded-3xl overflow-hidden bg-white/10 border border-white/20 shadow-lg cursor-zoom-in transition-all flex flex-col justify-between"
+                className="group rounded-2xl md:rounded-3xl overflow-hidden bg-white/10 border border-white/20 cursor-zoom-in transition-all flex flex-col justify-between"
               >
                 <div className="aspect-[16/9] overflow-hidden bg-white/5 relative">
                   <img
@@ -436,7 +436,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
           </div>
 
           {/* 3.1 ARBORESCENCE */}
-          <div className="p-8 md:p-12 rounded-3xl bg-white border border-[#002FA7]/15 flex flex-col gap-8 shadow-sm">
+          <div className="p-8 md:p-12 rounded-3xl bg-white border border-[#002FA7]/15 flex flex-col gap-8">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
                 <span className="font-mono text-xs uppercase tracking-widest text-[#002FA7]/60 block mb-1">
@@ -456,14 +456,14 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
 
             <div
               onClick={() => openLightbox(data.appPrototype.arborescence.image, data.appPrototype.arborescence.title[lang])}
-              className="relative w-full aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden bg-neutral-200 border border-[#002FA7]/15 cursor-zoom-in group shadow-md"
+              className="relative w-full aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden bg-neutral-200 border border-[#002FA7]/15 cursor-zoom-in group"
             >
               <img
                 src={data.appPrototype.arborescence.image}
                 alt="Arborescence Application"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs font-mono text-[#002FA7] shadow">
+              <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs font-mono text-[#002FA7]">
                 Zoom
               </div>
             </div>
@@ -488,7 +488,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
                 <div
                   key={skItem.id}
                   onClick={() => openLightbox(skItem.image, skItem.caption?.[lang])}
-                  className="group rounded-2xl md:rounded-3xl overflow-hidden bg-white border border-[#002FA7]/15 shadow-sm hover:shadow-xl transition-all cursor-zoom-in"
+                  className="group rounded-2xl md:rounded-3xl overflow-hidden bg-white border border-[#002FA7]/15 transition-all cursor-zoom-in"
                 >
                   <div className="aspect-[16/9] overflow-hidden bg-neutral-200 relative">
                     <img
@@ -529,7 +529,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
                 <div
                   key={mkItem.id}
                   onClick={() => openLightbox(mkItem.image, mkItem.caption?.[lang])}
-                  className="group rounded-2xl md:rounded-3xl overflow-hidden bg-white border border-[#002FA7]/15 shadow-sm hover:shadow-xl transition-all cursor-zoom-in aspect-[16/9] relative"
+                  className="group rounded-2xl md:rounded-3xl overflow-hidden bg-white border border-[#002FA7]/15 transition-all cursor-zoom-in aspect-[16/9] relative"
                 >
                   <img
                     src={mkItem.image}
@@ -545,7 +545,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
           </div>
 
           {/* 3.4 TEST UTILISATEUR */}
-          <div className="p-8 md:p-12 rounded-3xl bg-white border border-[#002FA7]/15 flex flex-col gap-8 shadow-sm">
+          <div className="p-8 md:p-12 rounded-3xl bg-white border border-[#002FA7]/15 flex flex-col gap-8">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
                 <span className="font-mono text-xs uppercase tracking-widest text-[#002FA7]/60 block mb-1">
@@ -572,14 +572,14 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
                     data.appPrototype.userTesting.title[lang]
                   )
                 }
-                className="relative w-full aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden bg-neutral-100 border border-[#002FA7]/15 cursor-zoom-in group shadow-md"
+                className="relative w-full aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden bg-neutral-100 border border-[#002FA7]/15 cursor-zoom-in group"
               >
                 <img
                   src={data.appPrototype.userTesting.image}
                   alt="Planche Test Utilisateur"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs font-mono text-[#002FA7] shadow">
+                <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs font-mono text-[#002FA7]">
                   Zoom
                 </div>
               </div>
@@ -606,7 +606,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
                   <div
                     key={suItem.id}
                     onClick={() => openLightbox(suItem.image, suItem.caption?.[lang])}
-                    className="group rounded-2xl md:rounded-3xl overflow-hidden bg-white border border-[#002FA7]/15 shadow-sm hover:shadow-xl transition-all cursor-zoom-in aspect-[16/9] relative"
+                    className="group rounded-2xl md:rounded-3xl overflow-hidden bg-white border border-[#002FA7]/15 transition-all cursor-zoom-in aspect-[16/9] relative"
                   >
                     <img
                       src={suItem.image}
@@ -666,7 +666,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.98 }}
                   transition={{ duration: 0.2 }}
-                  className="max-w-[94vw] max-h-[92vh] w-auto h-auto object-contain rounded-lg shadow-2xl cursor-default"
+                  className="max-w-[94vw] max-h-[92vh] w-auto h-auto object-contain rounded-lg cursor-default"
                 />
               </AnimatePresence>
 

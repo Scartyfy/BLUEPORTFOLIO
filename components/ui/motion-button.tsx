@@ -21,7 +21,7 @@ const MotionButton: FC<Props> = ({ label, classes, onClick }) => {
       onClick={onClick}
       data-magnetic
       className={cn(
-        'bg-white/10 group relative h-14 w-48 cursor-pointer rounded-full border border-white/20 p-1 outline-none shadow-lg transition-all duration-300 hover:border-white/40',
+        'bg-white/10 group relative h-14 w-48 cursor-pointer rounded-full border border-white/20 p-1 outline-none transition-all duration-300 hover:border-white/40',
         classes
       )}
     >

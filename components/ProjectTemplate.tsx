@@ -33,7 +33,7 @@ const SkillRow = ({ label, text, index, details, image, images, quotes, theme = 
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1, duration: 0.8 }}
-      className={`w-full py-12 md:py-24 flex flex-col gap-8 md:gap-12 relative overflow-hidden ${theme === "light" ? "bg-white text-[#002FA7] rounded-[2rem] md:rounded-[3rem] px-6 md:px-16 shadow-[0_20px_60px_rgb(0,0,0,0.12)] my-8 border border-black/5" : "border-b border-white/20"}`}
+      className={`w-full py-12 md:py-24 flex flex-col gap-8 md:gap-12 relative overflow-hidden ${theme === "light" ? "bg-white text-[#002FA7] rounded-[2rem] md:rounded-[3rem] px-6 md:px-16 my-8 border border-black/5" : "border-b border-white/20"}`}
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start w-full z-10 relative">
         {/* Index */}
@@ -76,14 +76,14 @@ const SkillRow = ({ label, text, index, details, image, images, quotes, theme = 
                    {Array.isArray(img.src) ? (
                      <div className="w-full flex flex-col items-center justify-center gap-4 md:gap-8 h-full">
                        {img.src.map((s, sIdx) => (
-                         <div key={sIdx} className="w-full relative overflow-hidden rounded-2xl shadow-xl border border-black/5">
+                         <div key={sIdx} className="w-full relative overflow-hidden rounded-2xl border border-black/5">
                            <img src={s} referrerPolicy="no-referrer" className="w-full h-auto object-contain transition-transform duration-700 hover:scale-105" alt={`${img.label} ${sIdx}`} />
                          </div>
                        ))}
                      </div>
                    ) : (
                       <div className="w-full flex justify-center items-center h-full">
-                        <div className={`relative overflow-hidden rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-black/5 ${img.label === 'Vue Public' || img.label === 'Public View' ? 'w-4/5 md:w-[90%] lg:w-[85%]' : 'w-full'}`}>
+                        <div className={`relative overflow-hidden rounded-2xl border border-black/5 ${img.label === 'Vue Public' || img.label === 'Public View' ? 'w-4/5 md:w-[90%] lg:w-[85%]' : 'w-full'}`}>
                           <img src={img.src as string} referrerPolicy="no-referrer" className="w-full h-auto object-contain transition-transform duration-700 hover:scale-105" alt={img.label} />
                         </div>
                       </div>
@@ -104,7 +104,6 @@ const SkillRow = ({ label, text, index, details, image, images, quotes, theme = 
             <div className="w-full relative overflow-hidden rounded-2xl bg-white/5 aspect-[4/3] lg:aspect-auto lg:h-full min-h-[300px]">
               <img src={image} referrerPolicy="no-referrer" className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] hover:scale-105" alt={label} />
               <div className="absolute inset-0 bg-[#002FA7]/10 mix-blend-multiply transition-opacity duration-700 hover:opacity-0" />
-              <div className="absolute inset-0 shadow-[inset_0_0_50px_rgba(0,0,0,0.2)] pointer-events-none" />
             </div>
           ) : quotes ? (
             <div className="w-full relative overflow-hidden rounded-2xl border border-white/10 flex items-center justify-center p-8 aspect-[4/3] lg:aspect-auto lg:h-full min-h-[300px] bg-black/20">
@@ -375,7 +374,7 @@ export const ProjectTemplate: React.FC<{
                 duration: 1.4,
                 ease: [0.76, 0, 0.24, 1],
               }}
-              className={`w-full ${projectId === 'p6' ? 'aspect-[16/9] rounded-xl sm:rounded-2xl' : 'aspect-[4/3] md:aspect-[21/9]'} relative z-20 overflow-hidden shadow-2xl`}
+              className={`w-full ${projectId === 'p6' ? 'aspect-[16/9] rounded-xl sm:rounded-2xl' : 'aspect-[4/3] md:aspect-[21/9]'} relative z-20 overflow-hidden`}
             >
               {projectId !== 'p6' && (
                 <div className="absolute inset-0 bg-[#002FA7]/10 z-10 pointer-events-none mix-blend-multiply" />
@@ -439,7 +438,7 @@ export const ProjectTemplate: React.FC<{
             >
               <div className="relative w-full max-w-2xl mx-auto">
                 <div className="absolute -inset-8 bg-white/5 rounded-[3rem] transform -rotate-2 transition-transform duration-700 hover:rotate-0 hidden md:block"></div>
-                <div className="relative rounded-[2rem] overflow-hidden bg-white shadow-[0_20px_60px_rgb(0,0,0,0.08)] p-6 md:p-12 border border-black/5">
+                <div className="relative rounded-[2rem] overflow-hidden bg-white p-6 md:p-12 border border-black/5">
                   <img 
                     src={data.concept.image} 
                     alt="Concept" 
@@ -560,7 +559,7 @@ export const ProjectTemplate: React.FC<{
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "100px" }}
                 transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className="w-full relative rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl bg-white border border-[#002FA7]/10"
+                className="w-full relative rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden bg-white border border-[#002FA7]/10"
               >
                 <img
                   src={slideUrl}
@@ -584,7 +583,7 @@ export const ProjectTemplate: React.FC<{
               <div
                 key={group.id}
                 id={group.id}
-                className="p-6 sm:p-8 md:p-12 rounded-3xl bg-white border border-[#002FA7]/10 shadow-[0_8px_30px_rgba(0,47,167,0.03)] flex flex-col gap-8 transition-all hover:border-[#002FA7]/25"
+                className="p-6 sm:p-8 md:p-12 rounded-3xl bg-white border border-[#002FA7]/10 flex flex-col gap-8 transition-all hover:border-[#002FA7]/25"
               >
                 {/* Project Header */}
                 <div className="flex flex-col gap-3 pb-6 border-b border-neutral-100 max-w-4xl">
@@ -615,7 +614,7 @@ export const ProjectTemplate: React.FC<{
                       <div
                         key={item.id || imgUrl}
                         onClick={() => openLightbox(gIndex >= 0 ? gIndex : 0)}
-                        className={`group relative w-full ${group.aspectRatio || 'aspect-[3/4]'} rounded-2xl overflow-hidden bg-neutral-100 border border-neutral-200/90 cursor-zoom-in hover:shadow-xl transition-all duration-300`}
+                        className={`group relative w-full ${group.aspectRatio || 'aspect-[3/4]'} rounded-2xl overflow-hidden bg-neutral-100 border border-neutral-200/90 cursor-zoom-in transition-all duration-300`}
                         style={{ contentVisibility: 'auto' }}
                       >
                         <img
@@ -688,7 +687,7 @@ export const ProjectTemplate: React.FC<{
             <h2 className="text-3xl md:text-5xl font-medium font-display tracking-tight text-[#002FA7] uppercase">
               Document Embed
             </h2>
-            <div className="w-full h-[80vh] md:h-[90vh] bg-white rounded-2xl overflow-hidden shadow-2xl border border-[#002FA7]/10">
+            <div className="w-full h-[80vh] md:h-[90vh] bg-white rounded-2xl overflow-hidden border border-[#002FA7]/10">
               <iframe
                 src={data.pdfUrl}
                 className="w-full h-full border-none"
@@ -769,7 +768,7 @@ export const ProjectTemplate: React.FC<{
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.98 }}
                   transition={{ duration: 0.2 }}
-                  className="max-w-[94vw] max-h-[82vh] w-auto h-auto object-contain rounded-lg shadow-2xl cursor-default"
+                  className="max-w-[94vw] max-h-[82vh] w-auto h-auto object-contain rounded-lg cursor-default"
                 />
               </AnimatePresence>
 
@@ -791,7 +790,7 @@ export const ProjectTemplate: React.FC<{
             {/* Bottom Caption Pill */}
             <div
               onClick={(e) => e.stopPropagation()}
-              className="z-40 px-5 py-2.5 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-white text-xs sm:text-sm font-mono flex items-center gap-3 select-none pointer-events-auto shadow-2xl max-w-[90vw]"
+              className="z-40 px-5 py-2.5 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-white text-xs sm:text-sm font-mono flex items-center gap-3 select-none pointer-events-auto max-w-[90vw]"
             >
               <span className="text-[#3b82f6] font-semibold shrink-0">
                 {typeof data.galleryImages[activeLightboxIdx] === 'object' && data.galleryImages[activeLightboxIdx].projectTitle
@@ -870,7 +869,7 @@ const HorizontalScrollProcess = ({
                 </div>
                 {step.image && (
                   <div className={`w-full max-h-[50vh] md:max-h-[60vh] relative group order-1 md:order-2 flex flex-col sm:flex-row gap-4 ${step.image2 ? 'items-stretch lg:w-[120%] lg:-ml-[10%]' : 'items-center'}`}>
-                    <div className={`flex-1 ${step.image2 ? 'aspect-[4/3]' : 'aspect-[4/3] md:aspect-square'} w-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-[2rem] overflow-hidden bg-white/50 p-2 md:p-4 backdrop-blur-sm border border-[#002FA7]/10 relative`}>
+                    <div className={`flex-1 ${step.image2 ? 'aspect-[4/3]' : 'aspect-[4/3] md:aspect-square'} w-full rounded-[2rem] overflow-hidden bg-white/50 p-2 md:p-4 backdrop-blur-sm border border-[#002FA7]/10 relative`}>
                       <motion.div style={{ skewX }} className="w-full h-full overflow-hidden origin-bottom rounded-xl flex items-center justify-center relative">
                         <img
                           src={step.image}
@@ -881,7 +880,7 @@ const HorizontalScrollProcess = ({
                       </motion.div>
                     </div>
                     {step.image2 && (
-                      <div className="flex-1 aspect-[4/3] w-full shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-[2rem] overflow-hidden bg-white/50 p-2 md:p-4 backdrop-blur-sm border border-[#002FA7]/10 relative">
+                      <div className="flex-1 aspect-[4/3] w-full rounded-[2rem] overflow-hidden bg-white/50 p-2 md:p-4 backdrop-blur-sm border border-[#002FA7]/10 relative">
                         <motion.div style={{ skewX }} className="w-full h-full overflow-hidden origin-bottom rounded-xl flex items-center justify-center relative">
                           <img
                             src={step.image2}
@@ -981,7 +980,7 @@ const VerticalProcess = ({
                     src={step.image}
                     alt={step.title || 'Project content image'}
                     referrerPolicy="no-referrer"
-                    className="w-full h-auto object-contain relative z-10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)]"
+                    className="w-full h-auto object-contain relative z-10 rounded-2xl"
                   />
                 </motion.div>
                 {step.image2 && (
@@ -997,7 +996,7 @@ const VerticalProcess = ({
                       src={step.image2}
                       alt={`${step.title || 'Project detail'} detail`}
                       referrerPolicy="no-referrer"
-                      className="w-full h-auto object-contain relative z-10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] transition-transform duration-[1.5s] hover:scale-[1.02]"
+                      className="w-full h-auto object-contain relative z-10 rounded-2xl transition-transform duration-[1.5s] hover:scale-[1.02]"
                     />
                   </motion.div>
                 )}

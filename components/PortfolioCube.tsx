@@ -82,7 +82,7 @@ export const PortfolioCube = () => {
   return (
     <div className="flex flex-col items-center justify-center relative w-fit max-w-none overflow-visible" ref={containerRef} style={{ perspective: 1000 }}>
         <motion.div 
-            className="text-white/25 font-mono text-[1.0vw] sm:text-[0.8vw] md:text-[0.75vw] lg:text-[0.8vw] xl:text-[0.8vw] select-none whitespace-pre drop-shadow-[0_0_12px_rgba(255,255,255,0.06)]"
+            className="text-white/25 font-mono text-[1.0vw] sm:text-[0.8vw] md:text-[0.75vw] lg:text-[0.8vw] xl:text-[0.8vw] select-none whitespace-pre"
             style={{ rotateX, rotateY, transformStyle: "preserve-3d", lineHeight: '1.0' }}
         >
             {asciiArt}
