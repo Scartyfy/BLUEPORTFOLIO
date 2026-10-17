@@ -384,6 +384,9 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                       <img
                         src={imgSrc}
                         referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          if (project.id === 'p4') (e.target as HTMLImageElement).src = './ux_cover.png';
+                        }}
                         alt={project.title[lang]}
                         className="absolute inset-0 w-full h-full object-cover"
                       />
@@ -457,6 +460,9 @@ export const ProjectList: React.FC<ProjectListProps> = ({
                           <img
                             src={project.image?.startsWith('/') ? `.${project.image}` : (project.image || project.gallery?.[0])}
                             referrerPolicy="no-referrer"
+                            onError={(e) => {
+                              if (project.id === 'p4') (e.target as HTMLImageElement).src = './ux_cover.png';
+                            }}
                             alt={project.title[lang]}
                             className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${isActive ? "grayscale-0 opacity-100" : "grayscale opacity-85"}`}
                           />

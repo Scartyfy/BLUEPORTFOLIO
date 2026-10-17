@@ -31,13 +31,18 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
   // Collect all images across sections for seamless lightbox browsing
   useEffect(() => {
     const list: Array<{ src: string; caption?: string }> = [];
+    if (data.header.heroImage) {
+      list.push({ src: data.header.heroImage, caption: data.header.subtitle[lang] });
+    }
     data.userJourney.images.forEach((s) => list.push({ src: s.image, caption: s.caption?.[lang] }));
-    data.inspirations.images.forEach((s) => list.push({ src: s.image, caption: s.caption?.[lang] }));
     list.push({ src: data.appPrototype.arborescence.image, caption: data.appPrototype.arborescence.title[lang] });
     data.appPrototype.sketches.images.forEach((s) => list.push({ src: s.image, caption: s.caption?.[lang] }));
     data.appPrototype.mockups.images.forEach((s) => list.push({ src: s.image, caption: s.caption?.[lang] }));
     if (data.appPrototype.userTesting.image) {
       list.push({ src: data.appPrototype.userTesting.image, caption: data.appPrototype.userTesting.title[lang] });
+    }
+    if (data.appPrototype.usageScenario?.images) {
+      data.appPrototype.usageScenario.images.forEach((s) => list.push({ src: s.image, caption: s.caption?.[lang] }));
     }
     setAllImages(list);
   }, [lang]);
@@ -187,14 +192,14 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
 
           <div className="md:col-span-8 relative w-full h-full flex items-end">
             <div 
-              onClick={() => openLightbox(data.header.heroImage, lang === 'fr' ? "Visuel en cours d'ajout" : "Visual coming soon")}
+              onClick={() => openLightbox(data.header.heroImage, data.header.subtitle[lang])}
               className="w-full aspect-[4/3] md:aspect-[21/9] relative z-20 overflow-hidden shadow-2xl rounded-2xl md:rounded-3xl bg-[#F4F3EF] border border-[#002FA7]/15 cursor-zoom-in group"
             >
               <motion.img
                 style={{ y: heroImageY }}
                 src={data.header.heroImage}
-                onError={(e) => { (e.target as HTMLImageElement).src = "./placeholder-fil-rouge.svg"; }}
-                alt={lang === 'fr' ? "Visuel en cours d'ajout" : "Visual coming soon"}
+                onError={(e) => { (e.target as HTMLImageElement).src = "./photo%20ux%20ui/descriptionapp.jpg"; }}
+                alt={data.header.subtitle[lang]}
                 className="absolute inset-0 w-full h-[120%] -top-[10%] object-cover origin-center transition-transform duration-500 group-hover:scale-[1.01]"
               />
             </div>
@@ -382,13 +387,13 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
             </p>
           </div>
 
-          {/* 3 Phases User Journey */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {/* 4 Phases User Journey */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {data.userJourney.images.map((ujItem, idx) => (
               <div
                 key={ujItem.id}
                 onClick={() => openLightbox(ujItem.image, ujItem.caption?.[lang])}
-                className="group rounded-2xl md:rounded-3xl overflow-hidden bg-white/10 border border-white/20 shadow-lg cursor-zoom-in transition-all"
+                className="group rounded-2xl md:rounded-3xl overflow-hidden bg-white/10 border border-white/20 shadow-lg cursor-zoom-in transition-all flex flex-col justify-between"
               >
                 <div className="aspect-[16/9] overflow-hidden bg-white/5 relative">
                   <img
@@ -400,8 +405,8 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
                     <Maximize2 size={14} />
                   </div>
                 </div>
-                <div className="p-4 bg-black/20">
-                  <span className="font-mono text-xs text-white/80 line-clamp-1">
+                <div className="p-4 bg-black/20 flex-grow flex items-center">
+                  <span className="font-mono text-xs text-white/80 line-clamp-2">
                     {ujItem.caption?.[lang]}
                   </span>
                 </div>
@@ -413,61 +418,14 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
       </section>
 
       {/* =========================================================================
-          SECTION 03 : INSPIRATIONS
-      ========================================================================= */}
-      <section className="relative w-full py-20 md:py-32 px-4 md:px-8 border-t border-[#002FA7]/15">
-        <div className="max-w-[1500px] mx-auto flex flex-col gap-12">
-          
-          <div className="flex flex-col gap-2">
-            <span className="font-mono text-xs md:text-sm uppercase tracking-widest font-bold text-[#002FA7]/60">
-              03 / MOODBOARD & BENCHMARK
-            </span>
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-display font-medium uppercase tracking-tight">
-              {data.inspirations.title[lang]}
-            </h2>
-            <p className="text-lg md:text-xl text-[#002FA7]/80 max-w-3xl font-normal mt-2">
-              {data.inspirations.intro[lang]}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {data.inspirations.images.map((inspItem, idx) => (
-              <div
-                key={inspItem.id}
-                onClick={() => openLightbox(inspItem.image, inspItem.caption?.[lang])}
-                className="group rounded-2xl overflow-hidden bg-white border border-[#002FA7]/15 shadow-sm hover:shadow-xl transition-all cursor-zoom-in"
-              >
-                <div className="aspect-[4/3] overflow-hidden bg-neutral-200 relative">
-                  <img
-                    src={inspItem.image}
-                    alt={inspItem.caption?.[lang] || `Inspiration 0${idx + 1}`}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm p-1.5 rounded-lg text-[#002FA7] opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Maximize2 size={14} />
-                  </div>
-                </div>
-                <div className="p-4">
-                  <span className="font-mono text-xs text-[#002FA7]/80 line-clamp-1">
-                    {inspItem.caption?.[lang]}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      {/* =========================================================================
-          SECTION 04 : LA MAQUETTE DE NOTRE APPLICATION
+          SECTION 03 : LA MAQUETTE DE NOTRE APPLICATION
       ========================================================================= */}
       <section className="relative w-full py-20 md:py-32 px-4 md:px-8 border-t border-[#002FA7]/15">
         <div className="max-w-[1500px] mx-auto flex flex-col gap-20 md:gap-28">
           
           <div className="flex flex-col gap-2">
             <span className="font-mono text-xs md:text-sm uppercase tracking-widest font-bold text-[#002FA7]/60">
-              04 / PROTOTYPE & RENDUS
+              03 / PROTOTYPE & RENDUS
             </span>
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-display font-medium uppercase tracking-tight">
               {data.appPrototype.title[lang]}
@@ -477,7 +435,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
             </p>
           </div>
 
-          {/* 4.1 ARBORESCENCE */}
+          {/* 3.1 ARBORESCENCE */}
           <div className="p-8 md:p-12 rounded-3xl bg-white border border-[#002FA7]/15 flex flex-col gap-8 shadow-sm">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
@@ -511,7 +469,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
             </div>
           </div>
 
-          {/* 4.2 PLANCHES DE SKETCH */}
+          {/* 3.2 PLANCHES DE SKETCH */}
           <div className="flex flex-col gap-8">
             <div>
               <span className="font-mono text-xs uppercase tracking-widest text-[#002FA7]/60 block mb-1">
@@ -552,7 +510,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
             </div>
           </div>
 
-          {/* 4.3 DEUX RENDUS DE MISE EN SITUATION */}
+          {/* 3.3 DEUX RENDUS DE MISE EN SITUATION */}
           <div className="flex flex-col gap-8">
             <div>
               <span className="font-mono text-xs uppercase tracking-widest text-[#002FA7]/60 block mb-1">
@@ -571,29 +529,22 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
                 <div
                   key={mkItem.id}
                   onClick={() => openLightbox(mkItem.image, mkItem.caption?.[lang])}
-                  className="group rounded-2xl md:rounded-3xl overflow-hidden bg-white border border-[#002FA7]/15 shadow-sm hover:shadow-xl transition-all cursor-zoom-in"
+                  className="group rounded-2xl md:rounded-3xl overflow-hidden bg-white border border-[#002FA7]/15 shadow-sm hover:shadow-xl transition-all cursor-zoom-in aspect-[16/9] relative"
                 >
-                  <div className="aspect-[16/9] overflow-hidden bg-neutral-200 relative">
-                    <img
-                      src={mkItem.image}
-                      alt={mkItem.caption?.[lang] || `Rendu 0${idx + 1}`}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm p-1.5 rounded-lg text-[#002FA7] opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Maximize2 size={14} />
-                    </div>
-                  </div>
-                  <div className="p-4">
-                    <span className="font-mono text-xs text-[#002FA7]/80 line-clamp-1">
-                      {mkItem.caption?.[lang]}
-                    </span>
+                  <img
+                    src={mkItem.image}
+                    alt={mkItem.caption?.[lang] || `Rendu 0${idx + 1}`}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm p-1.5 rounded-lg text-[#002FA7] opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Maximize2 size={14} />
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* 4.4 TEST UTILISATEUR */}
+          {/* 3.4 TEST UTILISATEUR */}
           <div className="p-8 md:p-12 rounded-3xl bg-white border border-[#002FA7]/15 flex flex-col gap-8 shadow-sm">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
               <div>
@@ -617,7 +568,7 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
               <div
                 onClick={() =>
                   openLightbox(
-                    data.appPrototype.userTesting.image,
+                    data.appPrototype.userTesting.image!,
                     data.appPrototype.userTesting.title[lang]
                   )
                 }
@@ -633,26 +584,43 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
                 </div>
               </div>
             )}
+          </div>
 
-            {data.appPrototype.userTesting.takeaways && data.appPrototype.userTesting.takeaways.length > 0 && (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {data.appPrototype.userTesting.takeaways.map((item, idx) => (
+          {/* 3.5 SCÉNARIO D'USAGE ILLUSTRÉ */}
+          {data.appPrototype.usageScenario?.images && data.appPrototype.usageScenario.images.length > 0 && (
+            <div className="flex flex-col gap-8">
+              <div>
+                <span className="font-mono text-xs uppercase tracking-widest text-[#002FA7]/60 block mb-1">
+                  Storyboard Visuel
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-display font-medium">
+                  {data.appPrototype.usageScenario.title[lang]}
+                </h3>
+                <p className="text-[#002FA7]/80 text-base mt-2 max-w-2xl font-normal">
+                  {data.appPrototype.usageScenario.desc[lang]}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                {data.appPrototype.usageScenario.images.map((suItem, idx) => (
                   <div
-                    key={idx}
-                    className="p-6 rounded-2xl bg-[#F5F5F3] border border-[#002FA7]/10 flex flex-col justify-between"
+                    key={suItem.id}
+                    onClick={() => openLightbox(suItem.image, suItem.caption?.[lang])}
+                    className="group rounded-2xl md:rounded-3xl overflow-hidden bg-white border border-[#002FA7]/15 shadow-sm hover:shadow-xl transition-all cursor-zoom-in aspect-[16/9] relative"
                   >
-                    <span className="font-mono text-xs font-bold text-[#002FA7]/60 mb-3">
-                      0{idx + 1}
-                    </span>
-                    <p className="text-sm md:text-base text-[#002FA7] leading-relaxed font-normal">
-                      {item[lang]}
-                    </p>
+                    <img
+                      src={suItem.image}
+                      alt={suItem.caption?.[lang] || `Scénario 0${idx + 1}`}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm p-1.5 rounded-lg text-[#002FA7] opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Maximize2 size={14} />
+                    </div>
                   </div>
                 ))}
               </div>
-            )}
-          </div>
-
+            </div>
+          )}
 
         </div>
       </section>
@@ -691,8 +659,8 @@ export const UxProjectTemplate: React.FC<UxProjectTemplateProps> = ({
                 <motion.img
                   key={lightboxImage.src}
                   src={lightboxImage.src}
-                  onError={(e) => { (e.target as HTMLImageElement).src = "./placeholder-fil-rouge.svg"; }}
-                  alt={lightboxImage.caption || "Visuel en cours d'ajout"}
+                  onError={(e) => { (e.target as HTMLImageElement).src = "./photo%20ux%20ui/descriptionapp.jpg"; }}
+                  alt={lightboxImage.caption || "Aperçu de l'image"}
                   onClick={(e) => e.stopPropagation()}
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}

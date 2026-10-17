@@ -113,13 +113,7 @@ export interface UxProjectContent {
     usageScenario: {
       title: { fr: string; en: string };
       desc: { fr: string; en: string };
-      overviewImage?: string;
-      steps: Array<{
-        stepNumber: string;
-        title: { fr: string; en: string };
-        desc: { fr: string; en: string };
-        image: string;
-      }>;
+      images: GalleryPhoto[];
     };
   };
 }
@@ -138,7 +132,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
       fr: "Musée d'Orsay & Quai Branly",
       en: "Musée d'Orsay & Quai Branly"
     },
-    heroImage: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Arthur%20(5).jpg`,
+    heroImage: `${import.meta.env.BASE_URL}photo%20ux%20ui/descriptionapp.jpg`,
     intro: {
       fr: "Conception d'une maquette d'application mobile d'accompagnement muséal. Le projet s'appuie sur une enquête terrain menée au Musée d'Orsay et au Musée du Quai Branly à Paris, combinant observations spontanées, 23 entretiens in situ, cartographie du parcours et prototypage d'interface.",
       en: "Design of a museum companion mobile application. Grounded in field research at Musée d'Orsay and Musée du Quai Branly in Paris, blending spontaneous observations, 23 on-site interviews, user journey mapping, and prototype design."
@@ -193,50 +187,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
       }
     },
     // =========================================================================
-    // SLIDES DE RECHERCHE TERRAIN & STATISTIQUES
-    // =========================================================================
-    slides: [
-      {
-        id: "stat-slide-1",
-        image: "./placeholder-fil-rouge.svg",
-        caption: {
-          fr: "Observations In Situ — Musée d'Orsay & Musée du Quai Branly",
-          en: "On-Site Observations — Musée d'Orsay & Musée du Quai Branly"
-        }
-      },
-      {
-        id: "stat-slide-2",
-        image: "./placeholder-fil-rouge.svg",
-        caption: {
-          fr: "Étude In Situ — Donut d'attention devant « Juan Prim » (Henri Regnault)",
-          en: "Field Study — Attention donut facing “Juan Prim” (Henri Regnault)"
-        }
-      },
-      {
-        id: "stat-slide-3",
-        image: "./placeholder-fil-rouge.svg",
-        caption: {
-          fr: "Étude In Situ — Donut d'observation devant « Victor Navlet » (Vue de Paris)",
-          en: "Field Study — Observation donut facing “Victor Navlet” (Paris view)"
-        }
-      },
-      {
-        id: "stat-slide-4",
-        image: "./placeholder-fil-rouge.svg",
-        caption: {
-          fr: "Interviews In Situ — « Pourquoi prenez-vous des photos ? » (37.7% Si belle, 37.7% Partage, 24.6% Étude)",
-          en: "On-Site Interviews — “Why do you take photos?” (37.7% Aesthetic, 37.7% Share, 24.6% Study)"
-        }
-      },
-      {
-        id: "stat-slide-5",
-        image: "./placeholder-fil-rouge.svg",
-        caption: {
-          fr: "Interviews In Situ — « Qu'en faites-vous ? » (62.3% Partage, 24.6% Travail, 13.2% Archive)",
-          en: "On-Site Interviews — “What do you do with them?” (62.3% Share, 24.6% Work, 13.2% Archive)"
-        }
-      }
-    ],
+    slides: [],
     profiles: [
       {
         id: "p-experts",
@@ -461,23 +412,31 @@ export const UX_PROJECT_DATA: UxProjectContent = {
     images: [
       {
         id: "uj-1",
-        image: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Adam%20(10).jpg`,
+        image: `${import.meta.env.BASE_URL}photo%20ux%20ui/userjourney1.jpg`,
+        caption: {
+          fr: "Phase 1 : Avant la visite — Idée de visite & Organisation logistique",
+          en: "Phase 1: Pre-Visit — Visit Idea & Logistics Planning"
+        }
+      },
+      {
+        id: "uj-2",
+        image: `${import.meta.env.BASE_URL}photo%20ux%20ui/userjourney2.jpg`,
         caption: {
           fr: "Phase 2 : Pendant la visite (Début) — Arrivée, Orientation & Déambulation",
           en: "Phase 2: During Visit (Start) — Arrival, Orientation & Browsing"
         }
       },
       {
-        id: "uj-2",
-        image: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Adam%20(11).jpg`,
+        id: "uj-3",
+        image: `${import.meta.env.BASE_URL}photo%20ux%20ui/userjourney3.jpg`,
         caption: {
-          fr: "Phase 2 : Pendant la visite (Milieu/Fin) — Fatigue & Fin de visite / Sortie",
+          fr: "Phase 2 : Pendant la visite (Milieu/Fin) — Fatigue & Sortie du musée",
           en: "Phase 2: During Visit (End) — Fatigue & Departure"
         }
       },
       {
-        id: "uj-3",
-        image: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Adam%20(12).jpg`,
+        id: "uj-4",
+        image: `${import.meta.env.BASE_URL}photo%20ux%20ui/userjiurney4.jpg`,
         caption: {
           fr: "Phase 3 : Après la visite — Retour immédiat & Ancrage mémoriel",
           en: "Phase 3: Post-Visit — Immediate Recall & Long-term Retention"
@@ -502,40 +461,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
       fr: "Recherche iconographique et références graphiques : mécaniques de grattage ludique (FDJ), partage instantané (BeReal/Locket), gamification (DuoLingo) et sobriété suisse.",
       en: "Iconographic research and graphic benchmarks: scratch-off mechanics (FDJ), instant sharing (BeReal/Locket), gamification (DuoLingo), and Swiss typographic restraint."
     },
-    images: [
-      {
-        id: "insp-1",
-        image: "./placeholder-fil-rouge.svg",
-        caption: {
-          fr: "Inspirations — Moodboard de références (FDJ Grattage, BeReal & DuoLingo)",
-          en: "Inspirations — Reference Moodboard (FDJ Scratch, BeReal & DuoLingo)"
-        }
-      },
-      {
-        id: "insp-2",
-        image: "./placeholder-fil-rouge.svg",
-        caption: {
-          fr: "Inspirations — Gamification & Streaks de visite 🔥",
-          en: "Inspirations — Gamification & Visit Streaks 🔥"
-        }
-      },
-      {
-        id: "insp-3",
-        image: "./placeholder-fil-rouge.svg",
-        caption: {
-          fr: "Inspirations — Scénographie & Silence visuel muséal",
-          en: "Inspirations — Scenography & Museum Visual Restraint"
-        }
-      },
-      {
-        id: "insp-4",
-        image: "./placeholder-fil-rouge.svg",
-        caption: {
-          fr: "Inspirations — Typographie Suisse & Cartels épurés",
-          en: "Inspirations — Swiss Typography & Minimal Wall Labels"
-        }
-      }
-    ]
+    images: []
   },
 
   // =========================================================================
@@ -560,7 +486,7 @@ export const UX_PROJECT_DATA: UxProjectContent = {
         fr: "Structure épurée articulée autour de 5 piliers : Accueil (carte à gratter & QCM), Ma galerie, Studio de jeux, Ajout d'amis et Compte.",
         en: "Clean structure articulated around 5 pillars: Home (scratch card & quiz), My gallery, Game studio, Friend add, and Account."
       },
-      image: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Arthur%20(2).jpg`
+      image: `${import.meta.env.BASE_URL}photo%20ux%20ui/arborecsence.jpg`
     },
 
     sketches: {
@@ -575,18 +501,18 @@ export const UX_PROJECT_DATA: UxProjectContent = {
       images: [
         {
           id: "sk-1",
-          image: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Arthur%20(3).jpg`,
+          image: `${import.meta.env.BASE_URL}photo%20ux%20ui/sketch1.jpg`,
           caption: {
-            fr: "Sketch et Idées — Cadrage des flux, navigation basse au pouce & iconographie",
-            en: "Sketch and Ideas — User flow layout, bottom thumb-reach navigation & icons"
+            fr: "Planche 01 : Sketch et Idées — Cadrage des flux, navigation basse au pouce & iconographie",
+            en: "Board 01: Sketch and Ideas — User flow layout, bottom thumb-reach navigation & icons"
           }
         },
         {
           id: "sk-2",
-          image: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Arthur%20(4).jpg`,
+          image: `${import.meta.env.BASE_URL}photo%20ux%20ui/sketch2.jpg`,
           caption: {
-            fr: "Les Jeux — Gamification (Studio de jeux, Rat de Musée, IA ou Vrai ?, friction positive)",
-            en: "Games & Gamification — Mini-game mechanics (Game studio, Museum Rat, AI vs Real)"
+            fr: "Planche 02 : Les Jeux — Gamification (Studio de jeux, Rat de Musée, IA ou Vrai ?)",
+            en: "Board 02: Games & Gamification — Mini-game mechanics (Game studio, Museum Rat, AI vs Real)"
           }
         }
       ]
@@ -598,24 +524,24 @@ export const UX_PROJECT_DATA: UxProjectContent = {
         en: "Contextual UI Mockups"
       },
       desc: {
-        fr: "Deux planches de rendus haute-fidélité illustrant l'application en conditions réelles et les différents modes de jeux.",
+        fr: "Deux planches de rendus haute-fidélité illustrant l'application en conditions réelles, ses écrans clés et les différents modes de jeux.",
         en: "Two high-fidelity mockup boards depicting the companion app held in real conditions and game studio modes."
       },
       images: [
         {
           id: "mk-1",
-          image: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Arthur%20(5).jpg`,
+          image: `${import.meta.env.BASE_URL}photo%20ux%20ui/rendu1.jpg`,
           caption: {
-            fr: "Rendu 01 — Écrans principaux (Accueil 3🔥, Ma Galerie, Ajout d'amis, Compte)",
-            en: "Mockup 01 — Main screens (Home 3🔥, My Gallery, Friends, Account)"
+            fr: "",
+            en: ""
           }
         },
         {
           id: "mk-2",
-          image: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Arthur%20(6).jpg`,
+          image: `${import.meta.env.BASE_URL}photo%20ux%20ui/rendu2.jpg`,
           caption: {
-            fr: "Rendu 02 — Studio de Jeux (Rat de Musée, Gartic Master, IA ou Vrai ?)",
-            en: "Mockup 02 — Game Studio (Museum Rat, Gartic Master, AI or Real?)"
+            fr: "",
+            en: ""
           }
         }
       ]
@@ -627,10 +553,10 @@ export const UX_PROJECT_DATA: UxProjectContent = {
         en: "User Testing"
       },
       desc: {
-        fr: "Expérimentations in situ dans les galeries du musée avec la mascotte peluche Rat de Musée, protocole de questions et axes d'amélioration.",
-        en: "On-site testing across museum galleries with the Museum Rat mascot, task protocol, and design iterations."
+        fr: "Expérimentations in situ en conditions réelles avec des utilisateurs sur l'application mobile : validation de l'ergonomie, clarté des flux de jeu et retours d'expérience.",
+        en: "On-site user testing in real conditions with the mobile application: validating ergonomics, clarity of game flows, and experiential feedback."
       },
-      image: `${import.meta.env.BASE_URL}photo%20fil%20rouge/Arthur%20(8).jpg`,
+      image: `${import.meta.env.BASE_URL}photo%20ux%20ui/testutilisateurs.jpg`,
       takeaways: []
     },
 
@@ -640,58 +566,25 @@ export const UX_PROJECT_DATA: UxProjectContent = {
         en: "Illustrated Usage Scenario"
       },
       desc: {
-        fr: "Déroulement pas-à-pas de l'expérience d'un visiteur, de son arrivée dans les galeries jusqu'à l'ancrage mémoriel chez lui 3 jours plus tard.",
-        en: "Step-by-step visitor journey, from museum entry through gallery browsing to memory consolidation at home 3 days later."
+        fr: "Déroulement pas-à-pas de l'expérience d'un visiteur : de l'émerveillement au musée et la prise de photo in situ, jusqu'au rituel de grattage quotidien et l'ancrage mémoriel.",
+        en: "Step-by-step visitor experience: from museum discovery and on-site photo capture to the daily scratch card ritual and memory consolidation."
       },
-      overviewImage: "./placeholder-fil-rouge.svg",
-      steps: [
+      images: [
         {
-          stepNumber: "01",
-          title: {
-            fr: "Arrivée & Mode Discret",
-            en: "Arrival & Ambient Mode"
-          },
-          desc: {
-            fr: "Le visiteur entre dans le musée. L'application s'adapte sans configuration et passe en mode discret.",
-            en: "Visitor enters the museum wing. The app detects the room seamlessly and switches into ambient mode."
-          },
-          image: "./placeholder-fil-rouge.svg"
+          id: "su-1",
+          image: `${import.meta.env.BASE_URL}photo%20ux%20ui/scenariousage1.jpg`,
+          caption: {
+            fr: "",
+            en: ""
+          }
         },
         {
-          stepNumber: "02",
-          title: {
-            fr: "Approche & Prise de Photo",
-            en: "Artwork Approach & 1-Tap Save"
-          },
-          desc: {
-            fr: "Face à une œuvre, une photo rapide en 1 geste sauvegarde le tableau et son cartel vérifié.",
-            en: "Facing an artwork, 1 single tap saves the piece into the visit book along with verified context."
-          },
-          image: "./placeholder-fil-rouge.svg"
-        },
-        {
-          stepNumber: "03",
-          title: {
-            fr: "Notification Déclic",
-            en: "Trigger Notification"
-          },
-          desc: {
-            fr: "3 jours plus tard à 12h50, notification pop-up : votre tableau du jour est prêt à être gratté !",
-            en: "3 days later at 12:50 PM, notification: your artwork of the day is ready to be revealed!"
-          },
-          image: "./placeholder-fil-rouge.svg"
-        },
-        {
-          stepNumber: "04",
-          title: {
-            fr: "Grattage & Ancrage Mémoriel",
-            en: "Scratch & Memory Anchoring"
-          },
-          desc: {
-            fr: "Le visiteur gratte la carte, mémorise le cartel et l'œuvre s'inscrit durablement dans ses souvenirs.",
-            en: "Visitor scratches the card, answers the quick quiz, and the memory crystallizes forever."
-          },
-          image: "./placeholder-fil-rouge.svg"
+          id: "su-2",
+          image: `${import.meta.env.BASE_URL}photo%20ux%20ui/scenariousage2.jpg`,
+          caption: {
+            fr: "",
+            en: ""
+          }
         }
       ]
     }
